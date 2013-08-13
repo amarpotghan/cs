@@ -13,23 +13,25 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.cache.DimensionGroupCache;
 import com.cs.data.core.nosql.mongodb.MongoRepository;
-import app.cs.model.ContentObject;
+
+import app.cs.inmemory.InMemoryDimensionGroup;
+import app.cs.model.HierarchicalObject;
+import app.cs.repository.api.IDimensionRepository;
 import app.cs.utils.FileUtils;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DimensionRepositoryUnitTests {
-	private DimensionRepository dimensionRepository;
+	private IDimensionRepository dimensionRepository;
 
 	@Mock
-	private ContentObject dimensionModel;
+	private HierarchicalObject dimensionModel;
 
 	@Mock
 	private FileUtils fileUtils;
 
 	@Mock
-	private DimensionGroupCache cache;
+	private InMemoryDimensionGroup cache;
 
 	@Mock
 	private MongoRepository repository;
@@ -49,7 +51,7 @@ public class DimensionRepositoryUnitTests {
 		String dimensionId = "test";
 		String groupId = "group";
 		String path = "testPath";
-		ContentObject dimension = new ContentObject("c01", "campaign",
+		HierarchicalObject dimension = new HierarchicalObject("c01", "campaign",
 				"co01","co01", "testPath");
 		// when
 		when(cache.ifGroupIdExistsFor(dimension.getPath())).thenReturn(true);
@@ -68,14 +70,14 @@ public class DimensionRepositoryUnitTests {
 	public void itShouldGetAllDimensionInstances() {
 
 		// given
-		List<ContentObject> expectedModels = new ArrayList<ContentObject>();
-		expectedModels.add(new ContentObject());
+		List<HierarchicalObject> expectedModels = new ArrayList<HierarchicalObject>();
+		expectedModels.add(new HierarchicalObject());
 		// when
-		when(repository.findAll(ContentObject.class)).thenReturn(
+		when(repository.findAll(HierarchicalObject.class)).thenReturn(
 				expectedModels);
-		List<ContentObject> dimensions = dimensionRepository.getDimensions();
+		List<HierarchicalObject> dimensions = dimensionRepository.getDimensions();
 		// then
-		verify(repository).findAll(ContentObject.class);
+		verify(repository).findAll(HierarchicalObject.class);
 		assertThat(dimensions).isNotEmpty();
 		assertThat(dimensions).isEqualTo(expectedModels);
 
@@ -90,7 +92,7 @@ public class DimensionRepositoryUnitTests {
 		dimensionRepository.getDimensionsOfType(type);
 		// then
 
-		verify(repository).getObjectsBy("type", type, ContentObject.class);
+		verify(repository).getObjectsBy("type", type, HierarchicalObject.class);
 	}
 
 	@Test
@@ -103,7 +105,7 @@ public class DimensionRepositoryUnitTests {
 		dimensionRepository.getDimensionsBy(type2, groupIds);
 		// then
 		verify(repository).getObjectForAndCriteria("type", type2, "groupIds",
-				groupIds, ContentObject.class);
+				groupIds, HierarchicalObject.class);
 	}
 
 }

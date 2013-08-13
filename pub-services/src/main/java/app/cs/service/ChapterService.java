@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.factory.DomainFactory;
-import app.cs.model.ContentObject;
-import app.cs.repository.ChapterRepository;
+import app.cs.model.HierarchicalObject;
+import app.cs.repository.api.IChapterRepository;
 
 /**
  * The Class ChapterService.
@@ -24,7 +24,7 @@ public class ChapterService implements Service {
 	private final String CONTENTOBJECT = "ContentObject";
 
 	/** The chapter repository. */
-	private ChapterRepository chapterRepository;
+	private IChapterRepository chapterRepository;
 
 	/**
 	 * Instantiates a new chapter service.
@@ -33,7 +33,7 @@ public class ChapterService implements Service {
 	 *            the chapter repository
 	 */
 	@Autowired
-	public ChapterService(ChapterRepository chapterRepository) {
+	public ChapterService(IChapterRepository chapterRepository) {
 		// TODO Auto-generated constructor stub
 		this.chapterRepository = chapterRepository;
 	}
@@ -61,7 +61,7 @@ public class ChapterService implements Service {
 	 * @see com.cs.service.IService#getAllBy(java.lang.String)
 	 */
 	@Override
-	public List<ContentObject> getAllBy(String structure) {
+	public List<HierarchicalObject> getAllBy(String structure) {
 		return null;
 	}
 
@@ -74,7 +74,7 @@ public class ChapterService implements Service {
 	@Override
 	public void move(String type, String name, String path, String isFolder,
 			String newPath) {
-		ContentObject chapter = (ContentObject) factory
+		HierarchicalObject chapter = (HierarchicalObject) factory
 				.getDomainObject(CONTENTOBJECT);
 		setChapterAtrributes(chapter, type, name, newPath, isFolder);
 		// move=delete+create
@@ -90,7 +90,7 @@ public class ChapterService implements Service {
 	 * java.lang.String)
 	 */
 	@Override
-	public void delete(ContentObject chapter, String path) {
+	public void delete(HierarchicalObject chapter, String path) {
 
 		chapterRepository.delete(chapter, path);
 
@@ -99,7 +99,7 @@ public class ChapterService implements Service {
 	@Override
 	public String create(String type, String name, String path, String isFolder) {
 
-		ContentObject chapter = (ContentObject) factory
+		HierarchicalObject chapter = (HierarchicalObject) factory
 				.getDomainObject(CONTENTOBJECT);
 		setChapterAtrributes(chapter, type, name, path, isFolder);
 		return chapterRepository.save(chapter);
@@ -119,7 +119,7 @@ public class ChapterService implements Service {
 	 * @param isFolder
 	 *            the is folder
 	 */
-	private void setChapterAtrributes(ContentObject chapter, String type,
+	private void setChapterAtrributes(HierarchicalObject chapter, String type,
 			String name, String path, String isFolder) {
 		chapter.setId(name);
 		chapter.setTitle(name);

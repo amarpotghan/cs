@@ -6,10 +6,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.cache.DimensionGroupCache;
-import app.cs.cache.ViewStructureCache;
 import com.cs.data.core.nosql.mongodb.MongoRepository;
-import app.cs.model.ContentObject;
+
+import app.cs.inmemory.InMemoryDimensionGroup;
+import app.cs.inmemory.InMemoryViewStructure;
+import app.cs.model.HierarchicalObject;
 import app.cs.utils.ArrayUtils;
 
 import static org.fest.assertions.Assertions.*;
@@ -24,38 +25,38 @@ public class ChapterRepositoryUnitTests {
 	private MongoRepository noSqlTemplateForMongo;
 
 	@Mock
-	private ViewStructureCache cache;
+	private InMemoryViewStructure cache;
 
-	ContentObject publication;
+	HierarchicalObject publication;
 
 	@Before
 	public void setUp() {
 		repository = new ChapterRepository(noSqlTemplateForMongo, cache);
-		publication = new ContentObject("Test", "publication", "A,B,C,D,E",
+		publication = new HierarchicalObject("Test", "publication", "A,B,C,D,E",
 				"true");
-		ContentObject test = new ContentObject("test01", "chapter",
+		HierarchicalObject test = new HierarchicalObject("test01", "chapter",
 				"A,B,C,D,E,publication", "false");
-		test.addchild(new ContentObject("test03", "test", "test", "test"));
+		test.addchild(new HierarchicalObject("test03", "test", "test", "test"));
 		publication.addchild(test);
-		publication.addchild(new ContentObject("test02", "test", "A", "true"));
+		publication.addchild(new HierarchicalObject("test02", "test", "A", "true"));
 
 	}
 
 	@Test
 	public void itShouldCreateAChapterInTheParentPublication() {
 		// given
-		ContentObject chapter = new ContentObject("test", "test",
+		HierarchicalObject chapter = new HierarchicalObject("test", "test",
 				"A,B,C,D,E,test03", "B");
 		String result = "success";
 		// when
 		when(cache.getCurrentViewStructure()).thenReturn("C-M-P-D");
 		when(noSqlTemplateForMongo.save(chapter)).thenReturn(result);
-		when(noSqlTemplateForMongo.getObjectByKey("D", ContentObject.class))
+		when(noSqlTemplateForMongo.getObjectByKey("D", HierarchicalObject.class))
 				.thenReturn(publication);
 		String actualResult = repository.save(chapter);
 
 		// then
-		verify(noSqlTemplateForMongo).getObjectByKey("D", ContentObject.class);
+		verify(noSqlTemplateForMongo).getObjectByKey("D", HierarchicalObject.class);
 		verify(noSqlTemplateForMongo).save(chapter);
 		System.out.println(publication);
 
@@ -98,7 +99,7 @@ public class ChapterRepositoryUnitTests {
 		String id = "test01";
 
 		// when
-		ContentObject object = repository.find(publication, id);
+		HierarchicalObject object = repository.find(publication, id);
 
 		// then
 		assertThat(object.getId()).isEqualTo(id);
@@ -111,18 +112,18 @@ public class ChapterRepositoryUnitTests {
 
 		String result = "result";
 		String oldPath = "A,B,C,D,E,test03";
-		ContentObject chapter = new ContentObject("test", "test", "A,B,C,D,E",
+		HierarchicalObject chapter = new HierarchicalObject("test", "test", "A,B,C,D,E",
 				"B");
 		when(cache.getCurrentViewStructure()).thenReturn("C-M-P-D");
 		when(noSqlTemplateForMongo.save(chapter)).thenReturn(result);
-		when(noSqlTemplateForMongo.getObjectByKey("D", ContentObject.class))
+		when(noSqlTemplateForMongo.getObjectByKey("D", HierarchicalObject.class))
 				.thenReturn(publication);
 
 		// when
 		repository.delete(chapter, oldPath);
 
 		// then
-		verify(noSqlTemplateForMongo).getObjectByKey("D", ContentObject.class);
+		verify(noSqlTemplateForMongo).getObjectByKey("D", HierarchicalObject.class);
 		verify(noSqlTemplateForMongo).save(publication);
 
 	}

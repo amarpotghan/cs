@@ -11,9 +11,9 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.builder.TreeBuilder;
-import app.cs.cache.ViewStructureCache;
 import app.cs.factory.DomainFactory;
-import app.cs.model.ContentObject;
+import app.cs.inmemory.InMemoryViewStructure;
+import app.cs.model.HierarchicalObject;
 import app.cs.repository.DimensionRepository;
 import app.cs.utils.FileUtils;
 
@@ -26,7 +26,7 @@ public class DimensionServiceUnitTests {
 	private DimensionService dimensionService;
 
 	@Mock
-	private ContentObject dimensionModel;
+	private HierarchicalObject dimensionModel;
 
 	@Mock
 	private TreeBuilder treeBuilder;
@@ -38,7 +38,7 @@ public class DimensionServiceUnitTests {
 	private DomainFactory factory;
 
 	@Mock
-	private ViewStructureCache cache;
+	private InMemoryViewStructure cache;
 
 	@Before
 	public void setUp() {
@@ -74,7 +74,7 @@ public class DimensionServiceUnitTests {
 		String isFolder = "true";
 
 		// when
-		ContentObject test = new ContentObject();
+		HierarchicalObject test = new HierarchicalObject();
 		when(dimensionRepository.createDimension(test)).thenReturn(name);
 		when(factory.getDomainObject("ContentObject")).thenReturn(test);
 		String dimensionId = dimensionService
@@ -92,7 +92,7 @@ public class DimensionServiceUnitTests {
 
 		String structure = "C-MP-P";
 		// when
-		List<ContentObject> models = dimensionService.getAllBy(structure);
+		List<HierarchicalObject> models = dimensionService.getAllBy(structure);
 
 		// then
 		verify(cache).setCurrentViewStructure("view", structure);

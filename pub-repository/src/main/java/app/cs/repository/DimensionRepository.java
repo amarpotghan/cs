@@ -8,9 +8,12 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.cache.DimensionGroupCache;
-import com.cs.data.core.nosql.NoSqlRepository;
-import app.cs.model.ContentObject;
+
+import com.cs.data.api.core.nosql.NoSqlRepository;
+
+import app.cs.inmemory.InMemoryDimensionGroup;
+import app.cs.model.HierarchicalObject;
+import app.cs.repository.api.IDimensionRepository;
 import app.cs.utils.FileUtils;
 
 /**
@@ -18,13 +21,13 @@ import app.cs.utils.FileUtils;
  * TODO remove out all annaotation from classes
  */
 @Component
-public class DimensionRepository {
+public class DimensionRepository implements IDimensionRepository {
 
 	/** The file utils. */
 	private FileUtils fileUtils;
 
 	/** The group cache. */
-	private DimensionGroupCache groupCache;
+	private InMemoryDimensionGroup groupCache;
 
 	/** The no sql templatefor mongo. */
 	private NoSqlRepository noSqlRepository;
@@ -50,21 +53,18 @@ public class DimensionRepository {
 	 */
 	@Autowired
 	public DimensionRepository(FileUtils fileUtils,
-			DimensionGroupCache groupCache, NoSqlRepository noSqlRepository) {
+			InMemoryDimensionGroup groupCache, NoSqlRepository noSqlRepository) {
 
 		this.fileUtils = fileUtils;
 		this.groupCache = groupCache;
 		this.noSqlRepository = noSqlRepository;
 	}
 
-	/**
-	 * Creates the dimension.
-	 * 
-	 * @param dimension
-	 *            the dimension
-	 * @return the string
+	/* (non-Javadoc)
+	 * @see app.cs.repository.IDimensionRepository#createDimension(app.cs.model.ContentObject)
 	 */
-	public String createDimension(ContentObject dimension) {
+	@Override
+	public String createDimension(HierarchicalObject dimension) {
 		String groupId = getDimensionGroupId(dimension.getPath());
 		if (groupCache.ifGroupIdExistsFor(dimension.getPath())) {
 			dimension.addToGroupId(groupId);
@@ -97,7 +97,7 @@ public class DimensionRepository {
 		String[] paths = path.split(",");
 		for (String singlePath : paths) {
 			noSqlRepository.updateById(singlePath, FIELDTOUPDATE, groupId,
-					ContentObject.class);
+					HierarchicalObject.class);
 		}
 
 	}
@@ -115,55 +115,41 @@ public class DimensionRepository {
 		return groupCache.getDimensionGroupIdFor(path);
 	}
 
-	/**
-	 * Gets the all dimensions.
-	 * 
-	 * @return the all dimensions
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws URISyntaxException
-	 *             the uRI syntax exception
+	/* (non-Javadoc)
+	 * @see app.cs.repository.IDimensionRepository#getAllDimensions()
 	 */
+	@Override
 	public String getAllDimensions() throws IOException, URISyntaxException {
 		// TODO Auto-generated method stub
 		return fileUtils.getFileContents("dimensions.json");
 	}
 
-	/**
-	 * Gets the dimensions.
-	 * 
-	 * @return the dimensions
+	/* (non-Javadoc)
+	 * @see app.cs.repository.IDimensionRepository#getDimensions()
 	 */
-	public List<ContentObject> getDimensions() {
+	@Override
+	public List<HierarchicalObject> getDimensions() {
 
-		return noSqlRepository.findAll(ContentObject.class);
+		return noSqlRepository.findAll(HierarchicalObject.class);
 	}
 
-	/**
-	 * Gets the dimensions of type.
-	 * 
-	 * @param type
-	 *            the type
-	 * @return the dimensions of type
+	/* (non-Javadoc)
+	 * @see app.cs.repository.IDimensionRepository#getDimensionsOfType(java.lang.String)
 	 */
-	public List<ContentObject> getDimensionsOfType(String type) {
+	@Override
+	public List<HierarchicalObject> getDimensionsOfType(String type) {
 		// TODO Auto-generated method stub
-		return noSqlRepository.getObjectsBy(TYPE, type, ContentObject.class);
+		return noSqlRepository.getObjectsBy(TYPE, type, HierarchicalObject.class);
 	}
 
-	/**
-	 * Gets the dimensions by type.
-	 * 
-	 * @param type2
-	 *            the type2
-	 * @param groupIds
-	 *            the group ids
-	 * @return the dimensions by
+	/* (non-Javadoc)
+	 * @see app.cs.repository.IDimensionRepository#getDimensionsBy(java.lang.String, java.util.List)
 	 */
-	public List<ContentObject> getDimensionsBy(String type2,
+	@Override
+	public List<HierarchicalObject> getDimensionsBy(String type2,
 			List<String> groupIds) {
 		return noSqlRepository.getObjectForAndCriteria(TYPE, type2, GROUPIDS,
-				groupIds, ContentObject.class);
+				groupIds, HierarchicalObject.class);
 
 	}
 

@@ -3,9 +3,12 @@ package app.cs.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.cache.ViewStructureCache;
-import com.cs.data.core.nosql.NoSqlRepository;
-import app.cs.model.ContentObject;
+
+import com.cs.data.api.core.nosql.NoSqlRepository;
+
+import app.cs.inmemory.InMemoryViewStructure;
+import app.cs.model.HierarchicalObject;
+import app.cs.repository.api.IChapterRepository;
 
 /**
  * The Class ChapterRepository.
@@ -13,13 +16,13 @@ import app.cs.model.ContentObject;
  * TODO with separate interface****
  */
 @Component
-public class ChapterRepository {
+public class ChapterRepository implements IChapterRepository {
 
 	/** The nosql template for mongo. */
 	private NoSqlRepository noSqlRepository;
 
 	/** The cache. */
-	private ViewStructureCache cache;
+	private InMemoryViewStructure cache;
 
 	/** The comma. */
 	private final String COMMA = ",";
@@ -37,22 +40,19 @@ public class ChapterRepository {
 	 */
 	@Autowired
 	public ChapterRepository(NoSqlRepository noSqlRepository,
-			ViewStructureCache cache) {
+			InMemoryViewStructure cache) {
 		this.noSqlRepository = noSqlRepository;
 		this.cache = cache;
 
 	}
 
-	/**
-	 * Save given chapter.
-	 * 
-	 * @param chapter
-	 *            the chapter
-	 * @return the string
+	/* (non-Javadoc)
+	 * @see app.cs.repository.IChapterRepository#save(app.cs.model.ContentObject)
 	 */
-	public String save(ContentObject chapter) {
+	@Override
+	public String save(HierarchicalObject chapter) {
 
-		ContentObject publication = getParentPublication(chapter.getPath());
+		HierarchicalObject publication = getParentPublication(chapter.getPath());
 		addChapterToPublication(publication, chapter);
 
 		return noSqlRepository.save(chapter);
@@ -66,9 +66,9 @@ public class ChapterRepository {
 	 * @param chapter
 	 *            the chapter
 	 */
-	private void addChapterToPublication(ContentObject publication,
-			ContentObject chapter) {
-		ContentObject parent;
+	private void addChapterToPublication(HierarchicalObject publication,
+			HierarchicalObject chapter) {
+		HierarchicalObject parent;
 		parent = find(publication, getParentId(chapter.getPath()));
 		parent.addchild(chapter);
 		saveToMongo(publication);
@@ -81,7 +81,7 @@ public class ChapterRepository {
 	 * @param publication
 	 *            the publication
 	 */
-	private void saveToMongo(ContentObject publication) {
+	private void saveToMongo(HierarchicalObject publication) {
 		noSqlRepository.save(publication);
 	}
 
@@ -94,15 +94,15 @@ public class ChapterRepository {
 	 *            the parent id
 	 * @return the content object
 	 */
-	protected ContentObject find(ContentObject publication, String parentId) {
-		ContentObject child = null;
+	protected HierarchicalObject find(HierarchicalObject publication, String parentId) {
+		HierarchicalObject child = null;
 		if (publication.getId().equals(parentId)) {
 			return publication;
 
 		}
 
 		if (publication.hasChildren()) {
-			for (ContentObject chapter : publication.getChildren()) {
+			for (HierarchicalObject chapter : publication.getChildren()) {
 				if (child != null)
 					break;
 				if (chapter.getId().equals(parentId)) {
@@ -168,23 +168,18 @@ public class ChapterRepository {
 	 *            the path
 	 * @return the parent publication
 	 */
-	protected ContentObject getParentPublication(String path) {
+	protected HierarchicalObject getParentPublication(String path) {
 		return noSqlRepository.getObjectByKey(getPublicationId(path),
-				ContentObject.class);
+				HierarchicalObject.class);
 	}
 
-	/**
-	 * Deletes given chapter for given old path.
-	 * 
-	 * @param chapter
-	 *            the chapter
-	 * @param oldPath
-	 *            the old path
-	 * @return the string
+	/* (non-Javadoc)
+	 * @see app.cs.repository.IChapterRepository#delete(app.cs.model.ContentObject, java.lang.String)
 	 */
-	public String delete(ContentObject chapter, String oldPath) {
-		ContentObject parentPublication = getParentPublication(oldPath);
-		ContentObject parent = find(parentPublication, getParentId(oldPath));
+	@Override
+	public String delete(HierarchicalObject chapter, String oldPath) {
+		HierarchicalObject parentPublication = getParentPublication(oldPath);
+		HierarchicalObject parent = find(parentPublication, getParentId(oldPath));
 		chapter.setPath(oldPath);
 		parent.removeChild(chapter);
 		saveToMongo(parentPublication);

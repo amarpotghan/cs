@@ -2,8 +2,9 @@ package app.cs.factory;
 
 import org.springframework.stereotype.Component;
 
-import com.cs.data.core.GenericDomain;
-import app.cs.model.ContentObject;
+import app.cs.model.HierarchicalObject;
+
+import com.cs.data.api.core.GenericDomain;
 
 
 /**
@@ -20,7 +21,7 @@ public class DomainFactory {
 	 */
 	public GenericDomain getDomainObject(String type) {
 		if (type.equals("ContentObject"))
-			return new ContentObject();
+			return new HierarchicalObject();
 
 		return null;
 	}

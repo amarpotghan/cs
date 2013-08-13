@@ -1,12 +1,13 @@
 package app.cs.factory;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cs.data.core.GenericDomain;
-import app.cs.model.ContentObject;
-import static org.fest.assertions.Assertions.*;
-import static org.mockito.Mockito.*;
+import app.cs.model.HierarchicalObject;
+
+import com.cs.data.api.core.GenericDomain;
 
 public class DomainFactoryTests {
 
@@ -24,7 +25,7 @@ public class DomainFactoryTests {
 		GenericDomain testObject = factory.getDomainObject("ContentObject");
 
 		// then
-		assertThat(testObject).isInstanceOf(ContentObject.class);
+		assertThat(testObject).isInstanceOf(HierarchicalObject.class);
 
 	}
 }

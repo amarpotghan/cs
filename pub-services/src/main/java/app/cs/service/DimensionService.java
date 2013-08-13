@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.builder.TreeBuilder;
-import app.cs.cache.ViewStructureCache;
 import app.cs.factory.DomainFactory;
-import app.cs.model.ContentObject;
-import app.cs.repository.DimensionRepository;
+import app.cs.inmemory.InMemoryViewStructure;
+import app.cs.model.HierarchicalObject;
+import app.cs.repository.api.IDimensionRepository;
 
 /**
  * The Class DimensionService.
@@ -24,13 +24,13 @@ public class DimensionService implements Service {
 	private TreeBuilder treeBuilder;
 
 	/** The dimension repository. */
-	private DimensionRepository dimensionRepository;
+	private IDimensionRepository dimensionRepository;
 
 	/** The Domain factory. */
 	private DomainFactory factory;
 
 	/** The ViewStructure cache. */
-	private ViewStructureCache cache;
+	private InMemoryViewStructure cache;
 
 	/** The contentobject. */
 	private final String CONTENTOBJECT = "ContentObject";
@@ -47,9 +47,9 @@ public class DimensionService implements Service {
 	 *            the tree builder
 	 */
 	@Autowired
-	public DimensionService(DimensionRepository dimensionRepository,
+	public DimensionService(IDimensionRepository dimensionRepository,
 			TreeBuilder treeBuilder, DomainFactory factory,
-			ViewStructureCache cache) {
+			InMemoryViewStructure cache) {
 
 		this.dimensionRepository = dimensionRepository;
 		this.treeBuilder = treeBuilder;
@@ -82,7 +82,7 @@ public class DimensionService implements Service {
 	 * @see com.cs.service.IService#getAllBy(java.lang.String)
 	 */
 	@Override
-	public List<ContentObject> getAllBy(String structure) {
+	public List<HierarchicalObject> getAllBy(String structure) {
 		// TODO Auto-generated method stub
 		setCurrentViewStructure(structure);
 		return treeBuilder.buildTree(structure);
@@ -96,14 +96,14 @@ public class DimensionService implements Service {
 	 * java.lang.String)
 	 */
 	@Override
-	public void delete(ContentObject chapter, String path) {
+	public void delete(HierarchicalObject chapter, String path) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public String create(String type, String name, String path, String isFolder) {
-		ContentObject dimension = (ContentObject) factory
+		HierarchicalObject dimension = (HierarchicalObject) factory
 				.getDomainObject(CONTENTOBJECT);
 
 		setDimensionAttributes(dimension, type, name, path, isFolder);
@@ -125,7 +125,7 @@ public class DimensionService implements Service {
 	 *            the is folder
 	 */
 
-	protected void setDimensionAttributes(ContentObject dimension, String type,
+	protected void setDimensionAttributes(HierarchicalObject dimension, String type,
 			String name, String path, String isFolder) {
 		dimension.setId(name);
 		dimension.setTitle(name);

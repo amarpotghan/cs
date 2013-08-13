@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.cs.data.api.core.nosql.InMemoryNoSqlRepository;
+import com.cs.data.api.core.nosql.NoSqlOperations;
+import com.cs.data.api.core.nosql.NoSqlRepository;
 import com.cs.data.core.jpa.entities.Student;
-import com.cs.data.core.nosql.NoSqlOperations;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application-context-test.xml")

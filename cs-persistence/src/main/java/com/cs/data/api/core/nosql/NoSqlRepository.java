@@ -1,9 +1,9 @@
-package com.cs.data.core.nosql;
+package com.cs.data.api.core.nosql;
 
 import java.util.Collection;
 import java.util.List;
 
-import com.cs.data.core.GenericDomain;
+import com.cs.data.api.core.GenericDomain;
 
 public interface NoSqlRepository extends NoSqlOperations {
 

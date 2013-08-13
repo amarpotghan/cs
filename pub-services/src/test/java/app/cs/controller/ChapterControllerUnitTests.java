@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.factory.DomainFactory;
-import app.cs.model.ContentObject;
+import app.cs.model.HierarchicalObject;
 import app.cs.service.ChapterService;
 import app.cs.service.Service;
 
@@ -25,7 +25,7 @@ public class ChapterControllerUnitTests {
 	@Mock
 	private DomainFactory factory;
 
-	private ContentObject dimension;
+	private HierarchicalObject dimension;
 
 	@Before
 	public void setUp() {
@@ -42,7 +42,7 @@ public class ChapterControllerUnitTests {
 		String type = "spread";
 		String isFolder = "true";
 
-		ContentObject chapter = new ContentObject(name, type, path, isFolder);
+		HierarchicalObject chapter = new HierarchicalObject(name, type, path, isFolder);
 
 		// when
 		when(chapterService.create(type, name, path, isFolder))
@@ -66,7 +66,7 @@ public class ChapterControllerUnitTests {
 		String type = "spread";
 		String isFolder = "true";
 
-		ContentObject chapter = new ContentObject();
+		HierarchicalObject chapter = new HierarchicalObject();
 
 		// when
 		chapterController.move(type, name, path, isFolder, newPath);

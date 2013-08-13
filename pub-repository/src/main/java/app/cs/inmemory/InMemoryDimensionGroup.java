@@ -1,19 +1,20 @@
-package app.cs.cache;
+package app.cs.inmemory;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cs.data.core.nosql.InMemoryNoSqlRepository;
-import app.cs.model.ContentObject;
+import app.cs.model.HierarchicalObject;
+
+import com.cs.data.api.core.nosql.InMemoryNoSqlRepository;
 
 
 /**
  * The Class DimensionGroupCache.
  */
 @Component
-public class DimensionGroupCache {
+public class InMemoryDimensionGroup {
 
 	/** The no sql template for redis. */
 	private InMemoryNoSqlRepository inMemoryNosqlRepository;
@@ -24,7 +25,7 @@ public class DimensionGroupCache {
 	 * @param noSqlTemplateForRedis the no sql template for redis
 	 */
 	@Autowired
-	public DimensionGroupCache(InMemoryNoSqlRepository noSqlTemplateForRedis) {
+	public InMemoryDimensionGroup(InMemoryNoSqlRepository noSqlTemplateForRedis) {
 		this.inMemoryNosqlRepository = noSqlTemplateForRedis;
 
 	}
@@ -46,7 +47,7 @@ public class DimensionGroupCache {
 	 * @param dimension the dimension
 	 * @param groupId the group id
 	 */
-	public void updateCache(ContentObject dimension, String groupId) {
+	public void updateCache(HierarchicalObject dimension, String groupId) {
 
 		delete(dimension);
 		inMemoryNosqlRepository.set(
@@ -58,7 +59,7 @@ public class DimensionGroupCache {
 	 *
 	 * @param dimension the dimension
 	 */
-	private void delete(ContentObject dimension) {
+	private void delete(HierarchicalObject dimension) {
 		// TODO Auto-generated method stub
 
 		inMemoryNosqlRepository.delete(dimension.getPath());
@@ -71,7 +72,7 @@ public class DimensionGroupCache {
 	 * @param dimension the dimension
 	 * @param groupId the group id
 	 */
-	public void addNewGroup(ContentObject dimension, String groupId) {
+	public void addNewGroup(HierarchicalObject dimension, String groupId) {
 		// TODO Auto-generated method stub
 		if (dimension.isRoot()) {
 			inMemoryNosqlRepository.set(dimension.getName(), groupId);

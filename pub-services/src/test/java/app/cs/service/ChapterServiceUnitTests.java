@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.model.ContentObject;
+import app.cs.model.HierarchicalObject;
 import app.cs.repository.ChapterRepository;
 
 import static org.fest.assertions.Assertions.*;
@@ -36,7 +36,7 @@ public class ChapterServiceUnitTests {
 		String type = "spread";
 		String isFolder = "true";
 		// when
-		ContentObject object = new ContentObject();
+		HierarchicalObject object = new HierarchicalObject();
 		when(chapterRepository.save(object)).thenReturn(result);
 		String actualResult = service.create(type, name, path, isFolder);
 
@@ -51,7 +51,7 @@ public class ChapterServiceUnitTests {
 		// given
 		String result = "success";
 		String oldPath = "testpath";
-		ContentObject object = new ContentObject();
+		HierarchicalObject object = new HierarchicalObject();
 		when(chapterRepository.delete(object, oldPath)).thenReturn(result);
 		// when
 		service.delete(object, oldPath);

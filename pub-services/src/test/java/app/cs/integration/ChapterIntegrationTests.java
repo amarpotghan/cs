@@ -12,11 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import app.cs.cache.ViewStructureCache;
-import com.cs.data.core.nosql.InMemoryNoSqlRepository;
+
+import com.cs.data.api.core.nosql.InMemoryNoSqlRepository;
 import com.cs.data.core.nosql.mongodb.MongoRepository;
-import app.cs.model.ContentObject;
+
+import app.cs.inmemory.InMemoryViewStructure;
+import app.cs.model.HierarchicalObject;
 import app.cs.repository.ChapterRepository;
+import app.cs.repository.api.IChapterRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application-context-test.xml")
@@ -25,28 +28,28 @@ public class ChapterIntegrationTests {
 	@Autowired
 	private MongoRepository noSqlRepository;
 
-	List<ContentObject> models = new ArrayList<ContentObject>();
+	List<HierarchicalObject> models = new ArrayList<HierarchicalObject>();
 
-	private ViewStructureCache cache;
-	private ChapterRepository chapterRepository;
+	private InMemoryViewStructure cache;
+	private IChapterRepository chapterRepository;
 
 	@Autowired
 	private InMemoryNoSqlRepository inMemoryNosqlRepository;
 
-	ContentObject page01;
+	HierarchicalObject page01;
 
 	@Before
 	public void setUp() {
 
-		page01 = new ContentObject("page01", "page", "mp02,pg02,c02,p02",
+		page01 = new HierarchicalObject("page01", "page", "mp02,pg02,c02,p02",
 				"false");
-		ContentObject chapter01 = new ContentObject("chapter01", "page",
+		HierarchicalObject chapter01 = new HierarchicalObject("chapter01", "page",
 				"mp02,pg02,c02,p02", "false");
-		ContentObject chapter02 = new ContentObject("chapter02", "page",
+		HierarchicalObject chapter02 = new HierarchicalObject("chapter02", "page",
 				"mp02,pg02,c02,p02,chapter01", "false");
-		ContentObject page02 = new ContentObject("page02", "page",
+		HierarchicalObject page02 = new HierarchicalObject("page02", "page",
 				"mp02,pg02,c02,p02,chapter01,chapter02", "false");
-		cache = new ViewStructureCache(inMemoryNosqlRepository);
+		cache = new InMemoryViewStructure(inMemoryNosqlRepository);
 
 		models.add(page01);
 		models.add(chapter01);
@@ -58,8 +61,8 @@ public class ChapterIntegrationTests {
 	@Test
 	public void itShouldCreateMultipleDimensionGroupsForGivenModels() {
 
-		cache = new ViewStructureCache(inMemoryNosqlRepository);
-		for (ContentObject dimension : models) {
+		cache = new InMemoryViewStructure(inMemoryNosqlRepository);
+		for (HierarchicalObject dimension : models) {
 			chapterRepository = new ChapterRepository(noSqlRepository, cache);
 			String result = chapterRepository.save(dimension);
 

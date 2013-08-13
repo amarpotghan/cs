@@ -11,12 +11,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import app.cs.builder.TreeBuilder;
-import app.cs.cache.DimensionGroupCache;
-import com.cs.data.core.nosql.InMemoryNoSqlRepository;
+
+import com.cs.data.api.core.nosql.InMemoryNoSqlRepository;
 import com.cs.data.core.nosql.mongodb.MongoRepository;
 import com.cs.data.core.nosql.redis.RedisRepository;
-import app.cs.model.ContentObject;
+
+import app.cs.inmemory.InMemoryDimensionGroup;
+import app.cs.model.HierarchicalObject;
 import app.cs.repository.DimensionRepository;
+import app.cs.repository.api.IDimensionRepository;
 import app.cs.utils.FileUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,20 +38,20 @@ public class TreeBuilderIntegrationTests {
 	@Autowired
 	private RedisOperations redisTemplate;
 	private FileUtils fileUtils;
-	private DimensionGroupCache cache;
-	private DimensionRepository repository;
+	private InMemoryDimensionGroup cache;
+	private IDimensionRepository repository;
 
 	@Test
 	public void itShouldReturnTheWholeTree() {
 		noSqlRepository = new MongoRepository(mongoTemplate);
 		inMemoryNoSqlRepository = new RedisRepository(redisTemplate);
 		fileUtils = new FileUtils();
-		cache = new DimensionGroupCache(inMemoryNoSqlRepository);
+		cache = new InMemoryDimensionGroup(inMemoryNoSqlRepository);
 		repository = new DimensionRepository(fileUtils, cache, noSqlRepository);
 
 		builder = new TreeBuilder(cache, repository);
 
-		List<ContentObject> models = builder
+		List<HierarchicalObject> models = builder
 				.buildTree("Campaign-MasterPublication-PublicationGroup-Publication");
 		System.out.println(models);
 

@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import app.cs.inmemory.InMemoryViewStructure;
+
 import com.cs.data.core.nosql.redis.RedisRepository;
 
 import static org.fest.assertions.Assertions.*;
@@ -16,14 +18,14 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class ViewStructureCacheUnitTests {
 
-	private ViewStructureCache cache;
+	private InMemoryViewStructure cache;
 
 	@Mock
 	private RedisRepository repository;
 
 	@Before
 	public void setUp() {
-		cache = new ViewStructureCache(repository);
+		cache = new InMemoryViewStructure(repository);
 	}
 
 	@Test

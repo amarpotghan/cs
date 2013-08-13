@@ -14,8 +14,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.cache.DimensionGroupCache;
-import app.cs.model.ContentObject;
+import app.cs.inmemory.InMemoryDimensionGroup;
+import app.cs.model.HierarchicalObject;
 import app.cs.repository.DimensionRepository;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -24,7 +24,7 @@ public class TreeBuilderUnitTests {
 	private TreeBuilder treeBuilder;
 
 	@Mock
-	private DimensionGroupCache cache;
+	private InMemoryDimensionGroup cache;
 
 	@Mock
 	private DimensionRepository dimensionRepository;
@@ -50,12 +50,12 @@ public class TreeBuilderUnitTests {
 
 		// given
 		String type = "Campaign";
-		List<ContentObject> result = new ArrayList<ContentObject>();
+		List<HierarchicalObject> result = new ArrayList<HierarchicalObject>();
 
 		// when
 
 		when(dimensionRepository.getDimensionsOfType(type)).thenReturn(result);
-		List<ContentObject> models = treeBuilder.getAllSeparatedTrees(type);
+		List<HierarchicalObject> models = treeBuilder.getAllSeparatedTrees(type);
 		// then
 		verify(dimensionRepository).getDimensionsOfType(type);
 		assertThat(models).isEqualTo(result);
@@ -64,7 +64,7 @@ public class TreeBuilderUnitTests {
 	@Test
 	public void itShouldBuildTreeForGivenRoot() {
 		// given
-		ContentObject dimensionModel = new ContentObject("cp01", "Campaign",
+		HierarchicalObject dimensionModel = new HierarchicalObject("cp01", "Campaign",
 				"cp01", "cp01", "-1");
 		ArrayList<String> groupIds = new ArrayList<String>();
 		dimensionModel.setGroupId(groupIds);

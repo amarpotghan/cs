@@ -12,11 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import app.cs.cache.DimensionGroupCache;
-import com.cs.data.core.nosql.InMemoryNoSqlRepository;
+
+import com.cs.data.api.core.nosql.InMemoryNoSqlRepository;
 import com.cs.data.core.nosql.mongodb.MongoRepository;
-import app.cs.model.ContentObject;
+
+import app.cs.inmemory.InMemoryDimensionGroup;
+import app.cs.model.HierarchicalObject;
 import app.cs.repository.DimensionRepository;
+import app.cs.repository.api.IDimensionRepository;
 import app.cs.service.Service;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,10 +29,10 @@ public class DimensionIntegrationTests {
 	@Autowired
 	private MongoRepository noSqlRepository;
 
-	List<ContentObject> models = new ArrayList<ContentObject>();
+	List<HierarchicalObject> models = new ArrayList<HierarchicalObject>();
 
-	private DimensionGroupCache cache;
-	private DimensionRepository dimensionRepository;
+	private InMemoryDimensionGroup cache;
+	private IDimensionRepository dimensionRepository;
 
 	private Service dimensionService;
 
@@ -39,32 +42,32 @@ public class DimensionIntegrationTests {
 	@Before
 	public void setUp() {
 
-		ContentObject mp01 = new ContentObject("mp01", "MasterPublication",
+		HierarchicalObject mp01 = new HierarchicalObject("mp01", "MasterPublication",
 				"mp01", "mp01", "-1");
-		ContentObject mp012 = new ContentObject("mp012", "MasterPublication",
+		HierarchicalObject mp012 = new HierarchicalObject("mp012", "MasterPublication",
 				"mp012", "mp012", "-1");
-		ContentObject cp01 = new ContentObject("cp01", "Campaign", "cp01",
+		HierarchicalObject cp01 = new HierarchicalObject("cp01", "Campaign", "cp01",
 				"cp01", "mp01");
-		ContentObject cp02 = new ContentObject("cp02", "Campaign", "cp02",
+		HierarchicalObject cp02 = new HierarchicalObject("cp02", "Campaign", "cp02",
 				"cp02", "-1");
 
-		ContentObject mp02 = new ContentObject("mp02", "MasterPublication",
+		HierarchicalObject mp02 = new HierarchicalObject("mp02", "MasterPublication",
 				"mp02", "mp02", "cp02");
-		ContentObject pg02 = new ContentObject("pg02", "PublicationGroup",
+		HierarchicalObject pg02 = new HierarchicalObject("pg02", "PublicationGroup",
 				"pg02", "pg02", "cp02,mp02");
-		ContentObject p02 = new ContentObject("p02", "Publication", "p02",
+		HierarchicalObject p02 = new HierarchicalObject("p02", "Publication", "p02",
 				"p02", "cp02,mp02,pg02");
-		ContentObject cp03 = new ContentObject("cp03", "Campaign", "cp03",
+		HierarchicalObject cp03 = new HierarchicalObject("cp03", "Campaign", "cp03",
 				"cp03", "-1");
-		ContentObject mp03 = new ContentObject("mp03", "MasterPublication",
+		HierarchicalObject mp03 = new HierarchicalObject("mp03", "MasterPublication",
 				"mp03", "mp03", "cp03");
-		ContentObject pg03 = new ContentObject("pg03", "PublicationGroup",
+		HierarchicalObject pg03 = new HierarchicalObject("pg03", "PublicationGroup",
 				"pg03", "pg03", "cp03,mp03");
-		ContentObject p03 = new ContentObject("p03", "Publication", "p03",
+		HierarchicalObject p03 = new HierarchicalObject("p03", "Publication", "p03",
 				"p03", "cp03,mp03,pg03");
-		ContentObject cp04 = new ContentObject("cp04", "Campaign", "cp04",
+		HierarchicalObject cp04 = new HierarchicalObject("cp04", "Campaign", "cp04",
 				"cp04", "-1");
-		ContentObject mp04 = new ContentObject("mp04", "MasterPublication",
+		HierarchicalObject mp04 = new HierarchicalObject("mp04", "MasterPublication",
 				"mp04", "mp04", "cp04");
 
 		models.add(mp01);
@@ -88,8 +91,8 @@ public class DimensionIntegrationTests {
 	@Test
 	public void itShouldCreateMultipleDimensionGroupsForGivenModels() {
 
-		cache = new DimensionGroupCache(inMemoryNosqlRepository);
-		for (ContentObject dimension : models) {
+		cache = new InMemoryDimensionGroup(inMemoryNosqlRepository);
+		for (HierarchicalObject dimension : models) {
 			dimensionRepository = new DimensionRepository(null, cache,
 					noSqlRepository);
 			String test = dimensionRepository.createDimension(dimension);

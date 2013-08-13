@@ -1,9 +1,9 @@
-package app.cs.cache;
+package app.cs.inmemory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cs.data.core.nosql.InMemoryNoSqlRepository;
+import com.cs.data.api.core.nosql.InMemoryNoSqlRepository;
 
 
 /**
@@ -11,7 +11,7 @@ import com.cs.data.core.nosql.InMemoryNoSqlRepository;
  * TODO move this complete package to data package*** data.cache
  */
 @Component
-public class ViewStructureCache {
+public class InMemoryViewStructure {
 
 	/** The no sql template for redis. */
 	private InMemoryNoSqlRepository noSqlTemplateForRedis;
@@ -25,7 +25,7 @@ public class ViewStructureCache {
 	 * @param noSqlTemplateForRedis the no sql template for redis
 	 */
 	@Autowired
-	public ViewStructureCache(InMemoryNoSqlRepository noSqlTemplateForRedis) {
+	public InMemoryViewStructure(InMemoryNoSqlRepository noSqlTemplateForRedis) {
 		this.noSqlTemplateForRedis = noSqlTemplateForRedis;
 
 	}

@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import com.cs.data.core.GenericDomain;
-import app.cs.model.ContentObject;
+import app.cs.model.HierarchicalObject;
 
 /**
  * Interface that specifies basic set of service operations. Ideally all the
@@ -42,7 +41,7 @@ public interface Service {
 	 *            the structure
 	 * @return the all by
 	 */
-	public List<ContentObject> getAllBy(String structure);
+	public List<HierarchicalObject> getAllBy(String structure);
 
 	/**
 	 * Method for moving entity from one location to another.
@@ -63,6 +62,6 @@ public interface Service {
 	 * @param path
 	 *            the path
 	 */
-	void delete(ContentObject chapter, String path);
+	void delete(HierarchicalObject chapter, String path);
 
 }

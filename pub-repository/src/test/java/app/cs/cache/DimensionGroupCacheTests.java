@@ -11,9 +11,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.cache.DimensionGroupCache;
 import com.cs.data.core.nosql.redis.RedisRepository;
-import app.cs.model.ContentObject;
+
+import app.cs.inmemory.InMemoryDimensionGroup;
+import app.cs.model.HierarchicalObject;
 
 import static org.fest.assertions.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -21,8 +22,8 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class DimensionGroupCacheTests {
 
-	private ContentObject dimensionModel;
-	private DimensionGroupCache groupCache;
+	private HierarchicalObject dimensionModel;
+	private InMemoryDimensionGroup groupCache;
 
 	@Mock
 	private RedisRepository redisRepository;
@@ -30,8 +31,8 @@ public class DimensionGroupCacheTests {
 	@Before
 	public void setUp() {
 
-		groupCache = new DimensionGroupCache(redisRepository);
-		dimensionModel = new ContentObject("test01", "campaign", "co01", "cp01","-1");
+		groupCache = new InMemoryDimensionGroup(redisRepository);
+		dimensionModel = new HierarchicalObject("test01", "campaign", "co01", "cp01","-1");
 	}
 
 	@Test

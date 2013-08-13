@@ -14,8 +14,8 @@ import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.cs.data.api.core.nosql.NoSqlOperations;
 import com.cs.data.core.jpa.entities.Student;
-import com.cs.data.core.nosql.NoSqlOperations;
 import com.cs.data.core.nosql.redis.RedisRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)

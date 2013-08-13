@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.cache.DimensionGroupCache;
-import app.cs.model.ContentObject;
-import app.cs.repository.DimensionRepository;
+import app.cs.inmemory.InMemoryDimensionGroup;
+import app.cs.model.HierarchicalObject;
+import app.cs.repository.api.IDimensionRepository;
 import app.cs.utils.ArrayUtils;
 
 
@@ -18,10 +18,10 @@ import app.cs.utils.ArrayUtils;
 public class TreeBuilder {
 
 	/** The cache. */
-	private DimensionGroupCache cache;
+	private InMemoryDimensionGroup cache;
 	
 	/** The repository. */
-	private DimensionRepository repository;
+	private IDimensionRepository repository;
 	
 	/** The utils. */
 	private ArrayUtils utils;
@@ -36,7 +36,7 @@ public class TreeBuilder {
 	 * @param repository the repository
 	 */
 	@Autowired
-	public TreeBuilder(DimensionGroupCache cache, DimensionRepository repository) {
+	public TreeBuilder(InMemoryDimensionGroup cache, IDimensionRepository repository) {
 		this.cache = cache;
 		this.repository = repository;
 	}
@@ -47,10 +47,10 @@ public class TreeBuilder {
 	 * @param structure the structure
 	 * @return the list
 	 */
-	public List<ContentObject> buildTree(String structure) {
+	public List<HierarchicalObject> buildTree(String structure) {
 		String[] orderedTypes = getTypes(structure);
-		List<ContentObject> rootNodes = getAllSeparatedTrees(orderedTypes[0]);
-		for (ContentObject dimension : rootNodes) {
+		List<HierarchicalObject> rootNodes = getAllSeparatedTrees(orderedTypes[0]);
+		for (HierarchicalObject dimension : rootNodes) {
 
 			buildTreeForRootNode(dimension, orderedTypes, null);
 		}
@@ -75,7 +75,7 @@ public class TreeBuilder {
 	 * @param type the type
 	 * @return the all separated trees
 	 */
-	protected List<ContentObject> getAllSeparatedTrees(String type) {
+	protected List<HierarchicalObject> getAllSeparatedTrees(String type) {
 		return repository.getDimensionsOfType(type);
 
 	}
@@ -87,11 +87,11 @@ public class TreeBuilder {
 	 * @param orderTypes the order types
 	 * @param groupIdsRequiredForCurrentIteration the group ids required for current iteration
 	 */
-	protected void buildTreeForRootNode(ContentObject root,
+	protected void buildTreeForRootNode(HierarchicalObject root,
 			String[] orderTypes,
 			List<String> groupIdsRequiredForCurrentIteration) {
 		List<String> groupIds = null;
-		ContentObject currentRoot = root;
+		HierarchicalObject currentRoot = root;
 		if (groupIdsRequiredForCurrentIteration == null) {
 			groupIds = currentRoot.getGroupId();
 		} else {
@@ -102,11 +102,11 @@ public class TreeBuilder {
 		String[] typesOfDimensions = skipFirstOrderType(orderTypes);
 		if (typesOfDimensions.length <= 0)
 			return;
-		List<ContentObject> childrenOfCurrentLevel = getAllChildrenOfCurrentRoot(
+		List<HierarchicalObject> childrenOfCurrentLevel = getAllChildrenOfCurrentRoot(
 				groupIds, typesOfDimensions[0]);
 
 		currentRoot.setChildren(childrenOfCurrentLevel);
-		for (ContentObject child : childrenOfCurrentLevel) {
+		for (HierarchicalObject child : childrenOfCurrentLevel) {
 
 			buildTreeForRootNode(child, typesOfDimensions, groupIds);
 
@@ -121,7 +121,7 @@ public class TreeBuilder {
 	 * @param type the type
 	 * @return the all children of current root
 	 */
-	protected List<ContentObject> getAllChildrenOfCurrentRoot(
+	protected List<HierarchicalObject> getAllChildrenOfCurrentRoot(
 			List<String> groupIds, String type) {
 		return repository.getDimensionsBy(type, groupIds);
 	}
