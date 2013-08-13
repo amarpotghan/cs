@@ -1,0 +1,48 @@
+subprojects {
+    apply plugin: 'java'
+    group = 'com.cs'
+    version = '1.0'
+}
+
+project(':cs-persistence') {
+    configurations {
+        spi
+    }
+    dependencies {
+        
+    }
+    task spiJar(type: Jar) {
+        baseName = 'cs-persistence-spi'
+        dependsOn classes
+        from sourceSets.main.output
+        include('com/cs/persistence/api/**')
+    }
+    artifacts {
+        spi spiJar
+    }
+}
+project(':cs-repository:pub-repository') {
+    configurations {
+        spi
+    }
+    dependencies {
+        compile project(':cs-persistence')
+    }
+    task spiJar(type: Jar) {
+        baseName = 'cs-repository-spi'
+        dependsOn classes
+        from sourceSets.main.output
+        include('app/cs/repository/api/**')
+    }
+    artifacts {
+        spi spiJar
+    }
+}
+
+project(':cs-services:pub-services') {
+    dependencies {
+        compile project(path: ':cs-persistence', configuration: 'spi')
+        compile project(path: ':cs-repository', configuration: 'spi')
+        testCompile "junit:junit:4.11", project(':api')
+    }
+}

@@ -1,0 +1,1 @@
+include 'cs-persistence', 'cs-repository:pub-repository', 'cs-services:pub-service'
