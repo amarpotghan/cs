@@ -1,48 +1,82 @@
 subprojects {
-    apply plugin: 'java'
-    group = 'com.cs'
-    version = '1.0'
+	apply plugin: 'java'
+	group = 'com.cs'
+	version = '1.0'
+	apply plugin : 'idea'
+	apply plugin : 'eclipse'
+	sourceCompatibility = 1.7
+	targetCompatibility = 1.7
+
+	def encoding = {it.encoding = 'UTF-8'}
+
+	repositories {
+		mavenCentral ()
+		maven { url "http://repo.springframework.org/milestone" }
+	}
+	dependencies {
+
+		def springVersion = "3.1.1.RELEASE"
+		def tomcat7Version = "7.0.6"
+
+		compile "org.springframework:spring-core:${springVersion}"
+		compile "org.springframework:spring-web:${springVersion}"
+		compile "org.springframework:spring-webmvc:${springVersion}"
+		compile "org.springframework:spring-beans:${springVersion}"
+		compile "org.springframework:spring-context:${springVersion}"
+		compile "org.springframework:spring-tx:${springVersion}"
+		compile "org.apache.tomcat:tomcat-servlet-api:${tomcat7Version}"
+		compile 'org.codehaus.jackson:jackson-core-asl:1.9.9'
+		compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.9'
+		compile 'org.springframework.data:spring-data-mongodb:1.2.1.RELEASE'
+		compile 'org.springframework.data:spring-data-redis:1.0.4.RELEASE'
+		compile 'org.springframework.data:spring-data-jpa:1.3.2.RELEASE'
+		compile 'org.hibernate:hibernate-entitymanager:4.2.2.Final'
+		compile 'org.eclipse.persistence:org.eclipse.persistence.jpa:2.5.0'
+		compile 'com.googlecode.json-simple:json-simple:1.1.1'
+		compile 'com.h2database:h2:1.3.172'
+		testCompile 'org.springframework:spring-test:3.1.3.RELEASE'
+		testCompile ('junit:junit-dep:4.10') { exclude module : 'org.hamcrest:hamcrest-core' }
+		testCompile 'org.hamcrest:hamcrest-library:1.2.1'
+		testCompile 'org.mockito:mockito-all:1.9.5'
+		testCompile 'org.easytesting:fest-assert:1.4'
+	}
 }
 
 project(':cs-persistence') {
-    configurations {
-        spi
-    }
-    dependencies {
-        
-    }
-    task spiJar(type: Jar) {
-        baseName = 'cs-persistence-spi'
-        dependsOn classes
-        from sourceSets.main.output
-        include('com/cs/persistence/api/**')
-    }
-    artifacts {
-        spi spiJar
-    }
+	configurations { csapi }
+	repositories {
+		mavenCentral ()
+		maven { url "http://repo.springframework.org/milestone" }
+	}
+	dependencies {
+	}
+	task csApiJar(type: Jar) {
+		baseName = 'cs-persistence-csapi'
+		dependsOn classes
+		from sourceSets.main.output
+		include('com/cs/persistence/api/**')
+	}
+	artifacts { csapi csApiJar }
 }
-project(':cs-repository:pub-repository') {
-    configurations {
-        spi
-    }
-    dependencies {
-        compile project(':cs-persistence')
-    }
-    task spiJar(type: Jar) {
-        baseName = 'cs-repository-spi'
-        dependsOn classes
-        from sourceSets.main.output
-        include('app/cs/repository/api/**')
-    }
-    artifacts {
-        spi spiJar
-    }
+project(':pub-repository') {
+	configurations { spi }
+	dependencies {
+		compile project(path: ':cs-persistence')
+	}
+	task spiJar(type: Jar) {
+		baseName = 'pub-repository-spi'
+		dependsOn classes
+		from sourceSets.main.output
+		include('app/cs/repository/api/**')
+	}
+	artifacts { spi spiJar }
 }
 
-project(':cs-services:pub-services') {
-    dependencies {
-        compile project(path: ':cs-persistence', configuration: 'spi')
-        compile project(path: ':cs-repository', configuration: 'spi')
-        testCompile "junit:junit:4.11", project(':api')
-    }
+project(':pub-services') {
+	
+	dependencies {
+		compile project(path: ':cs-persistence')
+		compile project(path: ':pub-repository')
+		testCompile "junit:junit:4.11", project(':cs-persistence'),project(':pub-repository')
+	}
 }
