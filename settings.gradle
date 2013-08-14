@@ -1,1 +1,1 @@
-include 'pub-services', 'cs-persistence', 'pub-repository'
+include 'pub-controller','pub-services', 'cs-persistence', 'pub-repository'

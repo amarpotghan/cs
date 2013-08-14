@@ -54,7 +54,7 @@ project(':cs-persistence') {
 		baseName = 'cs-persistence-csapi'
 		dependsOn classes
 		from sourceSets.main.output
-		include('com/cs/persistence/api/**')
+		include('com/cs/data/api/**')
 	}
 	artifacts { csapi csApiJar }
 }
@@ -67,16 +67,34 @@ project(':pub-repository') {
 		baseName = 'pub-repository-spi'
 		dependsOn classes
 		from sourceSets.main.output
-		include('app/cs/repository/api/**')
+		include('app/cs/interfaces/**')
 	}
 	artifacts { spi spiJar }
 }
 
 project(':pub-services') {
-	
+	configurations { spi }
+
 	dependencies {
 		compile project(path: ':cs-persistence')
 		compile project(path: ':pub-repository')
-		testCompile "junit:junit:4.11", project(':cs-persistence'),project(':pub-repository')
+	}
+	task spiJar(type: Jar) {
+		baseName = 'pub-services-spi'
+		dependsOn classes
+		from sourceSets.main.output
+		include('app/cs/interfaces/**')
+	}
+
+	artifacts { spi spiJar }
+}
+
+project(':pub-controller') {
+
+	dependencies {
+		compile project(path: ':cs-persistence')
+		compile project(path: ':pub-repository')
+		compile project(path: ':pub-services')
+		testCompile "junit:junit:4.11", project(':cs-persistence'),project(':pub-repository'),project(':pub-services')
 	}
 }
