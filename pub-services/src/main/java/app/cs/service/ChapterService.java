@@ -7,9 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.factory.DomainFactory;
-import app.cs.model.HierarchicalObject;
-import app.cs.repository.api.IChapterRepository;
+import app.cs.data.business.api.factory.IDomainFactory;
+import app.cs.data.business.api.model.IMultiDimensionalObject;
+import app.cs.data.business.api.repository.IChapterRepository;
+import app.cs.data.business.factory.DomainFactory;
+import app.cs.data.business.model.MultiDimensionalObject;
 
 /**
  * The Class ChapterService.
@@ -18,10 +20,10 @@ import app.cs.repository.api.IChapterRepository;
 public class ChapterService implements Service {
 
 	/** The factory. */
-	private DomainFactory factory;
+	private IDomainFactory factory;
 
 	/** The contentobject. */
-	private final String CONTENTOBJECT = "ContentObject";
+	private final String CONTENTOBJECT = "MultiDimensionalObject";
 
 	/** The chapter repository. */
 	private IChapterRepository chapterRepository;
@@ -31,11 +33,14 @@ public class ChapterService implements Service {
 	 * 
 	 * @param chapterRepository
 	 *            the chapter repository
+	 * @param factory2
 	 */
 	@Autowired
-	public ChapterService(IChapterRepository chapterRepository) {
+	public ChapterService(IChapterRepository chapterRepository,
+			DomainFactory factory) {
 		// TODO Auto-generated constructor stub
 		this.chapterRepository = chapterRepository;
+		this.factory = factory;
 	}
 
 	/*
@@ -61,7 +66,7 @@ public class ChapterService implements Service {
 	 * @see com.cs.service.IService#getAllBy(java.lang.String)
 	 */
 	@Override
-	public List<HierarchicalObject> getAllBy(String structure) {
+	public List<MultiDimensionalObject> getAllBy(String structure) {
 		return null;
 	}
 
@@ -74,7 +79,7 @@ public class ChapterService implements Service {
 	@Override
 	public void move(String type, String name, String path, String isFolder,
 			String newPath) {
-		HierarchicalObject chapter = (HierarchicalObject) factory
+		IMultiDimensionalObject chapter = (IMultiDimensionalObject) factory
 				.getDomainObject(CONTENTOBJECT);
 		setChapterAtrributes(chapter, type, name, newPath, isFolder);
 		// move=delete+create
@@ -90,7 +95,7 @@ public class ChapterService implements Service {
 	 * java.lang.String)
 	 */
 	@Override
-	public void delete(HierarchicalObject chapter, String path) {
+	public void delete(IMultiDimensionalObject chapter, String path) {
 
 		chapterRepository.delete(chapter, path);
 
@@ -99,7 +104,7 @@ public class ChapterService implements Service {
 	@Override
 	public String create(String type, String name, String path, String isFolder) {
 
-		HierarchicalObject chapter = (HierarchicalObject) factory
+		MultiDimensionalObject chapter = (MultiDimensionalObject) factory
 				.getDomainObject(CONTENTOBJECT);
 		setChapterAtrributes(chapter, type, name, path, isFolder);
 		return chapterRepository.save(chapter);
@@ -119,8 +124,8 @@ public class ChapterService implements Service {
 	 * @param isFolder
 	 *            the is folder
 	 */
-	private void setChapterAtrributes(HierarchicalObject chapter, String type,
-			String name, String path, String isFolder) {
+	private void setChapterAtrributes(IMultiDimensionalObject chapter,
+			String type, String name, String path, String isFolder) {
 		chapter.setId(name);
 		chapter.setTitle(name);
 		chapter.setIsFolder(isFolder);

@@ -6,10 +6,13 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.factory.DomainFactory;
-import app.cs.model.HierarchicalObject;
+import app.cs.controller.ChapterController;
+import app.cs.data.business.api.factory.IDomainFactory;
+import app.cs.data.business.api.model.IMultiDimensionalObject;
+import app.cs.data.business.model.MultiDimensionalObject;
 import app.cs.service.ChapterService;
 import app.cs.service.Service;
+
 
 import static org.fest.assertions.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -23,9 +26,9 @@ public class ChapterControllerUnitTests {
 	private ChapterService chapterService;
 
 	@Mock
-	private DomainFactory factory;
+	private IDomainFactory factory;
 
-	private HierarchicalObject dimension;
+	private IMultiDimensionalObject dimension;
 
 	@Before
 	public void setUp() {
@@ -42,7 +45,7 @@ public class ChapterControllerUnitTests {
 		String type = "spread";
 		String isFolder = "true";
 
-		HierarchicalObject chapter = new HierarchicalObject(name, type, path, isFolder);
+		IMultiDimensionalObject chapter = new MultiDimensionalObject(name, type, path, isFolder);
 
 		// when
 		when(chapterService.create(type, name, path, isFolder))
@@ -66,7 +69,7 @@ public class ChapterControllerUnitTests {
 		String type = "spread";
 		String isFolder = "true";
 
-		HierarchicalObject chapter = new HierarchicalObject();
+		IMultiDimensionalObject chapter = new MultiDimensionalObject();
 
 		// when
 		chapterController.move(type, name, path, isFolder, newPath);

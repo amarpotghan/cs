@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import app.cs.model.CustomResponse;
+import app.cs.data.business.api.model.ICustomResponse;
+import app.cs.data.business.model.CustomResponse;
 import app.cs.utils.FileUtils;
+
 
 
 /**
@@ -44,8 +46,8 @@ public class ClientController {
 	 */
 	@RequestMapping(value = { "/ home" }, method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody
-	CustomResponse getHome() throws IOException, URISyntaxException {
-		CustomResponse customResponse = new CustomResponse();
+	ICustomResponse getHome() throws IOException, URISyntaxException {
+		ICustomResponse customResponse = new CustomResponse();
 		customResponse.setHtml(fileUtils.getFileContents("home.html"));
 		customResponse.setEvents(fileUtils.getFileContents("home/events.json"));
 		customResponse.setElements(fileUtils
@@ -66,9 +68,9 @@ public class ClientController {
 	 */
 	@RequestMapping(value = { "/login" })
 	public @ResponseBody
-	CustomResponse getLogin() throws IOException, URISyntaxException {
+	ICustomResponse getLogin() throws IOException, URISyntaxException {
 
-		CustomResponse customResponse = new CustomResponse();
+		ICustomResponse customResponse = new CustomResponse();
 		customResponse.setHtml(fileUtils.getFileContents("login.html"));
 		customResponse
 				.setEvents(fileUtils.getFileContents("login/events.json"));

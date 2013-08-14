@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
 import com.cs.data.api.core.GenericDomain;
-import com.cs.data.api.core.nosql.NoSqlRepository;
+import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 
 /**
  * The Class MongoRepository.

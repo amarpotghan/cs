@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import app.cs.model.HierarchicalObject;
+import app.cs.data.business.api.model.IMultiDimensionalObject;
+import app.cs.data.business.model.MultiDimensionalObject;
+
+import com.cs.data.api.core.GenericDomain;
 
 /**
  * Interface that specifies basic set of service operations. Ideally all the
@@ -41,7 +44,7 @@ public interface Service {
 	 *            the structure
 	 * @return the all by
 	 */
-	public List<HierarchicalObject> getAllBy(String structure);
+	public List<MultiDimensionalObject> getAllBy(String structure);
 
 	/**
 	 * Method for moving entity from one location to another.
@@ -62,6 +65,6 @@ public interface Service {
 	 * @param path
 	 *            the path
 	 */
-	void delete(HierarchicalObject chapter, String path);
+	void delete(IMultiDimensionalObject chapter, String path);
 
 }

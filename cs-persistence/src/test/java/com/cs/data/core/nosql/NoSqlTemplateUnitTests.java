@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.cs.data.api.core.nosql.InMemoryNoSqlRepository;
 import com.cs.data.api.core.nosql.NoSqlOperations;
-import com.cs.data.api.core.nosql.NoSqlRepository;
+import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
+import com.cs.data.api.core.nosql.redis.InMemoryNoSqlRepository;
 import com.cs.data.core.jpa.entities.Student;
 
 @RunWith(SpringJUnit4ClassRunner.class)

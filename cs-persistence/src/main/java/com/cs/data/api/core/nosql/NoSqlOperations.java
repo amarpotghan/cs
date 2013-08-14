@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.IRepository;
+import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 
 /**
  * Interface that specifies a basic set of NoSql operations. Implemented by

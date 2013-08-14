@@ -7,11 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.builder.TreeBuilder;
-import app.cs.factory.DomainFactory;
-import app.cs.inmemory.InMemoryViewStructure;
-import app.cs.model.HierarchicalObject;
-import app.cs.repository.api.IDimensionRepository;
+import app.cs.data.business.api.builder.ITreeBuilder;
+import app.cs.data.business.api.factory.IDomainFactory;
+import app.cs.data.business.api.inmemory.IInMemoryViewStructure;
+import app.cs.data.business.api.model.IMultiDimensionalObject;
+import app.cs.data.business.api.repository.IDimensionRepository;
+
 
 /**
  * The Class DimensionService.
@@ -21,16 +22,16 @@ import app.cs.repository.api.IDimensionRepository;
 public class DimensionService implements Service {
 
 	/** The tree builder. */
-	private TreeBuilder treeBuilder;
+	private ITreeBuilder treeBuilder;
 
 	/** The dimension repository. */
 	private IDimensionRepository dimensionRepository;
 
 	/** The Domain factory. */
-	private DomainFactory factory;
+	private IDomainFactory factory;
 
 	/** The ViewStructure cache. */
-	private InMemoryViewStructure cache;
+	private IInMemoryViewStructure cache;
 
 	/** The contentobject. */
 	private final String CONTENTOBJECT = "ContentObject";
@@ -48,8 +49,8 @@ public class DimensionService implements Service {
 	 */
 	@Autowired
 	public DimensionService(IDimensionRepository dimensionRepository,
-			TreeBuilder treeBuilder, DomainFactory factory,
-			InMemoryViewStructure cache) {
+			ITreeBuilder treeBuilder, IDomainFactory factory,
+			IInMemoryViewStructure cache) {
 
 		this.dimensionRepository = dimensionRepository;
 		this.treeBuilder = treeBuilder;
@@ -82,7 +83,7 @@ public class DimensionService implements Service {
 	 * @see com.cs.service.IService#getAllBy(java.lang.String)
 	 */
 	@Override
-	public List<HierarchicalObject> getAllBy(String structure) {
+	public List<app.cs.data.business.model.MultiDimensionalObject> getAllBy(String structure) {
 		// TODO Auto-generated method stub
 		setCurrentViewStructure(structure);
 		return treeBuilder.buildTree(structure);
@@ -96,14 +97,14 @@ public class DimensionService implements Service {
 	 * java.lang.String)
 	 */
 	@Override
-	public void delete(HierarchicalObject chapter, String path) {
+	public void delete(IMultiDimensionalObject chapter, String path) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public String create(String type, String name, String path, String isFolder) {
-		HierarchicalObject dimension = (HierarchicalObject) factory
+		app.cs.data.business.model.MultiDimensionalObject dimension = (app.cs.data.business.model.MultiDimensionalObject) factory
 				.getDomainObject(CONTENTOBJECT);
 
 		setDimensionAttributes(dimension, type, name, path, isFolder);
@@ -125,8 +126,8 @@ public class DimensionService implements Service {
 	 *            the is folder
 	 */
 
-	protected void setDimensionAttributes(HierarchicalObject dimension, String type,
-			String name, String path, String isFolder) {
+	protected void setDimensionAttributes(IMultiDimensionalObject dimension,
+			String type, String name, String path, String isFolder) {
 		dimension.setId(name);
 		dimension.setTitle(name);
 		dimension.setIsFolder(isFolder);
@@ -142,7 +143,7 @@ public class DimensionService implements Service {
 	 * @param currentViewStructure
 	 *            the new current view structure
 	 */
-	protected void setCurrentViewStructure(String currentViewStructure) {
+	public void setCurrentViewStructure(String currentViewStructure) {
 		cache.setCurrentViewStructure(KEY, currentViewStructure);
 
 	}

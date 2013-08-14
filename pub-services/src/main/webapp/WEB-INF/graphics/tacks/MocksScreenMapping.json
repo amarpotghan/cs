@@ -1,0 +1,7 @@
+{
+    "landingScreen":{"url":"start.html","containerId":"","loadOnStartup":"false"},
+    "headerScreen":{"url":"/RefactoredPub/graphics/screens/header/html/Header.html","containerId":"headerContainer","loadOnStartup":"false"},
+    "footerScreen":{"url":"/RefactoredPub/graphics/screens/footer/html/Footer.html","containerId":"footerContainer","loadOnStartup":"false"},
+    "loginScreen":{"url":"/RefactoredPub/graphics/mocks/login.json","containerId":"mainContainer","loadOnStartup":"true"},
+    "homeScreen":{"url":"/RefactoredPub/graphics/mocks/home.json","containerId":"mainContainer","loadOnStartup":"false"}
+}

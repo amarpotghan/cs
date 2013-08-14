@@ -27,7 +27,7 @@
 	</mvc:interceptors>
 	<bean
 		class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
-		<property name="basePackage" value="com.app.controller" />
+		<property name="basePackage" value="app.cs.controller" />
 	</bean>
 
 	<bean

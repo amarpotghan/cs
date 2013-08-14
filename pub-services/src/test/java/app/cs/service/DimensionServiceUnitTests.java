@@ -10,12 +10,15 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.builder.TreeBuilder;
-import app.cs.factory.DomainFactory;
-import app.cs.inmemory.InMemoryViewStructure;
-import app.cs.model.HierarchicalObject;
-import app.cs.repository.DimensionRepository;
+import app.cs.data.business.api.factory.IDomainFactory;
+import app.cs.data.business.api.model.IMultiDimensionalObject;
+import app.cs.data.business.builder.TreeBuilder;
+import app.cs.data.business.inmemory.InMemoryViewStructure;
+import app.cs.data.business.model.MultiDimensionalObject;
+import app.cs.data.business.repository.DimensionRepository;
+import app.cs.service.DimensionService;
 import app.cs.utils.FileUtils;
+
 
 import static org.fest.assertions.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -26,7 +29,7 @@ public class DimensionServiceUnitTests {
 	private DimensionService dimensionService;
 
 	@Mock
-	private HierarchicalObject dimensionModel;
+	private IMultiDimensionalObject dimensionModel;
 
 	@Mock
 	private TreeBuilder treeBuilder;
@@ -35,7 +38,7 @@ public class DimensionServiceUnitTests {
 	private DimensionRepository dimensionRepository;
 
 	@Mock
-	private DomainFactory factory;
+	private IDomainFactory factory;
 
 	@Mock
 	private InMemoryViewStructure cache;
@@ -74,7 +77,7 @@ public class DimensionServiceUnitTests {
 		String isFolder = "true";
 
 		// when
-		HierarchicalObject test = new HierarchicalObject();
+		MultiDimensionalObject test = new MultiDimensionalObject();
 		when(dimensionRepository.createDimension(test)).thenReturn(name);
 		when(factory.getDomainObject("ContentObject")).thenReturn(test);
 		String dimensionId = dimensionService
@@ -92,7 +95,7 @@ public class DimensionServiceUnitTests {
 
 		String structure = "C-MP-P";
 		// when
-		List<HierarchicalObject> models = dimensionService.getAllBy(structure);
+		List<MultiDimensionalObject> models = dimensionService.getAllBy(structure);
 
 		// then
 		verify(cache).setCurrentViewStructure("view", structure);

@@ -15,6 +15,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.controller.TreeViewStructureController;
 import app.cs.utils.FileUtils;
+
 import static org.mockito.Mockito.*;
 
 import static org.fest.assertions.Assertions.*;

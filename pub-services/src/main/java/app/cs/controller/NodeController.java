@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import app.cs.model.HierarchicalObject;
+import app.cs.data.business.model.MultiDimensionalObject;
 import app.cs.service.Service;
+
 
 /**
  * The Class NodeController.
@@ -102,7 +103,7 @@ public class NodeController {
 	 */
 	@RequestMapping(value = "/dimension/get/{structure}")
 	public @ResponseBody
-	List<HierarchicalObject> getDimensionsBy(@PathVariable String structure) {
+	List<MultiDimensionalObject> getDimensionsBy(@PathVariable String structure) {
 
 		return dimensionService.getAllBy(structure);
 	}

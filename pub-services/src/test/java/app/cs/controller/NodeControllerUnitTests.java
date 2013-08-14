@@ -16,8 +16,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.model.HierarchicalObject;
+import app.cs.controller.NodeController;
+import app.cs.data.business.model.MultiDimensionalObject;
 import app.cs.service.DimensionService;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class NodeControllerUnitTests {
@@ -89,12 +91,12 @@ public class NodeControllerUnitTests {
 	@Test
 	public void itShouldGetAllDimensionsAccordingToStructure() {
 		// given
-		List<HierarchicalObject> models = new ArrayList<HierarchicalObject>();
+		List<MultiDimensionalObject> models = new ArrayList<MultiDimensionalObject>();
 		String structure = "C-MP-P";
 
 		// when
 		when(dimensionService.getAllBy(structure)).thenReturn(models);
-		List<HierarchicalObject> actualModels = treeController
+		List<MultiDimensionalObject> actualModels = treeController
 				.getDimensionsBy(structure);
 
 		// then
