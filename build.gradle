@@ -1,6 +1,6 @@
 subprojects {
 	apply plugin: 'java'
-	group = 'com.cs'
+	group = 'app.cs'
 	version = '1.0'
 	apply plugin : 'idea'
 	apply plugin : 'eclipse'
@@ -76,8 +76,7 @@ project(':pub-services') {
 	configurations { spi }
 
 	dependencies {
-		compile project(path: ':cs-persistence')
-		compile project(path: ':pub-repository')
+		compile project(':cs-persistence'),project(':pub-repository')
 	}
 	task spiJar(type: Jar) {
 		baseName = 'pub-services-spi'
@@ -92,9 +91,7 @@ project(':pub-services') {
 project(':pub-controller') {
 
 	dependencies {
-		compile project(path: ':cs-persistence')
-		compile project(path: ':pub-repository')
-		compile project(path: ':pub-services')
+		compile project(':cs-persistence'),project(':pub-repository'),project(':pub-services')
 		testCompile "junit:junit:4.11", project(':cs-persistence'),project(':pub-repository'),project(':pub-services')
 	}
 }
