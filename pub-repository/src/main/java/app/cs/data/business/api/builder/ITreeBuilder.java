@@ -2,7 +2,7 @@ package app.cs.data.business.api.builder;
 
 import java.util.List;
 
-import app.cs.data.business.model.MultiDimensionalObject;
+import app.cs.data.business.dimension.MultiDimensionalObject;
 
 public interface ITreeBuilder {
 

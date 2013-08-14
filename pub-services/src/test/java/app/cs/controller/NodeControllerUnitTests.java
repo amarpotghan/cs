@@ -17,8 +17,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.controller.NodeController;
-import app.cs.data.business.model.MultiDimensionalObject;
-import app.cs.service.DimensionService;
+import app.cs.data.business.dimension.MultiDimensionalObject;
+import app.cs.dimension.DimensionService;
 
 
 @RunWith(MockitoJUnitRunner.class)

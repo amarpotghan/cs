@@ -6,11 +6,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import app.cs.chapter.ChapterService;
 import app.cs.controller.ChapterController;
-import app.cs.data.business.api.factory.IDomainFactory;
-import app.cs.data.business.api.model.IMultiDimensionalObject;
-import app.cs.data.business.model.MultiDimensionalObject;
-import app.cs.service.ChapterService;
+import app.cs.data.business.api.dimension.IMultiDimensionalObject;
+import app.cs.data.business.api.model.IDomainFactory;
+import app.cs.data.business.dimension.MultiDimensionalObject;
 import app.cs.service.Service;
 
 

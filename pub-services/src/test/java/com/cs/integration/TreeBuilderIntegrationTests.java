@@ -11,12 +11,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import app.cs.data.business.api.builder.ITreeBuilder;
-import app.cs.data.business.api.inmemory.IInMemoryDimensionGroup;
-import app.cs.data.business.api.repository.IDimensionRepository;
+import app.cs.data.business.api.dimension.IDimensionRepository;
+import app.cs.data.business.api.dimension.IInMemoryDimensionGroup;
 import app.cs.data.business.builder.TreeBuilder;
-import app.cs.data.business.inmemory.InMemoryDimensionGroup;
-import app.cs.data.business.model.MultiDimensionalObject;
-import app.cs.data.business.repository.DimensionRepository;
+import app.cs.data.business.dimension.DimensionRepository;
+import app.cs.data.business.dimension.InMemoryDimensionGroup;
+import app.cs.data.business.dimension.MultiDimensionalObject;
 import app.cs.utils.FileUtils;
 
 import com.cs.data.api.core.nosql.redis.InMemoryNoSqlRepository;

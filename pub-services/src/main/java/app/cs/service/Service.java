@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import app.cs.data.business.api.model.IMultiDimensionalObject;
-import app.cs.data.business.model.MultiDimensionalObject;
+import app.cs.data.business.api.dimension.IMultiDimensionalObject;
+import app.cs.data.business.dimension.MultiDimensionalObject;
 
 import com.cs.data.api.core.GenericDomain;
 

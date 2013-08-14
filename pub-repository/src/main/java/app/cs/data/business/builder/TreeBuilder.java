@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.data.business.api.builder.ITreeBuilder;
-import app.cs.data.business.api.inmemory.IInMemoryDimensionGroup;
-import app.cs.data.business.api.model.IMultiDimensionalObject;
-import app.cs.data.business.api.repository.IDimensionRepository;
-import app.cs.data.business.model.MultiDimensionalObject;
+import app.cs.data.business.api.dimension.IDimensionRepository;
+import app.cs.data.business.api.dimension.IInMemoryDimensionGroup;
+import app.cs.data.business.api.dimension.IMultiDimensionalObject;
+import app.cs.data.business.dimension.MultiDimensionalObject;
 import app.cs.utils.ArrayUtils;
 
 
