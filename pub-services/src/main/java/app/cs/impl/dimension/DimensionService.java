@@ -8,16 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.impl.delegate.builder.ITreeBuilder;
-import app.cs.impl.delegate.factory.IDomainFactory;
 import app.cs.interfaces.IService;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-
+import app.cs.interfaces.model.MultiDimensionalObject;
 
 /**
- * The Class DimensionService.
- * TODO remove out all annotation from class 
+ * The Class DimensionService. TODO remove out all annotation from class
  */
 @Component
 public class DimensionService implements IService {
@@ -28,14 +26,11 @@ public class DimensionService implements IService {
 	/** The dimension repository. */
 	private IDimensionRepository dimensionRepository;
 
-	/** The Domain factory. */
-	private IDomainFactory factory;
-
 	/** The ViewStructure cache. */
 	private IInMemoryViewStructure cache;
 
 	/** The contentobject. */
-	private final String CONTENTOBJECT = "ContentObject";
+	private final String CONTENTOBJECT = "MultiDimensionalObject";
 
 	/** The Constant KEY. */
 	private static final String KEY = "view";
@@ -50,12 +45,10 @@ public class DimensionService implements IService {
 	 */
 	@Autowired
 	public DimensionService(IDimensionRepository dimensionRepository,
-			ITreeBuilder treeBuilder, IDomainFactory factory,
-			IInMemoryViewStructure cache) {
+			ITreeBuilder treeBuilder, IInMemoryViewStructure cache) {
 
 		this.dimensionRepository = dimensionRepository;
 		this.treeBuilder = treeBuilder;
-		this.factory = factory;
 		this.cache = cache;
 
 	}
@@ -84,7 +77,8 @@ public class DimensionService implements IService {
 	 * @see com.cs.service.IService#getAllBy(java.lang.String)
 	 */
 	@Override
-	public List<app.cs.interfaces.model.MultiDimensionalObject> getAllBy(String structure) {
+	public List<app.cs.interfaces.model.MultiDimensionalObject> getAllBy(
+			String structure) {
 		// TODO Auto-generated method stub
 		setCurrentViewStructure(structure);
 		return treeBuilder.buildTree(structure);
@@ -105,8 +99,9 @@ public class DimensionService implements IService {
 
 	@Override
 	public String create(String type, String name, String path, String isFolder) {
-		app.cs.interfaces.model.MultiDimensionalObject dimension = (app.cs.interfaces.model.MultiDimensionalObject) factory
-				.getDomainObject(CONTENTOBJECT);
+
+		MultiDimensionalObject dimension = (MultiDimensionalObject) dimensionRepository
+				.getDomain(CONTENTOBJECT);
 
 		setDimensionAttributes(dimension, type, name, path, isFolder);
 		return dimensionRepository.createDimension(dimension);
@@ -127,7 +122,7 @@ public class DimensionService implements IService {
 	 *            the is folder
 	 */
 
-	protected void setDimensionAttributes(IMultiDimensionalObject dimension,
+	protected void setDimensionAttributes(MultiDimensionalObject dimension,
 			String type, String name, String path, String isFolder) {
 		dimension.setId(name);
 		dimension.setTitle(name);

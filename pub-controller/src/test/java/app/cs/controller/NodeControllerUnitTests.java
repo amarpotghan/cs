@@ -20,7 +20,6 @@ import app.cs.controller.NodeController;
 import app.cs.impl.dimension.DimensionService;
 import app.cs.interfaces.model.MultiDimensionalObject;
 
-
 @RunWith(MockitoJUnitRunner.class)
 public class NodeControllerUnitTests {
 
@@ -32,20 +31,6 @@ public class NodeControllerUnitTests {
 	@Before
 	public void setUp() {
 		treeController = new NodeController(dimensionService);
-	}
-
-	@Test
-	public void itShouldReturnIndexPage() {
-		// given
-		String expectedPage = "redirect:/pages/index.html";
-
-		// when
-		String actualPage = treeController.getIndexPage();
-
-		// then
-
-		assertThat(actualPage).isEqualTo(expectedPage);
-
 	}
 
 	@Test

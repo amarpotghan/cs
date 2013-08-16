@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import app.cs.interfaces.IService;
 import app.cs.interfaces.model.MultiDimensionalObject;
 
-
 /**
  * The Class NodeController.
  */
@@ -27,8 +26,6 @@ public class NodeController {
 	/** The dimension service. */
 	private IService dimensionService;
 
-	/** The index. */
-	private final String INDEX = "redirect:/pages/index.html";
 
 	/**
 	 * Instantiates a new node controller.
@@ -44,16 +41,6 @@ public class NodeController {
 	public NodeController(IService dimensionService) {
 		this.dimensionService = dimensionService;
 
-	}
-
-	/**
-	 * Redirects to the the index page.
-	 * 
-	 * @return the index page
-	 */
-	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
-	public String getIndexPage() {
-		return INDEX;
 	}
 
 	/**

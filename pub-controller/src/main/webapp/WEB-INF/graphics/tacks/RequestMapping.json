@@ -1,8 +1,7 @@
 {
-    "getLogin":"/pub2.0/client/login",
-    "getHome":"/pub2.0/client/home",
-    "getDefaultSchema":"/pub2.0/default",
-    "getTree":"/pub2.0/dimension/get",
-    "getAllSchema":"/pub2.0/all",
-    "getSchema":"/pub2.0/"
+    "getDefaultSchema":"/pub-controller/default",
+    "getTree":"/pub-controller/dimension/get/",
+    "getAllSchema":"/pub-controller/all",
+    "getSchema":"/pub-controller/treeviewstructure/",
+    "dragNDrop":"/pub-controller/"
 }

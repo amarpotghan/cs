@@ -1,7 +1,7 @@
 {
-    "getAllSchema":"/RefactoredPub/graphics/mocks/allSchema.json",
-    "getTree1":"/RefactoredPub/graphics/mocks/treeData1.json",
-    "getTree2":"/RefactoredPub/graphics/mocks/treeData2.json",
-    "getSchema1":"/RefactoredPub/graphics/mocks/schema1.json",
-    "getSchema2":"/RefactoredPub/graphics/mocks/schema2.json"
+    "getAllSchema":"/RefactoredPub/mocks/allSchema.json",
+    "getTree1":"/RefactoredPub/mocks/treeData1.json",
+    "getTree2":"/RefactoredPub/mocks/treeData2.json",
+    "getSchema1":"/RefactoredPub/mocks/schema1.json",
+    "getSchema2":"/RefactoredPub/mocks/schema2.json"
 }

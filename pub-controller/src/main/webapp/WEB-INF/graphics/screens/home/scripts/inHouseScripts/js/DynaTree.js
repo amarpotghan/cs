@@ -52,14 +52,22 @@ var DynaTree = function(){
                     if(name != ""){
                         var parentNode = $.ui.dynatree.getNode(el);
                         if(parentNode.data.type == "root"){
-                            currentPath =  parentNode.data.type;
+                            currentPath = "-1";
                         }
                         else{
                             currentPath = parentNode.data.path+","+ parentNode.data.title;
+                            if(currentPath.indexOf("-1")!=-1)
+                                currentPath = currentPath.match(/([^,]*),(.*)/)[2];   //To remove -1 root folder
                         }
-                        var newNode = createNode(name,action,currentPath);
-                        parentNode.data.children.push(newNode);
-                        parentNode.addChild(newNode);
+
+                        var flag = isFolder(action);
+                        var prefix=getUrlPrefix(action,"create");
+                        Router.forward(prefix+action+"/name/"+name+"/path/"+currentPath+"/folder/"+flag,true,function(data){
+                            var newNode = createNode(name,action,currentPath,flag);
+                            parentNode.addChild(newNode);
+                            parentNode.data.children.push(newNode);
+                        });
+
                     }
                 }
             });
@@ -67,7 +75,7 @@ var DynaTree = function(){
         }
     }
 
-    function createNode(name,type,path){
+    function createNode(name,type,path,flag){
         var flag = isFolder(type);
         var newNode = {
                         "id": "P01",
@@ -86,6 +94,20 @@ var DynaTree = function(){
             flag = false;
         }
         return flag;
+    }
+
+    var getUrlPrefix=function(type,action){
+        switch(type){
+            case "Chapter":
+                return  "/pub-controller/chapter/"+action+"/";
+            case "Page":
+               return  "/pub-controller/page/"+action+"/";
+
+        }
+
+        return "/pub-controller/dimension/"+action+"/";
+
+
     }
 
     this.createTree = function(treeObj,data){
@@ -129,12 +151,24 @@ var DynaTree = function(){
                         }
 
                     },
-                    onDrop: function(node, sourceNode, hitMode, ui, draggable) {
+                    onDrop: function(sourceNode, node, hitMode, ui, draggable) {
                         console.log(node.data.title+"node");
                         console.log(sourceNode.data.title+"sourceNode");
-                        var parentNode = node;
-                        var newChildNode = sourceNode;
-                        sourceNode.move(node, hitMode);
+                        var parentNode = sourceNode;
+                        var newChildNode = node;
+                        var oldPathForChild = node.data.path;
+                        
+                        newChildNode.data.path = parentNode.data.path +","+parentNode.data.title;
+                        var newPathForChild   = newChildNode.data.path;
+                        //API call will go here
+                        //alert(JSON.stringify(newChildNode.data.children));
+                        var flag=isFolder(node.data.type);
+                        var prefix=getUrlPrefix(node.data.type,"move");
+                        Router.forward(prefix+node.data.type+"/name/"+node.data.title+"/path/"+oldPathForChild+"/folder/"+flag+"/newpath/"+newPathForChild,true,function(data){
+
+                        });
+
+                        node.move(sourceNode, hitMode);
                     }
                 }
             });

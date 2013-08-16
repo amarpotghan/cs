@@ -3,8 +3,7 @@ $(document).ready(function() {
 });
 
 function getScreenMappingObject(){
-    //Replace this for production /RefactoredPub/graphics/tacks/ScreenMapping.json
-    Router.forward("/RefactoredPub/graphics/tacks/MocksScreenMapping.json",true,function(json){
+    Router.forward("/pub-controller/graphics/tacks/ScreenMapping.json",true,function(json){
         parseScreenMappingObject(json);
     });
 }
@@ -21,8 +20,7 @@ function parseScreenMappingObject(json){
 }
 
 function getApiMappingObject(){
-    //Replace this for production /RefactoredPub/graphics/tacks/RequestMapping.json
-    Router.forward("/RefactoredPub/graphics/tacks/MocksRequestMapping.json",true,function(json){
+    Router.forward("/pub-controller/graphics/tacks/RequestMapping.json",true,function(json){
         parseApiMappingObject(json);
     });
 }

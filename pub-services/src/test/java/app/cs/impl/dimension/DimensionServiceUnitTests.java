@@ -43,7 +43,7 @@ public class DimensionServiceUnitTests {
 	@Before
 	public void setUp() {
 		dimensionService = new DimensionService(dimensionRepository,
-				treeBuilder, factory, cache);
+				treeBuilder, cache);
 	}
 
 	@Test
@@ -75,8 +75,9 @@ public class DimensionServiceUnitTests {
 
 		// when
 		MultiDimensionalObject test = new MultiDimensionalObject();
+		when(dimensionRepository.getDomain("MultiDimensionalObject"))
+				.thenReturn(test);
 		when(dimensionRepository.createDimension(test)).thenReturn(name);
-		when(factory.getDomainObject("ContentObject")).thenReturn(test);
 		String dimensionId = dimensionService
 				.create(type, name, path, isFolder);
 

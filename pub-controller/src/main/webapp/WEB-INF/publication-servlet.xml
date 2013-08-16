@@ -14,7 +14,7 @@
 	<mvc:annotation-driven />
 	<context:annotation-config />
 	<context:component-scan base-package="app.cs"></context:component-scan>
-	<mvc:resources mapping="/pages/**" location="/WEB-INF/pages/" />
+	<mvc:resources mapping="/**" location="/WEB-INF/" />
 	<context:property-placeholder location="classpath:defaultschema.properties" />
 	<mvc:interceptors>
 		<bean id="webContentInterceptor"

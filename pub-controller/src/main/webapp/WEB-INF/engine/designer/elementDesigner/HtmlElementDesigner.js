@@ -25,6 +25,6 @@ HtmlElementDesigner.getElementBy = function(id){
 }
 
 HtmlElementDesigner.getScriptName = function(scriptName,screenName){
-    var name = "/RefactoredPub/graphics/screens/"+screenName+"/scripts/inHouseScripts/js/"+scriptName+".js";
+    var name = "/pub-controller/graphics/screens/"+screenName+"/scripts/inHouseScripts/js/"+scriptName+".js";
     return name;
 }

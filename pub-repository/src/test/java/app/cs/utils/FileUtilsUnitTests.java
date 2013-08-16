@@ -1,20 +1,15 @@
 package app.cs.utils;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
-
-import javax.servlet.ServletContext;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.mockito.Mockito.*;
-import org.springframework.core.io.FileSystemResource;
-
-import app.cs.utils.FileUtils;
-
-import static org.fest.assertions.Assertions.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FileUtilsUnitTests {
@@ -35,4 +30,19 @@ public class FileUtilsUnitTests {
 
 	}
 
+	@Test
+	public void itShouldReadTheFileFromGivenRealPath() throws IOException,
+			URISyntaxException {
+
+		// given
+		fileUtils = new FileUtils();
+		String filePath = "file://C:/UsersCS11/cs/pub-controller/src/main/webapp/WEB-INF/graphics/tacks/ScreenMapping.json";
+		File file = new File(filePath);
+		URI uri = new URI(filePath);
+		// when
+
+		String actualContents = fileUtils.getFileContentsFromGivenPath(uri);
+		// then
+		assertThat(actualContents).isNotNull();
+	}
 }

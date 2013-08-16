@@ -42,7 +42,7 @@ public class TreeViewStructureController {
 	 * @throws URISyntaxException the uRI syntax exception
 	 * @throws ParseException the parse exception
 	 */
-	@RequestMapping("/{structureId}")
+	@RequestMapping("/treeviewstructure/{structureId}")
 	public @ResponseBody
 	Object get(@PathVariable String structureId) throws IOException,
 			URISyntaxException, ParseException {
@@ -60,7 +60,7 @@ public class TreeViewStructureController {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws URISyntaxException the uRI syntax exception
 	 */
-	@RequestMapping("/default")
+	@RequestMapping("/treeviewstructure/default")
 	public @ResponseBody
 	String getDefault() throws IOException, URISyntaxException {
 

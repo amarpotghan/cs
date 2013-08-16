@@ -19,6 +19,7 @@ var TreeSelector = function(){
                 var treeObj = document.getElementById(id);
                 var darkTree = ElementFactory.getTree();
                 darkTree.createTree(treeObj,treeData);
+                
                 $(document).unbind("treeDataLoaded");
             });
             HomeService.getTree();

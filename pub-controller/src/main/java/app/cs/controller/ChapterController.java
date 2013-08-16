@@ -1,5 +1,7 @@
 package app.cs.controller;
 
+import java.security.KeyStore.CallbackHandlerProtection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,7 +59,7 @@ public class ChapterController {
 	String create(@PathVariable("type") String type,
 			@PathVariable("name") String name,
 			@PathVariable("path") String path,
-			@PathVariable("isFolder") String isFolder) {
+			@PathVariable("folder") String isFolder) {
 
 		return chapterService.create(type, name, path, isFolder);
 
@@ -82,9 +84,10 @@ public class ChapterController {
 	String move(@PathVariable("type") String type,
 			@PathVariable("name") String name,
 			@PathVariable("path") String path,
-			@PathVariable("isFolder") String isFolder,
-			@PathVariable("newPath") String newPath) {
+			@PathVariable("folder") String isFolder,
+			@PathVariable("newpath") String newPath) {
 
+		System.out.println("==>" + type + name + path + isFolder + newPath);
 		chapterService.move(type, name, path, isFolder, newPath);
 		return name;
 

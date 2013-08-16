@@ -28,7 +28,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	private String type;
 
 	/** The path. TODO */
-	private transient String path;
+	private  String path;
 
 	/** The name. */
 	private String name;
@@ -37,7 +37,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	private String title;
 
 	/** The is folder.TODO */
-	private transient String isFolder;
+	private  String isFolder;
 
 	/**
 	 * Instantiates a new content object.

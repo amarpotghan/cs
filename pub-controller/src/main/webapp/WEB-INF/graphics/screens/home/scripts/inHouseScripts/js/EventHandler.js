@@ -3,7 +3,7 @@ var rendererData;
 
 $(document).bind("TREE_ITEM_CLICKED", function itemClickedHandler(e){
     rendererData = {"mydata":e.uiData};
-    loadViewItems(rendererData, "/RefactoredPub/graphics/screens/home/htmls/renderers/TileViewRenderer.html");
+    loadViewItems(rendererData, "/pub-controller/graphics/screens/home/htmls/renderers/TileViewRenderer.html");
 });
 
 function handleViewChange(evt){
@@ -12,17 +12,17 @@ function handleViewChange(evt){
     {
         case "tileView":
             //console.log(":: Load Tile View Button Clicked ::");
-            loadViewItems(rendererData, "/RefactoredPub/graphics/screens/home/htmls/renderers/TileViewRenderer.html");
+            loadViewItems(rendererData, "/pub-controller/graphics/screens/home/htmls/renderers/TileViewRenderer.html");
             break;
 
         case "listView":
             //console.log(":: Load List View Button Clicked ::");
-            loadViewItems(rendererData, "/RefactoredPub/graphics/screens/home/htmls/renderers/ListViewRenderer.html");
+            loadViewItems(rendererData, "/pub-controller/graphics/screens/home/htmls/renderers/ListViewRenderer.html");
             break;
 
         case "detailView":
             //console.log(":: Load Detail View Button Clicked ::");
-            loadViewItems(rendererData, "/RefactoredPub/graphics/screens/home/htmls/renderers/DetailViewRenderer.html");
+            loadViewItems(rendererData, "/pub-controller/graphics/screens/home/htmls/renderers/DetailViewRenderer.html");
             break;
     }
 }
