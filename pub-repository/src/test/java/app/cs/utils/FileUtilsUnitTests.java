@@ -30,19 +30,4 @@ public class FileUtilsUnitTests {
 
 	}
 
-	@Test
-	public void itShouldReadTheFileFromGivenRealPath() throws IOException,
-			URISyntaxException {
-
-		// given
-		fileUtils = new FileUtils();
-		String filePath = "file://C:/UsersCS11/cs/pub-controller/src/main/webapp/WEB-INF/graphics/tacks/ScreenMapping.json";
-		File file = new File(filePath);
-		URI uri = new URI(filePath);
-		// when
-
-		String actualContents = fileUtils.getFileContentsFromGivenPath(uri);
-		// then
-		assertThat(actualContents).isNotNull();
-	}
 }
