@@ -1,7 +1,7 @@
 {
-    "getAllSchema":"/RefactoredPub/mocks/allSchema.json",
-    "getTree1":"/RefactoredPub/mocks/treeData1.json",
-    "getTree2":"/RefactoredPub/mocks/treeData2.json",
-    "getSchema1":"/RefactoredPub/mocks/schema1.json",
-    "getSchema2":"/RefactoredPub/mocks/schema2.json"
+    "getAllSchema":"/pub-controller/mocks/allSchema.json",
+    "getTree1":"/pub-controller/mocks/treeData1.json",
+    "getTree2":"/pub-controller/mocks/treeData2.json",
+    "getSchema1":"/pub-controller/mocks/schema1.json",
+    "getSchema2":"/pub-controller/mocks/schema2.json"
 }
