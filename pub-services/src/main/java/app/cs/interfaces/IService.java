@@ -35,7 +35,7 @@ public interface IService {
 	 * @param type
 	 * @return the string
 	 */
-	public String create(String type, String name, String path, String isFolder);
+	public String create(String type, String name, String path, boolean isFolder);
 
 	/**
 	 * Method for get all entities satisfies given criteria
@@ -54,7 +54,7 @@ public interface IService {
 	 * @param path
 	 *            the path
 	 */
-	void move(String type, String name, String path, String isFolder,
+	void move(String type, String name, String path, boolean isFolder,
 			String newpath);
 
 	/**

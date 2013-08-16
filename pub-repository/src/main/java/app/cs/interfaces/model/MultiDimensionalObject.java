@@ -28,7 +28,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	private String type;
 
 	/** The path. TODO */
-	private  String path;
+	private String path;
 
 	/** The name. */
 	private String name;
@@ -37,7 +37,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	private String title;
 
 	/** The is folder.TODO */
-	private  String isFolder;
+	private boolean isFolder;
 
 	/**
 	 * Instantiates a new content object.
@@ -52,7 +52,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 * @see com.cs.data.business.model.IMultiDimensionalObject#getIsFolder()
 	 */
 	@Override
-	public String getIsFolder() {
+	public boolean getIsFolder() {
 		return isFolder;
 	}
 
@@ -64,7 +64,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 * .String)
 	 */
 	@Override
-	public void setIsFolder(String isFolder) {
+	public void setIsFolder(boolean isFolder) {
 		this.isFolder = isFolder;
 	}
 
@@ -204,7 +204,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 *            the is folder
 	 */
 	public MultiDimensionalObject(String name, String type, String path,
-			String isFolder) {
+			boolean isFolder) {
 		this.id = name;
 		this.name = name;
 		this.title = name;
@@ -440,8 +440,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		result = prime * result
 				+ ((groupIds == null) ? 0 : groupIds.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((isFolder == null) ? 0 : isFolder.hashCode());
+
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((path == null) ? 0 : path.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
@@ -482,11 +481,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		} else if (isFolder == null) {
-			if (other.isFolder != null)
-				return false;
-		} else if (!isFolder.equals(other.isFolder))
-			return false;
+		}
 		if (name == null) {
 			if (other.name != null)
 				return false;

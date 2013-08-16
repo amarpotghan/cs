@@ -40,7 +40,7 @@ public class NodeControllerUnitTests {
 		// given
 		String type = "compaign";
 		String name = "co01";
-		String isFolder = "-1";
+		boolean isFolder = true;;
 		String path = "-1";
 
 		String expectedDimensionId = name;

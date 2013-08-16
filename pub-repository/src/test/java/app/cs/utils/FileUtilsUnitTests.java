@@ -2,9 +2,7 @@ package app.cs.utils;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.junit.Test;

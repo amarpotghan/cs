@@ -45,13 +45,13 @@ public class ChapterIntegrationTests {
 	public void setUp() {
 
 		page01 = new MultiDimensionalObject("page01", "page",
-				"mp02,pg02,c02,p02", "false");
+				"mp02,pg02,c02,p02", true);
 		MultiDimensionalObject chapter01 = new MultiDimensionalObject(
-				"chapter01", "page", "mp02,pg02,c02,p02", "false");
+				"chapter01", "page", "mp02,pg02,c02,p02", false);
 		MultiDimensionalObject chapter02 = new MultiDimensionalObject(
-				"chapter02", "page", "mp02,pg02,c02,p02,chapter01", "false");
+				"chapter02", "page", "mp02,pg02,c02,p02,chapter01", false);
 		MultiDimensionalObject page02 = new MultiDimensionalObject("page02",
-				"page", "mp02,pg02,c02,p02,chapter01,chapter02", "false");
+				"page", "mp02,pg02,c02,p02,chapter01,chapter02", false);
 		cache = new InMemoryViewStructure(inMemoryNosqlRepository);
 
 		models.add(page01);

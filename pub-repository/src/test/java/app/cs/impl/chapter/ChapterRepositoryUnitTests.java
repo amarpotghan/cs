@@ -40,14 +40,14 @@ public class ChapterRepositoryUnitTests {
 		repository = new ChapterRepository(noSqlTemplateForMongo, cache,
 				factory);
 		publication = new MultiDimensionalObject("Test", "publication",
-				"A,B,C,D,E", "true");
+				"A,B,C,D,E", true);
 		MultiDimensionalObject test = new MultiDimensionalObject("test01",
-				"chapter", "A,B,C,D,E,publication", "false");
+				"chapter", "A,B,C,D,E,publication", false);
 		test.addchild(new MultiDimensionalObject("test03", "test", "test",
-				"test"));
+				true));
 		publication.addchild(test);
 		publication.addchild(new MultiDimensionalObject("test02", "test", "A",
-				"true"));
+				true));
 
 	}
 
@@ -55,7 +55,7 @@ public class ChapterRepositoryUnitTests {
 	public void itShouldCreateAChapterInTheParentPublication() {
 		// given
 		MultiDimensionalObject chapter = new MultiDimensionalObject("test",
-				"test", "A,B,C,D,E,test03", "B");
+				"test", "A,B,C,D,E,test03",true);
 		String result = "success";
 		// when
 		when(cache.getCurrentViewStructure()).thenReturn("C-M-P-D");
@@ -124,7 +124,7 @@ public class ChapterRepositoryUnitTests {
 		String result = "result";
 		String oldPath = "A,B,C,D,E,test03";
 		MultiDimensionalObject chapter = new MultiDimensionalObject("test",
-				"test", "A,B,C,D,E", "B");
+				"test", "A,B,C,D,E", true);
 		when(cache.getCurrentViewStructure()).thenReturn("C-M-P-D");
 		when(noSqlTemplateForMongo.save(chapter)).thenReturn(result);
 		when(

@@ -98,7 +98,7 @@ public class DimensionService implements IService {
 	}
 
 	@Override
-	public String create(String type, String name, String path, String isFolder) {
+	public String create(String type, String name, String path, boolean isFolder) {
 
 		MultiDimensionalObject dimension = (MultiDimensionalObject) dimensionRepository
 				.getDomain(CONTENTOBJECT);
@@ -123,7 +123,7 @@ public class DimensionService implements IService {
 	 */
 
 	protected void setDimensionAttributes(MultiDimensionalObject dimension,
-			String type, String name, String path, String isFolder) {
+			String type, String name, String path, boolean isFolder) {
 		dimension.setId(name);
 		dimension.setTitle(name);
 		dimension.setIsFolder(isFolder);
@@ -145,7 +145,7 @@ public class DimensionService implements IService {
 	}
 
 	@Override
-	public void move(String type, String name, String path, String isFolder,
+	public void move(String type, String name, String path, boolean isFolder,
 			String newpath) {
 		// TODO Auto-generated method stub
 

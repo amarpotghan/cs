@@ -71,7 +71,7 @@ public class ChapterService implements IService {
 	 * java.lang.String)
 	 */
 	@Override
-	public void move(String type, String name, String path, String isFolder,
+	public void move(String type, String name, String path, boolean isFolder,
 			String newPath) {
 		IMultiDimensionalObject chapter = (IMultiDimensionalObject) chapterRepository
 				.getDomain(CONTENTOBJECT);
@@ -96,7 +96,7 @@ public class ChapterService implements IService {
 	}
 
 	@Override
-	public String create(String type, String name, String path, String isFolder) {
+	public String create(String type, String name, String path, boolean isFolder) {
 
 		MultiDimensionalObject chapter = (MultiDimensionalObject) chapterRepository
 				.getDomain(CONTENTOBJECT);
@@ -119,7 +119,7 @@ public class ChapterService implements IService {
 	 *            the is folder
 	 */
 	private void setChapterAtrributes(IMultiDimensionalObject chapter,
-			String type, String name, String path, String isFolder) {
+			String type, String name, String path, boolean isFolder) {
 		chapter.setId(name);
 		chapter.setTitle(name);
 		chapter.setIsFolder(isFolder);

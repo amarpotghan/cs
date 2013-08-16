@@ -71,7 +71,7 @@ public class DimensionServiceUnitTests {
 		String name = "test";
 		String path = "A,B";
 		String type = "spread";
-		String isFolder = "true";
+		boolean isFolder = true;
 
 		// when
 		MultiDimensionalObject test = new MultiDimensionalObject();

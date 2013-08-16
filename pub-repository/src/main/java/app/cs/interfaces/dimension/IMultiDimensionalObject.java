@@ -11,14 +11,14 @@ public interface IMultiDimensionalObject {
 	 *
 	 * @return the checks if is folder
 	 */
-	public abstract String getIsFolder();
+	public abstract boolean getIsFolder();
 
 	/**
 	 * Sets the checks if is folder.
 	 *
 	 * @param isFolder the new checks if is folder
 	 */
-	public abstract void setIsFolder(String isFolder);
+	public abstract void setIsFolder(boolean isFolder);
 
 	/**
 	 * Gets the title.

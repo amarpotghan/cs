@@ -41,7 +41,7 @@ public class ChapterControllerUnitTests {
 		String name = "test";
 		String path = "A,B";
 		String type = "spread";
-		String isFolder = "true";
+		boolean isFolder = true;
 
 		IMultiDimensionalObject chapter = new MultiDimensionalObject(name, type, path, isFolder);
 
@@ -65,7 +65,7 @@ public class ChapterControllerUnitTests {
 		String name = "test";
 		String path = "A,B";
 		String type = "spread";
-		String isFolder = "true";
+		boolean isFolder = true;
 
 		IMultiDimensionalObject chapter = new MultiDimensionalObject();
 

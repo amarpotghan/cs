@@ -41,7 +41,7 @@ public class ChapterServiceUnitTests {
 		String name = "test";
 		String path = "A,B";
 		String type = "spread";
-		String isFolder = "true";
+		boolean isFolder = true;
 		// when
 		MultiDimensionalObject object = new MultiDimensionalObject();
 		when(chapterRepository.save(object)).thenReturn(result);

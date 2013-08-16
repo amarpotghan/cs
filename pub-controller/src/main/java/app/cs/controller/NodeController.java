@@ -61,7 +61,7 @@ public class NodeController {
 	String create(@PathVariable("type") String type,
 			@PathVariable("name") String name,
 			@PathVariable("path") String path,
-			@PathVariable("folder") String isFolder) {
+			@PathVariable("folder") boolean isFolder) {
 
 		return dimensionService.create(type, name, path, isFolder);
 
