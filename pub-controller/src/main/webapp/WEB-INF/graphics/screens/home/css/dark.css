@@ -1,39 +1,26 @@
-/************CSS for error tab*******************/
-#errorpanel
-{
-    position: absolute;
-    top:0px;
-    left:400px;
-    margin-top: 0px;
-    padding:5px;
-    text-align:center;
-    background-color:red;
-    border:solid 2px darkslategray;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    display:none;
-    width:500px;
-    height:15px;
-    color: white;
-    font-family: calibri;
-    font-weight: bolder;
-
-}
-
-
-
-
 .darktabs{
     border-bottom-color: #040404;
 }
 
 .menubar{
-    width:10%;
+    width:26px;
+    position: absolute;
+    left:0px;
+    top:0px;
     min-height: 600px;
     height:100%;
-    float: left;
-    background-color: darkslategrey;
+    /*float: left;*/
+    background-color: #373737;
+    border-top: 1px solid #100E10;
+    border-left: 1px solid #100E10;
+    border-right: 1px solid #100E10;
+    border-bottom: 1px solid #100E10;
 
+
+}
+
+#leftTree{
+    padding-left: 15px;
 }
 
 .span3 {
@@ -50,13 +37,12 @@
     padding: 25px 0 0 0;
     overflow: hidden;
 
-    background-image: url("images/cs_logo.png");
+   background-image: url("/pub-controller/graphics/screens/home/images/cs_logo.png");
 }
 
 .profileLogo {
     margin: 0 0 0 0;
     float: right;
-    visibility: hidden;
 }
 .wrapper {
     float: right;
@@ -66,7 +52,7 @@
     border:4px solid white;
     overflow:hidden ;
     margin:5px 35px 0 0;
-    visibility: hidden;
+    visibility: visible;
 }
 
 .logobounce{
@@ -86,14 +72,14 @@
     width:25px;
     background-color: #262626 ;
     float: left;
-    height:100%
+    height:100%;
 }
 
 .logout{
     border:#fbb450;
     float: right;
     margin: 15px 10px 0 0;
-    visibility: hidden;
+    visibility: visible;
     height: 40px;
     width: 40px;
 }
@@ -107,10 +93,9 @@ body {
     height: 100%;
     color: #333333;
     background-color: #ececec;
-    /* Minimum width of layout - remove line if not required */
+   /* Minimum width of layout - remove line if not required */
     /* The min-width property does not work in old versions of Internet Explorer */
     font-size:90%;
-    overflow: hidden;
 }
 a {
     color:#369;
@@ -144,7 +129,7 @@ img {
     float:left;
     width:100%;
     height: 65px;
-    border-bottom:1px solid #000;
+    border-bottom:2px solid #565656;
     overflow: hidden;
 
 }
@@ -335,8 +320,8 @@ Top Bar Animation Section starts
     color: #505050;
     font-weight: bolder;
     padding-left: 5px;
-    /* padding-top: 5px;*/
-    /* background-color: #EEEEEE;*/
+   /* padding-top: 5px;*/
+   /* background-color: #EEEEEE;*/
     cursor: pointer;
     margin-top: 0px;
     border-bottom: 1px solid #BBBBBB;
@@ -361,7 +346,7 @@ Top Bar Animation Section starts
 .formatTxt{
     width: 100%;
     height:27px;
-    /* background-color: #EEEEEE;*/
+   /* background-color: #EEEEEE;*/
     background-image: url('/pub-controller/graphics/screens/home/images/grad.png');
     background-repeat: repeat-x;
     text-align: center;
@@ -372,7 +357,7 @@ Top Bar Animation Section starts
     border-top: 1px solid #BBBBBB;
     border-left: 1px solid #BBBBBB;
     border-right: 1px solid #BBBBBB;
-    /* border-bottom: 1px solid #BBBBBB;*/
+   /* border-bottom: 1px solid #BBBBBB;*/
     margin:0 auto;
     margin-top: 0px;
 }
@@ -446,6 +431,7 @@ Top Bar Animation Section starts
     height:auto;
     float: left;
     top: 0px;
+    overflow: hidden;
     /*position: relative;*/
 }
 
@@ -453,6 +439,7 @@ Top Bar Animation Section starts
     width:100%;
     padding-left: 100px;
     background-color: white;
+    border-bottom: 2px solid #565656;
 }
 
 .UIContainer{
@@ -469,7 +456,7 @@ Top Bar Animation Section starts
     height: 100%;
     float:right;
     background-color: white;
-    /* border-right: #0e0e0e solid thin;*/
+   /* border-right: #0e0e0e solid thin;*/
     margin-left: 0px;
     margin-top: 0px;
 }
@@ -555,7 +542,7 @@ Top Bar Animation Section starts
     background-color:white;
     width: 100%;
     height: 555px;
-    /* bottom: 20px;*/
+   /* bottom: 20px;*/
     overflow-x:scroll;
     overflow-y: scroll;
 }
@@ -684,7 +671,7 @@ Top Bar Animation Section starts
     background-image: url('/pub-controller/graphics/screens/home/images/grad.png');
     background-repeat: repeat-x;
 
-    /* background-color:#777777;*/
+   /* background-color:#777777;*/
     float: left;
     height : 22px;
     width : 100%;

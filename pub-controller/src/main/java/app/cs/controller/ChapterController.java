@@ -21,8 +21,8 @@ public class ChapterController {
 	/** The Constant CREATE. */
 	private static final String CREATECHAPTER = "/chapter/create/{type}/name/{name}/path/{path}/folder/{folder}";
 	private static final String CREATEPAGE = "/page/create/{type}/name/{name}/path/{path}/folder/{folder}";
-	private static final String MOVECHAPTER = "/chapter/move/{type}/name/{name}/path/{path}/folder/{folder}/newpath/{newPath}";
-	private static final String MOVEPAGE = "/page/move/{type}/name/{name}/path/{path}/folder/{folder}/newpath/{newPath}";
+	private static final String MOVECHAPTER = "/chapter/move/{type}/name/{name}/path/{path}/folder/{folder}/newpath/{newpath}";
+	private static final String MOVEPAGE = "/page/move/{type}/name/{name}/path/{path}/folder/{folder}/newpath/{newpath}";
 
 	/** The chapter service. */
 	private IService chapterService;
@@ -85,10 +85,10 @@ public class ChapterController {
 			@PathVariable("name") String name,
 			@PathVariable("path") String path,
 			@PathVariable("folder") String isFolder,
-			@PathVariable("newpath") String newPath) {
+			@PathVariable("newpath") String newpath) {
 
-		System.out.println("==>" + type + name + path + isFolder + newPath);
-		chapterService.move(type, name, path, isFolder, newPath);
+		System.out.println("==>" + type + name + path + isFolder + newpath);
+		chapterService.move(type, name, path, isFolder, newpath);
 		return name;
 
 	}

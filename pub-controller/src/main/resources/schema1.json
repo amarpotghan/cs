@@ -1,13 +1,8 @@
 {
     "id": "1",
     "default": "false",
-    "name": "PublicationGroup-Campaign-MasterPublication-Publication",
+    "name": "Campaign-MasterPublication-Publication",
     "structure": [
-        {
-            "name": "PublicationGroup",
-            "icon": "something",
-            "possibleChild": ["Campaign"]
-        },
         {
             "name": "Campaign",
             "icon": "something",

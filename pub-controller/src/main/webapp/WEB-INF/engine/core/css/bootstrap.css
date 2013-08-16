@@ -45,8 +45,8 @@ aside,
 details,
 figcaption,
 figure,
-footer,
-header,
+/*footer,*/
+/*header,*/
 hgroup,
 nav,
 section {
@@ -66,7 +66,10 @@ audio:not([controls]) {
 }
 
 html {
-  font-size: 100%;
+ /* font-size: 100%;*/
+    height:auto;
+    width: 99%;
+    /*min-height: 750px;*/
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -655,9 +658,11 @@ a:focus {
   clear: both;
 }
 
+/*
 p {
   margin: 0 0 10px;
 }
+*/
 
 .lead {
   margin-bottom: 20px;

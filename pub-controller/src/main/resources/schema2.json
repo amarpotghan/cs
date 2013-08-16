@@ -1,7 +1,7 @@
 {
 "id": "2",
 "default": "true",
-"name": "MasterPublication-Campaign-PublicationGroup-Publication",
+"name": "MasterPublication-Campaign-Publication",
 "structure": [
 {
 "name": "MasterPublication",
@@ -10,11 +10,6 @@
 },
 {
 "name": "Campaign",
-"icon": "something",
-"possibleChild": ["PublicationGroup"]
-},
-{
-"name": "PublicationGroup",
 "icon": "something",
 "possibleChild": ["Publication"]
 },
