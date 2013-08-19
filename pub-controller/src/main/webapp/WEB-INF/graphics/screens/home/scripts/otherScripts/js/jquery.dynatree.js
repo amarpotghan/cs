@@ -1622,6 +1622,7 @@ DynaTreeNode.prototype = {
 			opts = tree.options,
 			pers = tree.persistence;
 
+
 //		tree.logDebug("%s._addChildNode(%o)", this, dtnode);
 
 		// --- Update and fix dtnode attributes if necessary
@@ -1752,6 +1753,7 @@ DynaTreeNode.prototype = {
 		 *
 		 */
 //		this.tree.logDebug("%s.addChild(%o, %o)", this, obj, beforeNode);
+
 		if(typeof(obj) == "string"){
 			throw "Invalid data type for " + obj;
 		}else if( !obj || obj.length === 0 ){ // Passed null or undefined or empty array

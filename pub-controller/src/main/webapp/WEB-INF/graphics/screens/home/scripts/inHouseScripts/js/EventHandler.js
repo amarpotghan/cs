@@ -13,18 +13,28 @@ function handleViewChange(evt){
         case "tileView":
             //console.log(":: Load Tile View Button Clicked ::");
             loadViewItems(rendererData, "/pub-controller/graphics/screens/home/htmls/renderers/TileViewRenderer.html");
+            btnFocus(".tileBtnCSS");
             break;
 
         case "listView":
             //console.log(":: Load List View Button Clicked ::");
             loadViewItems(rendererData, "/pub-controller/graphics/screens/home/htmls/renderers/ListViewRenderer.html");
+            btnFocus(".listBtnCSS");
             break;
 
         case "detailView":
             //console.log(":: Load Detail View Button Clicked ::");
             loadViewItems(rendererData, "/pub-controller/graphics/screens/home/htmls/renderers/DetailViewRenderer.html");
+            btnFocus(".detailBtnCSS");
             break;
     }
+}
+
+function btnFocus(btn){
+    $('.tileBtnCSS').css("border","0px");
+    $('.listBtnCSS').css("border","0px");
+    $('.detailBtnCSS').css("border","0px");
+    $(btn).css("border","1px solid black");
 }
 
 function getChildrenForSelectedNode(node){

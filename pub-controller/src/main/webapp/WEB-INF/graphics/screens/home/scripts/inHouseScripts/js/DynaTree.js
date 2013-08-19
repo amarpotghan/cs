@@ -64,8 +64,12 @@ var DynaTree = function(){
                         var prefix=getUrlPrefix(action,"create");
                         Router.forward(prefix+action+"/name/"+name+"/path/"+currentPath+"/folder/"+flag,true,function(data){
                             var newNode = createNode(name,action,currentPath,flag);
-                            parentNode.addChild(newNode);
+                            parentNode.addChild(newNode).activate();
+                            var node_expand = parentNode.isExpanded();
+                            if(node_expand == false)
+                                parentNode.expand();
                             parentNode.data.children.push(newNode);
+
                         });
 
                     }
