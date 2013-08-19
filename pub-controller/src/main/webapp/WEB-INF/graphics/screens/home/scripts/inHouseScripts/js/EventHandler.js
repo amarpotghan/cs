@@ -4,6 +4,7 @@ var rendererData;
 $(document).bind("TREE_ITEM_CLICKED", function itemClickedHandler(e){
     rendererData = {"mydata":e.uiData};
     loadViewItems(rendererData, "/pub-controller/graphics/screens/home/htmls/renderers/TileViewRenderer.html");
+    btnFocus(".tileBtnCSS");
 });
 
 function handleViewChange(evt){
