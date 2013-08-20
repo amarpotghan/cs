@@ -11,8 +11,6 @@ import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.model.MultiDimensionalObject;
 import app.cs.utils.ArrayUtils;
 
-
-
 /**
  * The Class TreeBuilder.
  */
@@ -21,30 +19,36 @@ public class TreeBuilder implements ITreeBuilder {
 
 	/** The cache. */
 	private IInMemoryDimensionGroup cache;
-	
+
 	/** The repository. */
 	private IDimensionRepository repository;
-	
+
 	/** The utils. */
 	private ArrayUtils utils;
-	
+
 	/** The delimeter. */
 	private final String DELIMETER = "-";
 
 	/**
 	 * Instantiates a new tree builder.
-	 *
-	 * @param cache the cache
-	 * @param repository the repository
+	 * 
+	 * @param cache
+	 *            the cache
+	 * @param repository
+	 *            the repository
 	 */
 	@Autowired
-	public TreeBuilder(IInMemoryDimensionGroup cache, IDimensionRepository repository) {
+	public TreeBuilder(IInMemoryDimensionGroup cache,
+			IDimensionRepository repository) {
 		this.cache = cache;
 		this.repository = repository;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.cs.data.business.builder.ITreeBuilder#buildTree(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.cs.data.business.builder.ITreeBuilder#buildTree(java.lang.String)
 	 */
 	@Override
 	public List<MultiDimensionalObject> buildTree(String structure) {
@@ -52,6 +56,7 @@ public class TreeBuilder implements ITreeBuilder {
 		List<MultiDimensionalObject> rootNodes = getAllSeparatedTrees(orderedTypes[0]);
 		for (IMultiDimensionalObject dimension : rootNodes) {
 
+			dimension.setPath("-1");
 			buildTreeForRootNode(dimension, orderedTypes, null);
 		}
 
@@ -60,8 +65,9 @@ public class TreeBuilder implements ITreeBuilder {
 
 	/**
 	 * Gets the types.
-	 *
-	 * @param structure the structure
+	 * 
+	 * @param structure
+	 *            the structure
 	 * @return the types
 	 */
 	public String[] getTypes(String structure) {
@@ -71,8 +77,9 @@ public class TreeBuilder implements ITreeBuilder {
 
 	/**
 	 * Gets the all separated trees.
-	 *
-	 * @param type the type
+	 * 
+	 * @param type
+	 *            the type
 	 * @return the all separated trees
 	 */
 	public List<MultiDimensionalObject> getAllSeparatedTrees(String type) {
@@ -82,10 +89,13 @@ public class TreeBuilder implements ITreeBuilder {
 
 	/**
 	 * Builds the tree for the given structure provided.
-	 *
-	 * @param root the root
-	 * @param orderTypes the order types
-	 * @param groupIdsRequiredForCurrentIteration the group ids required for current iteration
+	 * 
+	 * @param root
+	 *            the root
+	 * @param orderTypes
+	 *            the order types
+	 * @param groupIdsRequiredForCurrentIteration
+	 *            the group ids required for current iteration
 	 */
 	public void buildTreeForRootNode(IMultiDimensionalObject root,
 			String[] orderTypes,
@@ -106,7 +116,11 @@ public class TreeBuilder implements ITreeBuilder {
 				groupIds, typesOfDimensions[0]);
 
 		currentRoot.setChildren(childrenOfCurrentLevel);
+
 		for (IMultiDimensionalObject child : childrenOfCurrentLevel) {
+
+			child.setPath(removeMinusOne(currentRoot.getPath()) + ","
+					+ currentRoot.getName());
 
 			buildTreeForRootNode(child, typesOfDimensions, groupIds);
 
@@ -114,11 +128,20 @@ public class TreeBuilder implements ITreeBuilder {
 
 	}
 
+	protected String removeMinusOne(String path) {
+		path = path.startsWith("-1") && path.length() > 2 ? path.substring(3)
+				: path;
+
+		return path;
+	}
+
 	/**
 	 * Gets the all children of current root.
-	 *
-	 * @param groupIds the group ids
-	 * @param type the type
+	 * 
+	 * @param groupIds
+	 *            the group ids
+	 * @param type
+	 *            the type
 	 * @return the all children of current root
 	 */
 	public List<MultiDimensionalObject> getAllChildrenOfCurrentRoot(
@@ -128,8 +151,9 @@ public class TreeBuilder implements ITreeBuilder {
 
 	/**
 	 * Skip first order type.
-	 *
-	 * @param orderTypes the order types
+	 * 
+	 * @param orderTypes
+	 *            the order types
 	 * @return the string[]
 	 */
 	private String[] skipFirstOrderType(String[] orderTypes) {
@@ -140,9 +164,11 @@ public class TreeBuilder implements ITreeBuilder {
 
 	/**
 	 * Intersect group ids.
-	 *
-	 * @param groupIds the group ids
-	 * @param groupIdsRequiredForCurrentIteration the group ids required for current iteration
+	 * 
+	 * @param groupIds
+	 *            the group ids
+	 * @param groupIdsRequiredForCurrentIteration
+	 *            the group ids required for current iteration
 	 * @return the list
 	 */
 	private List<String> intersectGroupIds(List<String> groupIds,

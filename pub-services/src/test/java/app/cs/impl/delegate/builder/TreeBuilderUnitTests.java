@@ -20,7 +20,6 @@ import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.model.MultiDimensionalObject;
 
-
 @RunWith(MockitoJUnitRunner.class)
 public class TreeBuilderUnitTests {
 
@@ -58,7 +57,8 @@ public class TreeBuilderUnitTests {
 		// when
 
 		when(dimensionRepository.getDimensionsOfType(type)).thenReturn(result);
-		List<MultiDimensionalObject> models = treeBuilder.getAllSeparatedTrees(type);
+		List<MultiDimensionalObject> models = treeBuilder
+				.getAllSeparatedTrees(type);
 		// then
 		verify(dimensionRepository).getDimensionsOfType(type);
 		assertThat(models).isEqualTo(result);
@@ -67,8 +67,8 @@ public class TreeBuilderUnitTests {
 	@Test
 	public void itShouldBuildTreeForGivenRoot() {
 		// given
-		IMultiDimensionalObject dimensionModel = new MultiDimensionalObject("cp01", "Campaign",
-				"cp01", "cp01", "-1");
+		IMultiDimensionalObject dimensionModel = new MultiDimensionalObject(
+				"cp01", "Campaign", "cp01", "cp01", "-1");
 		ArrayList<String> groupIds = new ArrayList<String>();
 		dimensionModel.setGroupId(groupIds);
 		String[] rules = { "Campaign", "MasterPublication", "PublicationGroup",
@@ -94,4 +94,43 @@ public class TreeBuilderUnitTests {
 		verify(dimensionRepository, times(1)).getDimensionsBy(type, groupIds);
 	}
 
+	@Test
+	public void itShouldRemoveMinusOneFromGivenPath() {
+		// given
+		String path = "-1,A,B,C,D";
+
+		// when
+		String processedPath = treeBuilder.removeMinusOne(path);
+
+		// then
+		assertThat(processedPath).isEqualTo("A,B,C,D");
+	}
+
+	@Test
+	public void itShouldNotRemoveIfPathDoesntStartWithMinusOne() {
+
+		// given
+
+		String path = "A,B,C,D,E";
+		// when
+
+		String processedPath = treeBuilder.removeMinusOne(path);
+
+		// then
+		assertThat(processedPath).isEqualTo(path);
+	}
+
+	@Test
+	public void itShouldNotRemoveIfPathStartWithMinusOneAndPathOnlyContainsMinusOne() {
+
+		// given
+
+		String path = "-1";
+		// when
+
+		String processedPath = treeBuilder.removeMinusOne(path);
+
+		// then
+		assertThat(processedPath).isEqualTo(path);
+	}
 }
