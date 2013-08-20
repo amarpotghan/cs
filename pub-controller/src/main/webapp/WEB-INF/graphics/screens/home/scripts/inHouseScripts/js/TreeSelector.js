@@ -3,7 +3,7 @@ var TreeSelector = function(){
     this.design = function(id)
     {
         var treeData;
-        $(document).bind("schemaLoaded", function onSchemaLoadedHandler(e){
+        $(document).bind("viewStructureLoaded", function onSchemaLoadedHandler(e){
             //This is to create folder as per first element of the current schema
             treeData = {};
             treeData = {
@@ -22,7 +22,7 @@ var TreeSelector = function(){
                 
                 $(document).unbind("treeDataLoaded");
             });
-            HomeService.getTree();
+            GetTree.get();
         });
 
     }

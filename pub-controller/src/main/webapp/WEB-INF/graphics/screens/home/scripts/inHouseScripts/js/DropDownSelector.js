@@ -2,7 +2,7 @@ var DropDownSelector = function(){
 
     this.design = function(id)
     {
-        $(document).bind("schemaLoaded", function onSchemaLoadedHandler(e){
+        $(document).bind("viewStructureLoaded", function onSchemaLoadedHandler(e){
             if(!e.schemaChanged){
                 var data = e.schemaData;
                 var dropdownObj = document.getElementById(id);
@@ -10,7 +10,7 @@ var DropDownSelector = function(){
                 dropdown.createDropDown(dropdownObj,data);
             }
         });
-        HomeService.getAllSchemas();
+        GetViewStructure.getAll();
     }
 
 }
