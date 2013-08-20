@@ -11,7 +11,7 @@ var DropDownJS = function(){
         }
 
         $(dropDownObj).change(function(){
-            HomeService.changeSchema($(this).val());
+            GetViewStructure.get($(this).val());
             /*$('#schemaDropDown').hide();
             $('#mainAnimationContainer').animate({height: actualHeight}, 500);*/
             $('#selectLbl').text("Select View");

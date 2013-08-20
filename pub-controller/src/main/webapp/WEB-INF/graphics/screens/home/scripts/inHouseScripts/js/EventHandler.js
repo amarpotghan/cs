@@ -1,4 +1,3 @@
-
 var rendererData;
 
 $(document).bind("TREE_ITEM_CLICKED", function itemClickedHandler(e){
