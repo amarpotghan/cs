@@ -19,6 +19,12 @@ GetTree.get = function(){
      */
 }
 
+GetTree.createDim = function(prefix,action,name,currentPath,flag,callMe){
+    Router.forward(prefix+action+"/name/"+name+"/path/"+currentPath+"/folder/"+flag,true,function(data){
+             callMe(data);
+    });
+}
+
 this.onTreeSuccess = function(data){
 
     $(document).trigger({
