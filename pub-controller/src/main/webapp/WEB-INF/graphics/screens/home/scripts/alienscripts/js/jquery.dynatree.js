@@ -3028,7 +3028,7 @@ $.widget("ui.dynatree", {
 		}
 		// EVENTS
 		// disable click if event is configured to something else
-//		if (!(/^click/).test(o.event))
+//		if (!(/^click/).testdrive(o.event))
 //			this.$tabs.bind("click.tabs", function() { return false; });
 
 	},

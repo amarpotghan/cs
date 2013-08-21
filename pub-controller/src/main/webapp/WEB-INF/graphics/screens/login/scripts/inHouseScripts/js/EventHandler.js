@@ -1,3 +1,3 @@
 function getLogin(){
-    LoginService.getLogin();
+    GetLogin.login();
 }

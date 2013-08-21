@@ -33,6 +33,7 @@ GetViewStructure.getAll = function(){
 this.onViewStructureSuccess = function(data){
     GraphicDataStore.setCurrentSchema(data);
     GraphicDataStore.setSchemaLabel();
+    clearList();
     $(document).trigger({
         type: "viewStructureLoaded",
         schemaData: GraphicDataStore.getSchemaArray(),

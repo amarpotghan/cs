@@ -29,7 +29,7 @@ jasmine.undefined = jasmine.___undefined___;
 jasmine.VERBOSE = false;
 
 /**
- * Default interval in milliseconds for event loop yields (e.g. to allow network activity or to refresh the screen with the HTML-based runner). Small values here may result in slow test running. Zero means no updates until all tests have completed.
+ * Default interval in milliseconds for event loop yields (e.g. to allow network activity or to refresh the screen with the HTML-based runner). Small values here may result in slow testdrive running. Zero means no updates until all tests have completed.
  *
  */
 jasmine.DEFAULT_UPDATE_INTERVAL = 250;
@@ -45,7 +45,7 @@ jasmine.MAX_PRETTY_PRINT_DEPTH = 40;
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
 
 /**
- * By default exceptions thrown in the context of a test are caught by jasmine so that it can run the remaining tests in the suite.
+ * By default exceptions thrown in the context of a testdrive are caught by jasmine so that it can run the remaining tests in the suite.
  * Set to false to let the exception bubble up in the browser.
  *
  */
@@ -87,7 +87,7 @@ jasmine.clearInterval = jasmine.bindOriginal_(jasmine.getGlobal(), 'clearInterva
 jasmine.MessageResult = function(values) {
   this.type = 'log';
   this.values = values;
-  this.trace = new Error(); // todo: test better
+  this.trace = new Error(); // todo: testdrive better
 };
 
 jasmine.MessageResult.prototype.toString = function() {
@@ -224,9 +224,9 @@ jasmine.objectContaining = function (sample) {
 };
 
 /**
- * Jasmine Spies are test doubles that can act as stubs, spies, fakes or when used in an expecation, mocks.
+ * Jasmine Spies are testdrive doubles that can act as stubs, spies, fakes or when used in an expecation, mocks.
  *
- * Spies should be created in test setup, before expectations.  They can then be checked, using the standard Jasmine
+ * Spies should be created in testdrive setup, before expectations.  They can then be checked, using the standard Jasmine
  * expectation syntax. Spies can be checked if they were called or not and what the calling params were.
  *
  * A Spy has the following fields: wasCalled, callCount, mostRecentCall, and argsForCall (see docs).
@@ -519,7 +519,7 @@ if (isCommonJS) exports.xit = xit;
  * It is passed an Object that is the actual value and should chain to one of the many
  * jasmine.Matchers functions.
  *
- * @param {Object} actual Actual value to test against and expected value
+ * @param {Object} actual Actual value to testdrive against and expected value
  * @return {jasmine.Matchers}
  */
 var expect = function(actual) {
@@ -596,7 +596,7 @@ if (isCommonJS) exports.afterEach = afterEach;
  *
  * // TODO: a simple suite with a nested describe block
  *
- * @param {String} description A string, usually the class under test.
+ * @param {String} description A string, usually the class under testdrive.
  * @param {Function} specDefinitions function that defines several specs.
  */
 var describe = function(description, specDefinitions) {
@@ -607,7 +607,7 @@ if (isCommonJS) exports.describe = describe;
 /**
  * Disables a suite of specifications.  Used to disable some suites in a file, or files, temporarily during development.
  *
- * @param {String} description A string, usually the class under test.
+ * @param {String} description A string, usually the class under testdrive.
  * @param {Function} specDefinitions function that defines several specs.
  */
 var xdescribe = function(description, specDefinitions) {
@@ -2198,7 +2198,7 @@ jasmine.Runner.prototype.results = function() {
   return this.queue.results();
 };
 /**
- * Internal representation of a Jasmine specification, or test.
+ * Internal representation of a Jasmine specification, or testdrive.
  *
  * @constructor
  * @param {jasmine.Env} env

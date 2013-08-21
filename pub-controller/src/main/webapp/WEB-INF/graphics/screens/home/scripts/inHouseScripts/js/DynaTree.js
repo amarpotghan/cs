@@ -62,7 +62,7 @@ var DynaTree = function(){
                         var flag = isFolder(action);
                         var prefix=getUrlPrefix(action,"create");
                         newNode = createNode(name,action,currentPath,flag);
-                        Dimensions.createDim(prefix,action,name,currentPath,flag,addNode);
+                        CreateDimensions.createDim(prefix,action,name,currentPath,flag,addNode);
                     }
                 }
             });
