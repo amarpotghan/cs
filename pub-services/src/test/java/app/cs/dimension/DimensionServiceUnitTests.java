@@ -1,4 +1,4 @@
-package app.cs.impl.dimension;
+package app.cs.dimension;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
@@ -14,11 +14,12 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.impl.chapter.InMemoryViewStructure;
-import app.cs.impl.delegate.builder.TreeBuilder;
+import app.cs.boundary.dimension.IMultiDimensionalObject;
+import app.cs.boundary.model.MultiDimensionalObject;
+import app.cs.chapter.InMemoryViewStructure;
+import app.cs.dimension.DimensionService;
 import app.cs.impl.delegate.factory.IDomainFactory;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.perspective.TreeBuilder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DimensionServiceUnitTests {

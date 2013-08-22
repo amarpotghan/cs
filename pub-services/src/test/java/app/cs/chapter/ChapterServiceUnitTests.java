@@ -1,4 +1,4 @@
-package app.cs.impl.chapter;
+package app.cs.chapter;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,11 +6,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.impl.chapter.ChapterRepository;
-import app.cs.impl.chapter.ChapterService;
+import app.cs.boundary.dimension.IMultiDimensionalObject;
+import app.cs.boundary.model.MultiDimensionalObject;
+import app.cs.chapter.ChapterRepository;
+import app.cs.chapter.ChapterService;
 import app.cs.impl.delegate.factory.DomainFactory;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
 
 import static org.fest.assertions.Assertions.*;
 import static org.mockito.Mockito.*;

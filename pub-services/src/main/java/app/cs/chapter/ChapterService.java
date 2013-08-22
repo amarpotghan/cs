@@ -1,4 +1,4 @@
-package app.cs.impl.chapter;
+package app.cs.chapter;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -7,16 +7,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.interfaces.IService;
-import app.cs.interfaces.chapter.IChapterRepository;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.boundary.Service;
+import app.cs.boundary.chapter.IChapterRepository;
+import app.cs.boundary.dimension.IMultiDimensionalObject;
+import app.cs.boundary.model.MultiDimensionalObject;
 
 /**
  * The Class ChapterService.
  */
 @Component
-public class ChapterService implements IService {
+public class ChapterService implements Service {
 
 	/** The contentobject. */
 	private final String CONTENTOBJECT = "MultiDimensionalObject";

@@ -14,11 +14,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.impl.delegate.builder.TreeBuilder;
-import app.cs.impl.dimension.DimensionRepository;
-import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.boundary.dimension.IInMemoryDimensionGroup;
+import app.cs.boundary.dimension.IMultiDimensionalObject;
+import app.cs.boundary.model.MultiDimensionalObject;
+import app.cs.dimension.DimensionRepository;
+import app.cs.perspective.TreeBuilder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TreeBuilderUnitTests {

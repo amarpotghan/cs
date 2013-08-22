@@ -1,8 +1,8 @@
-package app.cs.impl.delegate.builder;
+package app.cs.perspective;
 
 import java.util.List;
 
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.boundary.model.MultiDimensionalObject;
 
 public interface ITreeBuilder {
 

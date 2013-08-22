@@ -12,12 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import app.cs.impl.chapter.ChapterRepository;
-import app.cs.impl.chapter.InMemoryViewStructure;
+import app.cs.boundary.chapter.IChapterRepository;
+import app.cs.boundary.chapter.IInMemoryViewStructure;
+import app.cs.boundary.model.MultiDimensionalObject;
+import app.cs.chapter.ChapterRepository;
+import app.cs.chapter.InMemoryViewStructure;
 import app.cs.impl.delegate.factory.DomainFactory;
-import app.cs.interfaces.chapter.IChapterRepository;
-import app.cs.interfaces.chapter.IInMemoryViewStructure;
-import app.cs.interfaces.model.MultiDimensionalObject;
 
 import com.cs.data.api.core.nosql.redis.InMemoryNoSqlRepository;
 import com.cs.data.core.nosql.mongodb.MongoRepository;

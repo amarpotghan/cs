@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import app.cs.interfaces.IService;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.boundary.Service;
+import app.cs.boundary.model.MultiDimensionalObject;
 
 /**
  * The Class NodeController.
@@ -24,7 +24,7 @@ public class NodeController {
 	private static final String CREATE = "/dimension/create/{type}/name/{name}/path/{path}/folder/{folder}";
 
 	/** The dimension service. */
-	private IService dimensionService;
+	private Service dimensionService;
 
 
 	/**
@@ -38,7 +38,7 @@ public class NodeController {
 	 *            the cache
 	 */
 	@Autowired
-	public NodeController(IService dimensionService) {
+	public NodeController(Service dimensionService) {
 		this.dimensionService = dimensionService;
 
 	}

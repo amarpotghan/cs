@@ -1,14 +1,14 @@
-package app.cs.impl.delegate.builder;
+package app.cs.perspective;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.interfaces.dimension.IDimensionRepository;
-import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.boundary.dimension.IDimensionRepository;
+import app.cs.boundary.dimension.IInMemoryDimensionGroup;
+import app.cs.boundary.dimension.IMultiDimensionalObject;
+import app.cs.boundary.model.MultiDimensionalObject;
 import app.cs.utils.ArrayUtils;
 
 /**
