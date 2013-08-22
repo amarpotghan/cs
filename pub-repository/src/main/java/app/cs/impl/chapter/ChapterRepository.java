@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.interfaces.chapter.IChapterRepository;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.model.MultiDimensionalObject;
 
 import com.cs.data.api.core.GenericDomain;
@@ -77,7 +76,7 @@ public class ChapterRepository implements IChapterRepository {
 	 */
 	private void addChapterToPublication(MultiDimensionalObject publication,
 			MultiDimensionalObject chapter) {
-		IMultiDimensionalObject parent;
+		MultiDimensionalObject parent;
 		parent = find(publication, getParentId(chapter.getPath()));
 		parent.addchild(chapter);
 		saveToMongo(publication);
@@ -109,16 +108,16 @@ public class ChapterRepository implements IChapterRepository {
 	 *            the parent id
 	 * @return the content object
 	 */
-	public IMultiDimensionalObject find(IMultiDimensionalObject publication,
+	public MultiDimensionalObject find(MultiDimensionalObject publication,
 			String parentId) {
-		IMultiDimensionalObject child = null;
+		MultiDimensionalObject child = null;
 		if (publication.getId().equals(parentId)) {
 			return publication;
 
 		}
 
 		if (publication.hasChildren()) {
-			for (IMultiDimensionalObject chapter : publication.getChildren()) {
+			for (MultiDimensionalObject chapter : publication.getChildren()) {
 				if (child != null)
 					break;
 				if (chapter.getId().equals(parentId)) {
@@ -143,9 +142,8 @@ public class ChapterRepository implements IChapterRepository {
 	 */
 	public String getPublicationId(String path) {
 
-		String currentViewStructure = inMemoryViewStructure.getCurrentViewStructure();
-		System.out.println(currentViewStructure);
-		System.out.println(path);
+		String currentViewStructure = inMemoryViewStructure
+				.getCurrentViewStructure();
 		int lastIndex = getLastIndexOf(currentViewStructure);
 
 		return path.split(COMMA)[lastIndex];
@@ -194,17 +192,28 @@ public class ChapterRepository implements IChapterRepository {
 	 * 
 	 * @see
 	 * com.cs.data.business.repository.IChapterRepository#delete(com.cs.data
-	 * .business.api.model.IMultiDimensionalObject, java.lang.String)
+	 * .business.api.model.MultiDimensionalObject, java.lang.String)
 	 */
 	@Override
-	public String delete(IMultiDimensionalObject chapter, String oldPath) {
-		MultiDimensionalObject parentPublication = getParentPublication(oldPath);
-		IMultiDimensionalObject parent = find(parentPublication,
-				getParentId(oldPath));
-		chapter.setPath(oldPath);
+	public String delete(MultiDimensionalObject chapter) {
+		MultiDimensionalObject parentPublication = getParentPublication(chapter
+				.getPath());
+		MultiDimensionalObject parent = find(parentPublication,
+				getParentId(chapter.getPath()));
 		parent.removeChild(chapter);
 		saveToMongo(parentPublication);
 		return chapter.getId();
+	}
+
+	@Override
+	public void move(MultiDimensionalObject chapter, String newPath) {
+		MultiDimensionalObject parentPublication = getParentPublication(chapter.getPath());
+		MultiDimensionalObject chapterForNewLocation = find(parentPublication,
+				chapter.getId());
+		chapterForNewLocation.setPath(newPath);
+		save(chapterForNewLocation);
+		delete(chapter);
+
 	}
 
 }

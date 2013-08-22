@@ -57,17 +57,25 @@ public class ChapterServiceUnitTests {
 	}
 
 	@Test
-	public void itShouldDeleteAChapter() {
+	public void itShouldMoveAChapter() {
 		// given
 		String result = "success";
 		String oldPath = "testpath";
-		IMultiDimensionalObject object = new MultiDimensionalObject();
-		when(chapterRepository.delete(object, oldPath)).thenReturn(result);
+
+		String type = "Campaign";
+		String name = "CP01";
+		String path = "Mp01,P01";
+		boolean isFolder = true;
+		String newPath = "Mp02,p02";
+		MultiDimensionalObject object = new MultiDimensionalObject(name, type,
+				path, isFolder);
 		// when
-		service.delete(object, oldPath);
+		when(chapterRepository.getDomain("MultiDimensionalObject")).thenReturn(
+				object);
+		service.move(type, name, path, isFolder, newPath);
 
 		// then
-		verify(chapterRepository).delete(object, oldPath);
+		verify(chapterRepository).move(object, newPath);
 
 	}
 

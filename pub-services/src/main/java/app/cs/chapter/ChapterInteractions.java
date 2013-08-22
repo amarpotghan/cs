@@ -73,12 +73,15 @@ public class ChapterInteractions implements Service {
 	@Override
 	public void move(String type, String name, String path, boolean isFolder,
 			String newPath) {
-		IMultiDimensionalObject chapter = (IMultiDimensionalObject) chapterRepository
+		MultiDimensionalObject chapter = (MultiDimensionalObject) chapterRepository
 				.getDomain(CONTENTOBJECT);
-		setChapterAtrributes(chapter, type, name, newPath, isFolder);
+		setChapterAtrributes(chapter, type, name, path, isFolder);
+
 		// move=delete+create
-		delete(chapter, path);
-		create(type, name, newPath, isFolder);
+		chapterRepository.move(chapter, newPath);
+		/*
+		 * delete(chapter, path); create(type, name, newPath, isFolder);
+		 */
 
 	}
 
@@ -91,7 +94,7 @@ public class ChapterInteractions implements Service {
 	@Override
 	public void delete(IMultiDimensionalObject chapter, String path) {
 
-		chapterRepository.delete(chapter, path);
+	
 
 	}
 

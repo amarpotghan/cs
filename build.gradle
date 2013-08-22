@@ -9,7 +9,7 @@ subprojects {
 
 	def encoding = {it.encoding = 'UTF-8'}
 	test{
-	exclude 'com/cs/integration/**'
+	exclude 'app/cs/integration/**'
 }
 
 	repositories {
