@@ -24,7 +24,7 @@ import app.cs.utils.FileUtils;
 public class ClientController {
 
 	/** The index. */
-	private final String INDEX = "redirect:/engine/core/html/start.html";
+	private final String INDEX = "redirect:/pages/engine/core/html/start.html";
 	private final String PREFIX = "";
 
 	@Autowired
