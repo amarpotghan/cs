@@ -107,6 +107,8 @@ public class ClientController {
 
 		CustomResponse customResponse = new CustomResponse();
 		customResponse.setHtml(fileUtils.getFileContents("header.html"));
+		customResponse
+        				.setEvents(fileUtils.getFileContents("header/events.json"));
 		return customResponse;
 
 	}
