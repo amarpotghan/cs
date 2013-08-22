@@ -30,6 +30,11 @@ function handleViewChange(evt){
     }
 }
 
+function clearList(){
+    var contextMenusHolder = document.getElementById('menus');
+    contextMenusHolder.innerHTML = "";
+}
+
 function btnFocus(btn){
     $('.tileBtnCSS').css("border","0px");
     $('.listBtnCSS').css("border","0px");
