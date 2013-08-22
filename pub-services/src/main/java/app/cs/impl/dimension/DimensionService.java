@@ -1,4 +1,4 @@
-package app.cs.dimension;
+package app.cs.impl.dimension;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -7,18 +7,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.boundary.Service;
+import app.cs.impl.delegate.builder.ITreeBuilder;
+import app.cs.interfaces.IService;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.model.MultiDimensionalObject;
-import app.cs.perspective.ITreeBuilder;
 
 /**
  * The Class DimensionService. TODO remove out all annotation from class
  */
 @Component
-public class DimensionInteractions implements Service {
+public class DimensionService implements IService {
 
 	/** The tree builder. */
 	private ITreeBuilder treeBuilder;
@@ -44,7 +44,7 @@ public class DimensionInteractions implements Service {
 	 *            the tree builder
 	 */
 	@Autowired
-	public DimensionInteractions(IDimensionRepository dimensionRepository,
+	public DimensionService(IDimensionRepository dimensionRepository,
 			ITreeBuilder treeBuilder, IInMemoryViewStructure cache) {
 
 		this.dimensionRepository = dimensionRepository;

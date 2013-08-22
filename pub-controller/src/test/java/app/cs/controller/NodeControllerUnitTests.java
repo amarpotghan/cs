@@ -16,7 +16,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.dimension.DimensionInteractions;
+import app.cs.controller.NodeController;
+import app.cs.impl.dimension.DimensionService;
 import app.cs.interfaces.model.MultiDimensionalObject;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -25,7 +26,7 @@ public class NodeControllerUnitTests {
 	private NodeController treeController;
 
 	@Mock
-	private DimensionInteractions dimensionService;
+	private DimensionService dimensionService;
 
 	@Before
 	public void setUp() {

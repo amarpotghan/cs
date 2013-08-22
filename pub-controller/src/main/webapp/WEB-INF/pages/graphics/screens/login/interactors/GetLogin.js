@@ -7,7 +7,4 @@ GetLogin.login = function(){
     $(".logout").css( "visibility", "visible" );
     $(".wrapper").css( "visibility", "visible" );
     $(".profileLogo").css( "visibility", "visible" );
-    $(".logout").click(function(){
-        location.reload();
-    })
 }

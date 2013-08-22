@@ -8,9 +8,6 @@ subprojects {
 	targetCompatibility = 1.7
 
 	def encoding = {it.encoding = 'UTF-8'}
-	test{
-	exclude 'app/cs/integration/**'
-}
 
 	repositories {
 		mavenCentral ()

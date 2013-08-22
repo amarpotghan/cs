@@ -3,6 +3,7 @@ package com.cs.data.core.jpa;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.cs.data.core.jpa.ORMService;
 import com.cs.data.core.jpa.entities.Student;
 
 public class ORMServiceUnitTests {

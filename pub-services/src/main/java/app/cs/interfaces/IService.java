@@ -1,4 +1,4 @@
-package app.cs.boundary;
+package app.cs.interfaces;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -7,11 +7,13 @@ import java.util.List;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.model.MultiDimensionalObject;
 
+import com.cs.data.api.core.GenericDomain;
+
 /**
  * Interface that specifies basic set of service operations. Ideally all the
  * services should extend this interface. Implemented by all service classes.
  */
-public interface Service {
+public interface IService {
 
 	/**
 	 * Method for finding all entities present in the system

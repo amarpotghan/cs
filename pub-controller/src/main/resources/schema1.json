@@ -16,12 +16,17 @@
              {
                 "name": "Publication",
                 "icon": "something",
-                "possibleChild": ["Chapter","Page"]
+                "possibleChild": ["Chapter","Page","Assortment"]
             },
             {
                 "name": "Chapter",
                 "icon": "something",
-                "possibleChild": ["Chapter","Page"]
+                "possibleChild": ["Chapter","Page","Assortment"]
+            },
+            {
+                "name": "Page",
+                "icon": "something",
+                "possibleChild": ["Assortment"]
             }
         ]
     }

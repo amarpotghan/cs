@@ -3,6 +3,8 @@ package com.cs.data.api.core.nosql.redis;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.data.mongodb.core.MongoTemplate;
+
 import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.nosql.NoSqlOperations;
 import com.cs.data.core.nosql.redis.RedisRepository;

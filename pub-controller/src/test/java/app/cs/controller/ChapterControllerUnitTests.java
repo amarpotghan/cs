@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.chapter.ChapterInteractions;
+import app.cs.impl.chapter.ChapterService;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.model.MultiDimensionalObject;
@@ -21,7 +21,7 @@ public class ChapterControllerUnitTests {
 	private ChapterController chapterController;
 
 	@Mock
-	private ChapterInteractions chapterService;
+	private ChapterService chapterService;
 
 	@Mock
 	private DomainFactory factory;

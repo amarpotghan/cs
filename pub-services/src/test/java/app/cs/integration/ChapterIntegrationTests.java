@@ -1,5 +1,7 @@
 package app.cs.integration;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import java.util.ArrayList;
 import java.util.List;
 

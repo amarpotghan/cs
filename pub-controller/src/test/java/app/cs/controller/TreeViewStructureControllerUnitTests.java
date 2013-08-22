@@ -1,12 +1,11 @@
 package app.cs.controller;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import org.eclipse.persistence.jpa.jpql.parser.WhenClause;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.Test;
@@ -14,7 +13,12 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import app.cs.controller.TreeViewStructureController;
 import app.cs.utils.FileUtils;
+
+import static org.mockito.Mockito.*;
+
+import static org.fest.assertions.Assertions.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TreeViewStructureControllerUnitTests {

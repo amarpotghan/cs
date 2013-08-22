@@ -1,4 +1,4 @@
-package app.cs.chapter;
+package app.cs.impl.chapter;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.boundary.Service;
+import app.cs.interfaces.IService;
 import app.cs.interfaces.chapter.IChapterRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.model.MultiDimensionalObject;
@@ -16,7 +16,7 @@ import app.cs.interfaces.model.MultiDimensionalObject;
  * The Class ChapterService.
  */
 @Component
-public class ChapterInteractions implements Service {
+public class ChapterService implements IService {
 
 	/** The contentobject. */
 	private final String CONTENTOBJECT = "MultiDimensionalObject";
@@ -32,7 +32,7 @@ public class ChapterInteractions implements Service {
 	 * @param factory
 	 */
 	@Autowired
-	public ChapterInteractions(IChapterRepository chapterRepository) {
+	public ChapterService(IChapterRepository chapterRepository) {
 		// TODO Auto-generated constructor stub
 		this.chapterRepository = chapterRepository;
 	}
@@ -73,15 +73,12 @@ public class ChapterInteractions implements Service {
 	@Override
 	public void move(String type, String name, String path, boolean isFolder,
 			String newPath) {
-		MultiDimensionalObject chapter = (MultiDimensionalObject) chapterRepository
+		IMultiDimensionalObject chapter = (IMultiDimensionalObject) chapterRepository
 				.getDomain(CONTENTOBJECT);
-		setChapterAtrributes(chapter, type, name, path, isFolder);
-
+		setChapterAtrributes(chapter, type, name, newPath, isFolder);
 		// move=delete+create
-		chapterRepository.move(chapter, newPath);
-		/*
-		 * delete(chapter, path); create(type, name, newPath, isFolder);
-		 */
+		delete(chapter, path);
+		create(type, name, newPath, isFolder);
 
 	}
 
@@ -94,7 +91,7 @@ public class ChapterInteractions implements Service {
 	@Override
 	public void delete(IMultiDimensionalObject chapter, String path) {
 
-	
+		chapterRepository.delete(chapter, path);
 
 	}
 

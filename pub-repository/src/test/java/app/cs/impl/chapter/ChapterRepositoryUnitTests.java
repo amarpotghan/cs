@@ -43,7 +43,8 @@ public class ChapterRepositoryUnitTests {
 				"A,B,C,D,E", true);
 		MultiDimensionalObject test = new MultiDimensionalObject("test01",
 				"chapter", "A,B,C,D,E,publication", false);
-		test.addchild(new MultiDimensionalObject("test03", "test", "test", true));
+		test.addchild(new MultiDimensionalObject("test03", "test", "test",
+				true));
 		publication.addchild(test);
 		publication.addchild(new MultiDimensionalObject("test02", "test", "A",
 				true));
@@ -54,7 +55,7 @@ public class ChapterRepositoryUnitTests {
 	public void itShouldCreateAChapterInTheParentPublication() {
 		// given
 		MultiDimensionalObject chapter = new MultiDimensionalObject("test",
-				"test", "A,B,C,D,E,test03", true);
+				"test", "A,B,C,D,E,test03",true);
 		String result = "success";
 		// when
 		when(cache.getCurrentViewStructure()).thenReturn("C-M-P-D");
@@ -121,8 +122,9 @@ public class ChapterRepositoryUnitTests {
 		// given
 
 		String result = "result";
+		String oldPath = "A,B,C,D,E,test03";
 		MultiDimensionalObject chapter = new MultiDimensionalObject("test",
-				"test", "A,B,C,D,E,test01", true);
+				"test", "A,B,C,D,E", true);
 		when(cache.getCurrentViewStructure()).thenReturn("C-M-P-D");
 		when(noSqlTemplateForMongo.save(chapter)).thenReturn(result);
 		when(
@@ -130,36 +132,12 @@ public class ChapterRepositoryUnitTests {
 						MultiDimensionalObject.class)).thenReturn(publication);
 
 		// when
-		repository.delete(chapter);
+		repository.delete(chapter, oldPath);
 
 		// then
 		verify(noSqlTemplateForMongo).getObjectByKey("D",
 				MultiDimensionalObject.class);
 		verify(noSqlTemplateForMongo).save(publication);
-
-	}
-
-	@Test
-	public void itShouldMoveChapterFromOneLocationToOther() {
-		String result = "result";
-		String newPath = "A,B,C,D,E,test02";
-		MultiDimensionalObject chapter = new MultiDimensionalObject("test01",
-				"test", "A,B,C,D,E,test01", true);
-		// when
-		when(cache.getCurrentViewStructure()).thenReturn("C-M-P-D");
-		when(noSqlTemplateForMongo.save(chapter)).thenReturn(result);
-		when(
-				noSqlTemplateForMongo.getObjectByKey("D",
-						MultiDimensionalObject.class)).thenReturn(publication);
-		when(
-				noSqlTemplateForMongo.getObjectByKey(chapter.getKey(),
-						MultiDimensionalObject.class)).thenReturn(publication);
-
-		repository.move(chapter, newPath);
-
-		// then
-		verify(noSqlTemplateForMongo).save(chapter);
-		
 
 	}
 

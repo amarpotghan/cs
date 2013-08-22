@@ -10,14 +10,14 @@ import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import app.cs.impl.delegate.builder.ITreeBuilder;
+import app.cs.impl.delegate.builder.TreeBuilder;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.impl.dimension.InMemoryDimensionGroup;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
 import app.cs.interfaces.model.MultiDimensionalObject;
-import app.cs.perspective.ITreeBuilder;
-import app.cs.perspective.TreeBuilder;
 import app.cs.utils.FileUtils;
 
 import com.cs.data.api.core.nosql.redis.InMemoryNoSqlRepository;

@@ -1,8 +1,4 @@
-package app.cs.chapter;
-
-import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+package app.cs.impl.chapter;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,14 +7,18 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.impl.chapter.ChapterRepository;
+import app.cs.impl.chapter.ChapterService;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.model.MultiDimensionalObject;
 
+import static org.fest.assertions.Assertions.*;
+import static org.mockito.Mockito.*;
+
 @RunWith(MockitoJUnitRunner.class)
 public class ChapterServiceUnitTests {
 
-	private ChapterInteractions service;
+	private ChapterService service;
 
 	@Mock
 	private ChapterRepository chapterRepository;
@@ -28,7 +28,7 @@ public class ChapterServiceUnitTests {
 
 	@Before
 	public void setUp() {
-		service = new ChapterInteractions(chapterRepository);
+		service = new ChapterService(chapterRepository);
 
 	}
 
@@ -57,25 +57,17 @@ public class ChapterServiceUnitTests {
 	}
 
 	@Test
-	public void itShouldMoveAChapter() {
+	public void itShouldDeleteAChapter() {
 		// given
 		String result = "success";
 		String oldPath = "testpath";
-
-		String type = "Campaign";
-		String name = "CP01";
-		String path = "Mp01,P01";
-		boolean isFolder = true;
-		String newPath = "Mp02,p02";
-		MultiDimensionalObject object = new MultiDimensionalObject(name, type,
-				path, isFolder);
+		IMultiDimensionalObject object = new MultiDimensionalObject();
+		when(chapterRepository.delete(object, oldPath)).thenReturn(result);
 		// when
-		when(chapterRepository.getDomain("MultiDimensionalObject")).thenReturn(
-				object);
-		service.move(type, name, path, isFolder, newPath);
+		service.delete(object, oldPath);
 
 		// then
-		verify(chapterRepository).move(object, newPath);
+		verify(chapterRepository).delete(object, oldPath);
 
 	}
 
