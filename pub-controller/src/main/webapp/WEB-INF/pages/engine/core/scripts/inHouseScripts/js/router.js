@@ -3,7 +3,25 @@ var Router = function(){
 }
 
 Router.forward = function(url,async,callback){
-    $.ajax({
+
+    //Comment this and uncomment below while DEPLOYING
+    if(url.indexOf("ocks") == -1){
+        callback("success");
+    }
+    else{
+        $.ajax({
+            url:url,
+            async:async,
+            success:function(result){
+                callback(result);
+            },
+            error: function (error) {
+                callback("error");
+            }
+        });
+    }
+
+    /*$.ajax({
         url:url,
         async:async,
         success:function(result){
@@ -12,7 +30,7 @@ Router.forward = function(url,async,callback){
         error: function (error) {
             callback("error");
         }
-    });
+    });*/
 }
 
 Router.forwardWithParams = function(url,path,type,callback){
@@ -37,16 +55,45 @@ Router.forwardWithParams = function(url,path,type,callback){
 Router.loadTemplate = function(key,containerID){
     //This sets the default value for the containerElementID
     containerID = typeof containerID !== ('undefined'||"") ? containerID : "mainContainer";
-    Router.forward(EngineDataStore.getScreenMappingObject()[key].screenName,true,function(data){
+
+    //Comment this and uncomment line below this while DEPLOYING
+    Router.forward(EngineDataStore.getScreenMappingObject()[key].url,true,function(data){
         Router.designScreen(data,containerID);
     });
+
+    /*Router.forward(EngineDataStore.getScreenMappingObject()[key].screenName,true,function(data){
+     Router.designScreen(data,containerID);
+     });*/
 
 }
 
 
 Router.loadRequest = function(key,async,callBack,params){
+    //Comment this while DEPLOYING and uncomment belove
     if(params){
-        Router.forward(EngineDataStore.getApiMappingObject()[key]+params,async,function(data){
+
+        switch(params){
+            case "1":
+                key = "getViewStructure1";
+                break;
+            case "2":
+                key = "getViewStructure2";
+                break;
+            case "3":
+                key = "getViewStructure3";
+                break;
+            case "Campaign-MasterPublication-Publication":
+                key = "getTree1";
+                break;
+            case "MasterPublication-Campaign-Publication":
+                key = "getTree2";
+                break;
+            case "Campaign-Publication-MasterPublication":
+                key = "getTree3";
+                break;
+        }
+        Router.forward(EngineDataStore.getApiMappingObject()[key],async,function(data){
+            data=eval('(' + data + ')');
             callBack(data);
         });
     }
@@ -56,10 +103,24 @@ Router.loadRequest = function(key,async,callBack,params){
         });
     }
 
+    //Uncomment this while DEPLOYING and comment above
+   /* if(params){
+        Router.forward(EngineDataStore.getApiMappingObject()[key]+params,async,function(data){
+            callBack(data);
+        });
+    }
+    else{
+        Router.forward(EngineDataStore.getApiMappingObject()[key],async,function(data){
+            callBack(data);
+        });
+    }*/
+
 }
 
 Router.designScreen = function(data,containerID){
-    //data=eval('(' + data + ')');
+    //Comment this while DEPLOYING
+    data=eval('(' + data + ')');
+
     var placeHolderElement = document.getElementById(containerID);
     placeHolderElement.innerHTML = data.html;
  
@@ -73,15 +134,14 @@ Router.designScreen = function(data,containerID){
 }
 
 Router.attachEvents = function(events){
-events=eval('(' + events + ')');
+    events=eval('(' + events + ')');
     for (var binding in events){
         HtmlEventDesigner.addEvents(events[binding].id,events[binding].event,events[binding].func,false);
     }
 }
 
 Router.createElements = function(elements){
-elements=eval('(' + elements + ')');
-    // var elements= [{"id":"leftTree","type":"tree","scriptName":"TreeSelector","screenName":"home"}];
+    elements=eval('(' + elements + ')');
     for (var element in elements){
         HtmlElementDesigner.design(elements[element].id,elements[element].scriptName,elements[element].screenName);
     }

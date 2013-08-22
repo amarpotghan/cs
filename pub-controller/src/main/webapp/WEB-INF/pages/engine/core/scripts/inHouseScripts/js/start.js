@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 
 function getScreenMappingObject(){
-    Router.forward(EngineDataStore.getBaseURL()+"graphics/tacks/ScreenMapping.json",true,function(json){
+    Router.forward(EngineDataStore.getBaseURL()+"graphics/tacks/MocksScreenMapping.json",true,function(json){
         parseScreenMappingObject(json);
     });
 }
@@ -21,7 +21,7 @@ function parseScreenMappingObject(json){
 }
 
 function getApiMappingObject(){
-    Router.forward(EngineDataStore.getBaseURL()+"graphics/tacks/RequestMapping.json",true,function(json){
+    Router.forward(EngineDataStore.getBaseURL()+"graphics/tacks/MocksRequestMapping.json",true,function(json){
         parseApiMappingObject(json);
     });
 }

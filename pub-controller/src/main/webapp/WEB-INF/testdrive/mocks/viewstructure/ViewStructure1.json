@@ -1,0 +1,32 @@
+{
+        "id": "1",
+        "default": "true",
+        "name": "Campaign-MasterPublication-Publication",
+        "structure": [
+            {
+                "name": "Campaign",
+                "icon": "something",
+                "possibleChild": ["MasterPublication"]
+            },
+            {
+                "name": "MasterPublication",
+                "icon": "something",
+                "possibleChild": ["Publication"]
+            },
+             {
+                "name": "Publication",
+                "icon": "something",
+                "possibleChild": ["Chapter","Page","Assortment"]
+            },
+            {
+                "name": "Chapter",
+                "icon": "something",
+                "possibleChild": ["Chapter","Page","Assortment"]
+            },
+            {
+                "name": "Page",
+                "icon": "something",
+                "possibleChild": ["Assortment"]
+            }
+        ]
+    }
