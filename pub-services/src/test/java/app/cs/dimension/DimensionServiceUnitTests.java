@@ -14,17 +14,17 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.boundary.dimension.IMultiDimensionalObject;
-import app.cs.boundary.model.MultiDimensionalObject;
-import app.cs.chapter.InMemoryViewStructure;
-import app.cs.dimension.DimensionService;
+import app.cs.impl.chapter.InMemoryViewStructure;
 import app.cs.impl.delegate.factory.IDomainFactory;
+import app.cs.impl.dimension.DimensionRepository;
+import app.cs.interfaces.dimension.IMultiDimensionalObject;
+import app.cs.interfaces.model.MultiDimensionalObject;
 import app.cs.perspective.TreeBuilder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DimensionServiceUnitTests {
 
-	private DimensionService dimensionService;
+	private DimensionInteractions dimensionService;
 
 	@Mock
 	private IMultiDimensionalObject dimensionModel;
@@ -43,7 +43,7 @@ public class DimensionServiceUnitTests {
 
 	@Before
 	public void setUp() {
-		dimensionService = new DimensionService(dimensionRepository,
+		dimensionService = new DimensionInteractions(dimensionRepository,
 				treeBuilder, cache);
 	}
 

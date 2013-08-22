@@ -5,8 +5,6 @@ import java.net.URISyntaxException;
 
 import javax.servlet.ServletContext;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +22,7 @@ import app.cs.utils.FileUtils;
 public class ClientController {
 
 	/** The index. */
-	private final String INDEX = "redirect:/engine/core/html/start.html";
+	private final String INDEX = "redirect:/pages/engine/core/html/start.html";
 	private final String PREFIX = "";
 
 	@Autowired

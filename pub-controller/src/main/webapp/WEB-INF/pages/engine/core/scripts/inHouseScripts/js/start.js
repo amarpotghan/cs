@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 function getScreenMappingObject(){
-    Router.forward("/pub-controller/graphics/tacks/ScreenMapping.json",true,function(json){
+    Router.forward("/pub-controller/pages/graphics/tacks/ScreenMapping.json",true,function(json){
         parseScreenMappingObject(json);
     });
 }
@@ -20,7 +20,7 @@ function parseScreenMappingObject(json){
 }
 
 function getApiMappingObject(){
-    Router.forward("/pub-controller/graphics/tacks/RequestMapping.json",true,function(json){
+    Router.forward("/pub-controller/pages/graphics/tacks/RequestMapping.json",true,function(json){
         parseApiMappingObject(json);
     });
 }

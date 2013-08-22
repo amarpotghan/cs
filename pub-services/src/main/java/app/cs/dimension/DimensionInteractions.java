@@ -8,17 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.boundary.Service;
-import app.cs.boundary.chapter.IInMemoryViewStructure;
-import app.cs.boundary.dimension.IDimensionRepository;
-import app.cs.boundary.dimension.IMultiDimensionalObject;
-import app.cs.boundary.model.MultiDimensionalObject;
+import app.cs.interfaces.chapter.IInMemoryViewStructure;
+import app.cs.interfaces.dimension.IDimensionRepository;
+import app.cs.interfaces.dimension.IMultiDimensionalObject;
+import app.cs.interfaces.model.MultiDimensionalObject;
 import app.cs.perspective.ITreeBuilder;
 
 /**
  * The Class DimensionService. TODO remove out all annotation from class
  */
 @Component
-public class DimensionService implements Service {
+public class DimensionInteractions implements Service {
 
 	/** The tree builder. */
 	private ITreeBuilder treeBuilder;
@@ -44,7 +44,7 @@ public class DimensionService implements Service {
 	 *            the tree builder
 	 */
 	@Autowired
-	public DimensionService(IDimensionRepository dimensionRepository,
+	public DimensionInteractions(IDimensionRepository dimensionRepository,
 			ITreeBuilder treeBuilder, IInMemoryViewStructure cache) {
 
 		this.dimensionRepository = dimensionRepository;

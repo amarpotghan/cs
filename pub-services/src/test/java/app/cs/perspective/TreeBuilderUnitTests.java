@@ -1,4 +1,4 @@
-package app.cs.impl.delegate.builder;
+package app.cs.perspective;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.times;
@@ -14,11 +14,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.boundary.dimension.IInMemoryDimensionGroup;
-import app.cs.boundary.dimension.IMultiDimensionalObject;
-import app.cs.boundary.model.MultiDimensionalObject;
-import app.cs.dimension.DimensionRepository;
-import app.cs.perspective.TreeBuilder;
+import app.cs.impl.dimension.DimensionRepository;
+import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
+import app.cs.interfaces.dimension.IMultiDimensionalObject;
+import app.cs.interfaces.model.MultiDimensionalObject;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TreeBuilderUnitTests {

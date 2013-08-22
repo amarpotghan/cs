@@ -3,7 +3,6 @@ package com.cs.data.core.jpa;
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.cs.data.api.core.jpa.IORMService;
 

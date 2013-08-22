@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import app.cs.boundary.dimension.IMultiDimensionalObject;
-import app.cs.boundary.model.MultiDimensionalObject;
-
-import com.cs.data.api.core.GenericDomain;
+import app.cs.interfaces.dimension.IMultiDimensionalObject;
+import app.cs.interfaces.model.MultiDimensionalObject;
 
 /**
  * Interface that specifies basic set of service operations. Ideally all the

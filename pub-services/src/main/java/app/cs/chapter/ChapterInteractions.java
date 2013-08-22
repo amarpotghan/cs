@@ -8,15 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.boundary.Service;
-import app.cs.boundary.chapter.IChapterRepository;
-import app.cs.boundary.dimension.IMultiDimensionalObject;
-import app.cs.boundary.model.MultiDimensionalObject;
+import app.cs.interfaces.chapter.IChapterRepository;
+import app.cs.interfaces.dimension.IMultiDimensionalObject;
+import app.cs.interfaces.model.MultiDimensionalObject;
 
 /**
  * The Class ChapterService.
  */
 @Component
-public class ChapterService implements Service {
+public class ChapterInteractions implements Service {
 
 	/** The contentobject. */
 	private final String CONTENTOBJECT = "MultiDimensionalObject";
@@ -32,7 +32,7 @@ public class ChapterService implements Service {
 	 * @param factory
 	 */
 	@Autowired
-	public ChapterService(IChapterRepository chapterRepository) {
+	public ChapterInteractions(IChapterRepository chapterRepository) {
 		// TODO Auto-generated constructor stub
 		this.chapterRepository = chapterRepository;
 	}

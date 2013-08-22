@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.boundary.Service;
-import app.cs.boundary.model.MultiDimensionalObject;
+import app.cs.interfaces.model.MultiDimensionalObject;
 
 /**
  * The Class NodeController.
@@ -24,7 +24,7 @@ public class NodeController {
 	private static final String CREATE = "/dimension/create/{type}/name/{name}/path/{path}/folder/{folder}";
 
 	/** The dimension service. */
-	private Service dimensionService;
+	private Service dimensionInteractions;
 
 
 	/**
@@ -38,8 +38,8 @@ public class NodeController {
 	 *            the cache
 	 */
 	@Autowired
-	public NodeController(Service dimensionService) {
-		this.dimensionService = dimensionService;
+	public NodeController(Service dimensionInteractions) {
+		this.dimensionInteractions = dimensionInteractions;
 
 	}
 
@@ -63,7 +63,7 @@ public class NodeController {
 			@PathVariable("path") String path,
 			@PathVariable("folder") boolean isFolder) {
 
-		return dimensionService.create(type, name, path, isFolder);
+		return dimensionInteractions.create(type, name, path, isFolder);
 
 	}
 
@@ -92,7 +92,7 @@ public class NodeController {
 	public @ResponseBody
 	List<MultiDimensionalObject> getDimensionsBy(@PathVariable String structure) {
 
-		return dimensionService.getAllBy(structure);
+		return dimensionInteractions.getAllBy(structure);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class NodeController {
 	@RequestMapping(value = "/dimension/alldimensions")
 	public @ResponseBody
 	String getAllAvailable() throws IOException, URISyntaxException {
-		return dimensionService.getAll();
+		return dimensionInteractions.getAll();
 
 	}
 

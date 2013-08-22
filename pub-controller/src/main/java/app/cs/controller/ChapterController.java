@@ -23,7 +23,7 @@ public class ChapterController {
 	private static final String MOVEPAGE = "/page/move/{type}/name/{name}/path/{path}/folder/{folder}/newpath/{newpath}";
 
 	/** The chapter service. */
-	private Service chapterService;
+	private Service chapterInteractions;
 
 	/**
 	 * Instantiates a new chapter controller.
@@ -34,8 +34,8 @@ public class ChapterController {
 	 *            the factory
 	 */
 	@Autowired
-	public ChapterController(Service chapterService) {
-		this.chapterService = chapterService;
+	public ChapterController(Service chapterInteractions) {
+		this.chapterInteractions = chapterInteractions;
 
 	}
 
@@ -59,7 +59,7 @@ public class ChapterController {
 			@PathVariable("path") String path,
 			@PathVariable("folder") boolean isFolder) {
 
-		return chapterService.create(type, name, path, isFolder);
+		return chapterInteractions.create(type, name, path, isFolder);
 
 	}
 
@@ -86,7 +86,7 @@ public class ChapterController {
 			@PathVariable("newpath") String newpath) {
 
 		System.out.println("==>" + type + name + path + isFolder + newpath);
-		chapterService.move(type, name, path, isFolder, newpath);
+		chapterInteractions.move(type, name, path, isFolder, newpath);
 		return name;
 
 	}
