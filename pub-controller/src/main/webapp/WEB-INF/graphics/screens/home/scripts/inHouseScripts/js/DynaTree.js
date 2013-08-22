@@ -37,6 +37,7 @@ var DynaTree = function(){
 
     // --- Contextmenu --------------------------------------------------
     function bindContextMenu(span,type) {
+
         var possibleDim=[];
         possibleDim  = GraphicDataStore.getPossibleChild(type);
         if(possibleDim != ""){
@@ -93,7 +94,7 @@ var DynaTree = function(){
 
     function isFolder(dim){
         var flag =true;
-        if(dim == "Page"){
+        if(dim == "Page" || dim == "Assortment"){
             flag = false;
         }
         return flag;
@@ -134,7 +135,7 @@ var DynaTree = function(){
                 dnd: {
                     preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
                     onDragStart: function(node) {
-                        if(node.data.type == "Chapter"||node.data.type == "Page" ) {
+                        if(node.data.type == "Chapter"||node.data.type == "Page"||node.data.type == "Assortment" ) {
                             return true;
                         }
                         else{
@@ -143,32 +144,74 @@ var DynaTree = function(){
 
                     },
                     onDragEnter: function(node, sourceNode) {
-                        if(node.data.type == "Publication" || node.data.type == "Chapter"){
-                            return ["over"];
+                        if(sourceNode.data.type == "Assortment")
+                        {
+                            if(node.data.type == "Publication" || node.data.type == "Chapter" || node.data.type == "Page"){
+                                return ["over"];
+                            }
+                            else{
+                                return false;
+                            }
                         }
-                        else{
-                            return false;
+                        else
+                        {
+                            if(node.data.type == "Publication" || node.data.type == "Chapter"){
+                                return ["over"];
+                            }
+                            else{
+                                return false;
+                            }
                         }
+
 
                     },
                     onDrop: function(sourceNode, node, hitMode, ui, draggable) {
                         console.log(node.data.title+"node");
                         console.log(sourceNode.data.title+"sourceNode");
-                        var parentNode = sourceNode;
-                        var newChildNode = node;
-                        var oldPathForChild = node.data.path;
-                        
-                        newChildNode.data.path = parentNode.data.path +","+parentNode.data.title;
-                        var newPathForChild   = newChildNode.data.path;
-                        //API call will go here
-                        //alert(JSON.stringify(newChildNode.data.children));
-                        var flag=isFolder(node.data.type);
-                        var prefix=getUrlPrefix(node.data.type,"move");
-                        Router.forward(prefix+node.data.type+"/name/"+node.data.title+"/path/"+oldPathForChild+"/folder/"+flag+"/newpath/"+newPathForChild,true,function(data){
+                        if(node.data.type == "Assortment")
+                        {
+                            console.log("moving..");
+                            var parentNode = sourceNode;
+                            var newChildNode = node;
+                            var oldPathForChild = node.data.path;
 
-                        });
 
-                        node.move(sourceNode, hitMode);
+                            newChildNode.data.path = parentNode.data.path +","+parentNode.data.title;
+                            var newPathForChild   = newChildNode.data.path;
+                            //API call will go here
+                            //alert(JSON.stringify(newChildNode.data.children));
+                            var flag=isFolder(node.data.type);
+                            var prefix=getUrlPrefix(node.data.type,"move");
+                            Router.forward(prefix+node.data.type+"/name/"+node.data.title+"/path/"+oldPathForChild+"/folder/"+flag+"/newpath/"+newPathForChild,true,function(data){
+
+                            });
+                            var cb = node.toDict(true, function(dict){
+                                dict.title = "Copy of " + dict.title;
+                                delete dict.key; // Remove key, so a new one will be created
+                            });
+                            sourceNode.addChild(cb);
+
+                            //copynode.move(sourceNode, hitMode);   ...incase of nodes other than assortment
+                        }
+                        else
+                        {
+                            var parentNode = sourceNode;
+                            var newChildNode = node;
+                            var oldPathForChild = node.data.path;
+
+                            newChildNode.data.path = parentNode.data.path +","+parentNode.data.title;
+                            var newPathForChild   = newChildNode.data.path;
+                            //API call will go here
+                            //alert(JSON.stringify(newChildNode.data.children));
+                            var flag=isFolder(node.data.type);
+                            var prefix=getUrlPrefix(node.data.type,"move");
+                            Router.forward(prefix+node.data.type+"/name/"+node.data.title+"/path/"+oldPathForChild+"/folder/"+flag+"/newpath/"+newPathForChild,true,function(data){
+
+                            });
+
+                            node.move(sourceNode, hitMode);
+                        }
+
                     }
                 }
             });
