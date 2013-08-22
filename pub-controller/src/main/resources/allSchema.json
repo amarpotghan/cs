@@ -76,7 +76,7 @@
             {
                 "name": "Publication",
                 "icon": "something",
-                "possibleChild": ["MasterPublication"]
+                "possibleChild": ["MasterPublication","Assortment"]
             },
             {
                 "name": "MasterPublication",

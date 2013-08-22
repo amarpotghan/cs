@@ -168,33 +168,7 @@ var DynaTree = function(){
                     onDrop: function(sourceNode, node, hitMode, ui, draggable) {
                         console.log(node.data.title+"node");
                         console.log(sourceNode.data.title+"sourceNode");
-                        if(node.data.type == "Assortment")
-                        {
-                            console.log("moving..");
-                            var parentNode = sourceNode;
-                            var newChildNode = node;
-                            var oldPathForChild = node.data.path;
 
-
-                            newChildNode.data.path = parentNode.data.path +","+parentNode.data.title;
-                            var newPathForChild   = newChildNode.data.path;
-                            //API call will go here
-                            //alert(JSON.stringify(newChildNode.data.children));
-                            var flag=isFolder(node.data.type);
-                            var prefix=getUrlPrefix(node.data.type,"move");
-                            Router.forward(prefix+node.data.type+"/name/"+node.data.title+"/path/"+oldPathForChild+"/folder/"+flag+"/newpath/"+newPathForChild,true,function(data){
-
-                            });
-                            var cb = node.toDict(true, function(dict){
-                                dict.title = "Copy of " + dict.title;
-                                delete dict.key; // Remove key, so a new one will be created
-                            });
-                            sourceNode.addChild(cb);
-
-                            //copynode.move(sourceNode, hitMode);   ...incase of nodes other than assortment
-                        }
-                        else
-                        {
                             var parentNode = sourceNode;
                             var newChildNode = node;
                             var oldPathForChild = node.data.path;
@@ -208,9 +182,16 @@ var DynaTree = function(){
                             Router.forward(prefix+node.data.type+"/name/"+node.data.title+"/path/"+oldPathForChild+"/folder/"+flag+"/newpath/"+newPathForChild,true,function(data){
 
                             });
-
-                            node.move(sourceNode, hitMode);
-                        }
+                            if(node.data.type == "Assortment"){
+                                var cb = node.toDict(true, function(dict){
+                                    //dict.title = "Copy of " + dict.title;
+                                    delete dict.key; // Remove key, so a new one will be created
+                                });
+                                sourceNode.addChild(cb);
+                            }
+                            else{
+                                node.move(sourceNode, hitMode);
+                            }
 
                     }
                 }
