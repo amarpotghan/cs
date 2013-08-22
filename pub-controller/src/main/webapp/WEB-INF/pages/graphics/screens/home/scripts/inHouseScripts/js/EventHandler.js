@@ -2,7 +2,7 @@ var rendererData;
 
 $(document).bind("TREE_ITEM_CLICKED", function itemClickedHandler(e){
     rendererData = {"mydata":e.uiData};
-    loadViewItems(rendererData, "/pub-controller/pages/graphics/screens/home/htmls/renderers/TileViewRenderer.html");
+    loadViewItems(rendererData, EngineDataStore.getBaseURL()+"graphics/screens/home/htmls/renderers/TileViewRenderer.html");
     btnFocus(".tileBtnCSS");
 });
 
@@ -12,19 +12,19 @@ function handleViewChange(evt){
     {
         case "tileView":
             //console.log(":: Load Tile View Button Clicked ::");
-            loadViewItems(rendererData, "/pub-controller/pages/graphics/screens/home/htmls/renderers/TileViewRenderer.html");
+            loadViewItems(rendererData, EngineDataStore.getBaseURL()+"graphics/screens/home/htmls/renderers/TileViewRenderer.html");
             btnFocus(".tileBtnCSS");
             break;
 
         case "listView":
             //console.log(":: Load List View Button Clicked ::");
-            loadViewItems(rendererData, "/pub-controller/pages/graphics/screens/home/htmls/renderers/ListViewRenderer.html");
+            loadViewItems(rendererData, EngineDataStore.getBaseURL()+"graphics/screens/home/htmls/renderers/ListViewRenderer.html");
             btnFocus(".listBtnCSS");
             break;
 
         case "detailView":
             //console.log(":: Load Detail View Button Clicked ::");
-            loadViewItems(rendererData, "/pub-controller/pages/graphics/screens/home/htmls/renderers/DetailViewRenderer.html");
+            loadViewItems(rendererData, EngineDataStore.getBaseURL()+"graphics/screens/home/htmls/renderers/DetailViewRenderer.html");
             btnFocus(".detailBtnCSS");
             break;
     }
