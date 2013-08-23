@@ -1,4 +1,4 @@
-package com.cs.data.core.nosql.mongodb;
+package com.cs.integration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cs.data.core.jpa.entities.Student;
 import com.cs.data.core.jpa.entities.Teacher;
+import com.cs.data.core.nosql.mongodb.MongoRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application-context-test.xml")
