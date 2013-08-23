@@ -1,5 +1,6 @@
 package app.cs.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,8 @@ public class AssortmentController {
 
 	private AssortmentInteractions assortmentInteractions;
 
+	
+	@Autowired
 	public AssortmentController(AssortmentInteractions assortmentInteractions) {
 
 		this.assortmentInteractions = assortmentInteractions;

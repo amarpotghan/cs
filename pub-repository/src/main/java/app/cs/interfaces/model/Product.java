@@ -1,5 +1,7 @@
 package app.cs.interfaces.model;
 
+import java.util.List;
+
 public class Product {
 
 	private String productId;
