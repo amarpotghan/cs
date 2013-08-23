@@ -43,7 +43,6 @@
 .profileLogo {
     margin: 0 0 0 0;
     float: right;
-    visibility: hidden;
 }
 .wrapper {
     float: right;
@@ -53,7 +52,7 @@
     border:4px solid white;
     overflow:hidden ;
     margin:5px 35px 0 0;
-    visibility: hidden;
+    visibility: visible;
 }
 
 .logobounce{
@@ -80,7 +79,7 @@
     border:#fbb450;
     float: right;
     margin: 15px 10px 0 0;
-    visibility: hidden;
+    visibility: visible;
     height: 40px;
     width: 40px;
 }
@@ -548,6 +547,36 @@ Top Bar Animation Section starts
     overflow-y: scroll;
 }
 
+/* CSS for Assortment Panel*/
+#tab{
+    border: 1px solid black;
+    position: relative;
+    float:left;
+    width: 40%;
+    height: 99%;
+    display: none;
+}
+
+#subtab1{
+    border-top: 1px solid #BBBBBB;
+    border-bottom: 1px solid #BBBBBB;
+    float: left;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 80%;
+    margin-top: 50px;
+
+}
+
+#subtab2{
+    text-align: center;
+}
+
+#asBTN{
+    margin-top: 15px;
+
+}
 
 /* Tile, List and Detail View Item Renderer CSS Section Starts */
 .tileImgCSS{

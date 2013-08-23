@@ -126,10 +126,15 @@ var DynaTree = function(){
                     bindContextMenu(span,node.data.type);
                 },
                 onActivate: function(node) {
+                    var nodeType = "Dimension";
+                    if(node.data.type == "Assortment"){
+                        nodeType = "Assortment";
+                    }
                     var data = getChildrenForSelectedNode(node)
                     $(document).trigger({
                         type: "TREE_ITEM_CLICKED",
-                        uiData: data
+                        uiData: data,
+                        nodeType: nodeType
                     });
                 },
                 dnd: {
@@ -166,8 +171,8 @@ var DynaTree = function(){
 
                     },
                     onDrop: function(sourceNode, node, hitMode, ui, draggable) {
-                            //console.log(node.data.title+"node");
-                            //console.log(sourceNode.data.title+"sourceNode");
+                        console.log(node.data.title+"node");
+                        console.log(sourceNode.data.title+"sourceNode");
 
                             var parentNode = sourceNode;
                             var newChildNode = node;

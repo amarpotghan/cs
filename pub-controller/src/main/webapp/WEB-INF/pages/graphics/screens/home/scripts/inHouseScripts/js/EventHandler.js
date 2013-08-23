@@ -1,9 +1,13 @@
 var rendererData;
-
 $(document).bind("TREE_ITEM_CLICKED", function itemClickedHandler(e){
     rendererData = {"mydata":e.uiData};
-    loadViewItems(rendererData, EngineDataStore.getBaseURL()+"graphics/screens/home/htmls/renderers/TileViewRenderer.html");
-    btnFocus(".tileBtnCSS");
+    if(e.nodeType == "Assortment"){
+        showAssortmentPanel();
+    }else{
+       /* loadViewItems(rendererData, EngineDataStore.getBaseURL()+"graphics/screens/home/htmls/renderers/TileViewRenderer.html");
+        btnFocus(".tileBtnCSS");*/
+    }
+
 });
 
 function handleViewChange(evt){
@@ -56,8 +60,17 @@ function getChildrenForSelectedNode(node){
     return nodeDetails;
 }
 
-function loadViewItems(evt, currentTemplateView){
-    MustacheWrapper.createUI(currentTemplateView,evt, function(currentViewStr){
-        $('#viewHolder').html(currentViewStr);
-    });
+function showAssortmentPanel(){
+    console.log($('#tab').html)
+    $('#tab').show("slow");
 }
+
+function loadViewItems(evt,currentTemplateView){
+     MustacheWrapper.createUI(currentTemplateView,evt, function(currentViewStr){
+     $('#viewHolder').html(currentViewStr);
+     });
+}
+
+function hideAssortPanel(){
+    $('#tab').hide();
+};

@@ -30,7 +30,7 @@
                                 "name": "csa",
                                 "title": "csa",
                                 "isFolder": true,
-                                "children": null,
+                                "children": [],
                                 "key": "csa",
                                 "groupId": null,
                                 "root": false,
