@@ -18,7 +18,7 @@ import com.cs.data.core.jpa.entities.Student;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application-context-test.xml")
-public class RedisRepositoryUnitTests {
+public class RedisRepositoryIntegrationTests {
 
 	private RedisRepository crudRepository;
 

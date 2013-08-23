@@ -18,7 +18,9 @@ import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 public class MongoRepository implements NoSqlRepository {
 
 	/** The mongo template. */
-	public MongoOperations mongoTemplate;
+	private MongoOperations mongoTemplate;
+
+	private Update update;
 
 	/**
 	 * Instantiates a new mongo repository.
@@ -27,8 +29,9 @@ public class MongoRepository implements NoSqlRepository {
 	 *            the mongo template
 	 */
 	@Autowired
-	public MongoRepository(MongoOperations mongoTemplate) {
+	public MongoRepository(MongoOperations mongoTemplate, Update update) {
 		this.mongoTemplate = mongoTemplate;
+		this.update = update;
 	}
 
 	/*
@@ -135,7 +138,7 @@ public class MongoRepository implements NoSqlRepository {
 			Class<T> type) {
 
 		mongoTemplate.updateFirst(Query.query(Criteria.where("id").is(id)),
-				new Update().push(field, valueToAdd), type);
+				update.push(field, valueToAdd), type);
 
 	}
 
