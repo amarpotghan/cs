@@ -1,9 +1,10 @@
 $(document).ready(function() {
+    EngineDataStore.setBaseURL("/pub-controller/pages/");
     getScreenMappingObject();
 });
 
 function getScreenMappingObject(){
-    Router.forward("/pub-controller/pages/graphics/tacks/ScreenMapping.json",true,function(json){
+    Router.forward(EngineDataStore.getBaseURL()+"graphics/tacks/MocksScreenMapping.json",true,function(json){
         parseScreenMappingObject(json);
     });
 }
@@ -20,7 +21,7 @@ function parseScreenMappingObject(json){
 }
 
 function getApiMappingObject(){
-    Router.forward("/pub-controller/pages/graphics/tacks/RequestMapping.json",true,function(json){
+    Router.forward(EngineDataStore.getBaseURL()+"graphics/tacks/MocksRequestMapping.json",true,function(json){
         parseApiMappingObject(json);
     });
 }

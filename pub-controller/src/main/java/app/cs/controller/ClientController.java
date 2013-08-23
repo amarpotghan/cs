@@ -98,17 +98,19 @@ public class ClientController {
 		return customResponse;
 
 	}
-	
+
 	@RequestMapping(value = { "/header" })
 	public @ResponseBody
 	CustomResponse getHeader() throws IOException, URISyntaxException {
 
 		CustomResponse customResponse = new CustomResponse();
 		customResponse.setHtml(fileUtils.getFileContents("header.html"));
+		customResponse.setEvents(fileUtils
+				.getFileContents("header/events.json"));
 		return customResponse;
 
 	}
-	
+
 	@RequestMapping(value = { "/footer" })
 	public @ResponseBody
 	CustomResponse getFooter() throws IOException, URISyntaxException {

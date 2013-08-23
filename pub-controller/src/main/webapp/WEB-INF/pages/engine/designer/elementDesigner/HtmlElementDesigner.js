@@ -25,6 +25,6 @@ HtmlElementDesigner.getElementBy = function(id){
 }
 
 HtmlElementDesigner.getScriptName = function(scriptName,screenName){
-    var name = "/pub-controller/pages/graphics/screens/"+screenName+"/scripts/inhousescripts/js/"+scriptName+".js";
+    var name = EngineDataStore.getBaseURL()+"graphics/screens/"+screenName+"/scripts/inhousescripts/js/"+scriptName+".js";
     return name;
 }

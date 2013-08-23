@@ -1,19 +1,19 @@
- {
-        "id": "2",
-        "default": "false",
-        "name": "MasterPublication-Campaign-Publication",
+{
+        "id": "1",
+        "default": "true",
+        "name": "Campaign-MasterPublication-Publication",
         "structure": [
-            {
-                "name": "MasterPublication",
-                "icon": "something",
-                "possibleChild": ["Campaign"]
-            },
             {
                 "name": "Campaign",
                 "icon": "something",
-                "possibleChild": ["Publication"]
+                "possibleChild": ["MasterPublication"]
             },
             {
+                "name": "MasterPublication",
+                "icon": "something",
+                "possibleChild": ["Publication"]
+            },
+             {
                 "name": "Publication",
                 "icon": "something",
                 "possibleChild": ["Chapter","Page","Assortment"]
