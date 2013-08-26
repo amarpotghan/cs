@@ -1,4 +1,4 @@
-package app.cs.impl.Assortment;
+package app.cs.impl.assortment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,11 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.cs.data.core.nosql.mongodb.MongoRepository;
 
+import app.cs.helper.Finder;
+import app.cs.impl.assortment.AssortmentRepository;
+import app.cs.impl.chapter.InMemoryViewStructure;
 import app.cs.interfaces.model.Assortment;
+import app.cs.interfaces.model.MultiDimensionalObject;
 import app.cs.interfaces.model.Product;
 
 import static org.fest.assertions.Assertions.*;
@@ -28,12 +32,27 @@ public class AssortmentRepositoryUnitTests {
 	@Mock
 	private Assortment assortment;
 
-	String path = "Cp01,Mp01,P01";
+	@Mock
+	private Finder finder;
+
+	String path = "Cp01,Mp01,test01";
+
+	MultiDimensionalObject test;
+
+	private MultiDimensionalObject publication;
 
 	@Before
 	public void setUp() {
 
-		assortmentRepository = new AssortmentRepository(mongoRepository);
+		assortmentRepository = new AssortmentRepository(mongoRepository, finder);
+		publication = new MultiDimensionalObject("Test", "publication",
+				"A,B,C,D,E", true);
+		test = new MultiDimensionalObject("test01", "chapter",
+				"A,B,C,D,E,publication", false);
+		test.addchild(new MultiDimensionalObject("test03", "test", "test", true));
+		publication.addchild(test);
+		publication.addchild(new MultiDimensionalObject("test02", "test", "A",
+				true));
 	}
 
 	@Test
@@ -52,23 +71,21 @@ public class AssortmentRepositoryUnitTests {
 
 		// given
 
+		System.out.println(publication);
 		// when
+		when(finder.getParentPublication(path)).thenReturn(publication);
+		when(finder.getParentId(path)).thenReturn("test01");
+
+		when(finder.find(publication, "test01")).thenReturn(test);
+		test.addAssortment(assortment);
 		assortmentRepository.save(assortment, path);
 
 		// then
-		verify(mongoRepository).save(assortment);
+
+		verify(finder).find(publication, "test01");
+		verify(finder).getParentPublication(path);
+		verify(mongoRepository).save(test);
 
 	}
 
-	@Test
-	public void itShouldSaveAssortmentUnderGivenPublication() {
-		// given
-
-		String path = "CP01,MP01,P01";
-		Assortment assortment = new Assortment();
-
-		// when
-		assortmentRepository.save(assortment, path);
-
-	}
 }

@@ -3,7 +3,7 @@ package app.cs.assortment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.impl.Assortment.AssortmentRepository;
+import app.cs.impl.assortment.AssortmentRepository;
 import app.cs.interfaces.model.Assortment;
 
 @Component

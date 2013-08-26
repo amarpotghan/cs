@@ -3,6 +3,7 @@ package app.cs.interfaces.dimension;
 import java.util.List;
 
 import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.interfaces.model.Assortment;
 
 public interface IMultiDimensionalObject {
 
@@ -157,7 +158,14 @@ public interface IMultiDimensionalObject {
 	 * @param contentObject the content object
 	 */
 	public abstract void addchild(MultiDimensionalObject contentObject);
-
+	
+	/**
+	 * Addchild.
+	 *
+	 * @param Assortment the assortment
+	 */	
+	public abstract void addAssortment(Assortment assortment);
+	
 	/**
 	 * Removes the child.
 	 *
