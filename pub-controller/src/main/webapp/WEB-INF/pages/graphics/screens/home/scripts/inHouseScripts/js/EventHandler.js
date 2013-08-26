@@ -1,11 +1,14 @@
 var rendererData;
+var btnSelectionFlag = 0;
+
 $(document).bind("TREE_ITEM_CLICKED", function itemClickedHandler(e){
     rendererData = {"mydata":e.uiData};
     if(e.nodeType == "Assortment"){
         showAssortmentPanel();
     }else{
-       /* loadViewItems(rendererData, EngineDataStore.getBaseURL()+"graphics/screens/home/htmls/renderers/TileViewRenderer.html");
-        btnFocus(".tileBtnCSS");*/
+        hideAssortPanel();
+        loadViewItems(rendererData, EngineDataStore.getBaseURL()+"graphics/screens/home/htmls/renderers/TileViewRenderer.html");
+        btnFocus(".tileBtnCSS");
     }
 
 });
@@ -61,8 +64,8 @@ function getChildrenForSelectedNode(node){
 }
 
 function showAssortmentPanel(){
-    console.log($('#tab').html)
-    $('#tab').show("slow");
+    $('#dim').hide();
+    $('#assortPanel').show();
 }
 
 function loadViewItems(evt,currentTemplateView){
@@ -72,5 +75,70 @@ function loadViewItems(evt,currentTemplateView){
 }
 
 function hideAssortPanel(){
-    $('#tab').hide();
-};
+    $('#assortPanel').hide();
+    $('#dim').show();
+}
+
+function slidePanel(evt){
+    //console.log(event.currentTarget.id + "curre")
+
+    if (btnSelectionFlag==0)
+    {
+       $("#typeHolder").html(evt.currentTarget.name);
+       $("#assetsList").html(data.type[0].list);
+       $("#assetDetails").html(data.type[0].details);
+       $("#panel").animate({right:'30px'},"slow");
+        btnSelectionFlag=1;
+    }
+    else if (btnSelectionFlag==1 && ($("#typeHolder").html()==evt.currentTarget.name) )
+    {
+        $("#panel").animate({right:'-200px'},"slow");
+        reset();
+        btnSelectionFlag=0;
+    }
+    else {
+       $("#typeHolder").html(evt.currentTarget.name);
+       $("#assetsList").html(data.type[0].list);
+       $("#assetDetails").html(data.type[0].details);
+    }
+    changeSelectedBtn(evt.currentTarget.id);
+}
+
+function reset(){
+    $("#btnMIM").css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/MIM.png)");
+    $("#btnPIM").css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/PIM.png)");
+    $("#btnMAM").css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/MAM.png)");
+
+}
+
+function changeSelectedBtn(btnId){
+    $('#btnMIM').css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/MIM.png)");
+    $('#btnPIM').css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/PIM.png)");
+    $('#btnMAM').css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/MAM.png)");
+    var urls;
+    if(btnId == "btnPIM"){
+        urls= EngineDataStore.getBaseURL()+"graphics/screens/home/images/icons/PIMb.png";
+    }
+    if(btnId == "btnMAM"){
+        urls= EngineDataStore.getBaseURL()+"graphics/screens/home/images/icons/MAMb.png";
+    }
+    if(btnId == "btnMIM"){
+        urls= EngineDataStore.getBaseURL()+"graphics/screens/home/images/icons/MIMb.png";
+    }
+    $('#'+btnId).css("background-image",'url("' + urls + '")');
+}
+
+
+var data = {
+    "type": [
+    {  "list": "This is PIM list. <br>This is PIM list. <br>This is PIM list. <br>This is PIM list.",
+        "details": "These are PIM list details. These are PIM list details. These are PIM list details."
+    },
+    {   "list": "This is MAM list. <br>This is MAM list. <br>This is MAM list. <br>This is MAM list.",
+        "details": "These are MAM list details. These are MAM list details. These are MAM list details."
+    },
+    {    "list": "This is MIM list. <br>This is MIM list. <br>This is MIM list. <br>This is MIM list.",
+        "details": "These are MIM list details. These are MIM list details. These are MIM list details."
+    }
+]
+}

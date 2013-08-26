@@ -149,54 +149,45 @@ var DynaTree = function(){
 
                     },
                     onDragEnter: function(node, sourceNode) {
-                        if(sourceNode.data.type == "Assortment")
-                        {
-                            if(node.data.type == "Publication" || node.data.type == "Chapter" || node.data.type == "Page"){
+                        if(sourceNode.data.type == "Assortment"){
+                            if(node.data.type == "Page"){
                                 return ["over"];
                             }
-                            else{
-                                return false;
-                            }
                         }
-                        else
-                        {
-                            if(node.data.type == "Publication" || node.data.type == "Chapter"){
-                                return ["over"];
-                            }
-                            else{
-                                return false;
-                            }
+                        if(node.data.type == "Publication" || node.data.type == "Chapter"){
+                            return ["over"];
                         }
-
-
+                        else{
+                            return false;
+                        }
                     },
                     onDrop: function(sourceNode, node, hitMode, ui, draggable) {
-                        console.log(node.data.title+"node");
-                        console.log(sourceNode.data.title+"sourceNode");
+                        //console.log(node.data.title+"node");
+                        //console.log(sourceNode.data.title+"sourceNode");
 
-                            var parentNode = sourceNode;
-                            var newChildNode = node;
-                            var oldPathForChild = node.data.path;
+                        var parentNode = sourceNode;
+                        var newChildNode = node;
+                        var oldPathForChild = node.data.path;
 
-                            newChildNode.data.path = parentNode.data.path +","+parentNode.data.title;
-                            var newPathForChild   = newChildNode.data.path;
-                            //API call will go here
-                            //alert(JSON.stringify(newChildNode.data.children));
-                            var flag=isFolder(node.data.type);
-                            var prefix=getUrlPrefix(node.data.type,"move");
-                            Router.forward(prefix+node.data.type+"/name/"+node.data.title+"/path/"+oldPathForChild+"/folder/"+flag+"/newpath/"+newPathForChild,true,function(data){
+                        newChildNode.data.path = parentNode.data.path +","+parentNode.data.title;
+                        var newPathForChild   = newChildNode.data.path;
+                        //API call will go here
+                        //alert(JSON.stringify(newChildNode.data.children));
+                        var flag=isFolder(node.data.type);
+                        var prefix=getUrlPrefix(node.data.type,"move");
+                        Router.forward(prefix+node.data.type+"/name/"+node.data.title+"/path/"+oldPathForChild+"/folder/"+flag+"/newpath/"+newPathForChild,true,function(data){
 
+                        });
+                        if(node.data.type == "Assortment"){
+                            var cb = node.toDict(true, function(dict){
+                                //dict.title = "Copy of " + dict.title;
+                                delete dict.key; // Remove key, so a new one will be created
                             });
-                            if(node.data.type == "Assortment"){
-                                var cb = node.toDict(true, function(dict){
-                                    //dict.title = "Copy of " + dict.title;
-                                    delete dict.key; // Remove key, so a new one will be created
-                                });
-                                sourceNode.addChild(cb);
-                            }
-                            else{
-                                node.move(sourceNode, hitMode);
-                            }
+                            sourceNode.addChild(cb);
+                        }
+                        else{
+                            node.move(sourceNode, hitMode);
+                        }
 
                     }
                 }

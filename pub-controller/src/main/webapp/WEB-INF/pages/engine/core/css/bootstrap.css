@@ -68,7 +68,7 @@ audio:not([controls]) {
 html {
  /* font-size: 100%;*/
     height:auto;
-    width: 99%;
+    width: 100%;
     /*min-height: 750px;*/
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
