@@ -27,31 +27,6 @@ public class Finder {
 		this.noSqlRepository = noSqlRepository;
 	}
 
-	public MultiDimensionalObject findGivenIdInPublication(
-			MultiDimensionalObject publication, String parentId) {
-		MultiDimensionalObject child = null;
-		if (publication.getId().equals(parentId)) {
-			return publication;
-
-		}
-
-		if (publication.hasChildren()) {
-			for (MultiDimensionalObject chapter : publication.getChildren()) {
-				if (child != null)
-					break;
-				if (chapter.getId().equals(parentId)) {
-					return chapter;
-
-				} else {
-					child = findGivenIdInPublication(chapter, parentId);
-
-				}
-
-			}
-		}
-		return child;
-	}
-
 	public MultiDimensionalObject find(MultiDimensionalObject publication,
 			String parentId) {
 		MultiDimensionalObject child = null;
@@ -86,11 +61,6 @@ public class Finder {
 		System.out.println(currentViewStructure);
 		return path.split(COMMA)[lastIndex];
 
-	}
-
-	public MultiDimensionalObject getParentPublication(String path) {
-		return noSqlRepository.getObjectByKey(getPublicationId(path),
-				MultiDimensionalObject.class);
 	}
 
 	public int getLastIndexOf(String currentViewStructure) {

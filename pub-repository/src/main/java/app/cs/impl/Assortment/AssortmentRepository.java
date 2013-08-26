@@ -7,27 +7,28 @@ import app.cs.helper.Finder;
 import app.cs.interfaces.model.Assortment;
 import app.cs.interfaces.model.MultiDimensionalObject;
 
+import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 import com.cs.data.core.nosql.mongodb.MongoRepository;
 
 @Component
 public class AssortmentRepository {
-	private MongoRepository mongoRepository;
+	private NoSqlRepository noSqlRepository;
 
 	private Finder finder;
 
 	@Autowired
-	public AssortmentRepository(MongoRepository mongoRepository, Finder finder) {
-		this.mongoRepository = mongoRepository;
+	public AssortmentRepository(NoSqlRepository noSqlRepository, Finder finder) {
+		this.noSqlRepository = noSqlRepository;
 		this.finder = finder;
 	}
 
 	public void save(Assortment assortment, String path) {
 
-		MultiDimensionalObject publication = finder.getParentPublication(path);
+		MultiDimensionalObject publication = getParentPublication(path);
 		String parentId = finder.getParentId(path);
 		MultiDimensionalObject parent = finder.find(publication, parentId);
 		parent.addAssortment(assortment);
-		mongoRepository.save(parent);
+		noSqlRepository.save(parent);
 
 	}
 
@@ -37,9 +38,14 @@ public class AssortmentRepository {
 
 	public MultiDimensionalObject getPublication(String path) {
 
-		MultiDimensionalObject Pub = finder.getParentPublication(path);
+		MultiDimensionalObject Pub = getParentPublication(path);
 		return Pub;
 
+	}
+
+	public MultiDimensionalObject getParentPublication(String path) {
+		return noSqlRepository.getObjectByKey(finder.getPublicationId(path),
+				MultiDimensionalObject.class);
 	}
 
 }

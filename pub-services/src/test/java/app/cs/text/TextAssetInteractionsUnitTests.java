@@ -1,4 +1,4 @@
-package app.cs.mam;
+/*package app.cs.text;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.*;
@@ -13,31 +13,31 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MAMInteractionsUnitTests {
+public class TextAssetInteractionsUnitTests {
 
-	private MAMInteractions mamInteractions;
+	private TextAssetInteractions textAssetInteractions;
 
 	@Mock
-	private TextAssetRepository mamRepository;
+	private TextAssetRepository textAssetRepository;
 
 	private String id = "62";
 
 	@Before
 	public void setUp() {
-		mamInteractions = new MAMInteractions(mamRepository);
+		textAssetInteractions = new TextAssetInteractions(textAssetRepository);
 	}
 
 	@Test
-	public void itShouldGetAssetsFromMAMRepository() {
+	public void itShouldGetAssetsFromTextRepository() {
 
-		String expectedAssetList = "test assets";
+		String expectedAssetList = "test text assets";
 		// when
-		when(mamRepository.getAssetsFor(id)).thenReturn(expectedAssetList);
-		String assetList = mamInteractions.getAssets(id);
+		when(textAssetRepository.getAssetsFor(id)).thenReturn(expectedAssetList);
+		String assetList = textAssetInteractions.getAssets(id);
 
 		// then
-		verify(mamRepository).getAssetsFor(id);
+		verify(textAssetRepository).getAssetsFor(id);
 		assertThat(assetList).isEqualTo(expectedAssetList);
 
 	}
-}
+}*/

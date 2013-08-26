@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.cs.data.webservices.rest.RestClient;
 
 @Component
-public class MAMRepository {
+public class TextAssetRepository {
 
 	private static final String CHARSET = "ISO-8859-1,utf-8;q=0.7,*;q=0.3";
 	private static final String ACCEPT_CHARSET = "Accept-Charset";
@@ -27,7 +27,7 @@ public class MAMRepository {
 	private RestClient client;
 
 	@Autowired
-	public MAMRepository(RestClient client) {
+	public TextAssetRepository(RestClient client) {
 		this.client = client;
 
 	}

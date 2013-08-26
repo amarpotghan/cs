@@ -73,9 +73,11 @@ public class AssortmentRepositoryUnitTests {
 
 		System.out.println(publication);
 		// when
-		when(finder.getParentPublication(path)).thenReturn(publication);
 		when(finder.getParentId(path)).thenReturn("test01");
-
+		when(finder.getPublicationId(path)).thenReturn("test001");
+		when(
+				mongoRepository.getObjectByKey("test001",
+						MultiDimensionalObject.class)).thenReturn(publication);
 		when(finder.find(publication, "test01")).thenReturn(test);
 		test.addAssortment(assortment);
 		assortmentRepository.save(assortment, path);
@@ -83,9 +85,7 @@ public class AssortmentRepositoryUnitTests {
 		// then
 
 		verify(finder).find(publication, "test01");
-		verify(finder).getParentPublication(path);
 		verify(mongoRepository).save(test);
 
 	}
-
 }

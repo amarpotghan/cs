@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class MAMRepositoryUnitTests{
 	
-	private MAMRepository mamRepository;
+	private TextAssetRepository mamRepository;
 	
 	@Mock
 	private RestClient restClient;
@@ -26,7 +26,7 @@ public class MAMRepositoryUnitTests{
 	
 	@Before
 	public void setup(){
-		mamRepository = new MAMRepository(restClient);
+		mamRepository = new TextAssetRepository(restClient);
 	}
 	
 	@Test

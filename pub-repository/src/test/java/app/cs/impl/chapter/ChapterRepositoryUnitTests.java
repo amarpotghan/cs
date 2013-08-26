@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import app.cs.helper.Finder;
 import app.cs.impl.chapter.ChapterRepository;
 import app.cs.impl.chapter.InMemoryViewStructure;
 import app.cs.impl.delegate.factory.DomainFactory;
@@ -28,21 +29,23 @@ public class ChapterRepositoryUnitTests {
 	private MongoRepository noSqlTemplateForMongo;
 
 	@Mock
-	private InMemoryViewStructure cache;
+	private Finder finder;
 
 	@Mock
 	private DomainFactory factory;
 
 	MultiDimensionalObject publication;
 
+	MultiDimensionalObject test;
+
 	@Before
 	public void setUp() {
-		repository = new ChapterRepository(noSqlTemplateForMongo, cache,
-				factory);
+		repository = new ChapterRepository(noSqlTemplateForMongo, factory,
+				finder);
 		publication = new MultiDimensionalObject("Test", "publication",
 				"A,B,C,D,E", true);
-		MultiDimensionalObject test = new MultiDimensionalObject("test01",
-				"chapter", "A,B,C,D,E,publication", false);
+		test = new MultiDimensionalObject("test01", "chapter",
+				"A,B,C,D,E,publication", false);
 		test.addchild(new MultiDimensionalObject("test03", "test", "test", true));
 		publication.addchild(test);
 		publication.addchild(new MultiDimensionalObject("test02", "test", "A",
@@ -57,62 +60,20 @@ public class ChapterRepositoryUnitTests {
 				"test", "A,B,C,D,E,test03", true);
 		String result = "success";
 		// when
-		when(cache.getCurrentViewStructure()).thenReturn("C-M-P-D");
 		when(noSqlTemplateForMongo.save(chapter)).thenReturn(result);
+		when(finder.getPublicationId(chapter.getPath())).thenReturn("D");
 		when(
 				noSqlTemplateForMongo.getObjectByKey("D",
 						MultiDimensionalObject.class)).thenReturn(publication);
+
+		when(finder.getParentId(chapter.getPath())).thenReturn("test");
+		when(finder.find(publication, "test")).thenReturn(test);
 		String actualResult = repository.save(chapter);
 
 		// then
 		verify(noSqlTemplateForMongo).getObjectByKey("D",
 				MultiDimensionalObject.class);
-		verify(noSqlTemplateForMongo).save(chapter);
-		System.out.println(publication);
-
-	}
-
-	@Test
-	public void itShouldGetpublicationId() {
-		//
-		String path = "A,B,C,D,E,F";
-		//
-		String actualId = repository.getParentId(path);
-
-		assertThat(actualId).isEqualTo("F");
-
-	}
-
-	@Test
-	public void itShouldGetPublicationIdForGivenPath() {
-		// given
-		String path = "A,B,C,D,E";
-		// when
-		when(cache.getCurrentViewStructure()).thenReturn("C-M-P-D");
-		String actualPublicationId = repository.getPublicationId(path);
-		// then
-		verify(cache).getCurrentViewStructure();
-		assertThat(actualPublicationId).isEqualTo("D");
-
-	}
-
-	@Test
-	public void itShouldGetLastIndexOfCurrentViewStructure() {
-		String viewStructure = "C-M-D-P";
-		int index = repository.getLastIndexOf(viewStructure);
-		assertThat(index).isEqualTo(3);
-	}
-
-	@Test
-	public void itShouldFindContentObjectWithGivenId() {
-		// given
-		String id = "test01";
-
-		// when
-		IMultiDimensionalObject object = repository.find(publication, id);
-
-		// then
-		assertThat(object.getId()).isEqualTo(id);
+		verify(noSqlTemplateForMongo).save(publication);
 
 	}
 
@@ -123,12 +84,14 @@ public class ChapterRepositoryUnitTests {
 		String result = "result";
 		MultiDimensionalObject chapter = new MultiDimensionalObject("test",
 				"test", "A,B,C,D,E,test01", true);
-		when(cache.getCurrentViewStructure()).thenReturn("C-M-P-D");
 		when(noSqlTemplateForMongo.save(chapter)).thenReturn(result);
+		when(finder.getPublicationId(chapter.getPath())).thenReturn("D");
 		when(
 				noSqlTemplateForMongo.getObjectByKey("D",
 						MultiDimensionalObject.class)).thenReturn(publication);
 
+		when(finder.getParentId(chapter.getPath())).thenReturn("test");
+		when(finder.find(publication, "test")).thenReturn(test);
 		// when
 		repository.delete(chapter);
 
@@ -146,21 +109,21 @@ public class ChapterRepositoryUnitTests {
 		MultiDimensionalObject chapter = new MultiDimensionalObject("test01",
 				"test", "A,B,C,D,E,test01", true);
 		// when
-		when(cache.getCurrentViewStructure()).thenReturn("C-M-P-D");
-		when(noSqlTemplateForMongo.save(chapter)).thenReturn(result);
+		when(finder.getPublicationId(chapter.getPath())).thenReturn("D");
+		when(finder.getPublicationId(newPath)).thenReturn("D");
 		when(
 				noSqlTemplateForMongo.getObjectByKey("D",
 						MultiDimensionalObject.class)).thenReturn(publication);
-		when(
-				noSqlTemplateForMongo.getObjectByKey(chapter.getKey(),
-						MultiDimensionalObject.class)).thenReturn(publication);
 
+		when(finder.getParentId(newPath)).thenReturn("test");
+		when(finder.getParentId(chapter.getPath())).thenReturn("test");
+		when(finder.find(publication, "test")).thenReturn(test);
+		when(finder.find(publication, chapter.getId())).thenReturn(test);
+		when(finder.find(publication, "test")).thenReturn(test);
 		repository.move(chapter, newPath);
 
 		// then
-		verify(noSqlTemplateForMongo).save(chapter);
-		
+		verify(noSqlTemplateForMongo,times(2)).save(publication);
 
 	}
-
 }

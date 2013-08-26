@@ -8,10 +8,10 @@ import app.cs.pim.PIMRepository;
 @Component
 public class MAMInteractions {
 	
-	private MAMRepository mamRepository;
+	private TextAssetRepository mamRepository;
 	
 	@Autowired
-	public MAMInteractions(MAMRepository mamRepository) {
+	public MAMInteractions(TextAssetRepository mamRepository) {
 		this.mamRepository = mamRepository;
 	}
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import app.cs.helper.Finder;
 import app.cs.impl.chapter.ChapterRepository;
 import app.cs.impl.chapter.InMemoryViewStructure;
 import app.cs.impl.delegate.factory.DomainFactory;
@@ -28,6 +29,8 @@ public class ChapterIntegrationTests {
 	private MongoRepository noSqlRepository;
 
 	List<MultiDimensionalObject> models = new ArrayList<MultiDimensionalObject>();
+	
+	private Finder finder;
 
 	private IInMemoryViewStructure cache;
 	private IChapterRepository chapterRepository;
@@ -76,8 +79,7 @@ public class ChapterIntegrationTests {
 
 	@Test
 	public void itShouldRemoveAnObjectFromPublication() {
-		chapterRepository = new ChapterRepository(noSqlRepository, cache,
-				factory);
+		chapterRepository = new ChapterRepository(noSqlRepository, factory, finder);
 
 		// /String result = chapterRepository.delete(page01,
 		// "mp02,pg02,c02,p02");

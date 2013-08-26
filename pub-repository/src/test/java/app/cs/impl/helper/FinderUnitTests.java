@@ -50,8 +50,7 @@ public class FinderUnitTests {
 		String id = "test01";
 
 		// when
-		IMultiDimensionalObject object = finder.findGivenIdInPublication(
-				publication, id);
+		IMultiDimensionalObject object = finder.find(publication, id);
 
 		// then
 		assertThat(object.getId()).isEqualTo(id);
