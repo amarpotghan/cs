@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.impl.Assortment.AssortmentRepository;
+import app.cs.impl.assortment.AssortmentRepository;
 import app.cs.interfaces.model.Assortment;
 
 import static org.mockito.Mockito.*;

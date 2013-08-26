@@ -93,9 +93,18 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	/** The group ids. */
 	private List<String> groupIds;
 
+	public List<Assortment> getAssortment() {
+		return assortment;
+	}
+
+	public void setAssortment(List<Assortment> assortment) {
+		this.assortment = assortment;
+	}
+
 	/** The children. */
 	private List<MultiDimensionalObject> children;
 
+	private List<Assortment> assortment;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -410,6 +419,20 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		}
 	}
 
+	
+	
+	@Override
+	public void addAssortment(Assortment assortment) {
+		List<Assortment> newChildren;
+		if (this.assortment == null) {
+			newChildren = new ArrayList<Assortment>();
+			newChildren.add(assortment);
+			this.assortment = newChildren;
+
+		} else {
+			this.assortment.add(assortment);
+		}
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
