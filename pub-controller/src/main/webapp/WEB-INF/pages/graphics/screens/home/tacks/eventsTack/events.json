@@ -3,8 +3,7 @@
     {"id":"listView","event":"click","func":handleViewChange},
     {"id":"detailView","event":"click","func":handleViewChange},
     {"id":"btnSaveAssort","event":"click","func":hideAssortPanel},
-    {"id":"PIM","event":"click","func":slidePanelPIM},
-    {"id":"MAM","event":"click","func":slidePanelMAM},
-    {"id":"MIM","event":"click","func":slidePanelMIM},
-    {"id":"panelBtn","event":"click","func":myFunction}
+    {"id":"btnPIM","event":"click","func":slidePanel},
+    {"id":"btnMAM","event":"click","func":slidePanel},
+    {"id":"btnMIM","event":"click","func":slidePanel}
 ]
