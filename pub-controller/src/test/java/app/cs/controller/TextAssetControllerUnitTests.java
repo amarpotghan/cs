@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.model.CustomResponse;
+import app.cs.model.ClientResponse;
 import app.cs.utils.FileUtils;
 
 import static org.mockito.Mockito.verify;

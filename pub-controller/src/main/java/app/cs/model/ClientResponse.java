@@ -3,7 +3,7 @@ package app.cs.model;
 /**
  * The Class CustomResponse.
  */
-public class CustomResponse {
+public class ClientResponse {
 
 	/** The html. */
 	private String html;
@@ -17,7 +17,7 @@ public class CustomResponse {
 	/**
 	 * Instantiates a new custom response.
 	 */
-	public CustomResponse() {
+	public ClientResponse() {
 
 	}
 
@@ -31,7 +31,7 @@ public class CustomResponse {
 	 * @param elements
 	 *            the elements
 	 */
-	public CustomResponse(String html, String events, String elements) {
+	public ClientResponse(String html, String events, String elements) {
 		super();
 		this.html = html;
 		this.events = events;

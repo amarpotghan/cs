@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.model.CustomResponse;
+import app.cs.model.ClientResponse;
 import app.cs.utils.FileUtils;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -43,7 +43,7 @@ public class ClientControllerUnitTests {
 		contentObject.put("html", "test");
 		when(fileUtils.getFileContents("home.html")).thenReturn(contents);
 		// when
-		CustomResponse actualContents = client.getHome();
+		ClientResponse actualContents = client.getHome();
 
 		// then
 

@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import app.cs.model.CustomResponse;
+import app.cs.model.ClientResponse;
 import app.cs.utils.FileUtils;
-
-//import app.cs.text.TextAssetInteractions;
 
 @Controller
 public class TextAssetController {
@@ -26,7 +24,7 @@ public class TextAssetController {
 		this.fileUtils = fileUtils;
 	}
 
-	CustomResponse customResponse = new CustomResponse();
+	ClientResponse customResponse = new ClientResponse();
 
 	@RequestMapping(value = { "/text/list/{id}" }, method = RequestMethod.GET)
 	public @ResponseBody

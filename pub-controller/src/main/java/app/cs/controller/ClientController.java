@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import app.cs.model.CustomResponse;
+import app.cs.model.ClientResponse;
 import app.cs.utils.FileUtils;
 
 /**
@@ -68,8 +68,8 @@ public class ClientController {
 	 */
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody
-	CustomResponse getHome() throws IOException, URISyntaxException {
-		CustomResponse customResponse = new CustomResponse();
+	ClientResponse getHome() throws IOException, URISyntaxException {
+		ClientResponse customResponse = new ClientResponse();
 		customResponse.setHtml(fileUtils.getFileContents("home.html"));
 		customResponse.setEvents(fileUtils.getFileContents("home/events.json"));
 		customResponse.setElements(fileUtils
@@ -89,9 +89,9 @@ public class ClientController {
 	 */
 	@RequestMapping(value = { "/login" })
 	public @ResponseBody
-	CustomResponse getLogin() throws IOException, URISyntaxException {
+	ClientResponse getLogin() throws IOException, URISyntaxException {
 
-		CustomResponse customResponse = new CustomResponse();
+		ClientResponse customResponse = new ClientResponse();
 		customResponse.setHtml(fileUtils.getFileContents("login.html"));
 		customResponse
 				.setEvents(fileUtils.getFileContents("login/events.json"));
@@ -101,9 +101,9 @@ public class ClientController {
 
 	@RequestMapping(value = { "/header" })
 	public @ResponseBody
-	CustomResponse getHeader() throws IOException, URISyntaxException {
+	ClientResponse getHeader() throws IOException, URISyntaxException {
 
-		CustomResponse customResponse = new CustomResponse();
+		ClientResponse customResponse = new ClientResponse();
 		customResponse.setHtml(fileUtils.getFileContents("header.html"));
 		customResponse.setEvents(fileUtils
 				.getFileContents("header/events.json"));
@@ -113,9 +113,9 @@ public class ClientController {
 
 	@RequestMapping(value = { "/footer" })
 	public @ResponseBody
-	CustomResponse getFooter() throws IOException, URISyntaxException {
+	ClientResponse getFooter() throws IOException, URISyntaxException {
 
-		CustomResponse customResponse = new CustomResponse();
+		ClientResponse customResponse = new ClientResponse();
 		customResponse.setHtml(fileUtils.getFileContents("footer.html"));
 		return customResponse;
 
