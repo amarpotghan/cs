@@ -15,14 +15,14 @@ import app.cs.pim.PIMInteractions;
 @RunWith(MockitoJUnitRunner.class)
 public class ProductControllerUnitTests {
 
-	private ProductController productController;
+	private ProductInformationController productController;
 
 	@Mock
 	private PIMInteractions productInteractions;
 
 	@Before
 	public void setUp() {
-		productController = new ProductController(productInteractions);
+		productController = new ProductInformationController(productInteractions);
 
 	}
 

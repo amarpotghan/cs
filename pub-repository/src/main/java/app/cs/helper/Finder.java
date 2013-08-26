@@ -1,10 +1,14 @@
 package app.cs.helper;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.model.MultiDimensionalObject;
 
+@Component
 public class Finder {
 
 	private IInMemoryViewStructure structure;
@@ -15,6 +19,7 @@ public class Finder {
 
 	private final String HIPHEN = "-";
 
+	@Autowired
 	public Finder(NoSqlRepository noSqlRepository,
 			IInMemoryViewStructure structure) {
 

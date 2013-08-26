@@ -26,6 +26,8 @@ public class PIMInteractionsUnitsTests {
 		pimInteractions = new PIMInteractions(pimRepository);
 
 	}
+	
+	
 
 	@Test
 	public void itShouldGetProductsFromPIMRepository() {

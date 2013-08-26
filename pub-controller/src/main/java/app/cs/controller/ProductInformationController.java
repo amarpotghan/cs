@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import app.cs.pim.PIMInteractions;
 
 @Controller
-public class ProductController {
+public class ProductInformationController {
 	private PIMInteractions productInteractions;
 
 	@Autowired
-	public ProductController(PIMInteractions productInteractions) {
+	public ProductInformationController(PIMInteractions productInteractions) {
 		this.productInteractions = productInteractions;
 	}
 
