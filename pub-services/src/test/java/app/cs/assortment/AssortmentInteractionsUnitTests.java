@@ -15,9 +15,9 @@ import static org.mockito.Mockito.*;
 public class AssortmentInteractionsUnitTests {
 
 	@Mock
-	AssortmentRepository assortmentRepository;
+	private AssortmentRepository assortmentRepository;
 
-	AssortmentInteractions assortmentUseCases;
+	private AssortmentInteractions assortmentUseCases;
 
 	@Mock
 	private Assortment assortment;
@@ -36,7 +36,7 @@ public class AssortmentInteractionsUnitTests {
 		assortmentUseCases.create(assortment, path);
 
 		// then
-		verify(assortmentRepository).save(assortment,path);
+		verify(assortmentRepository).save(assortment, path);
 
 	}
 }
