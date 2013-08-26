@@ -26,8 +26,8 @@ var DynaTree = function(){
         for (var i in options) {
             var anchor = document.createElement("a");
             anchor.href = "#"+options[i];
-            anchor.innerText = "Create"+options[i];
-
+            //anchor.innerText = "Create"+options[i];
+            anchor.textContent = "Create"+options[i];
             var elem = document.createElement("li");
             elem.appendChild(anchor);
             list.appendChild(elem);
