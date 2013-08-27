@@ -5,7 +5,7 @@ var Router = function(){
 Router.forward = function(url,async,callback){
 
     //Comment this and uncomment below while DEPLOYING
-    if(url.indexOf("ocks") == -1){
+   /* if(url.indexOf("ocks") == -1){
         callback("success");
     }
     else{
@@ -20,8 +20,8 @@ Router.forward = function(url,async,callback){
             }
         });
     }
-
-    /*$.ajax({
+*/
+    $.ajax({
         url:url,
         async:async,
         success:function(result){
@@ -30,7 +30,7 @@ Router.forward = function(url,async,callback){
         error: function (error) {
             callback("error");
         }
-    });*/
+    });
 }
 
 Router.forwardWithParams = function(url,path,type,callback){
@@ -57,20 +57,20 @@ Router.loadTemplate = function(key,containerID){
     containerID = typeof containerID !== ('undefined'||"") ? containerID : "mainContainer";
 
     //Comment this and uncomment line below this while DEPLOYING
-    Router.forward(EngineDataStore.getScreenMappingObject()[key].url,true,function(data){
+   /* Router.forward(EngineDataStore.getScreenMappingObject()[key].url,true,function(data){
+        Router.designScreen(data,containerID);
+    });*/
+
+    Router.forward(EngineDataStore.getScreenMappingObject()[key].screenName,true,function(data){
         Router.designScreen(data,containerID);
     });
-
-    /*Router.forward(EngineDataStore.getScreenMappingObject()[key].screenName,true,function(data){
-     Router.designScreen(data,containerID);
-     });*/
 
 }
 
 
 Router.loadRequest = function(key,async,callBack,params){
     //Comment this while DEPLOYING and uncomment belove
-    if(params){
+   /* if(params){
 
         switch(params){
             case "1":
@@ -101,10 +101,10 @@ Router.loadRequest = function(key,async,callBack,params){
         Router.forward(EngineDataStore.getApiMappingObject()[key],async,function(data){
             callBack(data);
         });
-    }
+    }*/
 
     //Uncomment this while DEPLOYING and comment above
-   /* if(params){
+    if(params){
         Router.forward(EngineDataStore.getApiMappingObject()[key]+params,async,function(data){
             callBack(data);
         });
@@ -113,14 +113,13 @@ Router.loadRequest = function(key,async,callBack,params){
         Router.forward(EngineDataStore.getApiMappingObject()[key],async,function(data){
             callBack(data);
         });
-    }*/
+    }
 
 }
 
 Router.designScreen = function(data,containerID){
     //Comment this while DEPLOYING
-    data=eval('(' + data + ')');
-
+    //data=eval('(' + data + ')');
     var placeHolderElement = document.getElementById(containerID);
     placeHolderElement.innerHTML = data.html;
  

@@ -3,5 +3,6 @@
     "getSchema":"/pub-controller/treeviewstructure/",
     "getTree":"/pub-controller/dimension/get/",
     "dragNDrop":"/pub-controller/",
-    "getDefaultSchema":"/pub-controller/default"
+    "getDefaultSchema":"/pub-controller/default",
+    "getAssetsTree":"/pub-controller/testdrive/mocks/tree/AssetTree.json"
 }

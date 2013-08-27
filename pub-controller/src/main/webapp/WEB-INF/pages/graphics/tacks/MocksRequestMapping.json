@@ -5,5 +5,6 @@
     "getViewStructure3":"/pub-controller/testdrive/mocks/viewstructure/ViewStructure3.json",
     "getTree1":"/pub-controller/testdrive/mocks/tree/Tree1.json",
     "getTree2":"/pub-controller/testdrive/mocks/tree/Tree2.json",
-    "getTree3":"/pub-controller/testdrive/mocks/tree/Tree3.json"
+    "getTree3":"/pub-controller/testdrive/mocks/tree/Tree3.json",
+    "getAssetsTree":"/pub-controller/testdrive/mocks/tree/AssetTree.json"
 }

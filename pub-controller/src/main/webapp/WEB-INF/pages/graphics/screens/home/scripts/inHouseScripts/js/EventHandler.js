@@ -79,15 +79,25 @@ function hideAssortPanel(){
     $('#dim').show();
 }
 
-function slidePanel(evt){
-    //console.log(event.currentTarget.id + "curre")
+function createTree(){
+    var urls = "/pub-controller/testdrive/mocks/tree/AssetTree.json";
+    var treeObj = document.getElementById("assetsTree");
+    var darkTree = ElementFactory.getLazyTree();
+    darkTree.createTree(treeObj,urls);
+}
 
+function slidePanel(evt){
     if (btnSelectionFlag==0)
     {
        $("#typeHolder").html(evt.currentTarget.name);
-       $("#assetsList").html(data.type[0].list);
-       $("#assetDetails").html(data.type[0].details);
-       $("#panel").animate({right:'30px'},"slow");
+       //$("#assetsTree").html(data.type[0].list);
+       //$("#assetDetails").html(data.type[0].details);
+       //$("#assetDetails").show();
+
+       $("#panel").animate({right:'30px'},"slow",function(){
+           createTree();
+       });
+
         btnSelectionFlag=1;
     }
     else if (btnSelectionFlag==1 && ($("#typeHolder").html()==evt.currentTarget.name) )
@@ -98,10 +108,12 @@ function slidePanel(evt){
     }
     else {
        $("#typeHolder").html(evt.currentTarget.name);
-       $("#assetsList").html(data.type[0].list);
+       //$("#assetsTree").html(data.type[0].list);
        $("#assetDetails").html(data.type[0].details);
     }
     changeSelectedBtn(evt.currentTarget.id);
+    //createTree();
+    //GetAssetsTree.get();
 }
 
 function reset(){
@@ -127,7 +139,6 @@ function changeSelectedBtn(btnId){
     }
     $('#'+btnId).css("background-image",'url("' + urls + '")');
 }
-
 
 var data = {
     "type": [

@@ -589,6 +589,7 @@ Top Bar Animation Section starts
     min-height: 572px;
     height: 100%;
     float:right;
+    margin-right: 0px;
     background-color: #373737;
     border-left: 1px solid #BBBBBB;
     border-top: 1px solid #BBBBBB;
@@ -652,7 +653,7 @@ Top Bar Animation Section starts
     margin-bottom: 5px;
 
 }
-#assetsList{
+#assetsTree{
     font-weight: lighter;
     margin-top: 5px;
     background-color:white;
