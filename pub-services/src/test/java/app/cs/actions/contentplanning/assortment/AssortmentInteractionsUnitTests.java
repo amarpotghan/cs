@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.impl.Assortment.AssortmentRepository;
+import app.cs.impl.assortment.AssortmentRepository;
 import app.cs.model.Assortment;
 
 @RunWith(MockitoJUnitRunner.class)
