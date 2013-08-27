@@ -10,10 +10,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.actions.publicationstructuring.chapter.ChapterInteractions;
 import app.cs.impl.chapter.ChapterRepository;
 import app.cs.impl.delegate.factory.DomainFactory;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.model.MultiDimensionalObject;
 
 @RunWith(MockitoJUnitRunner.class)

@@ -1,12 +1,9 @@
 package app.cs.actions.publicationplanning.perspective;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
-import app.cs.model.MultiDimensionalObject;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.response.TreeResponse;
 

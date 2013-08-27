@@ -1,17 +1,15 @@
 package app.cs.actions.contentplanning.assortment;
 
+import static org.mockito.Mockito.verify;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.actions.contentplanning.assortment.AssortmentInteractions;
-import app.cs.impl.assortment.AssortmentRepository;
+import app.cs.impl.Assortment.AssortmentRepository;
 import app.cs.model.Assortment;
-import app.cs.model.MultiDimensionalObject;
-
-import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AssortmentInteractionsUnitTests {
@@ -41,17 +39,17 @@ public class AssortmentInteractionsUnitTests {
 		verify(assortmentRepository).save(assortment, path);
 
 	}
-	
+
 	@Test
 	public void itShouldCopyAnAssortment() {
-		
+
 		// given
 		String type = "assortment";
 		String name = "AS01";
 		String path = "Mp01,P01";
 		String newPath = "Mp02,p02";
-			
-		//when
+
+		// when
 		assortmentUseCases.move(assortment, newPath);
 		System.out.println(assortment);
 

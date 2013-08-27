@@ -1,7 +1,8 @@
 package app.cs.actions.contentplanning.pim;
 
+import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,11 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.actions.contentplanning.pim.PIMInteractions;
 import app.cs.impl.pim.PIMRepository;
-import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PIMInteractionsUnitsTests {

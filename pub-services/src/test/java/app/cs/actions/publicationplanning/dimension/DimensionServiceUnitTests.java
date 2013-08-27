@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.actions.publicationplanning.dimension.DimensionInteractions;
 import app.cs.actions.publicationplanning.perspective.TreeBuilder;
 import app.cs.impl.chapter.InMemoryViewStructure;
 import app.cs.impl.delegate.factory.IDomainFactory;

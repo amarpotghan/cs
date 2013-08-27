@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.actions.publicationplanning.perspective.TreeBuilder;
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
