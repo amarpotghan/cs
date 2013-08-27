@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.interfaces.assets.AssetsRepository;
+import app.cs.model.response.ResponseModel;
+import app.cs.model.response.StringResponse;
 
 @Component
 public class GetMAMAssets {
@@ -15,8 +17,8 @@ public class GetMAMAssets {
 		this.mamRepository = mamRepository;
 	}
 
-	public String execute(String id) {
-		return mamRepository.getAssetsFor(id);
+	public ResponseModel execute(String id) {
+		return new StringResponse(mamRepository.getAssetsFor(id));
 
 	}
 

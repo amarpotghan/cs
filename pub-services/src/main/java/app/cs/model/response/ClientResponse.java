@@ -1,9 +1,9 @@
-package app.cs.model;
+package app.cs.model.response;
 
 /**
  * The Class CustomResponse.
  */
-public class ClientResponse {
+public class ClientResponse implements ResponseModel {
 
 	/** The html. */
 	private String html;

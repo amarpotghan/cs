@@ -1,5 +1,7 @@
 package app.cs.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,10 +34,7 @@ public class AssortmentController {
 	@RequestMapping(value = "/assortment/move/path/{path}/newPath/{newPath}")
 	public void move(@RequestBody Assortment assortment,
 			@PathVariable String newPath) {
-
-		// System.out.println("==>" + type + name + path + newpath);
 		assortmentInteractions.move(assortment, newPath);
 
 	}
-
 }

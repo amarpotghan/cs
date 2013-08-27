@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.interfaces.dimension.IDimensionRepository;
+import app.cs.model.response.ResponseModel;
+import app.cs.model.response.StringResponse;
 
 /**
- * The Class DimensionService. 
+ * The Class DimensionService.
  */
 @Component
 public class GetDimensions {
@@ -32,9 +34,9 @@ public class GetDimensions {
 
 	}
 
-	public String execute() throws IOException, URISyntaxException {
+	public ResponseModel execute() throws IOException, URISyntaxException {
 
-		return dimensionRepository.getAllDimensions();
+		return new StringResponse(dimensionRepository.getAllDimensions());
 	}
 
 }

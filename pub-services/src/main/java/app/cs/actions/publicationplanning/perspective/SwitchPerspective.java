@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.model.MultiDimensionalObject;
+import app.cs.model.response.ResponseModel;
+import app.cs.model.response.TreeResponse;
 
 /**
  * The Class DimensionService.
@@ -40,9 +42,9 @@ public class SwitchPerspective {
 
 	}
 
-	public List<MultiDimensionalObject> execute(String structure) {
+	public ResponseModel execute(String structure) {
 		setCurrentViewStructure(structure);
-		return treeBuilder.buildTree(structure);
+		return new TreeResponse(treeBuilder.buildTree(structure));
 
 	}
 

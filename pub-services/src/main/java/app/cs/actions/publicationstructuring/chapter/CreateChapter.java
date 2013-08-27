@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import app.cs.interfaces.chapter.IChapterRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.model.MultiDimensionalObject;
+import app.cs.model.response.ResponseModel;
+import app.cs.model.response.StringResponse;
 
 /**
  * The Class ChapterService.
@@ -32,12 +34,13 @@ public class CreateChapter {
 		this.chapterRepository = chapterRepository;
 	}
 
-	public String execute(String type, String name, String path, boolean isFolder) {
+	public ResponseModel execute(String type, String name, String path,
+			boolean isFolder) {
 
 		MultiDimensionalObject chapter = (MultiDimensionalObject) chapterRepository
 				.getDomain(CONTENTOBJECT);
 		setChapterAtrributes(chapter, type, name, path, isFolder);
-		return chapterRepository.save(chapter);
+		return new StringResponse(chapterRepository.save(chapter));
 	}
 
 	/**

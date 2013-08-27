@@ -5,22 +5,22 @@ import java.util.List;
 
 import com.cs.data.api.core.GenericDomain;
 
-public class Assortment implements GenericDomain, Serializable {
 
+public class Assortment implements GenericDomain, Serializable {
 	private List<Product> products;
 	
-	private String ID;
+	private String id;
 
 	public List<Product> getProducts() {
 		return products;
 	}
 
 	public String getID() {
-		return ID;
+		return id;
 	}
 
 	public void setID(String iD) {
-		ID = iD;
+		id = iD;
 	}
 
 	public void setProducts(List<Product> products) {

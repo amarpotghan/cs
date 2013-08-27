@@ -1,8 +1,8 @@
-package app.cs.model;
+package app.cs.model.response;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class PIMNode {
+public class PIMNode implements ResponseModel {
 
 	@Override
 	public String toString() {

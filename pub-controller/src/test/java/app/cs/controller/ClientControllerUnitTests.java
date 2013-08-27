@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.model.ClientResponse;
+import app.cs.model.response.ClientResponse;
 import app.cs.utils.FileUtils;
 
 @RunWith(MockitoJUnitRunner.class)

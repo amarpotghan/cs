@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.actions.contentplanning.pim.PIMInteractions;
-import app.cs.model.PIMNode;
+import app.cs.model.response.PIMNode;
 
 @Controller
 public class ProductInformationController {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import app.cs.model.ClientResponse;
+import app.cs.model.response.ClientResponse;
 import app.cs.utils.FileUtils;
 
 @Controller

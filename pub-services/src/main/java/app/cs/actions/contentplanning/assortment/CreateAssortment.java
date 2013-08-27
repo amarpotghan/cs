@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 
 import app.cs.impl.assortment.AssortmentRepository;
 import app.cs.model.Assortment;
+import app.cs.model.response.EmptyResponse;
+import app.cs.model.response.ResponseModel;
 
 @Component
 public class CreateAssortment {
@@ -17,9 +19,10 @@ public class CreateAssortment {
 
 	}
 
-	public void execute(Assortment assortment, String path) {
+	public ResponseModel execute(Assortment assortment, String path) {
 
 		assortmentRepository.save(assortment, path);
+		return new EmptyResponse();
 
 	}
 

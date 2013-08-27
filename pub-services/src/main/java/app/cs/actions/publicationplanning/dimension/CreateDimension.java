@@ -7,6 +7,8 @@ import app.cs.actions.publicationplanning.perspective.ITreeBuilder;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.model.MultiDimensionalObject;
+import app.cs.model.response.ResponseModel;
+import app.cs.model.response.StringResponse;
 
 /**
  * The Class DimensionService. TODO remove out all annotation from class
@@ -19,7 +21,6 @@ public class CreateDimension {
 
 	/** The contentobject. */
 	private final String CONTENTOBJECT = "MultiDimensionalObject";
-
 
 	/**
 	 * Instantiates a new dimension service.
@@ -37,14 +38,15 @@ public class CreateDimension {
 
 	}
 
-	public String execute(String type, String name, String path,
+	public ResponseModel execute(String type, String name, String path,
 			boolean isFolder) {
 
 		MultiDimensionalObject dimension = (MultiDimensionalObject) dimensionRepository
 				.getDomain(CONTENTOBJECT);
 
 		setDimensionAttributes(dimension, type, name, path, isFolder);
-		return dimensionRepository.createDimension(dimension);
+		return new StringResponse(
+				dimensionRepository.createDimension(dimension));
 	}
 
 	/**
