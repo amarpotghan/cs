@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import app.cs.impl.delegate.factory.DomainFactory;
-import app.cs.model.MultiDimensionalObject;
+import app.cs.impl.model.MultiDimensionalObject;
 
 import com.cs.data.api.core.GenericDomain;
 

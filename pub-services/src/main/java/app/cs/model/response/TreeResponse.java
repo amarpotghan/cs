@@ -2,7 +2,7 @@ package app.cs.model.response;
 
 import java.util.List;
 
-import app.cs.model.MultiDimensionalObject;
+import app.cs.impl.model.MultiDimensionalObject;
 
 public class TreeResponse implements ResponseModel {
 

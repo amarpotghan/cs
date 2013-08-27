@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.cs.data.api.core.GenericDomain;
 
-import app.cs.model.MultiDimensionalObject;
+import app.cs.impl.model.MultiDimensionalObject;
 
 public interface IDimensionRepository {
 

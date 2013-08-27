@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import app.cs.actions.contentplanning.assortment.AssortmentInteractions;
-import app.cs.model.Assortment;
+import app.cs.impl.model.Assortment;
 
 @Controller
 public class AssortmentController {

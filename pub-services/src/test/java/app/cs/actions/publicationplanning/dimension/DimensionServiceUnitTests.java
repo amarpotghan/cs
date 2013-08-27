@@ -18,8 +18,8 @@ import app.cs.actions.publicationplanning.perspective.TreeBuilder;
 import app.cs.impl.chapter.InMemoryViewStructure;
 import app.cs.impl.delegate.factory.IDomainFactory;
 import app.cs.impl.dimension.DimensionRepository;
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.model.MultiDimensionalObject;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DimensionServiceUnitTests {

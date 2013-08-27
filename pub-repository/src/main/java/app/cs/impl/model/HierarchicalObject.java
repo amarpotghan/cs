@@ -1,4 +1,4 @@
-package app.cs.model;
+package app.cs.impl.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
+import app.cs.interfaces.chapter.IHierarchicalObject;
 
 import com.cs.data.api.core.GenericDomain;
 
@@ -15,8 +15,7 @@ import com.cs.data.api.core.GenericDomain;
  * annotation from class file TODO rename to dimensionObject
  */
 @Component
-public class MultiDimensionalObject implements Serializable, GenericDomain,
-		IMultiDimensionalObject {
+public class HierarchicalObject implements Serializable, GenericDomain, IHierarchicalObject {
 
 	/** The page. */
 	private final String PAGE = "page";
@@ -28,7 +27,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	private String type;
 
 	/** The path. TODO */
-	private String path;
+	private transient String path;
 
 	/** The name. */
 	private String name;
@@ -37,53 +36,41 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	private String title;
 
 	/** The is folder.TODO */
-	private boolean isFolder;
+	private transient String isFolder;
 
 	/**
 	 * Instantiates a new content object.
 	 */
-	public MultiDimensionalObject() {
+	public HierarchicalObject() {
 		// TODO Auto-generated constructor stub
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getIsFolder()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#getIsFolder()
 	 */
 	@Override
-	public boolean getIsFolder() {
+	public String getIsFolder() {
 		return isFolder;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setIsFolder(java.lang
-	 * .String)
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#setIsFolder(java.lang.String)
 	 */
 	@Override
-	public void setIsFolder(boolean isFolder) {
+	public void setIsFolder(String isFolder) {
 		this.isFolder = isFolder;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getTitle()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#getTitle()
 	 */
 	@Override
 	public String getTitle() {
 		return title;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setTitle(java.lang
-	 * .String)
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#setTitle(java.lang.String)
 	 */
 	@Override
 	public void setTitle(String title) {
@@ -93,22 +80,11 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	/** The group ids. */
 	private List<String> groupIds;
 
-	public List<Assortment> getAssortment() {
-		return assortment;
-	}
-
-	public void setAssortment(List<Assortment> assortment) {
-		this.assortment = assortment;
-	}
-
 	/** The children. */
-	private List<MultiDimensionalObject> children;
+	private List<HierarchicalObject> children;
 
-	private List<Assortment> assortment;
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getGroupId()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#getGroupId()
 	 */
 	@Override
 	public List<String> getGroupId() {
@@ -129,7 +105,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 * @param path
 	 *            the path
 	 */
-	public MultiDimensionalObject(String id, String type, String title,
+	public HierarchicalObject(String id, String type, String title,
 			String name, String path) {
 		this.id = id;
 		this.type = type;
@@ -154,9 +130,8 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 * @param children
 	 *            the children
 	 */
-	public MultiDimensionalObject(String id, String type, String path,
-			String name, List<String> groupId,
-			List<MultiDimensionalObject> children) {
+	public HierarchicalObject(String id, String type, String path, String name,
+			List<String> groupId, List<HierarchicalObject> children) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -166,37 +141,27 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.children = children;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setGroupId(java.util
-	 * .List)
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#setGroupId(java.util.List)
 	 */
 	@Override
 	public void setGroupId(List<String> groupId) {
 		this.groupIds = groupId;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getChildren()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#getChildren()
 	 */
 	@Override
-	public List<MultiDimensionalObject> getChildren() {
+	public List<HierarchicalObject> getChildren() {
 		return children;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setChildren(java.util
-	 * .List)
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#setChildren(java.util.List)
 	 */
 	@Override
-	public void setChildren(List<MultiDimensionalObject> children) {
+	public void setChildren(List<HierarchicalObject> children) {
 		this.children = children;
 	}
 
@@ -212,8 +177,8 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 * @param isFolder
 	 *            the is folder
 	 */
-	public MultiDimensionalObject(String name, String type, String path,
-			boolean isFolder) {
+	public HierarchicalObject(String name, String type, String path,
+			String isFolder) {
 		this.id = name;
 		this.name = name;
 		this.title = name;
@@ -223,88 +188,64 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getPath()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#getPath()
 	 */
 	@Override
 	public String getPath() {
 		return path;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setPath(java.lang.
-	 * String)
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#setPath(java.lang.String)
 	 */
 	@Override
 	public void setPath(String path) {
 		this.path = path;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getType()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#getType()
 	 */
 	@Override
 	public String getType() {
 		return type;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setType(java.lang.
-	 * String)
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#setType(java.lang.String)
 	 */
 	@Override
 	public void setType(String type) {
 		this.type = type;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getId()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#getId()
 	 */
 	@Override
 	public String getId() {
 		return id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setId(java.lang.String
-	 * )
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#setId(java.lang.String)
 	 */
 	@Override
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getName()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#getName()
 	 */
 	@Override
 	public String getName() {
 		return name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setName(java.lang.
-	 * String)
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#setName(java.lang.String)
 	 */
 	@Override
 	public void setName(String name) {
@@ -315,6 +256,9 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 * (non-Javadoc)
 	 * 
 	 * @see com.cs.data.core.GenericDomain#getObjectKey()
+	 */
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#getObjectKey()
 	 */
 	@Override
 	public String getObjectKey() {
@@ -327,10 +271,8 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 * 
 	 * @see com.cs.data.core.GenericDomain#getKey()
 	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getKey()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#getKey()
 	 */
 	@Override
 	public String getKey() {
@@ -343,6 +285,9 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#toString()
+	 */
 	@Override
 	public String toString() {
 		return "DimensionModel [id=" + id + ", type=" + type + ", path=" + path
@@ -350,22 +295,16 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 				+ groupIds + ", children=" + children + "]";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#isRoot()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#isRoot()
 	 */
 	@Override
 	public boolean isRoot() {
 		return path == "-1" ? true : false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#addToGroupId(java.
-	 * lang.String)
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#addToGroupId(java.lang.String)
 	 */
 	@Override
 	public void addToGroupId(String groupId) {
@@ -379,38 +318,30 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#hasChildren()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#hasChildren()
 	 */
 	@Override
 	public boolean hasChildren() {
 		return this.children == null ? false : true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#isPage()
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#isPage()
 	 */
 	@Override
 	public boolean isPage() {
 		return type == PAGE ? true : false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#addchild(com.cs.data
-	 * .business.model.MultiDimensionalObject)
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#addchild(com.cs.data.business.model.HierarchicalObject)
 	 */
 	@Override
-	public void addchild(MultiDimensionalObject contentObject) {
-		List<MultiDimensionalObject> newChildren;
+	public void addchild(HierarchicalObject contentObject) {
+		List<HierarchicalObject> newChildren;
 		if (this.children == null) {
-			newChildren = new ArrayList<MultiDimensionalObject>();
+			newChildren = new ArrayList<HierarchicalObject>();
 			newChildren.add(contentObject);
 			this.children = newChildren;
 
@@ -419,29 +350,11 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		}
 	}
 
-	
-	
-	@Override
-	public void addAssortment(Assortment assortment) {
-		List<Assortment> newChildren;
-		if (this.assortment == null) {
-			newChildren = new ArrayList<Assortment>();
-			newChildren.add(assortment);
-			this.assortment = newChildren;
-
-		} else {
-			this.assortment.add(assortment);
-		}
-	}
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#removeChild(com.cs
-	 * .data.business.model.IMultiDimensionalObject)
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#removeChild(com.cs.data.business.model.IHierarchicalObject)
 	 */
 	@Override
-	public void removeChild(IMultiDimensionalObject contentObject) {
+	public void removeChild(IHierarchicalObject contentObject) {
 		if (children != null) {
 			this.children.remove(contentObject);
 		}
@@ -453,6 +366,9 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -463,7 +379,8 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		result = prime * result
 				+ ((groupIds == null) ? 0 : groupIds.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-
+		result = prime * result
+				+ ((isFolder == null) ? 0 : isFolder.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((path == null) ? 0 : path.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
@@ -476,6 +393,9 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
+	/* (non-Javadoc)
+	 * @see com.cs.data.business.model.IHierarchicalObject#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -483,7 +403,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		if (obj == null)
 			return false;
 
-		MultiDimensionalObject other = (MultiDimensionalObject) obj;
+		HierarchicalObject other = (HierarchicalObject) obj;
 		if (id.equals(other.id))
 			return true;
 		if (PAGE == null) {
@@ -504,7 +424,11 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		}
+		} else if (isFolder == null) {
+			if (other.isFolder != null)
+				return false;
+		} else if (!isFolder.equals(other.isFolder))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;

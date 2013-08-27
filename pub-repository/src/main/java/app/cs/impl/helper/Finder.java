@@ -1,12 +1,12 @@
-package app.cs.helper;
+package app.cs.impl.helper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
-import app.cs.model.MultiDimensionalObject;
 
 @Component
 public class Finder {

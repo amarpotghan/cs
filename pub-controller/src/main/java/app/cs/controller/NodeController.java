@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.boundary.delivery.Service;
-import app.cs.model.MultiDimensionalObject;
+import app.cs.impl.model.MultiDimensionalObject;
 
 /**
  * The Class NodeController.

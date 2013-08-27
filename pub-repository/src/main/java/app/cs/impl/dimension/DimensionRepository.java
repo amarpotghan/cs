@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.impl.delegate.factory.DomainFactory;
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
-import app.cs.model.MultiDimensionalObject;
 import app.cs.utils.FileUtils;
 
 import com.cs.data.api.core.GenericDomain;

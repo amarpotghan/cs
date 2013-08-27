@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.impl.assortment.AssortmentRepository;
-import app.cs.model.Assortment;
+import app.cs.impl.model.Assortment;
 
 @Component
 public class AssortmentInteractions {

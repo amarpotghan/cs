@@ -2,7 +2,7 @@ package app.cs.impl.delegate.factory;
 
 import org.springframework.stereotype.Component;
 
-import app.cs.model.MultiDimensionalObject;
+import app.cs.impl.model.MultiDimensionalObject;
 
 import com.cs.data.api.core.GenericDomain;
 
