@@ -3,6 +3,7 @@ var TreeSelector = function(){
     this.design = function(id)
     {
         var treeData;
+
         $(document).bind("viewStructureLoaded", function onSchemaLoadedHandler(e){
             //This is to create folder as per first element of the current schema
             treeData = {};
