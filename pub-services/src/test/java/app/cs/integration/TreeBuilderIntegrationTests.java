@@ -11,14 +11,14 @@ import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import app.cs.actions.publicationplanning.perspective.ITreeBuilder;
+import app.cs.actions.publicationplanning.perspective.TreeBuilder;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.impl.dimension.InMemoryDimensionGroup;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
 import app.cs.model.MultiDimensionalObject;
-import app.cs.perspective.ITreeBuilder;
-import app.cs.perspective.TreeBuilder;
 import app.cs.utils.FileUtils;
 
 import com.cs.data.api.core.nosql.redis.InMemoryNoSqlRepository;
@@ -48,14 +48,14 @@ public class TreeBuilderIntegrationTests {
 
 	@Test
 	public void itShouldReturnTheWholeTree() {
-		noSqlRepository = new MongoRepository(mongoTemplate,new Update());
+		noSqlRepository = new MongoRepository(mongoTemplate, new Update());
 		inMemoryNoSqlRepository = new RedisRepository(redisTemplate);
 		fileUtils = new FileUtils();
 		cache = new InMemoryDimensionGroup(inMemoryNoSqlRepository);
 		repository = new DimensionRepository(fileUtils, cache, noSqlRepository,
 				factory);
 
-		builder = new TreeBuilder(cache, repository);
+		builder = new TreeBuilder(repository);
 
 		List<MultiDimensionalObject> models = builder
 				.buildTree("Campaign-MasterPublication-PublicationGroup-Publication");

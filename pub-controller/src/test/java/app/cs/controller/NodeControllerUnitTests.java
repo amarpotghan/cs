@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.dimension.DimensionInteractions;
+import app.cs.actions.publicationplanning.dimension.DimensionInteractions;
 import app.cs.model.MultiDimensionalObject;
 
 @RunWith(MockitoJUnitRunner.class)

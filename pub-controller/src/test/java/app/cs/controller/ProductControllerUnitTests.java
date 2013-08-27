@@ -21,8 +21,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.fest.assertions.Assertions.assertThat;
 
+import app.cs.actions.contentplanning.pim.PIMInteractions;
 import app.cs.model.PIMNode;
-import app.cs.pim.PIMInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProductControllerUnitTests {

@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.fest.assertions.Assertions.assertThat;
 
-import app.cs.mam.MAMInteractions;
+import app.cs.actions.contentplanning.mam.MAMInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MAMControllerUnitTests{

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import app.cs.assortment.AssortmentInteractions;
+import app.cs.actions.contentplanning.assortment.AssortmentInteractions;
 import app.cs.model.Assortment;
 
 @Controller

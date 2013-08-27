@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import app.cs.boundary.delivery.Service;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.impl.dimension.InMemoryDimensionGroup;
@@ -35,7 +34,6 @@ public class DimensionIntegrationTests {
 	private IInMemoryDimensionGroup cache;
 	private IDimensionRepository dimensionRepository;
 
-	private Service dimensionService;
 
 	DomainFactory factory = new DomainFactory();
 

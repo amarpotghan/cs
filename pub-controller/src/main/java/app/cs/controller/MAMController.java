@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import app.cs.mam.MAMInteractions;
-import app.cs.pim.PIMInteractions;
+import app.cs.actions.contentplanning.mam.MAMInteractions;
+import app.cs.actions.contentplanning.pim.PIMInteractions;
 
 @Controller
 public class MAMController {
