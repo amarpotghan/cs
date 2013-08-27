@@ -39,15 +39,15 @@ public class TextAssetControllerUnitTests {
 			URISyntaxException {
 
 		String contents = "result";
-		when(textAssetController.getTextAssets("home/elements.json"))
+		when(textAssetController.getTextAssets("textassets.json"))
 				.thenReturn(contents);
 		// when
 		String actualContents = textAssetController.getTextAssets(id);
 
 		// then
 
-		verify(fileUtils).getFileContents("home/elements.json");
-		assertThat(contents).isEqualTo(contents);
+		verify(fileUtils).getFileContents("textassets.json");
+		assertThat(contents).isEqualTo(actualContents);
 	}
 
 }

@@ -30,7 +30,7 @@ public class TextAssetController {
 	public @ResponseBody
 	String getTextAssets(@PathVariable String id) throws IOException,
 			URISyntaxException {
-		return fileUtils.getFileContents("home/elements.json");
+		return fileUtils.getFileContents("textassets.json");
 
 	}
 
