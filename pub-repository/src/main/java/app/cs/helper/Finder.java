@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.model.MultiDimensionalObject;
 
 @Component
 public class Finder {

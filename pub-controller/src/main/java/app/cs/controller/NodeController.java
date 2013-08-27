@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import app.cs.boundary.Service;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.boundary.delivery.Service;
+import app.cs.model.MultiDimensionalObject;
 
 /**
  * The Class NodeController.

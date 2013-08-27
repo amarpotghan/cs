@@ -2,7 +2,7 @@ package app.cs.interfaces.chapter;
 
 import java.util.List;
 
-import app.cs.interfaces.model.HierarchicalObject;
+import app.cs.model.HierarchicalObject;
 
 public interface IHierarchicalObject {
 

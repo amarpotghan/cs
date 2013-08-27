@@ -1,4 +1,4 @@
-package app.cs.pim;
+package app.cs.impl.pim;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import app.cs.impl.pim.PIMRepository;
 
 import com.cs.data.webservices.rest.RestClient;
 import static org.fest.assertions.Assertions.assertThat;
@@ -49,7 +51,7 @@ public class PIMRepositoryUnitTests {
 
 		// when
 		when(restClient.get(url, headerParameters)).thenReturn(result);
-		String products = pimRepository.getProductsFor(id);
+		String products = pimRepository.getAssetsFor(id);
 
 		// then
 
@@ -78,7 +80,7 @@ public class PIMRepositoryUnitTests {
 
 		// when
 		when(restClient.get(BASE_URL, headerParameters)).thenReturn(result);
-		String products = pimRepository.getProductsFor(id);
+		String products = pimRepository.getAssetsFor(id);
 
 		// then
 

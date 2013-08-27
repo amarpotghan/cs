@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import app.cs.impl.pim.PIMRepository;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -34,11 +36,11 @@ public class PIMInteractionsUnitsTests {
 
 		String expectedProductList = "test products";
 		// when
-		when(pimRepository.getProductsFor(id)).thenReturn(expectedProductList);
+		when(pimRepository.getAssetsFor(id)).thenReturn(expectedProductList);
 		String productList = pimInteractions.getProducts(id);
 
 		// then
-		verify(pimRepository).getProductsFor(id);
+		verify(pimRepository).getAssetsFor(id);
 		assertThat(productList).isEqualTo(expectedProductList);
 
 	}

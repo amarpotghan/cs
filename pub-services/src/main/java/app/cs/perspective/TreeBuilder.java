@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.model.MultiDimensionalObject;
 import app.cs.utils.ArrayUtils;
 
 /**

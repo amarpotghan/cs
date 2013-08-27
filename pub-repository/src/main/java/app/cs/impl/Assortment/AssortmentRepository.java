@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.helper.Finder;
-import app.cs.interfaces.model.Assortment;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.model.Assortment;
+import app.cs.model.MultiDimensionalObject;
 
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 import com.cs.data.core.nosql.mongodb.MongoRepository;

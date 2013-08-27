@@ -1,11 +1,11 @@
-package app.cs.boundary;
+package app.cs.boundary.delivery;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.model.MultiDimensionalObject;
 
 /**
  * Interface that specifies basic set of service operations. Ideally all the

@@ -52,7 +52,6 @@ public class MongoRepositoryIntegrationTests {
 	@Test
 	public void itShouldGetObjectByKey() {
 		// given
-		String id = "1";
 		Class<Student> type = Student.class;
 		Student expectedAmar = new Student("1", "Amar", "First");
 		// when
@@ -68,7 +67,6 @@ public class MongoRepositoryIntegrationTests {
 	public void itShouldAppendAListInADocument() {
 		// given
 		Student esha = new Student("0099", "esha", "First");
-		Teacher teacher = new Teacher("01", null);
 
 		// when
 		crudRepository.updateById("01", "students", esha, Teacher.class);
@@ -79,14 +77,13 @@ public class MongoRepositoryIntegrationTests {
 	public void itShouldGetObjectsByAndCriteria() {
 		// when
 		String id = "01";
-		String name = "esha";
 		List<Student> students = new ArrayList<Student>();
 		students.add(new Student("0099", "esha", "First"));
 		List<Teacher> teacherWithGivenStudent = crudRepository
 				.getObjectForAndCriteria("id", id, "students", students,
 						Teacher.class);
 		// then
-		Assert.assertEquals(teacherWithGivenStudent.size(), 0);
+		Assert.assertEquals(teacherWithGivenStudent.size(), 1);
 
 	}
 

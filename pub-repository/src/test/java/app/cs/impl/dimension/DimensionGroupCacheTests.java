@@ -14,7 +14,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import app.cs.impl.dimension.InMemoryDimensionGroup;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.model.MultiDimensionalObject;
 
 import com.cs.data.core.nosql.redis.RedisRepository;
 

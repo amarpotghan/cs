@@ -12,7 +12,7 @@ import app.cs.impl.chapter.InMemoryViewStructure;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.dimension.InMemoryDimensionGroup;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.model.MultiDimensionalObject;
 import app.cs.utils.ArrayUtils;
 
 import com.cs.data.core.nosql.mongodb.MongoRepository;

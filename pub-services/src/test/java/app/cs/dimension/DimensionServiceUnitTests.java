@@ -18,7 +18,7 @@ import app.cs.impl.chapter.InMemoryViewStructure;
 import app.cs.impl.delegate.factory.IDomainFactory;
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.model.MultiDimensionalObject;
 import app.cs.perspective.TreeBuilder;
 
 @RunWith(MockitoJUnitRunner.class)

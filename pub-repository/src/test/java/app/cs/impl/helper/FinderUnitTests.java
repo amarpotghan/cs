@@ -16,7 +16,7 @@ import app.cs.helper.Finder;
 import app.cs.impl.chapter.ChapterRepository;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.model.MultiDimensionalObject;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FinderUnitTests {

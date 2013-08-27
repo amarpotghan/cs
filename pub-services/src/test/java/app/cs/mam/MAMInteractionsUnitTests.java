@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import app.cs.impl.mam.MAMRepository;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -18,7 +20,7 @@ public class MAMInteractionsUnitTests {
 	private MAMInteractions mamInteractions;
 
 	@Mock
-	private TextAssetRepository mamRepository;
+	private MAMRepository mamRepository;
 
 	private String id = "62";
 

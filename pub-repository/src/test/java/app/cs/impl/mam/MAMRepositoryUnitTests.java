@@ -1,4 +1,4 @@
-package app.cs.mam;
+package app.cs.impl.mam;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +9,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import app.cs.impl.mam.MAMRepository;
+import app.cs.interfaces.assets.AssetsRepository;
+
 import com.cs.data.webservices.rest.RestClient;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
@@ -17,7 +20,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class MAMRepositoryUnitTests{
 	
-	private TextAssetRepository mamRepository;
+	private AssetsRepository mamRepository;
 	
 	@Mock
 	private RestClient restClient;
@@ -26,7 +29,7 @@ public class MAMRepositoryUnitTests{
 	
 	@Before
 	public void setup(){
-		mamRepository = new TextAssetRepository(restClient);
+		mamRepository = new MAMRepository(restClient);
 	}
 	
 	@Test

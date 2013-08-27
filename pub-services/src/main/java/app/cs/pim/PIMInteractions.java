@@ -3,6 +3,8 @@ package app.cs.pim;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import app.cs.impl.pim.PIMRepository;
+
 @Component
 public class PIMInteractions {
 
@@ -14,7 +16,7 @@ public class PIMInteractions {
 	}
 
 	public String getProducts(String id) {
-		return pimRepository.getProductsFor(id);
+		return pimRepository.getAssetsFor(id);
 
 	}
 

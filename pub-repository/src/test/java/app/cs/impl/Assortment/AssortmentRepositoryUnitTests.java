@@ -16,9 +16,9 @@ import com.cs.data.core.nosql.mongodb.MongoRepository;
 import app.cs.helper.Finder;
 import app.cs.impl.assortment.AssortmentRepository;
 import app.cs.impl.chapter.InMemoryViewStructure;
-import app.cs.interfaces.model.Assortment;
-import app.cs.interfaces.model.MultiDimensionalObject;
-import app.cs.interfaces.model.Product;
+import app.cs.model.Assortment;
+import app.cs.model.MultiDimensionalObject;
+import app.cs.model.Product;
 
 import static org.fest.assertions.Assertions.*;
 import static org.mockito.Mockito.*;

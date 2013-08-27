@@ -2,8 +2,8 @@ package app.cs.interfaces.dimension;
 
 import java.util.List;
 
-import app.cs.interfaces.model.MultiDimensionalObject;
-import app.cs.interfaces.model.Assortment;
+import app.cs.model.Assortment;
+import app.cs.model.MultiDimensionalObject;
 
 public interface IMultiDimensionalObject {
 

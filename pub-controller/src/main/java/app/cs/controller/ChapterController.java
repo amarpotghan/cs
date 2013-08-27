@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import app.cs.boundary.Service;
+import app.cs.boundary.delivery.Service;
 
 /**
  * The Class ChapterController. TODO. com.cs.business.ifacadeservices controller

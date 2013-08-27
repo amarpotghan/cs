@@ -7,11 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.boundary.Service;
+import app.cs.boundary.delivery.Service;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.model.MultiDimensionalObject;
 import app.cs.perspective.ITreeBuilder;
 
 /**
@@ -77,7 +77,7 @@ public class DimensionInteractions implements Service {
 	 * @see com.cs.service.IService#getAllBy(java.lang.String)
 	 */
 	@Override
-	public List<app.cs.interfaces.model.MultiDimensionalObject> getAllBy(
+	public List<app.cs.model.MultiDimensionalObject> getAllBy(
 			String structure) {
 		// TODO Auto-generated method stub
 		setCurrentViewStructure(structure);

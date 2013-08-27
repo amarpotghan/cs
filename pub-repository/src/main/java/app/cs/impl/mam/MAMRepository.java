@@ -1,4 +1,4 @@
-package app.cs.pim;
+package app.cs.impl.mam;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,10 +6,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import app.cs.interfaces.assets.AssetsRepository;
+
 import com.cs.data.webservices.rest.RestClient;
 
 @Component
-public class PIMRepository {
+public class MAMRepository implements AssetsRepository {
 
 	private static final String CHARSET = "ISO-8859-1,utf-8;q=0.7,*;q=0.3";
 	private static final String ACCEPT_CHARSET = "Accept-Charset";
@@ -23,16 +25,17 @@ public class PIMRepository {
 	private static final String HOST = "Host";
 	private static final String LANGUAGE = "en-US,en;q=0.8";
 	private static final String ACCEPT_LANGUAGE = "Accept-Language";
-	private final String BASE_URL = "http://192.168.135.108/CS13.0/admin/rest/pim/list/";
+	private final String BASE_URL = "http://192.168.135.108/CS13.0/admin/rest/mam/list/";
 	private RestClient client;
 
 	@Autowired
-	public PIMRepository(RestClient client) {
+	public MAMRepository(RestClient client) {
 		this.client = client;
 
 	}
 
-	public String getProductsFor(String id) {
+	@Override
+	public String getAssetsFor(String id) {
 
 		String url = formUrl(id);
 		Map<String, String> headerParameters = new HashMap<String, String>();

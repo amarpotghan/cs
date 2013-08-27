@@ -1,4 +1,4 @@
-package app.cs.interfaces.model;
+package app.cs.model;
 
 import java.util.List;
 

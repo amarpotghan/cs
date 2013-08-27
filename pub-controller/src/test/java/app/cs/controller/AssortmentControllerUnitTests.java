@@ -8,8 +8,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.assortment.AssortmentInteractions;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.interfaces.model.Assortment;
-import app.cs.interfaces.model.MultiDimensionalObject;
+import app.cs.model.Assortment;
+import app.cs.model.MultiDimensionalObject;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
