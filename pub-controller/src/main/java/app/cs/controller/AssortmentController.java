@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.assortment.AssortmentInteractions;
 import app.cs.interfaces.model.Assortment;
@@ -21,12 +22,20 @@ public class AssortmentController {
 		this.assortmentInteractions = assortmentInteractions;
 	}
 
-	@RequestMapping(value = "/assortment/create/{name}/{path}")
-	public void create(@RequestBody Assortment assortment,
-			@PathVariable String name, @PathVariable String path) {
+	@RequestMapping(value = "/assortment/create/{path}")
+	public void create(@RequestBody Assortment assortment, @PathVariable String path) {
 
 		assortmentInteractions.create(assortment, path);
+		System.out.println(assortment);
 
+	}
+	
+	@RequestMapping(value = "/assortment/move/path/{path}/newPath/{newPath}")
+	public void move(@RequestBody Assortment assortment, @PathVariable String newPath) {
+
+		//System.out.println("==>" + type + name + path + newpath);
+		assortmentInteractions.move(assortment, newPath);
+		
 	}
 
 }

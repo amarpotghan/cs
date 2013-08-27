@@ -2,9 +2,11 @@ package app.cs.impl.assortment;
 
 import java.util.ArrayList;
 import java.util.List;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -86,6 +88,32 @@ public class AssortmentRepositoryUnitTests {
 
 		verify(finder).find(publication, "test01");
 		verify(mongoRepository).save(test);
+
+	}
+	
+	@Test
+	public void itShouldCopyAssortmentFromOneLocationToOther() {
+	
+		String newPath = "A,B,C,D,E,test01";
+		
+		Assortment assortment = assortmentRepository.getAssortmentObject();
+		System.out.println(publication);
+		// when
+		when(finder.getParentId(newPath)).thenReturn("test01");
+		when(finder.getPublicationId(newPath)).thenReturn("test001");
+		when(
+				mongoRepository.getObjectByKey("test001",
+						MultiDimensionalObject.class)).thenReturn(publication);
+		when(finder.find(publication, "test01")).thenReturn(test);
+		test.addAssortment(assortment);
+		assortmentRepository.save(assortment, newPath);
+
+		// then
+
+		verify(finder).find(publication, "test01");
+		verify(mongoRepository).save(test);
+		System.out.println(test.getName());
+		assertEquals((test.getName()),"test01");
 
 	}
 }

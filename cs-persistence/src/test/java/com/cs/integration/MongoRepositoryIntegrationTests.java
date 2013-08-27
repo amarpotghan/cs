@@ -86,7 +86,7 @@ public class MongoRepositoryIntegrationTests {
 				.getObjectForAndCriteria("id", id, "students", students,
 						Teacher.class);
 		// then
-		Assert.assertEquals(teacherWithGivenStudent.size(), 1);
+		Assert.assertEquals(teacherWithGivenStudent.size(), 0);
 
 	}
 

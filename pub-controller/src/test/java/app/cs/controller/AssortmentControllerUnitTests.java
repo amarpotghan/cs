@@ -7,7 +7,9 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.assortment.AssortmentInteractions;
+import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.model.Assortment;
+import app.cs.interfaces.model.MultiDimensionalObject;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -15,7 +17,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class AssortmentControllerUnitTests {
 
-	private AssortmentController assormentController;
+	private AssortmentController assortmentController;
 
 	@Mock
 	private AssortmentInteractions assortmentInteractions;
@@ -25,7 +27,7 @@ public class AssortmentControllerUnitTests {
 
 	@Before
 	public void setUp() {
-		assormentController = new AssortmentController(assortmentInteractions);
+		assortmentController = new AssortmentController(assortmentInteractions);
 	}
 
 	@Test
@@ -34,11 +36,28 @@ public class AssortmentControllerUnitTests {
 
 		String name = "testAssortment";
 		// when
-		assormentController.create(assortment, name, path);
+		assortmentController.create(assortment, path);
 
 		// then
 
 		verify(assortmentInteractions).create(assortment, path);
+	}
+	
+	@Test
+	public void itShouldCopyAssortmentToGivenLocation() {
+
+		// given
+		String newPath = "A,B,C,D,E,test01";
+		String name = "test";
+		
+
+		Assortment assortment =new Assortment();
+		
+		// when
+		assortmentController.move(assortment, newPath);
+
+		// then
+		verify(assortmentInteractions).move(assortment, newPath);
 	}
 
 }

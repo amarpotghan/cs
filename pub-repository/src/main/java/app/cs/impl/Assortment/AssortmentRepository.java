@@ -47,5 +47,15 @@ public class AssortmentRepository {
 		return noSqlRepository.getObjectByKey(finder.getPublicationId(path),
 				MultiDimensionalObject.class);
 	}
+	
+	public void move(Assortment assortment, String newPath) {
+
+		MultiDimensionalObject publication = getParentPublication(newPath);
+		String parentId = finder.getParentId(newPath);
+		MultiDimensionalObject parent = finder.find(publication, parentId);
+		parent.addAssortment(assortment);
+		noSqlRepository.save(parent);
+
+	}
 
 }

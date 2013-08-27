@@ -1,4 +1,4 @@
-package app.cs.integration;
+/*package app.cs.integration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +21,8 @@ import app.cs.interfaces.model.MultiDimensionalObject;
 import com.cs.data.api.core.nosql.redis.InMemoryNoSqlRepository;
 import com.cs.data.core.nosql.mongodb.MongoRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:application-context-test.xml")
 public class ChapterIntegrationTests {
 
-	@Autowired
 	private MongoRepository noSqlRepository;
 
 	List<MultiDimensionalObject> models = new ArrayList<MultiDimensionalObject>();
@@ -35,7 +32,6 @@ public class ChapterIntegrationTests {
 	private IInMemoryViewStructure cache;
 	private IChapterRepository chapterRepository;
 
-	@Autowired
 	private InMemoryNoSqlRepository inMemoryNosqlRepository;
 
 	MultiDimensionalObject page01;
@@ -62,7 +58,7 @@ public class ChapterIntegrationTests {
 
 	}
 
-	/*
+	
 	 * @Test public void itShouldCreateMultipleDimensionGroupsForGivenModels() {
 	 * 
 	 * cache = new InMemoryViewStructure(inMemoryNosqlRepository); for
@@ -75,7 +71,7 @@ public class ChapterIntegrationTests {
 	 * }
 	 * 
 	 * }
-	 */
+	 
 
 	@Test
 	public void itShouldRemoveAnObjectFromPublication() {
@@ -89,3 +85,4 @@ public class ChapterIntegrationTests {
 	}
 
 }
+*/

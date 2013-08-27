@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import app.cs.impl.assortment.AssortmentRepository;
 import app.cs.interfaces.model.Assortment;
+import app.cs.interfaces.model.MultiDimensionalObject;
 
 @Component
 public class AssortmentInteractions {
@@ -22,5 +23,10 @@ public class AssortmentInteractions {
 		assortmentRepository.save(assortment, path);
 
 	}
+	
+	public void move(Assortment assortment, String newPath) {
+		//Assortment assortment = new Assortment();
+		assortmentRepository.move(assortment, newPath);
 
+	}
 }
