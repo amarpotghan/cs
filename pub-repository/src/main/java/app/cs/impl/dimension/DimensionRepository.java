@@ -18,7 +18,7 @@ import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 
 /**
- * The Class DimensionRepository. TODO remove out all annaotation from classes
+ * The Class DimensionRepository
  */
 @Component
 public class DimensionRepository implements IDimensionRepository {
@@ -64,13 +64,6 @@ public class DimensionRepository implements IDimensionRepository {
 		this.factory = factory;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.repository.IDimensionRepository#createDimension(
-	 * com.cs.data.business.model.MultiDimensionalObject)
-	 */
 	@Override
 	public String createDimension(MultiDimensionalObject dimension) {
 		String groupId = getDimensionGroupId(dimension.getPath());
@@ -127,50 +120,23 @@ public class DimensionRepository implements IDimensionRepository {
 		return factory.getDomainObject(type);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.repository.IDimensionRepository#getAllDimensions()
-	 */
 	@Override
 	public String getAllDimensions() throws IOException, URISyntaxException {
-		// TODO Auto-generated method stub
 		return fileUtils.getFileContents("dimensions.json");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.repository.IDimensionRepository#getDimensions()
-	 */
 	@Override
 	public List<MultiDimensionalObject> getDimensions() {
 
 		return noSqlRepository.findAll(MultiDimensionalObject.class);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.repository.IDimensionRepository#getDimensionsOfType
-	 * (java.lang.String)
-	 */
 	@Override
 	public List<MultiDimensionalObject> getDimensionsOfType(String type) {
-		// TODO Auto-generated method stub
 		return noSqlRepository.getObjectsBy(TYPE, type,
 				MultiDimensionalObject.class);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.repository.IDimensionRepository#getDimensionsBy(
-	 * java.lang.String, java.util.List)
-	 */
 	@Override
 	public List<MultiDimensionalObject> getDimensionsBy(String type2,
 			List<String> groupIds) {

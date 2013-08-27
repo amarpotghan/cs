@@ -8,7 +8,6 @@ import app.cs.model.Assortment;
 import app.cs.model.MultiDimensionalObject;
 
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
-import com.cs.data.core.nosql.mongodb.MongoRepository;
 
 @Component
 public class AssortmentRepository {
@@ -47,7 +46,7 @@ public class AssortmentRepository {
 		return noSqlRepository.getObjectByKey(finder.getPublicationId(path),
 				MultiDimensionalObject.class);
 	}
-	
+
 	public void move(Assortment assortment, String newPath) {
 
 		MultiDimensionalObject publication = getParentPublication(newPath);
