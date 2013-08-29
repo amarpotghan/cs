@@ -21,7 +21,7 @@ public class CopyAssortment {
 
 	public ResponseModel execute(CreateAssortmentRequest request) {
 		assortmentRepository
-				.move(request.getAssortment(), request.getNewPath());
+				.copy(request.getAssortment(), request.getNewPath());
 
 		return new EmptyResponse();
 

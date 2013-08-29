@@ -54,7 +54,7 @@ public class AssortmentInteractionsUnitTests {
 		System.out.println(assortment);
 
 		// then
-		verify(assortmentRepository).move(assortment, newPath);
+		verify(assortmentRepository).copy(assortment, newPath);
 
 	}
 }

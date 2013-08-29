@@ -1,7 +1,7 @@
 {
     "landingScreen":{"url":"","containerId":"","loadOnStartup":"false"},
-    "headerScreen":{"url":"/pub-controller/testdrive/mocks/templates/Header.json","containerId":"headerContainer","loadOnStartup":"true"},
-    "footerScreen":{"url":"/pub-controller/testdrive/mocks/templates/Footer.json","containerId":"footerContainer","loadOnStartup":"true"},
-    "loginScreen":{"url":"/pub-controller/testdrive/mocks/templates/Login.json","containerId":"mainContainer","loadOnStartup":"true"},
-    "homeScreen":{"url":"/pub-controller/testdrive/mocks/templates/Home.json","containerId":"mainContainer","loadOnStartup":"false"}
+    "headerScreen":{"url":"/delivery/testdrive/mocks/templates/Header.json","containerId":"headerContainer","loadOnStartup":"true"},
+    "footerScreen":{"url":"/delivery/testdrive/mocks/templates/Footer.json","containerId":"footerContainer","loadOnStartup":"true"},
+    "loginScreen":{"url":"/delivery/testdrive/mocks/templates/Login.json","containerId":"mainContainer","loadOnStartup":"true"},
+    "homeScreen":{"url":"/delivery/testdrive/mocks/templates/Home.json","containerId":"mainContainer","loadOnStartup":"false"}
 }

@@ -1,8 +1,8 @@
 {
-    "getAllSchema":"/pub-controller/all",
-    "getSchema":"/pub-controller/treeviewstructure/",
-    "getTree":"/pub-controller/dimension/get/",
-    "dragNDrop":"/pub-controller/",
-    "getDefaultSchema":"/pub-controller/default",
-    "getAssetsTree":"/pub-controller/testdrive/mocks/tree/AssetTree.json"
+    "getAllSchema":"/delivery/all",
+    "getSchema":"/delivery/treeviewstructure/",
+    "getTree":"/delivery/dimension/get/",
+    "dragNDrop":"/delivery/",
+    "getDefaultSchema":"/delivery/default",
+    "getAssetsTree":"/delivery/testdrive/mocks/tree/AssetTree.json"
 }

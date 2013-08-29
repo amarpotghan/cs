@@ -24,7 +24,7 @@ public class AssortmentInteractions {
 	}
 
 	public void move(Assortment assortment, String newPath) {
-		assortmentRepository.move(assortment, newPath);
+		assortmentRepository.copy(assortment, newPath);
 
 	}
 }
