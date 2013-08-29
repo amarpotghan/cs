@@ -654,6 +654,7 @@ Top Bar Animation Section starts
 
 }
 #assetsTree{
+    overflow: hidden;
     font-weight: lighter;
     margin-top: 5px;
     background-color:white;
@@ -669,6 +670,7 @@ Top Bar Animation Section starts
 
 }
 #assetDetails  {
+    overflow: hidden;
     font-weight: lighter;
     font-style: italic;
     margin-top: 3px;
@@ -677,6 +679,7 @@ Top Bar Animation Section starts
     border-bottom: 1px solid #BBBBBB;
     /* border-left: 1px solid #BBBBBB;
      border-right: 1px solid #BBBBBB;*/
+
     top:0px;
     width:100%;
     min-height:200px;

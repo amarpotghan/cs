@@ -2,7 +2,7 @@
     {"id":"tileView","event":"click","func":handleViewChange},
     {"id":"listView","event":"click","func":handleViewChange},
     {"id":"detailView","event":"click","func":handleViewChange},
-    {"id":"btnSaveAssort","event":"click","func":hideAssortPanel},
+    /*{"id":"btnSaveAssort","event":"click","func":hideAssortPanel},*/
     {"id":"btnPIM","event":"click","func":slidePanel},
     {"id":"btnMAM","event":"click","func":slidePanel},
     {"id":"btnMIM","event":"click","func":slidePanel}

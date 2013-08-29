@@ -4,7 +4,7 @@ var btnSelectionFlag = 0;
 $(document).bind("TREE_ITEM_CLICKED", function itemClickedHandler(e){
     rendererData = {"mydata":e.uiData};
     if(e.nodeType == "Assortment"){
-        showAssortmentPanel();
+        showAssortmentPanel(e.uiData);
     }else{
         hideAssortPanel();
         loadViewItems(rendererData, EngineDataStore.getBaseURL()+"graphics/screens/home/htmls/renderers/TileViewRenderer.html");
@@ -63,9 +63,14 @@ function getChildrenForSelectedNode(node){
     return nodeDetails;
 }
 
-function showAssortmentPanel(){
-    $('#dim').hide();
-    $('#assortPanel').show();
+function showAssortmentPanel(rendererData){
+    $("#dim").hide();
+    $("#assortPanel").show();
+    $("#subtab1").jqxListBox({ allowDrop: true, allowDrag: true,dropAction:'copy', source: rendererData, width: 200, height: 250,
+        dragEnd: function (event) {
+            //alert(123)
+        }
+    });
 }
 
 function loadViewItems(evt,currentTemplateView){
@@ -87,40 +92,44 @@ function createTree(){
 }
 
 function slidePanel(evt){
-    if (btnSelectionFlag==0)
-    {
+    if (btnSelectionFlag==0){
        $("#typeHolder").html(evt.currentTarget.name);
-       //$("#assetsTree").html(data.type[0].list);
-       //$("#assetDetails").html(data.type[0].details);
-       //$("#assetDetails").show();
-
        $("#panel").animate({right:'30px'},"slow",function(){
            createTree();
        });
-
-        btnSelectionFlag=1;
+       btnSelectionFlag=1;
     }
-    else if (btnSelectionFlag==1 && ($("#typeHolder").html()==evt.currentTarget.name) )
-    {
+    else if (btnSelectionFlag == 1 && ($("#typeHolder").html()== evt.currentTarget.name)){
         $("#panel").animate({right:'-200px'},"slow");
         reset();
         btnSelectionFlag=0;
     }
     else {
        $("#typeHolder").html(evt.currentTarget.name);
-       //$("#assetsTree").html(data.type[0].list);
-       $("#assetDetails").html(data.type[0].details);
     }
     changeSelectedBtn(evt.currentTarget.id);
-    //createTree();
-    //GetAssetsTree.get();
+}
+
+function populateAssetsList(data){
+    $("#assetDetails").jqxListBox({ source: data,allowDrop: false, allowDrag:true, displayMember: "title", valueMember: "CompanyName", width: 200, height: 250,
+        dragStart: function (item) {
+            //return true;
+        },
+        renderer: function (index, label, value) {
+            var datarecord = data[index];
+            var imgurl = datarecord.image;
+            var img = '<img height="30" width="40" src="' + imgurl + '"/>';
+            var table = '<table style="min-width: 130px;"><tr><td style="width: 40px;" rowspan="1">' + img + '</td><td>' + datarecord.title +  '</td></tr></table>';
+            return table;
+        }
+    });
+
 }
 
 function reset(){
     $("#btnMIM").css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/MIM.png)");
     $("#btnPIM").css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/PIM.png)");
     $("#btnMAM").css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/MAM.png)");
-
 }
 
 function changeSelectedBtn(btnId){
@@ -138,18 +147,4 @@ function changeSelectedBtn(btnId){
         urls= EngineDataStore.getBaseURL()+"graphics/screens/home/images/icons/MIMb.png";
     }
     $('#'+btnId).css("background-image",'url("' + urls + '")');
-}
-
-var data = {
-    "type": [
-    {  "list": "This is PIM list. <br>This is PIM list. <br>This is PIM list. <br>This is PIM list.",
-        "details": "These are PIM list details. These are PIM list details. These are PIM list details."
-    },
-    {   "list": "This is MAM list. <br>This is MAM list. <br>This is MAM list. <br>This is MAM list.",
-        "details": "These are MAM list details. These are MAM list details. These are MAM list details."
-    },
-    {    "list": "This is MIM list. <br>This is MIM list. <br>This is MIM list. <br>This is MIM list.",
-        "details": "These are MIM list details. These are MIM list details. These are MIM list details."
-    }
-]
 }
