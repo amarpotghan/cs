@@ -12,11 +12,11 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.cs.data.core.nosql.mongodb.MongoRepository;
 
-import app.cs.helper.Finder;
 import app.cs.impl.chapter.ChapterRepository;
+import app.cs.impl.helper.Finder;
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.model.MultiDimensionalObject;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FinderUnitTests {

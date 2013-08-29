@@ -2,7 +2,7 @@ package app.cs.interfaces.chapter;
 
 import com.cs.data.api.core.GenericDomain;
 
-import app.cs.model.MultiDimensionalObject;
+import app.cs.impl.model.MultiDimensionalObject;
 
 public interface IChapterRepository {
 

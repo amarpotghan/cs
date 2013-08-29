@@ -15,9 +15,9 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.impl.dimension.DimensionRepository;
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.model.MultiDimensionalObject;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TreeBuilderUnitTests {

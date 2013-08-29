@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 
 import app.cs.actions.publicationplanning.perspective.ITreeBuilder;
 import app.cs.boundary.delivery.Service;
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.model.MultiDimensionalObject;
 
 /**
  * The Class DimensionService.
@@ -60,7 +60,7 @@ public class DimensionInteractions implements Service {
 	}
 
 	@Override
-	public List<app.cs.model.MultiDimensionalObject> getAllBy(String structure) {
+	public List<app.cs.impl.model.MultiDimensionalObject> getAllBy(String structure) {
 		setCurrentViewStructure(structure);
 		return treeBuilder.buildTree(structure);
 

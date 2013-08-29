@@ -1,6 +1,6 @@
 package app.cs.model.request;
 
-import app.cs.model.Assortment;
+import app.cs.impl.model.Assortment;
 
 public class CreateAssortmentRequest implements RequestModel {
 

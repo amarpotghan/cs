@@ -3,11 +3,11 @@ package app.cs.impl.chapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.helper.Finder;
 import app.cs.impl.delegate.factory.DomainFactory;
+import app.cs.impl.helper.Finder;
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.chapter.IChapterRepository;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
-import app.cs.model.MultiDimensionalObject;
 
 import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;

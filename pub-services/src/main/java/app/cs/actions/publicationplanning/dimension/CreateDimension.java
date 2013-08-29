@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.actions.publicationplanning.perspective.ITreeBuilder;
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.dimension.IDimensionRepository;
-import app.cs.model.MultiDimensionalObject;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.response.StringResponse;
 

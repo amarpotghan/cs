@@ -7,9 +7,9 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.contentplanning.assortment.AssortmentInteractions;
+import app.cs.impl.model.Assortment;
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.model.Assortment;
-import app.cs.model.MultiDimensionalObject;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

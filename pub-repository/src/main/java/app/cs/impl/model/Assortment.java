@@ -1,4 +1,4 @@
-package app.cs.model;
+package app.cs.impl.model;
 
 import java.io.Serializable;
 import java.util.List;

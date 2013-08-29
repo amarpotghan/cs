@@ -12,7 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.impl.chapter.ChapterRepository;
 import app.cs.impl.delegate.factory.DomainFactory;
-import app.cs.model.MultiDimensionalObject;
+import app.cs.impl.model.MultiDimensionalObject;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ChapterServiceUnitTests {

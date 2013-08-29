@@ -2,7 +2,7 @@ package app.cs.actions.publicationplanning.perspective;
 
 import java.util.List;
 
-import app.cs.model.MultiDimensionalObject;
+import app.cs.impl.model.MultiDimensionalObject;
 
 public interface ITreeBuilder {
 
