@@ -64,7 +64,7 @@ project(':cs-persistence') {
 	}
 	artifacts { csapi csApiJar }
 }
-project(':pub-repository') {
+project(':cs-repository') {
 	configurations { spi }
 	dependencies {
 		compile project(path: ':cs-persistence')
@@ -78,11 +78,11 @@ project(':pub-repository') {
 	artifacts { spi spiJar }
 }
 
-project(':pub-services') {
+project(':interactors') {
 	configurations { spi }
 
 	dependencies {
-		compile project(':cs-persistence'),project(':pub-repository')
+		compile project(':cs-persistence'),project(':cs-repository')
 	}
 	task spiJar(type: Jar) {
 		baseName = 'pub-services-spi'
@@ -94,10 +94,10 @@ project(':pub-services') {
 	artifacts { spi spiJar }
 }
 
-project(':pub-controller') {
+project(':delivery') {
 
 	dependencies {
-		compile project(':cs-persistence'),project(':pub-repository'),project(':pub-services')
-		testCompile "junit:junit:4.11", project(':cs-persistence'),project(':pub-repository'),project(':pub-services')
+		compile project(':cs-persistence'),project(':cs-repository'),project(':interactors')
+		testCompile "junit:junit:4.11", project(':cs-persistence'),project(':cs-repository'),project(':interactors')
 	}
 }
