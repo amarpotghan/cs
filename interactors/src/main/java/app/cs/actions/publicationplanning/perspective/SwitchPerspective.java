@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
+import app.cs.interfaces.slicingdicing.ITreeBuilder;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.response.TreeResponse;
 

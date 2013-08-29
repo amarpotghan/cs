@@ -1,4 +1,4 @@
-package app.cs.actions.publicationplanning.perspective;
+package app.cs.impl.slicingdicing;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
+import app.cs.interfaces.slicingdicing.ITreeBuilder;
 import app.cs.utils.ArrayUtils;
 
 /**

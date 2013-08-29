@@ -6,12 +6,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.interfaces.assets.AssetsRepository;
+import app.cs.interfaces.mam.AssetsRepository;
+import app.cs.interfaces.pim.IPIMRepository;
 
 import com.cs.data.webservices.rest.RestClient;
 
 @Component
-public class PIMRepository implements AssetsRepository {
+public class PIMRepository implements AssetsRepository, IPIMRepository {
 
 	private static final String CHARSET = "ISO-8859-1,utf-8;q=0.7,*;q=0.3";
 	private static final String ACCEPT_CHARSET = "Accept-Charset";

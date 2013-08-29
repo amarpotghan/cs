@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import app.cs.impl.mam.MAMRepository;
-import app.cs.interfaces.assets.AssetsRepository;
+import app.cs.interfaces.mam.AssetsRepository;
 
 @Component
 public class MAMInteractions {

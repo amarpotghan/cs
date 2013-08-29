@@ -6,11 +6,12 @@ import org.springframework.stereotype.Component;
 import app.cs.impl.helper.Finder;
 import app.cs.impl.model.Assortment;
 import app.cs.impl.model.MultiDimensionalObject;
+import app.cs.interfaces.assortment.IAssortmentRepository;
 
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 
 @Component
-public class AssortmentRepository {
+public class AssortmentRepository implements IAssortmentRepository {
 	private NoSqlRepository noSqlRepository;
 
 	private Finder finder;
@@ -21,6 +22,7 @@ public class AssortmentRepository {
 		this.finder = finder;
 	}
 
+	@Override
 	public void save(Assortment assortment, String path) {
 
 		MultiDimensionalObject publication = getParentPublication(path);
@@ -31,23 +33,27 @@ public class AssortmentRepository {
 
 	}
 
+	@Override
 	public Assortment getAssortmentObject() {
 		return new Assortment();
 	}
 
+	@Override
 	public MultiDimensionalObject getPublication(String path) {
 
-		MultiDimensionalObject Pub = getParentPublication(path);
-		return Pub;
+		MultiDimensionalObject publication = getParentPublication(path);
+		return publication;
 
 	}
 
+	@Override
 	public MultiDimensionalObject getParentPublication(String path) {
 		return noSqlRepository.getObjectByKey(finder.getPublicationId(path),
 				MultiDimensionalObject.class);
 	}
 
-	public void move(Assortment assortment, String newPath) {
+	@Override
+	public void copy(Assortment assortment, String newPath) {
 
 		MultiDimensionalObject publication = getParentPublication(newPath);
 		String parentId = finder.getParentId(newPath);

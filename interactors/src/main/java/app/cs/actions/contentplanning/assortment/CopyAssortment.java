@@ -3,7 +3,7 @@ package app.cs.actions.contentplanning.assortment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.impl.assortment.AssortmentRepository;
+import app.cs.interfaces.assortment.IAssortmentRepository;
 import app.cs.model.request.CreateAssortmentRequest;
 import app.cs.model.response.EmptyResponse;
 import app.cs.model.response.ResponseModel;
@@ -11,10 +11,10 @@ import app.cs.model.response.ResponseModel;
 @Component
 public class CopyAssortment {
 
-	private AssortmentRepository assortmentRepository;
+	private IAssortmentRepository assortmentRepository;
 
 	@Autowired
-	public CopyAssortment(AssortmentRepository assortmentRepository) {
+	public CopyAssortment(IAssortmentRepository assortmentRepository) {
 		this.assortmentRepository = assortmentRepository;
 
 	}

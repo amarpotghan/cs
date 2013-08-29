@@ -1,4 +1,4 @@
-package app.cs.actions.publicationplanning.perspective;
+package app.cs.interfaces.slicingdicing;
 
 import java.util.List;
 

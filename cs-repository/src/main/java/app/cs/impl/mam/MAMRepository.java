@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.interfaces.assets.AssetsRepository;
+import app.cs.interfaces.mam.AssetsRepository;
 
 import com.cs.data.webservices.rest.RestClient;
 

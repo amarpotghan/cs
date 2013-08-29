@@ -14,11 +14,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.actions.publicationplanning.perspective.TreeBuilder;
 import app.cs.impl.chapter.InMemoryViewStructure;
 import app.cs.impl.delegate.factory.IDomainFactory;
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.impl.model.MultiDimensionalObject;
+import app.cs.impl.slicingdicing.TreeBuilder;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 
 @RunWith(MockitoJUnitRunner.class)

@@ -1,4 +1,4 @@
-package app.cs.actions.publicationplanning.perspective;
+package app.cs.impl.slicingdicing;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.times;
@@ -16,6 +16,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.impl.model.MultiDimensionalObject;
+import app.cs.impl.slicingdicing.TreeBuilder;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 

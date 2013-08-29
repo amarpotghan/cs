@@ -19,6 +19,7 @@ import app.cs.impl.helper.Finder;
 import app.cs.impl.model.Assortment;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.impl.model.Product;
+import app.cs.interfaces.assortment.IAssortmentRepository;
 
 import static org.fest.assertions.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -26,7 +27,7 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class AssortmentRepositoryUnitTests {
 
-	AssortmentRepository assortmentRepository;
+	IAssortmentRepository assortmentRepository;
 
 	@Mock
 	private MongoRepository mongoRepository;
@@ -90,12 +91,12 @@ public class AssortmentRepositoryUnitTests {
 		verify(mongoRepository).save(test);
 
 	}
-	
+
 	@Test
 	public void itShouldCopyAssortmentFromOneLocationToOther() {
-	
+
 		String newPath = "A,B,C,D,E,test01";
-		
+
 		Assortment assortment = assortmentRepository.getAssortmentObject();
 		System.out.println(publication);
 		// when
@@ -113,7 +114,7 @@ public class AssortmentRepositoryUnitTests {
 		verify(finder).find(publication, "test01");
 		verify(mongoRepository).save(test);
 		System.out.println(test.getName());
-		assertEquals((test.getName()),"test01");
+		assertEquals((test.getName()), "test01");
 
 	}
 }

@@ -3,16 +3,16 @@ package app.cs.actions.contentplanning.assortment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.impl.assortment.AssortmentRepository;
 import app.cs.impl.model.Assortment;
+import app.cs.interfaces.assortment.IAssortmentRepository;
 
 @Component
 public class AssortmentInteractions {
 
-	private AssortmentRepository assortmentRepository;
+	private IAssortmentRepository assortmentRepository;
 
 	@Autowired
-	public AssortmentInteractions(AssortmentRepository assortmentRepository) {
+	public AssortmentInteractions(IAssortmentRepository assortmentRepository) {
 		this.assortmentRepository = assortmentRepository;
 
 	}

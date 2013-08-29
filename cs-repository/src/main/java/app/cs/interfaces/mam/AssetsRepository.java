@@ -1,4 +1,4 @@
-package app.cs.interfaces.assets;
+package app.cs.interfaces.mam;
 
 public interface AssetsRepository {
 
