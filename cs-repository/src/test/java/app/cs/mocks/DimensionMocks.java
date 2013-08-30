@@ -2,7 +2,9 @@ package app.cs.mocks;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
  * The Class DimensionRepository
  */
 @Component
-public class DimensionMocks {
+public class DimensionMocks implements IDimensionRepository {
 
 	/** The file utils. */
 	private FileUtils fileUtils;
@@ -42,6 +44,8 @@ public class DimensionMocks {
 
 	/** The groupids. */
 	private final String GROUPIDS = "groupIds";
+
+	private static List<MultiDimensionalObject> savedObjects = new ArrayList<MultiDimensionalObject>();
 
 	/**
 	 * Instantiates a new dimension repository.
@@ -64,45 +68,20 @@ public class DimensionMocks {
 		this.factory = factory;
 	}
 
+	@Override
 	public String createDimension(MultiDimensionalObject dimension) {
 
+		savedObjects.add(dimension);
 		return dimension.getId();
 	}
 
-	/**
-	 * Update group id for all ancestor.
-	 * 
-	 * @param path
-	 *            the path
-	 * @param groupId
-	 *            the group id
-	 */
-	private void updateGroupIdForAllAncestor(String path, String groupId) {
-		String[] paths = path.split(",");
-		for (String singlePath : paths) {
-			noSqlRepository.updateById(singlePath, FIELDTOUPDATE, groupId,
-					MultiDimensionalObject.class);
-		}
-
-	}
-
-	/**
-	 * Gets the dimension group id.
-	 * 
-	 * @param path
-	 *            the path
-	 * @return the dimension group id
-	 */
-	private String getDimensionGroupId(String path) {
-
-		return groupCache.getDimensionGroupIdFor(path);
-	}
-
+	@Override
 	public GenericDomain getDomain(String type) {
 
-		return factory.getDomainObject(type);
+		return new MultiDimensionalObject();
 	}
 
+	@Override
 	public String getAllDimensions() throws IOException, URISyntaxException {
 		return fileUtils.getFileContents("dimensions.json");
 	}

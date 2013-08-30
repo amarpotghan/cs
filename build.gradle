@@ -82,7 +82,7 @@ project(':interactors') {
 	configurations { spi }
 
 	dependencies {
-		compile project(':cs-persistence'),project(':cs-repository')
+		compile project(':cs-repository')
 	}
 	task spiJar(type: Jar) {
 		baseName = 'pub-services-spi'
@@ -97,7 +97,7 @@ project(':interactors') {
 project(':delivery') {
 
 	dependencies {
-		compile project(':cs-persistence'),project(':cs-repository'),project(':interactors')
-		testCompile "junit:junit:4.11", project(':cs-persistence'),project(':cs-repository'),project(':interactors')
+		compile project(':interactors')
+		testCompile "junit:junit:4.11", project(':interactors')
 	}
 }

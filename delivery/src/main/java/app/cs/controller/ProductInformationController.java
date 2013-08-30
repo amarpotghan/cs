@@ -58,7 +58,6 @@ public class ProductInformationController {
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObject = (JSONObject) parser.parse(products);
 		JSONArray array = new JSONArray();
-		System.out.println(array.size());
 		for (Object object : jsonObject.keySet()) {
 			array.add(jsonObject.get(object));
 

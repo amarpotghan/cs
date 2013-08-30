@@ -1,4 +1,4 @@
-package app.cs.impl.chapter;
+package app.cs.mocks;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
  * Dont use ContentObject(DimensionObject) TODO with separate interface****
  */
 @Component
-public class ChapterRepository implements IChapterRepository {
+public class ChapterMocks implements IChapterRepository {
 
 	/** The nosql template for mongo. */
 	private NoSqlRepository noSqlRepository;
@@ -41,8 +41,8 @@ public class ChapterRepository implements IChapterRepository {
 	 *            the cache
 	 */
 	@Autowired
-	public ChapterRepository(NoSqlRepository noSqlRepository,
-			DomainFactory factory, Finder finder) {
+	public ChapterMocks(NoSqlRepository noSqlRepository, DomainFactory factory,
+			Finder finder) {
 		this.noSqlRepository = noSqlRepository;
 		this.factory = factory;
 		this.finder = finder;
@@ -58,10 +58,7 @@ public class ChapterRepository implements IChapterRepository {
 	 */
 	@Override
 	public String save(MultiDimensionalObject chapter) {
-
-		MultiDimensionalObject publication = getParentPublication(chapter
-				.getPath());
-		return addChapterToPublication(publication, chapter);
+		return chapter.getId();
 
 	}
 
@@ -101,24 +98,25 @@ public class ChapterRepository implements IChapterRepository {
 
 	@Override
 	public String delete(MultiDimensionalObject chapter) {
-		MultiDimensionalObject parentPublication = getParentPublication(chapter
-				.getPath());
-		MultiDimensionalObject parent = finder.find(parentPublication,
-				finder.getParentId(chapter.getPath()));
-		parent.removeChild(chapter);
-		saveToMongo(parentPublication);
+		/*
+		 * MultiDimensionalObject parentPublication =
+		 * getParentPublication(chapter .getPath()); MultiDimensionalObject
+		 * parent = finder.find(parentPublication,
+		 * finder.getParentId(chapter.getPath())); parent.removeChild(chapter);
+		 * saveToMongo(parentPublication); return chapter.getId();
+		 */
 		return chapter.getId();
 	}
 
 	@Override
 	public void move(MultiDimensionalObject chapter, String newPath) {
-		MultiDimensionalObject parentPublication = getParentPublication(chapter
-				.getPath());
-		MultiDimensionalObject chapterForNewLocation = finder.find(
-				parentPublication, chapter.getId());
-		chapterForNewLocation.setPath(newPath);
-		save(chapterForNewLocation);
-		delete(chapter);
+		/*
+		 * MultiDimensionalObject parentPublication =
+		 * getParentPublication(chapter .getPath()); MultiDimensionalObject
+		 * chapterForNewLocation = finder.find( parentPublication,
+		 * chapter.getId()); chapterForNewLocation.setPath(newPath);
+		 * save(chapterForNewLocation); delete(chapter);
+		 */
 
 	}
 

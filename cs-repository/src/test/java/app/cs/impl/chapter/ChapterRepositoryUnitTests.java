@@ -7,17 +7,12 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.impl.chapter.ChapterRepository;
-import app.cs.impl.chapter.InMemoryViewStructure;
 import app.cs.impl.delegate.factory.DomainFactory;
-import app.cs.impl.dimension.InMemoryDimensionGroup;
 import app.cs.impl.helper.Finder;
 import app.cs.impl.model.MultiDimensionalObject;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.utils.ArrayUtils;
 
 import com.cs.data.core.nosql.mongodb.MongoRepository;
 
-import static org.fest.assertions.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -123,7 +118,7 @@ public class ChapterRepositoryUnitTests {
 		repository.move(chapter, newPath);
 
 		// then
-		verify(noSqlTemplateForMongo,times(2)).save(publication);
+		verify(noSqlTemplateForMongo, times(2)).save(publication);
 
 	}
 }
