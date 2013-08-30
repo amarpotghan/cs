@@ -46,4 +46,10 @@ public class PIMMocks implements AssetsRepository, IPIMRepository {
 		return id == null || id == "" ? BASE_URL : BASE_URL + id;
 	}
 
+	@Override
+	public String getSearchResults(String searchQuery) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

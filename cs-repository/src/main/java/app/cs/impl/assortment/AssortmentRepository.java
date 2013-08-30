@@ -30,6 +30,7 @@ public class AssortmentRepository implements IAssortmentRepository {
 		MultiDimensionalObject parent = finder.find(publication, parentId);
 		parent.addAssortment(assortment);
 		noSqlRepository.save(parent);
+		//noSqlRepository.save(assortment);
 
 	}
 

@@ -1,7 +1,5 @@
 package app.cs.impl.assortment;
 
-import java.util.ArrayList;
-import java.util.List;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -31,7 +29,7 @@ public class AssortmentRepositoryUnitTests {
 
 	@Mock
 	private MongoRepository mongoRepository;
-
+ 
 	@Mock
 	private Assortment assortment;
 

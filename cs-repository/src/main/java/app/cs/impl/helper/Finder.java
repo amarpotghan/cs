@@ -58,7 +58,6 @@ public class Finder {
 		String currentViewStructure = structure.getCurrentViewStructure();
 		int lastIndex = getLastIndexOf(currentViewStructure);
 
-		System.out.println(currentViewStructure);
 		return path.split(COMMA)[lastIndex];
 
 	}

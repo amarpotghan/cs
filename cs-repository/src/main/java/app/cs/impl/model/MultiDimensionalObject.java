@@ -39,6 +39,10 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	/** The is folder.TODO */
 	private boolean isFolder;
 
+	private List<Assortment> assortments;
+
+	private List<MultiDimensionalObject> children;
+
 	/**
 	 * Instantiates a new content object.
 	 */
@@ -94,17 +98,15 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	private List<String> groupIds;
 
 	public List<Assortment> getAssortment() {
-		return assortment;
+		return assortments;
 	}
 
 	public void setAssortment(List<Assortment> assortment) {
-		this.assortment = assortment;
+		this.assortments = assortment;
 	}
 
 	/** The children. */
-	private List<MultiDimensionalObject> children;
 
-	private List<Assortment> assortment;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -419,20 +421,19 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		}
 	}
 
-	
-	
 	@Override
 	public void addAssortment(Assortment assortment) {
 		List<Assortment> newChildren;
-		if (this.assortment == null) {
+		if (this.assortments == null) {
 			newChildren = new ArrayList<Assortment>();
 			newChildren.add(assortment);
-			this.assortment = newChildren;
+			this.assortments = newChildren;
 
 		} else {
-			this.assortment.add(assortment);
+			this.assortments.add(assortment);
 		}
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -471,11 +472,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

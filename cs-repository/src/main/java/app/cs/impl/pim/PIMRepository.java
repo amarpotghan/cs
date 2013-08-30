@@ -26,7 +26,9 @@ public class PIMRepository implements AssetsRepository, IPIMRepository {
 	private static final String HOST = "Host";
 	private static final String LANGUAGE = "en-US,en;q=0.8";
 	private static final String ACCEPT_LANGUAGE = "Accept-Language";
-	private final String BASE_URL = "http://192.168.135.108/CS13.0/admin/rest/pim/list/";
+	private final String BASE_URL = "http://192.168.135.108/CS13.0/admin";
+	private final String LIST_URL = BASE_URL + "/rest/pim/list/";
+	private final String SEARCH_URL = BASE_URL + "/rest/pim/search/";
 	private RestClient client;
 
 	@Autowired
@@ -38,7 +40,7 @@ public class PIMRepository implements AssetsRepository, IPIMRepository {
 	@Override
 	public String getAssetsFor(String id) {
 
-		String url = formUrl(id);
+		String url = formListUrl(id);
 		Map<String, String> headerParameters = new HashMap<String, String>();
 		headerParameters.put(ACCEPT_LANGUAGE, LANGUAGE);
 		headerParameters.put(HOST, HOSTIP);
@@ -50,8 +52,26 @@ public class PIMRepository implements AssetsRepository, IPIMRepository {
 
 	}
 
-	private String formUrl(String id) {
-		return id == null || id == "" ? BASE_URL : BASE_URL + id;
+	private String formListUrl(String id) {
+		return id == null || id == "" ? LIST_URL : LIST_URL + id;
+	}
+
+	@Override
+	public String getSearchResults(String searchQuery) {
+		String url = formSearchUrl(searchQuery);
+		Map<String, String> headerParameters = new HashMap<String, String>();
+		headerParameters.put(ACCEPT_LANGUAGE, LANGUAGE);
+		headerParameters.put(HOST, HOSTIP);
+		headerParameters.put(USER_AGENT, USER_AGENT_INFO);
+		headerParameters.put(X_REQUESTED_WITH, XML_HTTP_REQUEST);
+		headerParameters.put(ACCEPT, ACCEPTEDTYPES);
+		headerParameters.put(ACCEPT_CHARSET, CHARSET);
+		return client.get(url, headerParameters);
+	}
+
+	private String formSearchUrl(String searchQuery) {
+		return searchQuery == null || searchQuery == "" ? SEARCH_URL
+				: SEARCH_URL + searchQuery;
 	}
 
 }
