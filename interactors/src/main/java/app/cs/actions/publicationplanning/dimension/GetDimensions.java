@@ -6,7 +6,9 @@ import java.net.URISyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import app.cs.boundary.delivery.Interactor;
 import app.cs.interfaces.dimension.IDimensionRepository;
+import app.cs.model.request.RequestModel;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.response.StringResponse;
 
@@ -14,7 +16,7 @@ import app.cs.model.response.StringResponse;
  * The Class DimensionService.
  */
 @Component
-public class GetDimensions {
+public class GetDimensions implements Interactor {
 
 	/** The dimension repository. */
 	private IDimensionRepository dimensionRepository;
@@ -34,9 +36,13 @@ public class GetDimensions {
 
 	}
 
-	public ResponseModel execute() throws IOException, URISyntaxException {
+	public ResponseModel execute(RequestModel model) {
 
-		return new StringResponse(dimensionRepository.getAllDimensions());
+		try {
+			return new StringResponse(dimensionRepository.getAllDimensions());
+		} catch (Exception fileReadException) {
+
+			return new StringResponse("No dimensions found");
+		}
 	}
-
 }

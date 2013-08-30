@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    EngineDataStore.setBaseURL("/delivery/pages/");
+    EngineDataStore.setBaseURL("/pub-controller/pages/");
     getScreenMappingObject();
 });
 
@@ -14,7 +14,7 @@ function parseScreenMappingObject(json){
     EngineDataStore.setScreenMappingObject(json);
     $.each(json, function (key, item) {
         if(item.loadOnStartup == "true"){
-            TemplateLoader.loadTemplate(key,'',item.containerId);
+            Router.loadTemplate(key,item.containerId);
         }
     });
     getApiMappingObject();

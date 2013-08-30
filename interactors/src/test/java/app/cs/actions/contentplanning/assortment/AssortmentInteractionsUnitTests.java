@@ -50,7 +50,7 @@ public class AssortmentInteractionsUnitTests {
 		String newPath = "Mp02,p02";
 
 		// when
-		assortmentUseCases.move(assortment, newPath);
+		assortmentUseCases.copy(assortment, newPath);
 		System.out.println(assortment);
 
 		// then

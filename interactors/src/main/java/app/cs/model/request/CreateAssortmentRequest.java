@@ -1,7 +1,10 @@
 package app.cs.model.request;
 
+import org.springframework.stereotype.Component;
+
 import app.cs.impl.model.Assortment;
 
+@Component
 public class CreateAssortmentRequest implements RequestModel {
 
 	private Assortment assortment;

@@ -103,12 +103,12 @@ var DynaTree = function(){
     var getUrlPrefix=function(type,action){
         switch(type){
             case "Chapter":
-                return  "/delivery/chapter/"+action+"/";
+                return  "/pub-controller/chapter/"+action+"/";
             case "Page":
-               return  "/delivery/page/"+action+"/";
+               return  "/pub-controller/page/"+action+"/";
 
         }
-        return "/delivery/dimension/"+action+"/";
+        return "/pub-controller/dimension/"+action+"/";
     }
 
     this.createTree = function(treeObj,data){

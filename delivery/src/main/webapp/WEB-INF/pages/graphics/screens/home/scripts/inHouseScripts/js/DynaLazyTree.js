@@ -7,7 +7,7 @@ var DynaLazyTree = function(){
                 },
                 onLazyRead: function(node){
                     node.appendAjax({
-                        url: "/delivery/testdrive/mocks/tree/AssetChildTree.json",
+                        url: "/pub-controller/testdrive/mocks/tree/AssetChildTree.json",
                         success: function(node, data) {
                             populateAssetsList(data);
                         }

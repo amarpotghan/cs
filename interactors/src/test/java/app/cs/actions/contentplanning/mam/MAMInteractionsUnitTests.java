@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import app.cs.actions.contentplanning.assortment.MAMInteractions;
 import app.cs.impl.mam.MAMRepository;
 
 @RunWith(MockitoJUnitRunner.class)

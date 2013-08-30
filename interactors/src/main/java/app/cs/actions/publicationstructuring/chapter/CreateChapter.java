@@ -3,9 +3,12 @@ package app.cs.actions.publicationstructuring.chapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.chapter.IChapterRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
+import app.cs.model.request.CreateChapterRequest;
+import app.cs.model.request.RequestModel;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.response.StringResponse;
 
@@ -13,7 +16,7 @@ import app.cs.model.response.StringResponse;
  * The Class ChapterService.
  */
 @Component
-public class CreateChapter {
+public class CreateChapter implements Interactor{
 
 	/** The contentobject. */
 	private final String CONTENTOBJECT = "MultiDimensionalObject";
@@ -34,12 +37,13 @@ public class CreateChapter {
 		this.chapterRepository = chapterRepository;
 	}
 
-	public ResponseModel execute(String type, String name, String path,
-			boolean isFolder) {
+	public ResponseModel execute(RequestModel model) {
 
+		CreateChapterRequest request = (CreateChapterRequest) model;
 		MultiDimensionalObject chapter = (MultiDimensionalObject) chapterRepository
 				.getDomain(CONTENTOBJECT);
-		setChapterAtrributes(chapter, type, name, path, isFolder);
+		setChapterAtrributes(chapter, request.getType(), request.getName(),
+				request.getPath(), request.isFolder());
 		return new StringResponse(chapterRepository.save(chapter));
 	}
 

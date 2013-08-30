@@ -1,3 +1,7 @@
 function getLogin(){
-    LoginPresentor.loadScreen(LoginPresentor.makeLogoutBtnVisible);
+    GetLogin.login();
+}
+
+function logoutUser(){
+    location.reload();
 }

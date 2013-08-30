@@ -85,7 +85,7 @@ function hideAssortPanel(){
 }
 
 function createTree(){
-    var urls = "/delivery/testdrive/mocks/tree/AssetTree.json";
+    var urls = "/pub-controller/testdrive/mocks/tree/AssetTree.json";
     var treeObj = document.getElementById("assetsTree");
     var darkTree = ElementFactory.getLazyTree();
     darkTree.createTree(treeObj,urls);
@@ -127,15 +127,15 @@ function populateAssetsList(data){
 }
 
 function reset(){
-    $("#btnMIM").css("background-image","url(/delivery/pages/graphics/screens/home/images/icons/MIM.png)");
-    $("#btnPIM").css("background-image","url(/delivery/pages/graphics/screens/home/images/icons/PIM.png)");
-    $("#btnMAM").css("background-image","url(/delivery/pages/graphics/screens/home/images/icons/MAM.png)");
+    $("#btnMIM").css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/MIM.png)");
+    $("#btnPIM").css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/PIM.png)");
+    $("#btnMAM").css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/MAM.png)");
 }
 
 function changeSelectedBtn(btnId){
-    $('#btnMIM').css("background-image","url(/delivery/pages/graphics/screens/home/images/icons/MIM.png)");
-    $('#btnPIM').css("background-image","url(/delivery/pages/graphics/screens/home/images/icons/PIM.png)");
-    $('#btnMAM').css("background-image","url(/delivery/pages/graphics/screens/home/images/icons/MAM.png)");
+    $('#btnMIM').css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/MIM.png)");
+    $('#btnPIM').css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/PIM.png)");
+    $('#btnMAM').css("background-image","url(/pub-controller/pages/graphics/screens/home/images/icons/MAM.png)");
     var urls;
     if(btnId == "btnPIM"){
         urls= EngineDataStore.getBaseURL()+"graphics/screens/home/images/icons/PIMb.png";

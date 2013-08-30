@@ -1,5 +1,8 @@
 package app.cs.model.request;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class StringRequest implements RequestModel {
 	private String stringRequest;
 

@@ -3,10 +3,13 @@ package app.cs.actions.publicationplanning.dimension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import app.cs.actions.publicationplanning.perspective.ITreeBuilder;
+import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.dimension.IDimensionRepository;
-import app.cs.interfaces.slicingdicing.ITreeBuilder;
+import app.cs.model.request.CreateDimensionRequest;
+import app.cs.model.request.RequestModel;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.response.StringResponse;
 
@@ -14,7 +17,7 @@ import app.cs.model.response.StringResponse;
  * The Class DimensionService. TODO remove out all annotation from class
  */
 @Component
-public class CreateDimension {
+public class CreateDimension implements Interactor{
 
 	/** The dimension repository. */
 	private IDimensionRepository dimensionRepository;
@@ -31,20 +34,21 @@ public class CreateDimension {
 	 *            the tree builder
 	 */
 	@Autowired
-	public CreateDimension(IDimensionRepository dimensionRepository,
-			ITreeBuilder treeBuilder, IInMemoryViewStructure cache) {
+	public CreateDimension(IDimensionRepository dimensionRepository) {
 
 		this.dimensionRepository = dimensionRepository;
 
 	}
 
-	public ResponseModel execute(String type, String name, String path,
-			boolean isFolder) {
+	public ResponseModel execute(RequestModel model) {
+
+		CreateDimensionRequest request = (CreateDimensionRequest) model;
 
 		MultiDimensionalObject dimension = (MultiDimensionalObject) dimensionRepository
 				.getDomain(CONTENTOBJECT);
 
-		setDimensionAttributes(dimension, type, name, path, isFolder);
+		setDimensionAttributes(dimension, request.getType(), request.getName(),
+				request.getPath(), request.isFolder());
 		return new StringResponse(
 				dimensionRepository.createDimension(dimension));
 	}

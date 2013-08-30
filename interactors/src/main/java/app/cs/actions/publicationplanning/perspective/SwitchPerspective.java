@@ -3,8 +3,10 @@ package app.cs.actions.publicationplanning.perspective;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import app.cs.boundary.delivery.Interactor;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
-import app.cs.interfaces.slicingdicing.ITreeBuilder;
+import app.cs.model.request.RequestModel;
+import app.cs.model.request.StringRequest;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.response.TreeResponse;
 
@@ -12,7 +14,7 @@ import app.cs.model.response.TreeResponse;
  * The Class DimensionService.
  */
 @Component
-public class SwitchPerspective {
+public class SwitchPerspective implements Interactor{
 
 	/** The tree builder. */
 	private ITreeBuilder treeBuilder;
@@ -40,9 +42,11 @@ public class SwitchPerspective {
 
 	}
 
-	public ResponseModel execute(String structure) {
-		setCurrentViewStructure(structure);
-		return new TreeResponse(treeBuilder.buildTree(structure));
+	public ResponseModel execute(RequestModel model) {
+		StringRequest request = (StringRequest) model;
+		setCurrentViewStructure(request.getStringRequest());
+		return new TreeResponse(treeBuilder.buildTree(request
+				.getStringRequest()));
 
 	}
 
