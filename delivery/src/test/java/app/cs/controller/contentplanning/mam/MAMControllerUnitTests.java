@@ -60,12 +60,12 @@ public class MAMControllerUnitTests{
 		StringResponse response = new StringResponse(result);
 		
 		// when
-		when(getMAMAssets.execute(null)).thenReturn(null);
+		when(getMAMAssets.execute(request)).thenReturn(response);
 
 		String actualResult = mamController.list();
 		// then
 
-		verify(getMAMAssets).execute(null);
+		verify(getMAMAssets).execute(request);
 		assertThat(actualResult).isEqualTo(result);
 
 	}
