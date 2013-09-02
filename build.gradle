@@ -60,14 +60,14 @@ project(':cs-persistence') {
 		baseName = 'persistence-api'
 		dependsOn classes
 		from sourceSets.main.output
-		include('com/cs/data/api/**')
+		include('com/cs/data/**')
 	}
 	artifacts { spi csApiJar }
 }
 project(':cs-repository') {
 	configurations { spi }
 	dependencies {
-		compile project(path: ':cs-persistence',configuration:'spi')
+		compile project(path: ':cs-persistence')
 		testCompile "junit:junit:4.11", project(':cs-persistence')
 	}
 	task spiJar(type: Jar) {
@@ -77,7 +77,7 @@ project(':cs-repository') {
 		include('app/cs/interfaces/**')
 		include('app/cs/impl/model/**')
 		include('app/cs/utils/**')
-		include('app/cs/mocks/**')
+		include('app/cs/**')
 	}
 	artifacts { spi spiJar }
 }
@@ -86,14 +86,15 @@ project(':interactors') {
 	configurations { spi }
 
 	dependencies {
-		compile project(path:':cs-repository',configuration:'spi')
+		compile project(path:':cs-repository')
 		testCompile "junit:junit:4.11", project(':cs-repository')
 	}
 	task spiJar(type: Jar) {
-		baseName = 'pub-services-spi'
+		baseName = 'interactors-api'
 		dependsOn classes
 		from sourceSets.main.output
-		include('app/cs/**')
+		include('app/cs/boundary/delivery/**')
+		include('app/cs/model/**')
 	}
 
 	artifacts { spi spiJar }
@@ -103,7 +104,7 @@ project(':delivery') {
 
 	dependencies {
 		compile project(':interactors')
-		testCompile "junit:junit:4.11", project(':interactors')
+		testCompile "junit:junit:4.11", project(path:':interactors')
 		testCompile "junit:junit:4.11", project(':cs-repository'),project(':cs-persistence')
 	}
 }

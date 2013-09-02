@@ -9,6 +9,10 @@ public class MovePageRequest implements RequestModel {
 	private String name;
 	private String path;
 	private String newPath;
+	
+	public MovePageRequest(){
+		
+	}
 
 	public String getType() {
 		return type;

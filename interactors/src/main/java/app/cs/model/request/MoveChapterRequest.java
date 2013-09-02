@@ -9,6 +9,10 @@ public class MoveChapterRequest implements RequestModel {
 	private String name;
 	private String path;
 	private String newPath;
+	
+	public MoveChapterRequest(){
+		
+	}
 
 	public String getType() {
 		return type;

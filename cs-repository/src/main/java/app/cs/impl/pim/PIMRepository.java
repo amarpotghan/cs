@@ -10,7 +10,6 @@ import app.cs.interfaces.mam.AssetsRepository;
 
 import com.cs.data.api.webservices.rest.IRestClient;
 
-@Component
 public class PIMRepository implements AssetsRepository {
 
 	private static final String CHARSET = "ISO-8859-1,utf-8;q=0.7,*;q=0.3";

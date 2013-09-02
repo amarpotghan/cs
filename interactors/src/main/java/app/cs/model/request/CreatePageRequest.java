@@ -10,6 +10,10 @@ public class CreatePageRequest implements RequestModel {
 	private String path;
 	private boolean isFolder;
 
+	public CreatePageRequest() {
+
+	}
+
 	public String getType() {
 		return type;
 	}
@@ -54,7 +58,5 @@ public class CreatePageRequest implements RequestModel {
 	public void setFolder(boolean isFolder) {
 		this.isFolder = isFolder;
 	}
-
-
 
 }

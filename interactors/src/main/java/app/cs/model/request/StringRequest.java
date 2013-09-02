@@ -6,6 +6,10 @@ import org.springframework.stereotype.Component;
 public class StringRequest implements RequestModel {
 	private String stringRequest;
 
+	public StringRequest() {
+
+	}
+
 	public String getStringRequest() {
 		return stringRequest;
 	}

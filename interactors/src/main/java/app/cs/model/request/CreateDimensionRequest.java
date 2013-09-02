@@ -9,6 +9,10 @@ public class CreateDimensionRequest implements RequestModel {
 	private String name;
 	private String path;
 
+	public CreateDimensionRequest() {
+
+	}
+
 	public String getType() {
 		return type;
 	}

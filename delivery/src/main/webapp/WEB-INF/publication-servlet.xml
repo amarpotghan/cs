@@ -42,4 +42,12 @@
 	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" 
 		/> -->
 
+	<bean id="mamRepository" class="app.cs.impl.mam.MAMRepository">
+
+	</bean>
+	
+	
+	<bean id="pimRepository" class="app.cs.impl.pim.PIMRepository">
+
+	</bean>
 </beans>

@@ -14,7 +14,6 @@ import com.cs.data.api.core.GenericDomain;
  * The Class ContentObject. TODO implement interface TODO remove all the
  * annotation from class file TODO rename to dimensionObject
  */
-@Component
 public class HierarchicalObject implements Serializable, GenericDomain, IHierarchicalObject {
 
 	/** The page. */

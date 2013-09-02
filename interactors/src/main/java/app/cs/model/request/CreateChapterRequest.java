@@ -10,6 +10,10 @@ public class CreateChapterRequest implements RequestModel {
 	private String path;
 	private boolean isFolder;
 
+	public CreateChapterRequest() {
+
+	}
+
 	public String getType() {
 		return type;
 	}
@@ -54,7 +58,5 @@ public class CreateChapterRequest implements RequestModel {
 	public void setFolder(boolean isFolder) {
 		this.isFolder = isFolder;
 	}
-
-
 
 }
