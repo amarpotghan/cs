@@ -1,4 +1,4 @@
-package app.cs.controller.contentplanning.assortment;
+/*package app.cs.controller.contentplanning.assortment;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -75,3 +75,4 @@ public class AssortmentControllerUnitTests {
 	}
 
 }
+*/

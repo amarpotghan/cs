@@ -11,6 +11,7 @@ import app.cs.model.request.StringRequest;
 import app.cs.model.response.StringResponse;
 
 public class GetMAMAssetController {
+	
 	private Interactor getMAMAssets;
 
 	private StringRequest request;

@@ -1,4 +1,4 @@
-package app.cs.controller.chapter;
+package app.cs.controller.publicationstructuring.chapter;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;

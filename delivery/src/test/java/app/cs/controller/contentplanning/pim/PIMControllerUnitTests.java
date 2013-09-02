@@ -1,4 +1,4 @@
-package app.cs.controller.pim;
+package app.cs.controller.contentplanning.pim;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,7 +31,7 @@ import app.cs.model.response.PIMNode;
 import app.cs.model.response.StringResponse;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ProductControllerUnitTests {
+public class PIMControllerUnitTests {
 
 	private GetPIMProductsController productController;
 

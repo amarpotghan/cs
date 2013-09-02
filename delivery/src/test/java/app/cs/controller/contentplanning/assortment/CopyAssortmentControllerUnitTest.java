@@ -14,6 +14,8 @@ import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.model.request.CopyAssortmentRequest;
 import app.cs.model.response.EmptyResponse;
 import app.cs.model.response.ResponseModel;
+import app.cs.boundary.delivery.Interactor;
+
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -24,7 +26,7 @@ public class CopyAssortmentControllerUnitTest {
 	private CopyAssortmentController copyAssortmentController;
 
 	@Mock
-	private CopyAssortment copyAssortment;
+	private Interactor interactor;
 
 	@Mock
 	private CopyAssortmentRequest copyAssortmentRequest;
@@ -34,7 +36,7 @@ public class CopyAssortmentControllerUnitTest {
 
 	@Before
 	public void setUp() {
-		copyAssortmentController = new CopyAssortmentController(copyAssortment,
+		copyAssortmentController = new CopyAssortmentController(interactor,
 				copyAssortmentRequest);
 	}
 
@@ -50,7 +52,7 @@ public class CopyAssortmentControllerUnitTest {
 		copyAssortmentController.copy(assortment, newPath);
 
 		// then
-		verify(copyAssortment).execute(copyAssortmentRequest);
+		verify(interactor).execute(copyAssortmentRequest);
 	}
 
 }

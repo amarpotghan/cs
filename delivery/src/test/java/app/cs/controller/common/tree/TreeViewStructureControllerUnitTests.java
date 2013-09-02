@@ -1,4 +1,4 @@
-package app.cs.controller.tree;
+package app.cs.controller.common.tree;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;

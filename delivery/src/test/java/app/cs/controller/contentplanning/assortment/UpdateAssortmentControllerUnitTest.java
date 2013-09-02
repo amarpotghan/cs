@@ -7,14 +7,15 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.contentplanning.assortment.UpdateAssortment;
+import app.cs.boundary.delivery.Interactor;
 import app.cs.controller.contentplanning.assortment.UpdateAssortmentController;
 import app.cs.impl.model.Assortment;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.model.request.CopyAssortmentRequest;
-import app.cs.model.response.EmptyResponse;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.request.UpdateAssortmentRequest;
+import app.cs.boundary.delivery.Interactor;
+
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -25,7 +26,7 @@ public class UpdateAssortmentControllerUnitTest {
 	private UpdateAssortmentController updateAssortmentController;
 
 	@Mock
-	private UpdateAssortment updateAssortment;
+	private Interactor interactor;
 	
 	@Mock
 	private Assortment assortment;
@@ -35,7 +36,7 @@ public class UpdateAssortmentControllerUnitTest {
 
 	@Before
 	public void setUp() {
-		updateAssortmentController = new UpdateAssortmentController(updateAssortment, updateAssortmentRequest);
+		updateAssortmentController = new UpdateAssortmentController(interactor, updateAssortmentRequest);
 	}
 
 	@Test
@@ -48,7 +49,7 @@ public class UpdateAssortmentControllerUnitTest {
 		updateAssortmentController.execute(assortment);
 
 		// then
-		verify(updateAssortment).execute(updateAssortmentRequest);
+		verify(interactor).execute(updateAssortmentRequest);
 	}
 	
 	

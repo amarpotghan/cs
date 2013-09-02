@@ -1,4 +1,4 @@
-package app.cs.controller.text;
+package app.cs.controller.contentplanning.textassets;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

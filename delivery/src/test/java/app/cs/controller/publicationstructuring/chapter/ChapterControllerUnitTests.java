@@ -1,4 +1,4 @@
-package app.cs.controller.chapter;
+package app.cs.controller.publicationstructuring.chapter;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.publicationstructuring.chapter.ChapterInteractions;
-import app.cs.controller.chapter.ChapterController;
+import app.cs.controller.publicationstructuring.chapter.ChapterController;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;

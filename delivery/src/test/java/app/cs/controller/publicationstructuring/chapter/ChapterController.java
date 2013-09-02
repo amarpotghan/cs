@@ -1,4 +1,4 @@
-package app.cs.controller.chapter;
+package app.cs.controller.publicationstructuring.chapter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

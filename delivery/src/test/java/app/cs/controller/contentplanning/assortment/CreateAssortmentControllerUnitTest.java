@@ -14,6 +14,7 @@ import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.model.request.CreateAssortmentRequest;
 import app.cs.model.response.EmptyResponse;
 import app.cs.model.response.ResponseModel;
+import app.cs.boundary.delivery.Interactor;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -24,7 +25,7 @@ public class CreateAssortmentControllerUnitTest {
 	private CreateAssortmentController createAssortmentController;
 
 	@Mock
-	private CreateAssortment createAssortment;
+	private Interactor interactor;
 	
 	@Mock
 	private CreateAssortmentRequest createAssortmentRequest;
@@ -34,7 +35,7 @@ public class CreateAssortmentControllerUnitTest {
 
 	@Before
 	public void setUp() {
-		createAssortmentController = new CreateAssortmentController(createAssortment, createAssortmentRequest);
+		createAssortmentController = new CreateAssortmentController(interactor , createAssortmentRequest);
 	}
 
 	@Test
@@ -49,7 +50,7 @@ public class CreateAssortmentControllerUnitTest {
 		createAssortmentController.create(assortment, path);
 
 		// then
-		verify(createAssortment).execute(createAssortmentRequest);
+		verify(interactor).execute(createAssortmentRequest);
 	}
 	
 	
