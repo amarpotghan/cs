@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 
 import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.assortment.AssortmentRepository;
+import app.cs.impl.model.Assortment;
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.model.request.CopyAssortmentRequest;
 import app.cs.model.request.RequestModel;
 import app.cs.model.response.EmptyResponse;
@@ -23,8 +25,11 @@ public class CopyAssortment implements Interactor {
 
 	public ResponseModel execute(RequestModel request) {
 		CopyAssortmentRequest copyAssortmentRequest = (CopyAssortmentRequest) request;
-		assortmentRepository.copy(copyAssortmentRequest.getAssortment(),
-				copyAssortmentRequest.getNewPath());
+		MultiDimensionalObject assortmentObject = new MultiDimensionalObject();
+
+		Assortment assortment = copyAssortmentRequest.getAssortment();
+		String newPath = copyAssortmentRequest.getNewPath();
+		assortmentRepository.copy(assortmentObject, newPath);
 
 		return new EmptyResponse();
 

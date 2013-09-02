@@ -1,4 +1,4 @@
-package app.cs.actions.contentplanning.assortment;
+/*package app.cs.actions.contentplanning.assortment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,3 +28,4 @@ public class AssortmentInteractions {
 
 	}
 }
+*/

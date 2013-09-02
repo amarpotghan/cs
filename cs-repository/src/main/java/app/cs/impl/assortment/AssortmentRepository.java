@@ -50,7 +50,8 @@ public class AssortmentRepository implements IAssortmentRepository {
 		return addAssortmentToPublication(publication, assortment);
 
 	}
-
+	
+	
 	/**
 	 * Adds the assortment to publication.
 	 * 
