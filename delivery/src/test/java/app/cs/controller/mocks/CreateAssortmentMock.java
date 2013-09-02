@@ -1,4 +1,4 @@
-package app.cs.controller.contentplanning.assortment;
+package app.cs.controller.mocks;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,14 +11,14 @@ import app.cs.impl.model.Assortment;
 import app.cs.model.request.CreateAssortmentRequest;
 
 @Controller
-public class CreateAssortmentController {
+public class CreateAssortmentMock {
 
 	private Interactor createAssortment;
 
 	private CreateAssortmentRequest request;
 
 	@Autowired
-	public CreateAssortmentController(Interactor createAssortment,
+	public CreateAssortmentMock(Interactor createAssortment,
 			CreateAssortmentRequest request) {
 
 		this.createAssortment = createAssortment;
@@ -26,14 +26,10 @@ public class CreateAssortmentController {
 	}
 
 	@RequestMapping(value = "/assortment/{name}/create/{path}")
-	public void create(@RequestBody Assortment assortment, @PathVariable String name,
+	public void create(@RequestBody Assortment assortment, 
+			@PathVariable String name,
 			@PathVariable String path) {
-		request.setPath(path);
-		request.setAssortment(assortment);
-		request.setName(name);
 		
 
-		createAssortment.execute(request);
 	}
-
 }

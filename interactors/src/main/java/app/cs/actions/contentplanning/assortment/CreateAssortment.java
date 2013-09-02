@@ -18,6 +18,8 @@ import app.cs.model.response.ResponseModel;
 public class CreateAssortment implements Interactor {
 
 	private IAssortmentRepository assortmentRepository;
+	
+	private String type = "Assortment";
 
 	@Autowired
 	public CreateAssortment(IAssortmentRepository assortmentRepository) {
@@ -30,9 +32,15 @@ public class CreateAssortment implements Interactor {
 		CreateAssortmentRequest createAssortmentRequest = (CreateAssortmentRequest) request;
 		MultiDimensionalObject assortmentObject = (MultiDimensionalObject) assortmentRepository
 				.getDomain("MultiDimensionalObject");
+		
 		Assortment assortment = createAssortmentRequest.getAssortment();
-		assortmentObject.setPath(createAssortmentRequest.getNewPath());
-		assortment.setID(UUID.randomUUID().toString());
+		
+		assortmentObject.setId(UUID.randomUUID().toString());
+		assortmentObject.setPath(createAssortmentRequest.getPath());
+		assortmentObject.setName(createAssortmentRequest.getName());
+		assortmentObject.setIsFolder(false);
+		assortmentObject.setType(type);
+		assortmentObject.setProducts(assortment.getProducts());
 		assortmentRepository.save(assortmentObject);
 		return new EmptyResponse();
 

@@ -9,6 +9,15 @@ public class CopyAssortmentRequest implements RequestModel {
 
 	private Assortment assortment;
 	private String newPath;
+	private String newName;
+
+	public String getNewName() {
+		return newName;
+	}
+
+	public void setNewName(String newName) {
+		this.newName = newName;
+	}
 
 	public Assortment getAssortment() {
 		return assortment;

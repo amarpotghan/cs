@@ -1,4 +1,4 @@
-package app.cs.actions.contentplanning.mam;
+package app.cs.actions.mocks;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,19 +11,19 @@ import app.cs.model.response.ResponseModel;
 import app.cs.model.response.StringResponse;
 
 @Component
-public class GetMAMAssets implements Interactor{
+public class GetPIMProductsMock implements Interactor {
 
-	private AssetsRepository mamRepository;
+	private AssetsRepository pimRepository;
 
 	@Autowired
-	public GetMAMAssets(AssetsRepository mamRepository) {
-		this.mamRepository = mamRepository;
+	public GetPIMProductsMock(AssetsRepository pimRepository) {
+		this.pimRepository = pimRepository;
 	}
 
 	public ResponseModel execute(RequestModel model) {
-		StringRequest request = (StringRequest)model;
-		System.out.println(mamRepository.getAssetsFor(request.getStringRequest()));
-		return new StringResponse(mamRepository.getAssetsFor(request.getStringRequest()));
+		StringRequest request = (StringRequest) model;
+		return new StringResponse(pimRepository.getAssetsFor(request
+				.getStringRequest()));
 
 	}
 

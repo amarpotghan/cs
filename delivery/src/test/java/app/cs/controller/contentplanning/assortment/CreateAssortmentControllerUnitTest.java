@@ -36,11 +36,12 @@ public class CreateAssortmentControllerUnitTest {
 		
 		Assortment assortment = new Assortment();
 		String path = "CP01,MP01,P01";
+		String name = "AS01";
 
-		createAssortmentRequest.setNewPath(path);
+		createAssortmentRequest.setPath(path);
 		createAssortmentRequest.setAssortment(assortment);
 		// when
-		createAssortmentController.create(assortment, path);
+		createAssortmentController.create(assortment, path, name);
 
 		// then
 		verify(interactor).execute(createAssortmentRequest);

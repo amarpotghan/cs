@@ -37,11 +37,12 @@ public class CopyAssortmentControllerUnitTest {
 
 		Assortment assortment = new Assortment();
 		String newPath = "CP01,MP01,P01";
+		String newName = "AS02";
 
 		copyAssortmentRequest.setNewPath(newPath);
 		copyAssortmentRequest.setAssortment(assortment);
 		// when
-		copyAssortmentController.copy(assortment, newPath);
+		copyAssortmentController.copy(assortment, newPath, newName);
 
 		// then
 		verify(interactor).execute(copyAssortmentRequest);

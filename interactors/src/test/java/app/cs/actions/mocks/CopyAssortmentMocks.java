@@ -1,4 +1,4 @@
-package app.cs.actions.contentplanning.assortment;
+package app.cs.actions.mocks;
 
 import java.util.UUID;
 
@@ -15,32 +15,20 @@ import app.cs.model.response.EmptyResponse;
 import app.cs.model.response.ResponseModel;
 
 @Component
-public class CopyAssortment implements Interactor {
+public class CopyAssortmentMocks implements Interactor {
 
 	private IAssortmentRepository assortmentRepository;
 	
 	private String type = "Assortment";
 
 	@Autowired
-	public CopyAssortment(IAssortmentRepository assortmentRepository) {
+	public CopyAssortmentMocks(IAssortmentRepository assortmentRepository) {
 		this.assortmentRepository = assortmentRepository;
 
 	}
 
 	public ResponseModel execute(RequestModel request) {
-		CopyAssortmentRequest copyAssortmentRequest = (CopyAssortmentRequest) request;
-		MultiDimensionalObject assortmentObject = assortmentRepository
-				.getDomain("MultiDimensionalObject");
 		
-		Assortment assortment = copyAssortmentRequest.getAssortment();
-		
-		assortmentObject.setId(UUID.randomUUID().toString());
-		assortmentObject.setName(copyAssortmentRequest.getNewName());
-		assortmentObject.setIsFolder(false);
-		assortmentObject.setType(type);
-		assortmentObject.setProducts(assortment.getProducts());
-		
-		assortmentRepository.copy(assortmentObject, copyAssortmentRequest.getNewPath());
 		return new EmptyResponse();
 		
 	}

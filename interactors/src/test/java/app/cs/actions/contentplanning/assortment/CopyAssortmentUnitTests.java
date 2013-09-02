@@ -36,7 +36,6 @@ public class CopyAssortmentUnitTests {
 
 		// given
 		Assortment assortment = new Assortment();
-		assortment.setID(UUID.randomUUID().toString());
 		MultiDimensionalObject assortmentObject = new MultiDimensionalObject();
 
 		String type = "assortment";
@@ -44,7 +43,7 @@ public class CopyAssortmentUnitTests {
 		String path = "Mp01,P01";
 		String newPath = "Mp02,p02";
 
-		assortmentObject.setId(assortment.getID());
+		assortmentObject.setId(UUID.randomUUID().toString());
 		assortmentObject.setPath(path);
 		CopyAssortmentRequest request = new CopyAssortmentRequest();
 		request.setAssortment(assortment);
