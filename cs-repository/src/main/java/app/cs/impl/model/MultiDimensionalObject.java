@@ -42,18 +42,8 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	private List<Assortment> assortments;
 
 	private List<MultiDimensionalObject> children;
-	
-	private List<Product> products;
 
 	private List<Product> products;
-
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
 
 	/**
 	 * Instantiates a new content object.
@@ -61,8 +51,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	public MultiDimensionalObject() {
 	}
 
-<<<<<<< HEAD
-=======
 	public List<Assortment> getAssortments() {
 		return assortments;
 	}
@@ -84,7 +72,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	 * 
 	 * @see com.cs.data.business.model.IMultiDimensionalObject#getIsFolder()
 	 */
->>>>>>> changed assortment interactions
+
 	@Override
 	public boolean getIsFolder() {
 		return isFolder;
