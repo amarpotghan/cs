@@ -1,4 +1,4 @@
-package app.cs.impl.chapter;
+package app.cs.impl.inmemory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

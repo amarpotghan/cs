@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.impl.chapter.InMemoryViewStructure;
+import app.cs.impl.inmemory.InMemoryViewStructure;
 import app.cs.interfaces.chapter.IInMemoryViewStructure;
 
 import com.cs.data.core.nosql.redis.RedisRepository;

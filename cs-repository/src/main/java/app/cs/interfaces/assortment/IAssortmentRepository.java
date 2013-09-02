@@ -1,18 +1,32 @@
 package app.cs.interfaces.assortment;
 
-import app.cs.impl.model.Assortment;
+import com.cs.data.api.core.GenericDomain;
+
 import app.cs.impl.model.MultiDimensionalObject;
 
 public interface IAssortmentRepository {
 
-	public abstract void save(Assortment assortment, String path);
+	/**
+	 * Save given chapter.
+	 * 
+	 * @param chapter
+	 *            the chapter
+	 * @return the string
+	 */
+	public abstract String save(MultiDimensionalObject chapter);
 
-	public abstract Assortment getAssortmentObject();
+	/**
+	 * Deletes given chapter for given old path.
+	 * 
+	 * @param chapter
+	 *            the chapter
+	 * @param oldPath
+	 *            the old path
+	 * @return the string
+	 */
 
-	public abstract MultiDimensionalObject getPublication(String path);
+	GenericDomain getDomain(String type);
 
-	public abstract MultiDimensionalObject getParentPublication(String path);
-
-	public abstract void copy(Assortment assortment, String newPath);
+	public abstract void move(MultiDimensionalObject chapter, String path);
 
 }
