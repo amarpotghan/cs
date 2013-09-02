@@ -41,14 +41,18 @@ public class MAMRepository implements AssetsRepository {
 
 		String url = formListUrl(id);
 		Map<String, String> headerParameters = new HashMap<String, String>();
+		prepareHeaderParameters(headerParameters);
+		return client.get(url, headerParameters);
+
+	}
+
+	private void prepareHeaderParameters(Map<String, String> headerParameters) {
 		headerParameters.put(ACCEPT_LANGUAGE, LANGUAGE);
 		headerParameters.put(HOST, HOSTIP);
 		headerParameters.put(USER_AGENT, USER_AGENT_INFO);
 		headerParameters.put(X_REQUESTED_WITH, XML_HTTP_REQUEST);
 		headerParameters.put(ACCEPT, ACCEPTEDTYPES);
 		headerParameters.put(ACCEPT_CHARSET, CHARSET);
-		return client.get(url, headerParameters);
-
 	}
 
 	private String formListUrl(String id) {
@@ -59,12 +63,7 @@ public class MAMRepository implements AssetsRepository {
 	public String getSearchResults(String searchQuery) {
 		String url = formSearchUrl(searchQuery);
 		Map<String, String> headerParameters = new HashMap<String, String>();
-		headerParameters.put(ACCEPT_LANGUAGE, LANGUAGE);
-		headerParameters.put(HOST, HOSTIP);
-		headerParameters.put(USER_AGENT, USER_AGENT_INFO);
-		headerParameters.put(X_REQUESTED_WITH, XML_HTTP_REQUEST);
-		headerParameters.put(ACCEPT, ACCEPTEDTYPES);
-		headerParameters.put(ACCEPT_CHARSET, CHARSET);
+		prepareHeaderParameters(headerParameters);
 		return client.get(url, headerParameters);
 	}
 
