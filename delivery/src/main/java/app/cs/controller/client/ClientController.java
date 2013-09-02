@@ -23,7 +23,6 @@ public class ClientController {
 
 	/** The index. */
 	private final String INDEX = "redirect:/engine/core/html/start.html";
-	private final String PREFIX = "";
 
 	@Autowired
 	private ServletContext context;

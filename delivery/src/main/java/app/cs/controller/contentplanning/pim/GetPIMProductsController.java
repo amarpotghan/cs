@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import app.cs.actions.contentplanning.assortment.PIMInteractions;
 import app.cs.boundary.delivery.Interactor;
 import app.cs.model.request.StringRequest;
 import app.cs.model.response.PIMNode;
@@ -63,6 +62,7 @@ public class GetPIMProductsController {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private String formatProductsToJson(String products) throws ParseException {
 
 		JSONParser parser = new JSONParser();

@@ -1,7 +1,5 @@
 package app.cs.interfaces.assortment;
 
-import com.cs.data.api.core.GenericDomain;
-
 import app.cs.impl.model.MultiDimensionalObject;
 
 public interface IAssortmentRepository {
@@ -25,7 +23,7 @@ public interface IAssortmentRepository {
 	 * @return the string
 	 */
 
-	GenericDomain getDomain(String type);
+	MultiDimensionalObject getDomain(String type);
 
 	public abstract void copy(MultiDimensionalObject chapter, String path);
 

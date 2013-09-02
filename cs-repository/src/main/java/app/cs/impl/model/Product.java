@@ -1,6 +1,5 @@
 package app.cs.impl.model;
 
-import java.util.List;
 
 public class Product {
 

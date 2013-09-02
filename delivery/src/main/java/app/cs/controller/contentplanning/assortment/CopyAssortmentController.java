@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import app.cs.boundary.delivery.Interactor;
-import app.cs.model.request.CopyAssortmentRequest;
 import app.cs.impl.model.Assortment;
+import app.cs.model.request.CopyAssortmentRequest;
 
 @Controller
 public class CopyAssortmentController {

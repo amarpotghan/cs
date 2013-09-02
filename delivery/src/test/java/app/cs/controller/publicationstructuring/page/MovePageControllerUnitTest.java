@@ -1,8 +1,6 @@
 package app.cs.controller.publicationstructuring.page;
 
-import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.publicationstructuring.page.MovePage;
-import app.cs.controller.publicationstructuring.page.MovePageController;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;

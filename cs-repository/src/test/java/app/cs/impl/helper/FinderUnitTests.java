@@ -10,10 +10,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.cs.data.core.nosql.mongodb.MongoRepository;
-
-import app.cs.impl.chapter.ChapterRepository;
-import app.cs.impl.helper.Finder;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.inmemory.IInMemoryViewStructure;

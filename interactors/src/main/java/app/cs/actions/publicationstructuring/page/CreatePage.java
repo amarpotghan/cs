@@ -40,7 +40,7 @@ public class CreatePage implements Interactor{
 	public ResponseModel execute(RequestModel model) {
 
 		CreatePageRequest request = (CreatePageRequest) model;
-		MultiDimensionalObject chapter = (MultiDimensionalObject) chapterRepository
+		MultiDimensionalObject chapter = chapterRepository
 				.getDomain(CONTENTOBJECT);
 		setChapterAtrributes(chapter, request.getType(), request.getName(),
 				request.getPath(), request.isFolder());
@@ -61,7 +61,7 @@ public class CreatePage implements Interactor{
 	 * @param isFolder
 	 *            the is folder
 	 */
-	private void setChapterAtrributes(IMultiDimensionalObject chapter,
+	private void setChapterAtrributes(MultiDimensionalObject chapter,
 			String type, String name, String path, boolean isFolder) {
 		chapter.setId(name);
 		chapter.setTitle(name);

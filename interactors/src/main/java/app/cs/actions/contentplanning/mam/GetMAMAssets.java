@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.boundary.delivery.Interactor;
-import app.cs.impl.mam.MAMRepository;
+import app.cs.interfaces.mam.AssetsRepository;
 import app.cs.model.request.RequestModel;
 import app.cs.model.request.StringRequest;
 import app.cs.model.response.ResponseModel;
@@ -13,10 +13,10 @@ import app.cs.model.response.StringResponse;
 @Component
 public class GetMAMAssets implements Interactor{
 
-	private MAMRepository mamRepository;
+	private AssetsRepository mamRepository;
 
 	@Autowired
-	public GetMAMAssets(MAMRepository mamRepository) {
+	public GetMAMAssets(AssetsRepository mamRepository) {
 		this.mamRepository = mamRepository;
 	}
 

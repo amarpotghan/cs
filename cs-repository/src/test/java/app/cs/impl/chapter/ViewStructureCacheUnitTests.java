@@ -1,6 +1,8 @@
 package app.cs.impl.chapter;
 
-import static org.junit.Assert.*;
+import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,9 +14,6 @@ import app.cs.impl.inmemory.InMemoryViewStructure;
 import app.cs.interfaces.inmemory.IInMemoryViewStructure;
 
 import com.cs.data.core.nosql.redis.RedisRepository;
-
-import static org.fest.assertions.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ViewStructureCacheUnitTests {

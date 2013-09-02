@@ -5,8 +5,6 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import app.cs.utils.ArrayUtils;
-
 public class ArrayUtilsUnitTests {
 	private ArrayUtils utils;
 

@@ -7,12 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.interfaces.mam.AssetsRepository;
-import app.cs.interfaces.pim.IPIMRepository;
 
-import com.cs.data.webservices.rest.RestClient;
+import com.cs.data.api.webservices.rest.IRestClient;
 
 @Component
-public class PIMRepository implements AssetsRepository, IPIMRepository {
+public class PIMRepository implements AssetsRepository {
 
 	private static final String CHARSET = "ISO-8859-1,utf-8;q=0.7,*;q=0.3";
 	private static final String ACCEPT_CHARSET = "Accept-Charset";
@@ -29,10 +28,10 @@ public class PIMRepository implements AssetsRepository, IPIMRepository {
 	private final String BASE_URL = "http://192.168.135.108/CS13.0/admin";
 	private final String LIST_URL = BASE_URL + "/rest/pim/list/";
 	private final String SEARCH_URL = BASE_URL + "/rest/pim/search/";
-	private RestClient client;
+	private IRestClient client;
 
 	@Autowired
-	public PIMRepository(RestClient client) {
+	public PIMRepository(IRestClient client) {
 		this.client = client;
 
 	}

@@ -14,7 +14,6 @@ import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
 import app.cs.utils.FileUtils;
 
-import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 
 /**
@@ -115,7 +114,7 @@ public class DimensionRepository implements IDimensionRepository {
 	}
 
 	@Override
-	public GenericDomain getDomain(String type) {
+	public MultiDimensionalObject getDomain(String type) {
 
 		return factory.getDomainObject(type);
 	}

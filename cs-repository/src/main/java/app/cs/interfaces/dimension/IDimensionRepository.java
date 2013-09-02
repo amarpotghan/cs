@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import com.cs.data.api.core.GenericDomain;
-
 import app.cs.impl.model.MultiDimensionalObject;
 
 public interface IDimensionRepository {
@@ -59,6 +57,6 @@ public interface IDimensionRepository {
 	public abstract List<MultiDimensionalObject> getDimensionsBy(String type2,
 			List<String> groupIds);
 
-	GenericDomain getDomain(String type);
+	MultiDimensionalObject getDomain(String type);
 
 }

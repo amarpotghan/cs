@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.controller.client.ClientController;
 import app.cs.model.response.ClientResponse;
 import app.cs.utils.FileUtils;
 

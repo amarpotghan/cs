@@ -1,6 +1,6 @@
 package app.cs.impl.delegate.factory;
 
-import com.cs.data.api.core.GenericDomain;
+import app.cs.impl.model.MultiDimensionalObject;
 
 public interface IDomainFactory {
 
@@ -9,6 +9,6 @@ public interface IDomainFactory {
 	 * 
 	 * @see com.cs.factory.IDomainFactory#getDomainObject(java.lang.String)
 	 */
-	public abstract GenericDomain getDomainObject(String type);
+	public abstract MultiDimensionalObject getDomainObject(String type);
 
 }

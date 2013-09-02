@@ -1,5 +1,9 @@
 package app.cs.impl.assortment;
 
+import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +19,6 @@ import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.impl.model.Product;
 
 import com.cs.data.core.nosql.mongodb.MongoRepository;
-
-import static org.mockito.Mockito.*;
-
-import static org.fest.assertions.Assertions.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AssortmentRepositoryUnitTests {

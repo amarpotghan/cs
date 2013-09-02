@@ -1,9 +1,5 @@
 package app.cs.controller.publicationplanning.dimension;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.boundary.delivery.Interactor;
-import app.cs.boundary.delivery.Service;
-import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.model.request.CreateDimensionRequest;
 
 /**

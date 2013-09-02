@@ -7,14 +7,19 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
+import com.cs.data.api.webservices.rest.IRestClient;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.WebResource.Builder;
 
 @Component
-public class RestClient {
+public class RestClient implements IRestClient {
 
+	/* (non-Javadoc)
+	 * @see com.cs.data.webservices.rest.IRestClient#get(java.lang.String, java.util.Map)
+	 */
+	@Override
 	public String get(String url, Map<String, String> headerParameters) {
 		ClientResponse response = getResource(url, headerParameters).get(ClientResponse.class);
 		return getSuccessResponse(url, response);

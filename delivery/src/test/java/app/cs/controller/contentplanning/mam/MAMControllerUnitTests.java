@@ -1,14 +1,14 @@
 package app.cs.controller.contentplanning.mam;
 
+import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.fest.assertions.Assertions.assertThat;
 
 import app.cs.actions.contentplanning.mam.GetMAMAssets;
 import app.cs.model.request.StringRequest;

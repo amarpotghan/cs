@@ -1,15 +1,14 @@
 package app.cs.controller.contentplanning.pim;
 
+import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.io.IOException;
 import java.util.List;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,15 +16,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.fest.assertions.Assertions.assertThat;
-
-import app.cs.actions.contentplanning.assortment.PIMInteractions;
-import app.cs.actions.contentplanning.mam.GetMAMAssets;
 import app.cs.actions.contentplanning.pim.GetPIMAssets;
-import app.cs.boundary.delivery.Interactor;
-import app.cs.controller.contentplanning.pim.GetPIMProductsController;
 import app.cs.model.request.StringRequest;
 import app.cs.model.response.PIMNode;
 import app.cs.model.response.StringResponse;
@@ -93,15 +84,4 @@ public class PIMControllerUnitTests {
 
 	}
 
-	@Test
-	public void itShouldConvertJSONStringToPIMNodeArray()
-			throws JsonParseException, JsonMappingException, IOException,
-			ParseException {
-		// given
-
-		// when
-
-		// then
-
-	}
 }

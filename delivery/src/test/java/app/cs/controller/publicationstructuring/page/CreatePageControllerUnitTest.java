@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.publicationstructuring.page.CreatePage;
-import app.cs.controller.publicationstructuring.page.CreatePageController;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;

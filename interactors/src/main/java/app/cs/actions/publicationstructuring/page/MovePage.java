@@ -16,7 +16,7 @@ import app.cs.model.response.ResponseModel;
  * The Class ChapterService.
  */
 @Component
-public class MovePage implements Interactor{
+public class MovePage implements Interactor {
 
 	/** The contentobject. */
 	private final String CONTENTOBJECT = "MultiDimensionalObject";
@@ -39,10 +39,11 @@ public class MovePage implements Interactor{
 
 	public ResponseModel execute(RequestModel model) {
 		MovePageRequest request = (MovePageRequest) model;
-		
-		MultiDimensionalObject chapter = (MultiDimensionalObject) chapterRepository
+
+		MultiDimensionalObject chapter = chapterRepository
 				.getDomain(CONTENTOBJECT);
-		setChapterAtrributes(chapter, request.getType(), request.getName(), request.getPath(), request.isFolder());
+		setChapterAtrributes(chapter, request.getType(), request.getName(),
+				request.getPath(), request.isFolder());
 		chapterRepository.move(chapter, request.getNewPath());
 		return new EmptyResponse();
 
@@ -62,7 +63,7 @@ public class MovePage implements Interactor{
 	 * @param isFolder
 	 *            the is folder
 	 */
-	private void setChapterAtrributes(IMultiDimensionalObject chapter,
+	private void setChapterAtrributes(MultiDimensionalObject chapter,
 			String type, String name, String path, boolean isFolder) {
 		chapter.setId(name);
 		chapter.setTitle(name);

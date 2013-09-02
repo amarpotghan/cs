@@ -8,7 +8,6 @@ import app.cs.impl.helper.Finder;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.chapter.IChapterRepository;
 
-import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 
 /**
@@ -91,7 +90,7 @@ public class ChapterMocks implements IChapterRepository {
 	}
 
 	@Override
-	public GenericDomain getDomain(String type) {
+	public MultiDimensionalObject getDomain(String type) {
 
 		return factory.getDomainObject(type);
 	}

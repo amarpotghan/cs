@@ -9,9 +9,9 @@ subprojects {
 
 	def encoding = {it.encoding = 'UTF-8'}
 	test{
-	exclude 'app/cs/integration/**'
-	exclude 'com/cs/integration/**'
-}
+		exclude 'app/cs/integration/**'
+		exclude 'com/cs/integration/**'
+	}
 
 	repositories {
 		mavenCentral ()
@@ -49,7 +49,7 @@ subprojects {
 }
 
 project(':cs-persistence') {
-	configurations { csapi }
+	configurations { spi }
 	repositories {
 		mavenCentral ()
 		maven { url "http://repo.springframework.org/milestone" }
@@ -57,23 +57,27 @@ project(':cs-persistence') {
 	dependencies {
 	}
 	task csApiJar(type: Jar) {
-		baseName = 'cs-persistence-csapi'
+		baseName = 'persistence-api'
 		dependsOn classes
 		from sourceSets.main.output
 		include('com/cs/data/api/**')
 	}
-	artifacts { csapi csApiJar }
+	artifacts { spi csApiJar }
 }
 project(':cs-repository') {
 	configurations { spi }
 	dependencies {
-		compile project(path: ':cs-persistence')
+		compile project(path: ':cs-persistence',configuration:'spi')
+		testCompile "junit:junit:4.11", project(':cs-persistence')
 	}
 	task spiJar(type: Jar) {
-		baseName = 'pub-repository-spi'
+		baseName = 'repository-api'
 		dependsOn classes
 		from sourceSets.main.output
 		include('app/cs/interfaces/**')
+		include('app/cs/impl/model/**')
+		include('app/cs/utils/**')
+		include('app/cs/mocks/**')
 	}
 	artifacts { spi spiJar }
 }
@@ -82,13 +86,14 @@ project(':interactors') {
 	configurations { spi }
 
 	dependencies {
-		compile project(':cs-repository')
+		compile project(path:':cs-repository',configuration:'spi')
+		testCompile "junit:junit:4.11", project(':cs-repository')
 	}
 	task spiJar(type: Jar) {
 		baseName = 'pub-services-spi'
 		dependsOn classes
 		from sourceSets.main.output
-		include('app/cs/interfaces/**')
+		include('app/cs/**')
 	}
 
 	artifacts { spi spiJar }
@@ -99,5 +104,6 @@ project(':delivery') {
 	dependencies {
 		compile project(':interactors')
 		testCompile "junit:junit:4.11", project(':interactors')
+		testCompile "junit:junit:4.11", project(':cs-repository'),project(':cs-persistence')
 	}
 }

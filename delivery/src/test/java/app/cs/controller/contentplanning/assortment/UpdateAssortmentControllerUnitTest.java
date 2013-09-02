@@ -1,24 +1,16 @@
 package app.cs.controller.contentplanning.assortment;
 
+import static org.mockito.Mockito.verify;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.actions.contentplanning.assortment.UpdateAssortment;
 import app.cs.boundary.delivery.Interactor;
-import app.cs.controller.contentplanning.assortment.UpdateAssortmentController;
 import app.cs.impl.model.Assortment;
-import app.cs.impl.model.MultiDimensionalObject;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
-import app.cs.model.response.ResponseModel;
 import app.cs.model.request.UpdateAssortmentRequest;
-import app.cs.boundary.delivery.Interactor;
-
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UpdateAssortmentControllerUnitTest {

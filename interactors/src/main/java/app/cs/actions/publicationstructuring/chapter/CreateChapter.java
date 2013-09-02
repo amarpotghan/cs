@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.chapter.IChapterRepository;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.model.request.CreateChapterRequest;
 import app.cs.model.request.RequestModel;
 import app.cs.model.response.ResponseModel;
@@ -16,7 +15,7 @@ import app.cs.model.response.StringResponse;
  * The Class ChapterService.
  */
 @Component
-public class CreateChapter implements Interactor{
+public class CreateChapter implements Interactor {
 
 	/** The contentobject. */
 	private final String CONTENTOBJECT = "MultiDimensionalObject";
@@ -61,7 +60,7 @@ public class CreateChapter implements Interactor{
 	 * @param isFolder
 	 *            the is folder
 	 */
-	private void setChapterAtrributes(IMultiDimensionalObject chapter,
+	private void setChapterAtrributes(MultiDimensionalObject chapter,
 			String type, String name, String path, boolean isFolder) {
 		chapter.setId(name);
 		chapter.setTitle(name);

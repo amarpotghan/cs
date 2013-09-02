@@ -1,9 +1,8 @@
 package app.cs.impl.dimension;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,15 +10,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.impl.dimension.InMemoryDimensionGroup;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 
 import com.cs.data.core.nosql.redis.RedisRepository;
-
-import static org.fest.assertions.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DimensionGroupCacheTests {

@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.controller.common.tree.TreeViewStructureController;
 import app.cs.utils.FileUtils;
 
 @RunWith(MockitoJUnitRunner.class)

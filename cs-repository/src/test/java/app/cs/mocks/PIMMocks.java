@@ -1,15 +1,12 @@
 package app.cs.mocks;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.interfaces.mam.AssetsRepository;
 import app.cs.interfaces.pim.IPIMRepository;
 
-import com.cs.data.webservices.rest.RestClient;
+import com.cs.data.api.webservices.rest.IRestClient;
 
 @Component
 public class PIMMocks implements AssetsRepository, IPIMRepository {
@@ -27,10 +24,10 @@ public class PIMMocks implements AssetsRepository, IPIMRepository {
 	private static final String LANGUAGE = "en-US,en;q=0.8";
 	private static final String ACCEPT_LANGUAGE = "Accept-Language";
 	private final String BASE_URL = "http://192.168.135.108/CS13.0/admin/rest/pim/list/";
-	private RestClient client;
+	private IRestClient client;
 
 	@Autowired
-	public PIMMocks(RestClient client) {
+	public PIMMocks(IRestClient client) {
 		this.client = client;
 
 	}

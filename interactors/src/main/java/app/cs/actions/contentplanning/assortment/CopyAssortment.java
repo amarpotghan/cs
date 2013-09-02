@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.boundary.delivery.Interactor;
-import app.cs.impl.assortment.AssortmentRepository;
 import app.cs.impl.model.Assortment;
 import app.cs.impl.model.MultiDimensionalObject;
+import app.cs.interfaces.assortment.IAssortmentRepository;
 import app.cs.model.request.CopyAssortmentRequest;
 import app.cs.model.request.RequestModel;
 import app.cs.model.response.EmptyResponse;
@@ -15,17 +15,17 @@ import app.cs.model.response.ResponseModel;
 @Component
 public class CopyAssortment implements Interactor {
 
-	private AssortmentRepository assortmentRepository;
+	private IAssortmentRepository assortmentRepository;
 
 	@Autowired
-	public CopyAssortment(AssortmentRepository assortmentRepository) {
+	public CopyAssortment(IAssortmentRepository assortmentRepository) {
 		this.assortmentRepository = assortmentRepository;
 
 	}
 
 	public ResponseModel execute(RequestModel request) {
 		CopyAssortmentRequest copyAssortmentRequest = (CopyAssortmentRequest) request;
-		MultiDimensionalObject assortmentObject = (MultiDimensionalObject) assortmentRepository
+		MultiDimensionalObject assortmentObject = assortmentRepository
 				.getDomain("MultiDimensionalObject");
 
 		Assortment assortment = copyAssortmentRequest.getAssortment();

@@ -5,10 +5,7 @@ import static org.fest.assertions.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.model.MultiDimensionalObject;
-
-import com.cs.data.api.core.GenericDomain;
 
 public class DomainFactoryTests {
 
@@ -23,7 +20,7 @@ public class DomainFactoryTests {
 	@Test
 	public void itShouldCreateInstanceOfContentObject() {
 		// when
-		GenericDomain testObject = factory.getDomainObject("MultiDimensionalObject");
+		MultiDimensionalObject testObject = factory.getDomainObject("MultiDimensionalObject");
 
 		// then
 		assertThat(testObject).isInstanceOf(MultiDimensionalObject.class);

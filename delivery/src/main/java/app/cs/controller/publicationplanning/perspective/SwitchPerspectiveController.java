@@ -19,9 +19,6 @@ import app.cs.model.response.TreeResponse;
 @Controller
 public class SwitchPerspectiveController {
 
-	/** The Constant CREATE. */
-	private static final String CREATE = "/dimension/create/{type}/name/{name}/path/{path}/folder/{folder}";
-
 	/** The dimension service. */
 	private Interactor switchPerspective;
 

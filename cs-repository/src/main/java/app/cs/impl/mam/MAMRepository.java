@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import app.cs.interfaces.mam.AssetsRepository;
 
-import com.cs.data.webservices.rest.RestClient;
+import com.cs.data.api.webservices.rest.IRestClient;
 
 @Component
 public class MAMRepository implements AssetsRepository {
@@ -28,10 +28,10 @@ public class MAMRepository implements AssetsRepository {
 	private final String BASE_URL = "http://192.168.135.108/CS13.0/admin";
 	private final String LIST_URL = BASE_URL + "/rest/mam/list/";
 	private final String SEARCH_URL = BASE_URL + "/rest/mam/search/";
-	private RestClient client;
+	private IRestClient client;
 
 	@Autowired
-	public MAMRepository(RestClient client) {
+	public MAMRepository(IRestClient client) {
 		this.client = client;
 
 	}

@@ -10,8 +10,6 @@ import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cs.data.core.nosql.redis.RedisRepository;
-
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.impl.dimension.InMemoryDimensionGroup;
 import app.cs.impl.model.MultiDimensionalObject;
@@ -20,6 +18,8 @@ import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.slicingdicing.ITreeBuilder;
 import app.cs.utils.ArrayUtils;
 import app.cs.utils.FileUtils;
+
+import com.cs.data.core.nosql.redis.RedisRepository;
 
 /**
  * The Class TreeBuilder.

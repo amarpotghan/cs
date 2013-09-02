@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +14,6 @@ import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
 import app.cs.utils.FileUtils;
 
-import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 
 /**
@@ -76,7 +73,7 @@ public class DimensionMocks implements IDimensionRepository {
 	}
 
 	@Override
-	public GenericDomain getDomain(String type) {
+	public MultiDimensionalObject getDomain(String type) {
 
 		return new MultiDimensionalObject();
 	}

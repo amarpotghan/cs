@@ -7,9 +7,11 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import com.cs.data.api.webservices.rest.IRestClient;
+
 public class RestClientUnitTests {
 
-	private RestClient restClient;
+	private IRestClient restClient;
 
 	@Test
 	public void itShouldGetResponseForGivenRestUrl() {

@@ -1,7 +1,5 @@
 package app.cs.interfaces.chapter;
 
-import com.cs.data.api.core.GenericDomain;
-
 import app.cs.impl.model.MultiDimensionalObject;
 
 public interface IChapterRepository {
@@ -26,7 +24,7 @@ public interface IChapterRepository {
 	 */
 	public abstract String delete(MultiDimensionalObject chapter);
 
-	GenericDomain getDomain(String type);
+	MultiDimensionalObject getDomain(String type);
 
 	public abstract void move(MultiDimensionalObject chapter, String path);
 

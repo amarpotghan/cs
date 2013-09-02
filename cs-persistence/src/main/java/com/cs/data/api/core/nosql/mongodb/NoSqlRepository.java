@@ -3,7 +3,6 @@ package com.cs.data.api.core.nosql.mongodb;
 import java.util.Collection;
 import java.util.List;
 
-import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.nosql.NoSqlOperations;
 
 public interface NoSqlRepository extends NoSqlOperations {

@@ -1,9 +1,9 @@
 package com.cs.data.core.nosql.mongodb;
 
+import static org.mockito.Mockito.verify;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,9 +15,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.*;
 import com.cs.data.core.jpa.entities.Student;
 import com.cs.data.core.jpa.entities.Teacher;
 

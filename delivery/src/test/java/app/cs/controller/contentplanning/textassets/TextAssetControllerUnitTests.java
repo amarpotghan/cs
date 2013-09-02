@@ -1,22 +1,19 @@
 package app.cs.controller.contentplanning.textassets;
 
+import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.controller.contentplanning.textassets.TextAssetController;
-import app.cs.model.response.ClientResponse;
 import app.cs.utils.FileUtils;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.fest.assertions.Assertions.assertThat;
 
 //import app.cs.text.TextAssetInteractions;
 
