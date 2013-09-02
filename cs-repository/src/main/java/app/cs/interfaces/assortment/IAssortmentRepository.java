@@ -29,4 +29,6 @@ public interface IAssortmentRepository {
 
 	public abstract void copy(MultiDimensionalObject chapter, String path);
 
+	String updateAssortment(MultiDimensionalObject assortment);
+
 }

@@ -6,7 +6,6 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -69,7 +68,6 @@ public class DimensionServiceUnitTests {
 	@Test
 	public void itShouldCreateADimension() {
 		// given
-		String expectedDimensionId = "dimkension01";
 		String name = "test";
 		String path = "A,B";
 		String type = "spread";
@@ -95,8 +93,7 @@ public class DimensionServiceUnitTests {
 
 		String structure = "C-MP-P";
 		// when
-		List<MultiDimensionalObject> models = dimensionService
-				.getAllBy(structure);
+		dimensionService.getAllBy(structure);
 
 		// then
 		verify(cache).setCurrentViewStructure("view", structure);

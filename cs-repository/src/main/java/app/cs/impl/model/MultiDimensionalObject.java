@@ -43,52 +43,37 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 
 	private List<MultiDimensionalObject> children;
 
+	private List<Product> products;
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
 	/**
 	 * Instantiates a new content object.
 	 */
 	public MultiDimensionalObject() {
-		// TODO Auto-generated constructor stub
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getIsFolder()
-	 */
 	@Override
 	public boolean getIsFolder() {
 		return isFolder;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setIsFolder(java.lang
-	 * .String)
-	 */
 	@Override
 	public void setIsFolder(boolean isFolder) {
 		this.isFolder = isFolder;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getTitle()
-	 */
 	@Override
 	public String getTitle() {
 		return title;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setTitle(java.lang
-	 * .String)
-	 */
 	@Override
 	public void setTitle(String title) {
 		this.title = title;
@@ -106,12 +91,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	}
 
 	/** The children. */
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getGroupId()
-	 */
 	@Override
 	public List<String> getGroupId() {
 		return groupIds;
@@ -168,35 +147,16 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.children = children;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setGroupId(java.util
-	 * .List)
-	 */
 	@Override
 	public void setGroupId(List<String> groupId) {
 		this.groupIds = groupId;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getChildren()
-	 */
 	@Override
 	public List<MultiDimensionalObject> getChildren() {
 		return children;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setChildren(java.util
-	 * .List)
-	 */
 	@Override
 	public void setChildren(List<MultiDimensionalObject> children) {
 		this.children = children;
@@ -225,126 +185,56 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getPath()
-	 */
 	@Override
 	public String getPath() {
 		return path;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setPath(java.lang.
-	 * String)
-	 */
 	@Override
 	public void setPath(String path) {
 		this.path = path;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getType()
-	 */
 	@Override
 	public String getType() {
 		return type;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setType(java.lang.
-	 * String)
-	 */
 	@Override
 	public void setType(String type) {
 		this.type = type;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getId()
-	 */
 	@Override
 	public String getId() {
 		return id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setId(java.lang.String
-	 * )
-	 */
 	@Override
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getName()
-	 */
 	@Override
 	public String getName() {
 		return name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#setName(java.lang.
-	 * String)
-	 */
 	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.core.GenericDomain#getObjectKey()
-	 */
 	@Override
 	public String getObjectKey() {
-		// TODO Auto-generated method stub
 		return "DIMENSION";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.core.GenericDomain#getKey()
-	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getKey()
-	 */
 	@Override
 	public String getKey() {
-		// TODO Auto-generated method stub
 		return getId();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "DimensionModel [id=" + id + ", type=" + type + ", path=" + path
@@ -352,23 +242,11 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 				+ groupIds + ", children=" + children + "]";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#isRoot()
-	 */
 	@Override
 	public boolean isRoot() {
 		return path == "-1" ? true : false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#addToGroupId(java.
-	 * lang.String)
-	 */
 	@Override
 	public void addToGroupId(String groupId) {
 		if (groupIds == null) {
@@ -381,33 +259,16 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#hasChildren()
-	 */
 	@Override
 	public boolean hasChildren() {
 		return this.children == null ? false : true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#isPage()
-	 */
 	@Override
 	public boolean isPage() {
 		return type == PAGE ? true : false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#addchild(com.cs.data
-	 * .business.model.MultiDimensionalObject)
-	 */
 	@Override
 	public void addchild(MultiDimensionalObject contentObject) {
 		List<MultiDimensionalObject> newChildren;
@@ -482,40 +343,8 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		MultiDimensionalObject other = (MultiDimensionalObject) obj;
 		if (id.equals(other.id))
 			return true;
-		if (PAGE == null) {
-			if (other.PAGE != null)
-				return false;
-		} else if (!PAGE.equals(other.PAGE))
+		else
 			return false;
-		if (children == null) {
-			if (other.children != null)
-				return false;
-		} else if (!children.equals(other.children))
-			return false;
-		if (groupIds == null) {
-			if (other.groupIds != null)
-				return false;
-		} else if (!groupIds.equals(other.groupIds))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		}
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		if (type == null) {
-			if (other.type != null)
-				return false;
-		} else if (!type.equals(other.type))
-			return false;
-		return true;
+
 	}
 }

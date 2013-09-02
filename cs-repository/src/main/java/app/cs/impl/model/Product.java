@@ -4,10 +4,17 @@ import java.util.List;
 
 public class Product {
 
+
 	private String productId;
 	private String productName;
 	private String productType;
 
+	public Product(String productId, String productName, String productType) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productType = productType;
+	}
 	public String getProductId() {
 		return productId;
 	}

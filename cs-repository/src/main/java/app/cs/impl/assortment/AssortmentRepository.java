@@ -102,4 +102,16 @@ public class AssortmentRepository implements IAssortmentRepository {
 				MultiDimensionalObject.class);
 	}
 
+	@Override
+	public String updateAssortment(MultiDimensionalObject assortment) {
+		MultiDimensionalObject publication = getParentPublication(assortment
+				.getPath());
+		MultiDimensionalObject oldAssortment = finder.find(publication,
+				assortment.getId());
+		oldAssortment.setProducts(assortment.getProducts());
+
+		saveToMongo(publication);
+		return "updated=>" + assortment.getId();
+	}
+
 }
