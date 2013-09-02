@@ -8,6 +8,7 @@ public class CreateChapterRequest implements RequestModel {
 	private String type;
 	private String name;
 	private String path;
+	private boolean isFolder;
 
 	public String getType() {
 		return type;
@@ -42,6 +43,10 @@ public class CreateChapterRequest implements RequestModel {
 		this.path = path;
 	}
 
+	/**
+	 * 
+	 * @return true if chapter object else false if page object
+	 */
 	public boolean isFolder() {
 		return isFolder;
 	}
@@ -50,6 +55,6 @@ public class CreateChapterRequest implements RequestModel {
 		this.isFolder = isFolder;
 	}
 
-	private boolean isFolder;
+
 
 }
