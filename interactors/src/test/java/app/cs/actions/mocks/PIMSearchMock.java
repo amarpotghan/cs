@@ -21,8 +21,8 @@ public class PIMSearchMock implements Interactor{
 	}
 
 	public ResponseModel execute(RequestModel model) {
-		StringRequest request = (StringRequest)model;
-		return new StringResponse(pimRepository.getSearchResults(request.getStringRequest()));
+	
+		return new StringResponse("Product 123, Product 34, Product 2314, Product 42357, Product 3467");
 
 	}
 

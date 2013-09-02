@@ -22,7 +22,6 @@ public class GetMAMAssets implements Interactor{
 
 	public ResponseModel execute(RequestModel model) {
 		StringRequest request = (StringRequest)model;
-		System.out.println(mamRepository.getAssetsFor(request.getStringRequest()));
 		return new StringResponse(mamRepository.getAssetsFor(request.getStringRequest()));
 
 	}

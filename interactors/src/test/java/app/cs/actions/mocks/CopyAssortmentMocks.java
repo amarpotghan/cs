@@ -1,15 +1,10 @@
 package app.cs.actions.mocks;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.boundary.delivery.Interactor;
-import app.cs.impl.model.Assortment;
-import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.assortment.IAssortmentRepository;
-import app.cs.model.request.CopyAssortmentRequest;
 import app.cs.model.request.RequestModel;
 import app.cs.model.response.EmptyResponse;
 import app.cs.model.response.ResponseModel;
@@ -18,7 +13,7 @@ import app.cs.model.response.ResponseModel;
 public class CopyAssortmentMocks implements Interactor {
 
 	private IAssortmentRepository assortmentRepository;
-	
+
 	private String type = "Assortment";
 
 	@Autowired
@@ -28,8 +23,8 @@ public class CopyAssortmentMocks implements Interactor {
 	}
 
 	public ResponseModel execute(RequestModel request) {
-		
+
 		return new EmptyResponse();
-		
+
 	}
 }

@@ -4,11 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.boundary.delivery.Interactor;
-import app.cs.impl.model.Assortment;
-import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.assortment.IAssortmentRepository;
 import app.cs.model.request.RequestModel;
-import app.cs.model.request.UpdateAssortmentRequest;
 import app.cs.model.response.EmptyResponse;
 import app.cs.model.response.ResponseModel;
 

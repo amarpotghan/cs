@@ -21,8 +21,8 @@ public class MAMSearchMock implements Interactor{
 	}
 
 	public ResponseModel execute(RequestModel model) {
-		StringRequest request = (StringRequest)model;
-		return new StringResponse(mamRepository.getSearchResults(request.getStringRequest()));
+		
+		return new StringResponse("Media 2345, Media 5678, Media 456, Media 47, Media 4567, Media 1354");
 
 	}
 
