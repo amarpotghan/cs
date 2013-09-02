@@ -1,6 +1,8 @@
 package app.cs.actions.contentplanning.assortment;
 
+import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.UUID;
 
@@ -23,7 +25,6 @@ public class CopyAssortmentUnitTests {
 
 	private CopyAssortment copyAssortment;
 
-	@Mock
 	private Assortment assortment;
 
 	@Before
@@ -38,12 +39,12 @@ public class CopyAssortmentUnitTests {
 		Assortment assortment = new Assortment();
 		assortment.setID(UUID.randomUUID().toString());
 		MultiDimensionalObject assortmentObject = new MultiDimensionalObject();
-		
+
 		String type = "assortment";
 		String name = "AS01";
 		String path = "Mp01,P01";
 		String newPath = "Mp02,p02";
-		
+
 		assortmentObject.setId(assortment.getID());
 		assortmentObject.setPath(path);
 		CopyAssortmentRequest request = new CopyAssortmentRequest();
@@ -51,8 +52,10 @@ public class CopyAssortmentUnitTests {
 		request.setNewPath(newPath);
 
 		// when
+		when(assortmentRepository.getDomain("MultiDimensionalObject"))
+				.thenReturn(assortmentObject);
 		copyAssortment.execute(request);
-		
+
 		// then
 		verify(assortmentRepository).copy(assortmentObject, newPath);
 

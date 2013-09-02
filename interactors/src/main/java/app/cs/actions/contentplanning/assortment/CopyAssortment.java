@@ -25,7 +25,8 @@ public class CopyAssortment implements Interactor {
 
 	public ResponseModel execute(RequestModel request) {
 		CopyAssortmentRequest copyAssortmentRequest = (CopyAssortmentRequest) request;
-		MultiDimensionalObject assortmentObject = new MultiDimensionalObject();
+		MultiDimensionalObject assortmentObject = (MultiDimensionalObject) assortmentRepository
+				.getDomain("MultiDimensionalObject");
 
 		Assortment assortment = copyAssortmentRequest.getAssortment();
 		String newPath = copyAssortmentRequest.getNewPath();

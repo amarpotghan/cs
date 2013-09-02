@@ -1,4 +1,4 @@
-package app.cs.controller.contentplanning.mam;
+package app.cs.controller.contentplanning.pim;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,17 +11,17 @@ import static org.mockito.Mockito.when;
 import static org.fest.assertions.Assertions.assertThat;
 
 import app.cs.actions.contentplanning.mam.GetMAMAssets;
-import app.cs.actions.contentplanning.mam.MAMSearch;
+import app.cs.actions.contentplanning.pim.PIMSearch;
 import app.cs.model.request.StringRequest;
 import app.cs.model.response.StringResponse;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MAMSearchControllerUnitTest{
+public class PIMSearchControllerUnitTest{
 	
-	private MAMSearchController mamSearchController;
+	private PIMSearchController pimSearchController;
 	
 	@Mock
-	private MAMSearch mamSearch;
+	private PIMSearch pimSearch;
 	
 	@Mock
 	private StringRequest request;
@@ -29,25 +29,25 @@ public class MAMSearchControllerUnitTest{
 	@Before
 	public void setUp(){
 		
-		mamSearchController = new MAMSearchController(mamSearch, request);
+		pimSearchController = new PIMSearchController(pimSearch, request);
 		
 	}
 	
 
 	@Test
-	public void itShouldReturnSearchResultsFromMAMTree(){
+	public void itShouldReturnSearchResultsFromPIMTree(){
 		//given
 		String key = "ABC";
 		String result = "Search Result";
 		StringResponse response = new StringResponse(result);
 		
 		//when
-		when(mamSearch.execute(request)).thenReturn(response);
+		when(pimSearch.execute(request)).thenReturn(response);
 		
-		String actualResult = mamSearchController.searchMAM(key);
+		String actualResult = pimSearchController.searchPIM(key);
 		
 		//then
-		verify(mamSearch).execute(request);
+		verify(pimSearch).execute(request);
 		assertThat(actualResult).isEqualTo(result);
 		
 		

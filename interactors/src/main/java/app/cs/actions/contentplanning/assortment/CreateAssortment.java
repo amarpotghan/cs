@@ -28,8 +28,8 @@ public class CreateAssortment implements Interactor{
 	public ResponseModel execute(RequestModel request) {
 
 		CreateAssortmentRequest createAssortmentRequest = (CreateAssortmentRequest) request;
-		MultiDimensionalObject assortmentObject = new MultiDimensionalObject();
-
+		MultiDimensionalObject assortmentObject = (MultiDimensionalObject) assortmentRepository
+				.getDomain("MultiDimensionalObject");
 		Assortment assortment = createAssortmentRequest.getAssortment();
 		assortmentObject.setPath(createAssortmentRequest.getNewPath());
 		assortment.setID(UUID.randomUUID().toString());
