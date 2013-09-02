@@ -1,4 +1,4 @@
-package app.cs.interfaces.chapter;
+package app.cs.interfaces.inmemory;
 
 public interface IInMemoryViewStructure {
 

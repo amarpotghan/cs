@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 
 import app.cs.boundary.delivery.Service;
 import app.cs.impl.model.MultiDimensionalObject;
-import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
+import app.cs.interfaces.inmemory.IInMemoryViewStructure;
 import app.cs.interfaces.slicingdicing.ITreeBuilder;
 
 /**

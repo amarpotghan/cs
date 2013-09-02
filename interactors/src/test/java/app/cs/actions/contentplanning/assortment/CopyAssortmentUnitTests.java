@@ -9,8 +9,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.impl.assortment.AssortmentRepository;
-import app.cs.model.request.CopyAssortmentRequest;
 import app.cs.impl.model.Assortment;
+import app.cs.model.request.CopyAssortmentRequest;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CopyAssortmentUnitTests {

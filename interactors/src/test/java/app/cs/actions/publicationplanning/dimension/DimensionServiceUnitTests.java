@@ -14,12 +14,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-<<<<<<< HEAD
 import app.cs.actions.contentplanning.assortment.DimensionInteractions;
 import app.cs.actions.publicationplanning.perspective.TreeBuilder;
-import app.cs.impl.chapter.InMemoryViewStructure;
-=======
->>>>>>> adding assortment repository
 import app.cs.impl.delegate.factory.IDomainFactory;
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.impl.inmemory.InMemoryViewStructure;

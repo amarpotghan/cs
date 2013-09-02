@@ -1,7 +1,5 @@
 package app.cs.impl.chapter;
 
-import java.nio.channels.InterruptibleChannel;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,12 +22,6 @@ public class ChapterRepository implements IChapterRepository {
 
 	/** The finder. */
 	private Finder finder;
-
-	/** The comma. */
-	private final String COMMA = ",";
-
-	/** The hiphen. */
-	private final String HIPHEN = "-";
 
 	private DomainFactory factory;
 

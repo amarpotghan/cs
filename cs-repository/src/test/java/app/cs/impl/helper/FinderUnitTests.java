@@ -15,8 +15,8 @@ import com.cs.data.core.nosql.mongodb.MongoRepository;
 import app.cs.impl.chapter.ChapterRepository;
 import app.cs.impl.helper.Finder;
 import app.cs.impl.model.MultiDimensionalObject;
-import app.cs.interfaces.chapter.IInMemoryViewStructure;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
+import app.cs.interfaces.inmemory.IInMemoryViewStructure;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FinderUnitTests {
@@ -27,12 +27,10 @@ public class FinderUnitTests {
 
 	@Mock
 	private IInMemoryViewStructure structure;
-	@Mock
-	private MongoRepository mongoRepository;
 
 	@Before
 	public void setUp() {
-		finder = new Finder(mongoRepository, structure);
+		finder = new Finder(structure);
 		publication = new MultiDimensionalObject("Test", "publication",
 				"A,B,C,D,E", true);
 		MultiDimensionalObject test = new MultiDimensionalObject("test01",

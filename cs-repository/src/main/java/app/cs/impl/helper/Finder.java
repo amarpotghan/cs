@@ -3,28 +3,22 @@ package app.cs.impl.helper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
-
 import app.cs.impl.model.MultiDimensionalObject;
-import app.cs.interfaces.chapter.IInMemoryViewStructure;
+import app.cs.interfaces.inmemory.IInMemoryViewStructure;
 
 @Component
 public class Finder {
 
 	private IInMemoryViewStructure structure;
 
-	private NoSqlRepository noSqlRepository;
-
 	private final String COMMA = ",";
 
 	private final String HIPHEN = "-";
 
 	@Autowired
-	public Finder(NoSqlRepository noSqlRepository,
-			IInMemoryViewStructure structure) {
+	public Finder(IInMemoryViewStructure structure) {
 
 		this.structure = structure;
-		this.noSqlRepository = noSqlRepository;
 	}
 
 	public MultiDimensionalObject find(MultiDimensionalObject publication,

@@ -7,14 +7,12 @@ import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.helper.Finder;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.assortment.IAssortmentRepository;
-import app.cs.interfaces.chapter.IChapterRepository;
 
 import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 
 /**
- * The Class ChapterRepository. TODO create separate Object for Chapter & Page,
- * Dont use ContentObject(DimensionObject) TODO with separate interface****
+ * The Class AssortmentRepository.
  */
 @Component
 public class AssortmentRepository implements IAssortmentRepository {
@@ -25,16 +23,10 @@ public class AssortmentRepository implements IAssortmentRepository {
 	/** The finder. */
 	private Finder finder;
 
-	/** The comma. */
-	private final String COMMA = ",";
-
-	/** The hiphen. */
-	private final String HIPHEN = "-";
-
 	private DomainFactory factory;
 
 	/**
-	 * Instantiates a new chapter repository.
+	 * Instantiates a new assortment repository.
 	 * 
 	 * @param nosqlTemplateForMongo
 	 *            the nosql template for mongo
@@ -60,18 +52,19 @@ public class AssortmentRepository implements IAssortmentRepository {
 	}
 
 	/**
-	 * Adds the chapter to publication.
+	 * Adds the assortment to publication.
 	 * 
 	 * @param publication
 	 *            the publication
 	 * @param assortment
-	 *            the chapter
+	 * 
 	 */
-	private String addAssortmentToPublication(MultiDimensionalObject publication,
+	private String addAssortmentToPublication(
+			MultiDimensionalObject publication,
 			MultiDimensionalObject assortment) {
 		MultiDimensionalObject parent;
-		parent = finder
-				.find(publication, finder.getParentId(assortment.getPath()));
+		parent = finder.find(publication,
+				finder.getParentId(assortment.getPath()));
 		parent.addchild(assortment);
 		return saveToMongo(publication);
 
@@ -93,9 +86,8 @@ public class AssortmentRepository implements IAssortmentRepository {
 		return factory.getDomainObject(type);
 	}
 
-
 	@Override
-	public void move(MultiDimensionalObject assortment, String newPath) {
+	public void copy(MultiDimensionalObject assortment, String newPath) {
 		MultiDimensionalObject parentPublication = getParentPublication(assortment
 				.getPath());
 		MultiDimensionalObject assortmentForNewLocation = finder.find(

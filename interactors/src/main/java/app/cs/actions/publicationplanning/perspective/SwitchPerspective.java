@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.boundary.delivery.Interactor;
-import app.cs.interfaces.chapter.IInMemoryViewStructure;
+import app.cs.interfaces.inmemory.IInMemoryViewStructure;
 import app.cs.model.request.RequestModel;
 import app.cs.model.request.StringRequest;
 import app.cs.model.response.ResponseModel;

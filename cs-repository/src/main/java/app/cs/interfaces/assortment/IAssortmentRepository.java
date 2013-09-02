@@ -27,6 +27,6 @@ public interface IAssortmentRepository {
 
 	GenericDomain getDomain(String type);
 
-	public abstract void move(MultiDimensionalObject chapter, String path);
+	public abstract void copy(MultiDimensionalObject chapter, String path);
 
 }

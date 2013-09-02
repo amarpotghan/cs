@@ -3,7 +3,7 @@ package app.cs.impl.inmemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.interfaces.chapter.IInMemoryViewStructure;
+import app.cs.interfaces.inmemory.IInMemoryViewStructure;
 
 import com.cs.data.api.core.nosql.redis.InMemoryNoSqlRepository;
 

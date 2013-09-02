@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.interfaces.chapter.IInMemoryViewStructure;
+import app.cs.interfaces.inmemory.IInMemoryViewStructure;
 import app.cs.model.request.StringRequest;
 
 /**
