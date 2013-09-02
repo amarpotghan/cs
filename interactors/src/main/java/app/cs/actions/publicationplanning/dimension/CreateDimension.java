@@ -3,11 +3,9 @@ package app.cs.actions.publicationplanning.dimension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.actions.publicationplanning.perspective.ITreeBuilder;
 import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IDimensionRepository;
-import app.cs.interfaces.inmemory.IInMemoryViewStructure;
 import app.cs.model.request.CreateDimensionRequest;
 import app.cs.model.request.RequestModel;
 import app.cs.model.response.ResponseModel;

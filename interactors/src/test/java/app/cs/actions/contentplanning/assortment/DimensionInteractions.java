@@ -7,12 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.cs.actions.publicationplanning.perspective.ITreeBuilder;
 import app.cs.boundary.delivery.Service;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.inmemory.IInMemoryViewStructure;
+import app.cs.interfaces.slicingdicing.ITreeBuilder;
 
 /**
  * The Class DimensionService.

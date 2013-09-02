@@ -1,8 +1,5 @@
 package app.cs.actions.publicationplanning.dimension;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

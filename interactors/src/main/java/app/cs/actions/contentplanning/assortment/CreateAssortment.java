@@ -11,7 +11,6 @@ import app.cs.impl.model.Assortment;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.model.request.CreateAssortmentRequest;
 import app.cs.model.request.RequestModel;
-import app.cs.model.request.UpdateAssortmentRequest;
 import app.cs.model.response.EmptyResponse;
 import app.cs.model.response.ResponseModel;
 

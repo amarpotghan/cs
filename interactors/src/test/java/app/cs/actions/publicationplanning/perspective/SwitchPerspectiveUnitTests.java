@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.interfaces.inmemory.IInMemoryViewStructure;
+import app.cs.interfaces.slicingdicing.ITreeBuilder;
 import app.cs.model.request.StringRequest;
 
 /**
