@@ -1,19 +1,27 @@
 package app.cs.impl.model;
 
+import java.io.Serializable;
 
-public class Product {
+public class Product implements Serializable {
 
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String productId;
 	private String productName;
 	private String productType;
 
+	public Product() {
+
+	}
+
 	public Product(String productId, String productName, String productType) {
-		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.productType = productType;
 	}
+
 	public String getProductId() {
 		return productId;
 	}

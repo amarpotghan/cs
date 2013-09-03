@@ -44,13 +44,14 @@ public class AssortmentRepository implements IAssortmentRepository {
 	@Override
 	public String save(MultiDimensionalObject assortment) {
 
+		System.out.println(assortment.getPath());
+		System.out.println(assortment.getId());
 		MultiDimensionalObject publication = getParentPublication(assortment
 				.getPath());
 		return addAssortmentToPublication(publication, assortment);
 
 	}
-	
-	
+
 	/**
 	 * Adds the assortment to publication.
 	 * 
@@ -87,13 +88,14 @@ public class AssortmentRepository implements IAssortmentRepository {
 	}
 
 	@Override
-	public void copy(MultiDimensionalObject assortment, String newPath) {
-		MultiDimensionalObject parentPublication = getParentPublication(assortment
-				.getPath());
-		MultiDimensionalObject assortmentForNewLocation = finder.find(
-				parentPublication, assortment.getId());
-		assortmentForNewLocation.setPath(newPath);
-		save(assortmentForNewLocation);
+	public void copy(MultiDimensionalObject assortment) {
+		/*
+		 * MultiDimensionalObject parentPublication =
+		 * getParentPublication(assortment .getPath()); MultiDimensionalObject
+		 * assortmentForNewLocation = finder.find( parentPublication,
+		 * assortment.getId()); assortmentForNewLocation.setPath(newPath);
+		 */
+		save(assortment);
 
 	}
 

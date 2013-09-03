@@ -7,6 +7,11 @@ import com.cs.data.api.core.GenericDomain;
 
 
 public class Assortment implements GenericDomain, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private List<Product> products;
 	
 	private String id;

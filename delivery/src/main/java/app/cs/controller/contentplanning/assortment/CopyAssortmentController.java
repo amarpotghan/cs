@@ -24,13 +24,13 @@ public class CopyAssortmentController {
 		this.request = request;
 	}
 
-	@RequestMapping(value = "/assortment/{newName}/copy/path/{path}/newPath/{newPath}")
-	public void copy(@RequestBody Assortment assortment, @PathVariable String newName,
-			@PathVariable String newPath) {
+	@RequestMapping(value = "/assortment/{newName}/copy/newPath/{newPath}")
+	public void copy(@RequestBody Assortment assortment,
+			@PathVariable String newName, @PathVariable String newPath) {
 		request.setAssortment(assortment);
 		request.setNewPath(newPath);
 		request.setNewName(newName);
-
+		System.out.println("In Controller");
 		copyAssortment.execute(request);
 
 	}

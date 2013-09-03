@@ -25,7 +25,7 @@ public interface IAssortmentRepository {
 
 	MultiDimensionalObject getDomain(String type);
 
-	public abstract void copy(MultiDimensionalObject chapter, String path);
+	public abstract void copy(MultiDimensionalObject assortment);
 
 	String updateAssortment(MultiDimensionalObject assortment);
 

@@ -53,7 +53,7 @@ public class CopyAssortmentUnitTests {
 		copyAssortment.execute(request);
 
 		// then
-		verify(assortmentRepository).copy(assortmentObject, newPath);
+		verify(assortmentRepository).copy(assortmentObject);
 
 	}
 }

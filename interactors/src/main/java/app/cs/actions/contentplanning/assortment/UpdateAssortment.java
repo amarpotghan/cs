@@ -16,7 +16,7 @@ import app.cs.model.response.ResponseModel;
 public class UpdateAssortment implements Interactor {
 
 	private IAssortmentRepository assortmentRepository;
-	
+
 	@Autowired
 	public UpdateAssortment(IAssortmentRepository assortmentRepository) {
 		this.assortmentRepository = assortmentRepository;
@@ -25,15 +25,15 @@ public class UpdateAssortment implements Interactor {
 
 	@Override
 	public ResponseModel execute(RequestModel requestModel) {
-		
-		UpdateAssortmentRequest updateAssortmentRequest = (UpdateAssortmentRequest)requestModel;
+
+		UpdateAssortmentRequest updateAssortmentRequest = (UpdateAssortmentRequest) requestModel;
 		MultiDimensionalObject assortmentObject = new MultiDimensionalObject();
 		Assortment assortment = updateAssortmentRequest.getAssortment();
 		assortmentObject.setPath(updateAssortmentRequest.getNewPath());
-		
-		assortmentObject.setId(assortment.getID());		
+
+		assortmentObject.setId(assortment.getID());
 		assortmentObject.setProducts(assortment.getProducts());
-		
+
 		assortmentRepository.updateAssortment(assortmentObject);
 		return new EmptyResponse();
 	}

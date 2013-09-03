@@ -116,7 +116,7 @@ public class AssortmentRepositoryUnitTests {
 		when(finder.find(publication, "test01")).thenReturn(test);
 		when(finder.find(publication, "test02")).thenReturn(assortmentTest);
 
-		repository.copy(assortment, newPath);
+		repository.copy(assortment);
 
 		// then
 		verify(noSqlTemplateForMongo).save(publication);

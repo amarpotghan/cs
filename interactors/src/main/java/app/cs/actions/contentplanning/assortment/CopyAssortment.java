@@ -18,7 +18,7 @@ import app.cs.model.response.ResponseModel;
 public class CopyAssortment implements Interactor {
 
 	private IAssortmentRepository assortmentRepository;
-	
+
 	private String type = "Assortment";
 
 	@Autowired
@@ -31,17 +31,20 @@ public class CopyAssortment implements Interactor {
 		CopyAssortmentRequest copyAssortmentRequest = (CopyAssortmentRequest) request;
 		MultiDimensionalObject assortmentObject = assortmentRepository
 				.getDomain("MultiDimensionalObject");
-		
+
 		Assortment assortment = copyAssortmentRequest.getAssortment();
-		
+
 		assortmentObject.setId(UUID.randomUUID().toString());
 		assortmentObject.setName(copyAssortmentRequest.getNewName());
 		assortmentObject.setIsFolder(false);
 		assortmentObject.setType(type);
+		assortmentObject.setTitle(copyAssortmentRequest.getNewName());
+		assortmentObject.setPath(copyAssortmentRequest.getNewPath());
 		assortmentObject.setProducts(assortment.getProducts());
-		
-		assortmentRepository.copy(assortmentObject, copyAssortmentRequest.getNewPath());
+
+		System.out.println("Interactor");
+		assortmentRepository.copy(assortmentObject);
 		return new EmptyResponse();
-		
+
 	}
 }
