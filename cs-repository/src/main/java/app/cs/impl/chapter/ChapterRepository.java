@@ -64,7 +64,7 @@ public class ChapterRepository implements IChapterRepository {
 		parent = finder
 				.find(publication, finder.getParentId(chapter.getPath()));
 		parent.addchild(chapter);
-		return saveToMongo(publication);
+		return saveToRepository(publication);
 
 	}
 
@@ -74,7 +74,7 @@ public class ChapterRepository implements IChapterRepository {
 	 * @param publication
 	 *            the publication
 	 */
-	private String saveToMongo(MultiDimensionalObject publication) {
+	private String saveToRepository(MultiDimensionalObject publication) {
 		return noSqlRepository.save(publication);
 	}
 
@@ -91,7 +91,7 @@ public class ChapterRepository implements IChapterRepository {
 		MultiDimensionalObject parent = finder.find(parentPublication,
 				finder.getParentId(chapter.getPath()));
 		parent.removeChild(chapter);
-		saveToMongo(parentPublication);
+		saveToRepository(parentPublication);
 		return chapter.getId();
 	}
 
@@ -104,7 +104,7 @@ public class ChapterRepository implements IChapterRepository {
 		chapterForNewLocation.setPath(newPath);
 		save(chapterForNewLocation);
 		delete(chapter);
-
+		//TODO move should not return any value ? delete method does this ?
 	}
 
 	public MultiDimensionalObject getParentPublication(String path) {
