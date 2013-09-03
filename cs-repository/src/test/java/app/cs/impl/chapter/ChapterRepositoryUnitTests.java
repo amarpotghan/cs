@@ -1,6 +1,7 @@
 package app.cs.impl.chapter;
 
 import static org.mockito.Mockito.times;
+import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -39,13 +40,14 @@ public class ChapterRepositoryUnitTests {
 		repository = new ChapterRepository(noSqlTemplateForMongo, factory,
 				finder);
 		publication = new MultiDimensionalObject("Test", "publication",
-				"A,B,C,D,E", true);
+				"CP01,MP01,PG01", true);
 		test = new MultiDimensionalObject("test01", "chapter",
-				"A,B,C,D,E,publication", false);
-		test.addchild(new MultiDimensionalObject("test03", "test", "test", true));
+				"CP01,MP01,PG01,P01", true);
+		test.addchild(new MultiDimensionalObject("test03", "test",
+				"CP01,MP01,PG01,P01", true));
 		publication.addchild(test);
-		publication.addchild(new MultiDimensionalObject("test02", "test", "A",
-				true));
+		publication.addchild(new MultiDimensionalObject("test02", "test",
+				"CP01,MP01,PG01,P01,test01", true));
 
 	}
 
@@ -53,13 +55,13 @@ public class ChapterRepositoryUnitTests {
 	public void itShouldCreateAChapterInTheParentPublication() {
 		// given
 		MultiDimensionalObject chapter = new MultiDimensionalObject("test",
-				"test", "A,B,C,D,E,test03", true);
+				"test", "CP01,MP01,PG01,P01,test03", true);
 		String result = "success";
 		// when
-		when(noSqlTemplateForMongo.save(chapter)).thenReturn(result);
-		when(finder.getPublicationId(chapter.getPath())).thenReturn("D");
+		when(noSqlTemplateForMongo.save(publication)).thenReturn(result);
+		when(finder.getPublicationId(chapter.getPath())).thenReturn("P01");
 		when(
-				noSqlTemplateForMongo.getObjectByKey("D",
+				noSqlTemplateForMongo.getObjectByKey("P01",
 						MultiDimensionalObject.class)).thenReturn(publication);
 
 		when(finder.getParentId(chapter.getPath())).thenReturn("test");
@@ -67,10 +69,11 @@ public class ChapterRepositoryUnitTests {
 		String actualResult = repository.save(chapter);
 
 		// then
-		verify(noSqlTemplateForMongo).getObjectByKey("D",
+		verify(noSqlTemplateForMongo).getObjectByKey("P01",
 				MultiDimensionalObject.class);
 		verify(noSqlTemplateForMongo).save(publication);
 
+		assertThat(actualResult).isEqualTo(result);
 	}
 
 	@Test
@@ -79,11 +82,11 @@ public class ChapterRepositoryUnitTests {
 
 		String result = "result";
 		MultiDimensionalObject chapter = new MultiDimensionalObject("test",
-				"test", "A,B,C,D,E,test01", true);
+				"test", "CP01,MP01,PG01,P01,test01", true);
 		when(noSqlTemplateForMongo.save(chapter)).thenReturn(result);
-		when(finder.getPublicationId(chapter.getPath())).thenReturn("D");
+		when(finder.getPublicationId(chapter.getPath())).thenReturn("P01");
 		when(
-				noSqlTemplateForMongo.getObjectByKey("D",
+				noSqlTemplateForMongo.getObjectByKey("P01",
 						MultiDimensionalObject.class)).thenReturn(publication);
 
 		when(finder.getParentId(chapter.getPath())).thenReturn("test");
@@ -92,7 +95,7 @@ public class ChapterRepositoryUnitTests {
 		repository.delete(chapter);
 
 		// then
-		verify(noSqlTemplateForMongo).getObjectByKey("D",
+		verify(noSqlTemplateForMongo).getObjectByKey("P01",
 				MultiDimensionalObject.class);
 		verify(noSqlTemplateForMongo).save(publication);
 
@@ -101,14 +104,14 @@ public class ChapterRepositoryUnitTests {
 	@Test
 	public void itShouldMoveChapterFromOneLocationToOther() {
 		String result = "result";
-		String newPath = "A,B,C,D,E,test02";
+		String newPath = "CP01,MP01,PG01,P01,test02";
 		MultiDimensionalObject chapter = new MultiDimensionalObject("test01",
-				"test", "A,B,C,D,E,test01", true);
+				"test", "CP01,MP01,PG01,P01,test01", true);
 		// when
-		when(finder.getPublicationId(chapter.getPath())).thenReturn("D");
-		when(finder.getPublicationId(newPath)).thenReturn("D");
+		when(finder.getPublicationId(chapter.getPath())).thenReturn("P01");
+		when(finder.getPublicationId(newPath)).thenReturn("P01");
 		when(
-				noSqlTemplateForMongo.getObjectByKey("D",
+				noSqlTemplateForMongo.getObjectByKey("P01",
 						MultiDimensionalObject.class)).thenReturn(publication);
 
 		when(finder.getParentId(newPath)).thenReturn("test");

@@ -56,7 +56,7 @@ public class DimensionRepositoryUnitTests {
 		String groupId = "group";
 		String path = "testPath";
 		MultiDimensionalObject dimension = new MultiDimensionalObject("c01",
-				"campaign", "co01", "co01", "testPath");
+				"campaign", "co01", "CP01", "CP01,MP01,PG01,P01");
 		// when
 		when(cache.ifGroupIdExistsFor(dimension.getPath())).thenReturn(true);
 		when(cache.getDimensionGroupIdFor(dimension.getPath())).thenReturn(
