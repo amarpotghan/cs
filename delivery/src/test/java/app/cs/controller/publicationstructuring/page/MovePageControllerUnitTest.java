@@ -9,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.publicationstructuring.page.MovePage;
-import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.model.request.MovePageRequest;
@@ -25,10 +24,6 @@ public class MovePageControllerUnitTest {
 	@Mock
 	private MovePageRequest movePageRequest;
 
-	@Mock
-	private DomainFactory factory;
-
-	private IMultiDimensionalObject dimension;
 
 	@Before
 	public void setUp() {
@@ -41,7 +36,6 @@ public class MovePageControllerUnitTest {
 	public void itShouldPageServiceToMoveAnObjectToGivenLocation() {
 
 		// given
-		String currentPath = "A-B-C";
 		String newPath = "A-B-D";
 		String name = "test";
 		String path = "A,B";

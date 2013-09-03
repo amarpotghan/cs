@@ -32,7 +32,7 @@ public class CreateAssortmentControllerUnitTest {
 	}
 
 	@Test
-	public void itShouldCreateAssortment() {
+	public void itShouldCreateAnAssortment() {
 		
 		Assortment assortment = new Assortment();
 		String path = "CP01,MP01,P01";

@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.publicationstructuring.page.CreatePage;
-import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.model.request.CreatePageRequest;
@@ -30,12 +29,7 @@ public class CreatePageControllerUnitTest {
 	private CreatePageRequest createPageRequest;
 
 	@Mock
-	private DomainFactory factory;
-	
-	@Mock
 	private StringResponse response;
-
-	private IMultiDimensionalObject dimension;
 
 	@Before
 	public void setUp() {

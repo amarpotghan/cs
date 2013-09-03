@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.publicationstructuring.chapter.CreateChapter;
-import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.model.request.CreateChapterRequest;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.response.StringResponse;
@@ -26,9 +25,6 @@ public class CreateChapterControllerUnitTest {
 
 	@Mock
 	private CreateChapterRequest createChapterRequest;
-
-	@Mock
-	private DomainFactory factory;
 
 	@Mock
 	private StringResponse response;

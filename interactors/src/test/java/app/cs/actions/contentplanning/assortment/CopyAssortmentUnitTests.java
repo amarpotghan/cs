@@ -24,8 +24,6 @@ public class CopyAssortmentUnitTests {
 
 	private CopyAssortment copyAssortment;
 
-	private Assortment assortment;
-
 	@Before
 	public void setUp() {
 		copyAssortment = new CopyAssortment(assortmentRepository);

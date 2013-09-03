@@ -32,7 +32,7 @@ public class UpdateAssortmentControllerUnitTest {
 	}
 
 	@Test
-	public void itShouldCopyAnAssortment() {
+	public void itShouldUpdateAnAssortment() {
 		
 		Assortment assortment = new Assortment();
 		updateAssortmentRequest.setAssortment(assortment);

@@ -36,7 +36,6 @@ public class MAMControllerUnitTests{
 	public void itShouldReturnMediaDataFromMAM(){
 		
 		// given
-		String restURLForPIM = "/list";
 		String id = "62";
 		String result = "success";
 		StringResponse response = new StringResponse(result);
@@ -55,7 +54,6 @@ public class MAMControllerUnitTests{
 	public void itShouldReturnMediaDataFromMAMWhenIdIsNotGiven() {
 
 		// given
-		String restURLForMAM = "/list";
 		String result = "success";
 		StringResponse response = new StringResponse(result);
 		

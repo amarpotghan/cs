@@ -25,6 +25,7 @@ public class UpdateAssortment implements Interactor {
 
 	@Override
 	public ResponseModel execute(RequestModel requestModel) {
+		
 		UpdateAssortmentRequest updateAssortmentRequest = (UpdateAssortmentRequest)requestModel;
 		MultiDimensionalObject assortmentObject = new MultiDimensionalObject();
 		Assortment assortment = updateAssortmentRequest.getAssortment();
@@ -33,7 +34,7 @@ public class UpdateAssortment implements Interactor {
 		assortmentObject.setId(assortment.getID());		
 		assortmentObject.setProducts(assortment.getProducts());
 		
-		/*assortmentRepository.update(assortmentObject);*/
+		assortmentRepository.updateAssortment(assortmentObject);
 		return new EmptyResponse();
 	}
 

@@ -25,8 +25,6 @@ public class ClientControllerUnitTests {
 	@Mock
 	private FileUtils fileUtils;
 
-	private FileUtils test = new FileUtils();
-
 	@Before
 	public void setUp() {
 
