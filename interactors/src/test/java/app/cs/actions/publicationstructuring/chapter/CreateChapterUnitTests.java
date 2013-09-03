@@ -1,6 +1,7 @@
 package app.cs.actions.publicationstructuring.chapter;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -55,33 +56,9 @@ public class CreateChapterUnitTests {
 		verify(chapterRepository).getDomain("MultiDimensionalObject");
 		verify(chapterRepository).save(object);
 		assertThat(actualResult).isEqualTo(actualResult);
+		assertEquals(isFolder,true);
 
 	}
 	
-
-	@Test
-	public void itShouldCreateAPage() {
-
-		// given
-
-		String result = "success";
-		String name = "test";
-		String path = "A,B";
-		String type = "page";
-		boolean isFolder = false;
-		// when
-		MultiDimensionalObject object = new MultiDimensionalObject();
-		when(chapterRepository.save(object)).thenReturn(result);
-		when(chapterRepository.getDomain("MultiDimensionalObject")).thenReturn(
-				object);
-		ResponseModel actualResult = createChapter
-				.execute(new CreateChapterRequest(type, name, path, isFolder));
-
-		// then
-		verify(chapterRepository).getDomain("MultiDimensionalObject");
-		verify(chapterRepository).save(object);
-		assertThat(actualResult).isEqualTo(actualResult);
-
-	}
 
 }

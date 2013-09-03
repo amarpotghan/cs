@@ -1,6 +1,7 @@
 package app.cs.actions.publicationstructuring.page;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -34,32 +35,6 @@ public class CreatePageUnitTests {
 	}
 
 	@Test
-	public void itShouldCreateAChapter() {
-
-		// given
-
-		String result = "success";
-		String name = "test";
-		String path = "A,B";
-		String type = "chapter";
-		boolean isFolder = true;
-		// when
-		MultiDimensionalObject object = new MultiDimensionalObject();
-		when(chapterRepository.save(object)).thenReturn(result);
-		when(chapterRepository.getDomain("MultiDimensionalObject")).thenReturn(
-				object);
-		ResponseModel actualResult = createPage
-				.execute(new CreatePageRequest(type, name, path, isFolder));
-
-		// then
-		verify(chapterRepository).getDomain("MultiDimensionalObject");
-		verify(chapterRepository).save(object);
-		assertThat(actualResult).isEqualTo(actualResult);
-
-	}
-	
-
-	@Test
 	public void itShouldCreateAPage() {
 
 		// given
@@ -81,6 +56,8 @@ public class CreatePageUnitTests {
 		verify(chapterRepository).getDomain("MultiDimensionalObject");
 		verify(chapterRepository).save(object);
 		assertThat(actualResult).isEqualTo(actualResult);
+		assertEquals(isFolder,false);
+
 
 	}
 

@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import static org.junit.Assert.assertEquals;
 
 import app.cs.impl.chapter.ChapterRepository;
 import app.cs.impl.delegate.factory.DomainFactory;
@@ -57,6 +58,7 @@ public class MoveChapterUnitTests {
 
 		// then
 		verify(chapterRepository).move(object, newPath);
+		assertEquals(isFolder,true);
 
 	}
 

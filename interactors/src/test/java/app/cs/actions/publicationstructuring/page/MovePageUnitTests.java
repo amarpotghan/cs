@@ -1,5 +1,6 @@
 package app.cs.actions.publicationstructuring.page;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -42,7 +43,7 @@ public class MovePageUnitTests {
 		String type = "Campaign";
 		String name = "CP01";
 		String path = "Mp01,P01";
-		boolean isFolder = true;
+		boolean isFolder = false;
 		String newPath = "Mp02,p02";
 		MultiDimensionalObject object = new MultiDimensionalObject(name, type,
 				path, isFolder);
@@ -57,6 +58,8 @@ public class MovePageUnitTests {
 
 		// then
 		verify(chapterRepository).move(object, newPath);
+		assertEquals(isFolder,false);
+
 
 	}
 
