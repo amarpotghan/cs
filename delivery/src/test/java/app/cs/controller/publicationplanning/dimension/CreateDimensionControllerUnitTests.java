@@ -1,6 +1,5 @@
 package app.cs.controller.publicationplanning.dimension;
 
-import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -11,11 +10,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.publicationplanning.dimension.CreateDimension;
-import app.cs.boundary.delivery.Interactor;
-import app.cs.controller.publicationstructuring.chapter.CreateChapterController;
-import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.model.request.CreateDimensionRequest;
-import app.cs.model.response.ResponseModel;
 import app.cs.model.response.StringResponse;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -24,7 +19,7 @@ public class CreateDimensionControllerUnitTests{
 	private CreateDimensionController createDimensionController;
 	
 	@Mock
-	private Interactor createDimension;
+	private CreateDimension createDimension;
 	
 	@Mock
 	private CreateDimensionRequest createDimensionRequest;

@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.boundary.delivery.Interactor;
+import app.cs.actions.contentplanning.assortment.CreateAssortment;
 import app.cs.impl.model.Assortment;
 import app.cs.model.request.CreateAssortmentRequest;
 
@@ -18,7 +18,7 @@ public class CreateAssortmentControllerUnitTest {
 	private CreateAssortmentController createAssortmentController;
 
 	@Mock
-	private Interactor interactor;
+	private CreateAssortment interactor;
 	
 	@Mock
 	private CreateAssortmentRequest createAssortmentRequest;

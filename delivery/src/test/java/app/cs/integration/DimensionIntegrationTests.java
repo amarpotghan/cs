@@ -93,11 +93,13 @@ public class DimensionIntegrationTests {
 	public void itShouldCreateMultipleDimensionGroupsForGivenModels() {
 
 		cache = new InMemoryDimensionGroup(inMemoryNosqlRepository);
+		
 		for (MultiDimensionalObject dimension : models) {
 
 			dimensionRepository = new DimensionRepository(null, cache,
 					noSqlRepository, factory);
 			String test = dimensionRepository.createDimension(dimension);
+			
 			assertThat(test).isNotNull();
 			assertThat(test).isEqualTo(dimension.getId());
 
