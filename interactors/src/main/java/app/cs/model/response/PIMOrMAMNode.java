@@ -2,7 +2,7 @@ package app.cs.model.response;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class PIMNode implements ResponseModel {
+public class PIMOrMAMNode implements ResponseModel {
 
 	@Override
 	public String toString() {
@@ -15,6 +15,7 @@ public class PIMNode implements ResponseModel {
 	private String id;
 
 	@JsonProperty(value = "label")
+	private String label;
 	private String title;
 	private boolean isfolder;
 	private String type;
@@ -22,6 +23,16 @@ public class PIMNode implements ResponseModel {
 	private String description;
 	private String service;
 	private boolean isLazy;
+	private boolean isFolder;
+
+
+	public boolean isIsFolder() {
+		return isfolder;
+	}
+
+	public void setFolder(boolean isFolder) {
+		this.isFolder = isFolder;
+	}
 
 	public boolean getIsLazy() {
 		return true;
@@ -36,7 +47,7 @@ public class PIMNode implements ResponseModel {
 	}
 
 	public String getTitle() {
-		return title;
+		return label;
 	}
 
 	public void setTitle(String title) {

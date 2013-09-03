@@ -7,9 +7,6 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,59 +17,49 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.boundary.delivery.Interactor;
 import app.cs.model.request.StringRequest;
-import app.cs.model.response.PIMNode;
+import app.cs.model.response.PIMOrMAMNode;
 import app.cs.model.response.StringResponse;
+import app.cs.presentor.JsonFormatter;
 
 @Controller
 public class GetPIMProductsController {
 	private Interactor getPIMAssets;
 	private StringRequest request;
+	private JsonFormatter formatter;
 
 	@Autowired
 	public GetPIMProductsController(Interactor getPIMAssets,
-			StringRequest request) {
+			StringRequest request, JsonFormatter formatter) {
 		this.getPIMAssets = getPIMAssets;
 		this.request = request;
+		this.formatter = formatter;
 	}
 
 	@RequestMapping(value = { "/pim/list/{id}" }, method = RequestMethod.GET)
 	public @ResponseBody
-	List<PIMNode> listForGivenId(@PathVariable String id)
+	List<PIMOrMAMNode> listForGivenId(@PathVariable String id)
 			throws JsonParseException, JsonMappingException, IOException,
 			ParseException {
 		request.setStringRequest(id);
-		return new ObjectMapper().readValue(
-				formatProductsToJson(((StringResponse) getPIMAssets
-						.execute(request)).getResponseString()),
-				new TypeReference<List<PIMNode>>() {
+		return new ObjectMapper().readValue(formatter
+				.format(((StringResponse) getPIMAssets.execute(request))
+						.getResponseString()),
+				new TypeReference<List<PIMOrMAMNode>>() {
 				});
 
 	}
 
 	@RequestMapping(value = { "/pim/list" }, method = RequestMethod.GET)
 	public @ResponseBody
-	List<PIMNode> list() throws JsonParseException, JsonMappingException,
+	List<PIMOrMAMNode> list() throws JsonParseException, JsonMappingException,
 			IOException, ParseException {
 		request.setStringRequest("");
-		return new ObjectMapper().readValue(
-				formatProductsToJson(((StringResponse) getPIMAssets
-						.execute(request)).getResponseString()),
-				new TypeReference<List<PIMNode>>() {
+		return new ObjectMapper().readValue(formatter
+				.format(((StringResponse) getPIMAssets.execute(request))
+						.getResponseString()),
+				new TypeReference<List<PIMOrMAMNode>>() {
 				});
 
 	}
 
-	@SuppressWarnings("unchecked")
-	private String formatProductsToJson(String products) throws ParseException {
-
-		JSONParser parser = new JSONParser();
-		JSONObject jsonObject = (JSONObject) parser.parse(products);
-		JSONArray array = new JSONArray();
-		System.out.println(array.size());
-		for (Object object : jsonObject.keySet()) {
-			array.add(jsonObject.get(object));
-
-		}
-		return array.toString();
-	}
 }

@@ -18,8 +18,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.contentplanning.pim.GetPIMAssets;
 import app.cs.model.request.StringRequest;
-import app.cs.model.response.PIMNode;
+import app.cs.model.response.PIMOrMAMNode;
 import app.cs.model.response.StringResponse;
+import app.cs.presentor.JsonFormatter;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PIMControllerUnitTests {
@@ -32,10 +33,13 @@ public class PIMControllerUnitTests {
 	@Mock
 	private StringRequest request;
 
+	private JsonFormatter formatter;
+
 	@Before
 	public void setUp() {
+		formatter = new JsonFormatter();
 		productController = new GetPIMProductsController(productInteractions,
-				request);
+				request, formatter);
 
 	}
 
@@ -52,7 +56,7 @@ public class PIMControllerUnitTests {
 		// when
 		when(productInteractions.execute(request)).thenReturn(response);
 
-		List<PIMNode> actualResult = productController.listForGivenId(id);
+		List<PIMOrMAMNode> actualResult = productController.listForGivenId(id);
 		// then
 
 		verify(productInteractions).execute(request);
@@ -74,7 +78,7 @@ public class PIMControllerUnitTests {
 		// when
 		when(productInteractions.execute(request)).thenReturn(response);
 
-		List<PIMNode> actualResult = productController.listForGivenId(null);
+		List<PIMOrMAMNode> actualResult = productController.listForGivenId(null);
 		// then
 
 		verify(productInteractions).execute(request);
