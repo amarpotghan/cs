@@ -61,36 +61,39 @@ public class AssortmentRepositoryUnitTests {
 	}
 
 	@Test
-	public void itShouldCreateAChapterInTheParentPublication() {
+	public void itShouldCreateAssortmentInTheParentPublication() {
 		// given
 		MultiDimensionalObject assortment = new MultiDimensionalObject("test",
-				"test", "A,B,C,D,E,test03", true);
+				"test", "A,B,C,D,E,test01", true);
 		List<Product> products = new ArrayList<Product>();
 		products.add(iPhone);
 		products.add(iPad);
 		assortment.setProducts(products);
+
 		String result = "success";
 		// when
-		when(noSqlTemplateForMongo.save(assortment)).thenReturn(result);
+		when(noSqlTemplateForMongo.save(publication)).thenReturn(result);
 		when(finder.getPublicationId(assortment.getPath())).thenReturn("D");
 		when(
 				noSqlTemplateForMongo.getObjectByKey("D",
 						MultiDimensionalObject.class)).thenReturn(publication);
 
-		when(finder.getParentId(assortment.getPath())).thenReturn("test");
-		when(finder.find(publication, "test")).thenReturn(test);
-		repository.save(assortment);
+		when(finder.getParentId(assortment.getPath())).thenReturn("test01");
+		when(finder.find(publication, "test01")).thenReturn(test);
+		String actualResult = repository.save(assortment);
 
 		// then
 		verify(noSqlTemplateForMongo).getObjectByKey("D",
 				MultiDimensionalObject.class);
 		verify(noSqlTemplateForMongo).save(publication);
-
+		assertThat(actualResult).isEqualTo(result);
+		// TODO publication assortment ?
 	}
 
 	@Test
 	public void itShouldCopyAssortmentFromOneLocationToOther() {
 		String newPath = "A,B,C,D,E,test02";
+		//Assortment isFolder ? false ?
 		MultiDimensionalObject assortment = new MultiDimensionalObject(
 				"test01", "test", "A,B,C,D,E,test01", true);
 		List<Product> products = new ArrayList<Product>();
@@ -113,6 +116,7 @@ public class AssortmentRepositoryUnitTests {
 
 		// then
 		verify(noSqlTemplateForMongo).save(publication);
+		// TODO publication assortment ?
 
 	}
 
@@ -122,21 +126,24 @@ public class AssortmentRepositoryUnitTests {
 
 		MultiDimensionalObject newAssortment = new MultiDimensionalObject(
 				"test01", "test", "A,B,C,D,E,test01", true);
+		
 		List<Product> products = new ArrayList<Product>();
 		products.add(iPhone);
 		products.add(iPad);
 		newAssortment.setProducts(products);
+		
 		MultiDimensionalObject oldAssortment = new MultiDimensionalObject(
 				"test01", "test", "A,B,C,D,E,test01", true);
+		String result = "success";
 
 		// when
-
+		when(noSqlTemplateForMongo.save(publication)).thenReturn(result);
 		when(finder.getPublicationId(newAssortment.getPath())).thenReturn("D");
 		when(
 				noSqlTemplateForMongo.getObjectByKey("D",
 						MultiDimensionalObject.class)).thenReturn(publication);
 		when(finder.find(publication, "test01")).thenReturn(oldAssortment);
-
+        //TODO ? verify return
 		repository.updateAssortment(newAssortment);
 		// then
 		verify(noSqlTemplateForMongo).save(publication);

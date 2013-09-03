@@ -66,7 +66,7 @@ public class AssortmentRepository implements IAssortmentRepository {
 		parent = finder.find(publication,
 				finder.getParentId(assortment.getPath()));
 		parent.addchild(assortment);
-		return saveToMongo(publication);
+		return saveToRepository(publication);
 
 	}
 
@@ -76,7 +76,7 @@ public class AssortmentRepository implements IAssortmentRepository {
 	 * @param publication
 	 *            the publication
 	 */
-	private String saveToMongo(MultiDimensionalObject publication) {
+	private String saveToRepository(MultiDimensionalObject publication) {
 		return noSqlRepository.save(publication);
 	}
 
@@ -110,8 +110,7 @@ public class AssortmentRepository implements IAssortmentRepository {
 				assortment.getId());
 		oldAssortment.setProducts(assortment.getProducts());
 
-		saveToMongo(publication);
-		return "updated=>" + assortment.getId();
+		return saveToRepository(publication);
 	}
 
 }

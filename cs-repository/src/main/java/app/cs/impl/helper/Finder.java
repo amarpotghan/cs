@@ -48,7 +48,6 @@ public class Finder {
 	}
 
 	public String getPublicationId(String path) {
-
 		String currentViewStructure = structure.getCurrentViewStructure();
 		int lastIndex = getLastIndexOf(currentViewStructure);
 

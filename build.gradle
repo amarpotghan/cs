@@ -60,7 +60,7 @@ project(':cs-persistence') {
 		baseName = 'persistence-api'
 		dependsOn classes
 		from sourceSets.main.output
-		include('com/cs/data/**')
+		include('com/cs/data/api/**')
 	}
 	artifacts { spi csApiJar }
 }
@@ -108,3 +108,4 @@ project(':delivery') {
 		testCompile "junit:junit:4.11", project(':cs-repository'),project(':cs-persistence')
 	}
 }
+
