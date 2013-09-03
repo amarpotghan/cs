@@ -46,7 +46,7 @@ public class ClientControllerUnitTests {
 		// then
 
 		verify(fileUtils).getFileContents("home.html");
-		assertThat(contents).isEqualTo(contents);
+		assertThat(contents).isEqualTo(actualContents.getHtml());
 
 	}
 
