@@ -29,7 +29,7 @@ public class UpdateAssortment implements Interactor {
 		UpdateAssortmentRequest updateAssortmentRequest = (UpdateAssortmentRequest) requestModel;
 		MultiDimensionalObject assortmentObject = new MultiDimensionalObject();
 		Assortment assortment = updateAssortmentRequest.getAssortment();
-		assortmentObject.setPath(updateAssortmentRequest.getNewPath());
+		assortmentObject.setPath(updateAssortmentRequest.getPath());
 
 		assortmentObject.setId(assortment.getID());
 		assortmentObject.setProducts(assortment.getProducts());

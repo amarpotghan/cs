@@ -35,10 +35,11 @@ public class UpdateAssortmentControllerUnitTest {
 	public void itShouldUpdateAnAssortment() {
 		
 		Assortment assortment = new Assortment();
+		String path = "CP01,MP03";
 		updateAssortmentRequest.setAssortment(assortment);
 				
 		// when
-		updateAssortmentController.execute(assortment);
+		updateAssortmentController.execute(assortment, path);
 
 		// then
 		verify(interactor).execute(updateAssortmentRequest);

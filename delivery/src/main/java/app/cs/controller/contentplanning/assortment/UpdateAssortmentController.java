@@ -2,6 +2,7 @@ package app.cs.controller.contentplanning.assortment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,9 +25,10 @@ public class UpdateAssortmentController {
 	}
 
 	@RequestMapping(value = "/assortment/update/{path}")
-	public void execute(@RequestBody Assortment assortment) {
+	public void execute(@RequestBody Assortment assortment, @PathVariable String path) {
 
 		request.setAssortment(assortment);
+		request.setPath(path);
 		updateAssortment.execute(request);
 	}
 

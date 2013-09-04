@@ -8,7 +8,7 @@ import app.cs.impl.model.Assortment;
 public class UpdateAssortmentRequest implements RequestModel {
 
 	private Assortment assortment;
-	private String newPath;
+	private String path;
 
 	public Assortment getAssortment() {
 		return assortment;
@@ -18,12 +18,13 @@ public class UpdateAssortmentRequest implements RequestModel {
 		this.assortment = assortment;
 	}
 
-	public String getNewPath() {
-		return newPath;
+	public String getPath() {
+		return path;
 	}
 
-	public void setNewPath(String newPath) {
-		this.newPath = newPath;
+	public void setPath(String path) {
+		this.path = path;
 	}
 
+	
 }

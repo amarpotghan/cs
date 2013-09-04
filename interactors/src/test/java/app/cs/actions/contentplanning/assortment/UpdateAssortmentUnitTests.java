@@ -45,7 +45,7 @@ public class UpdateAssortmentUnitTests {
 		
 		UpdateAssortmentRequest request = new UpdateAssortmentRequest();
 		request.setAssortment(assortment);
-		request.setNewPath(path);
+		request.setPath(path);
 
 		// when
 		when(assortmentRepository.updateAssortment(assortmentObject)).thenReturn("updated 123");

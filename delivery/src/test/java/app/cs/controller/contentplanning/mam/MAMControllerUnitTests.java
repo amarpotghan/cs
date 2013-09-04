@@ -52,6 +52,7 @@ public class MAMControllerUnitTests {
 		String id = "62";
 		String result = "{\"62\":{\"id\":\"62\",\"label\":\"Media Player\",\"type\":\"item\",\"image\":\"image\",\"isfolder\":true,\"description\":\"89,00, Blue\",\"service\":\"pim\"},\"91\":{\"id\":\"91\",\"label\":\"Books\",\"type\":\"item\",\"image\":\"image\",\"isfolder\":\"true\",\"description\":\"24,80, white\",\"service\":\"pim\"},\"63\":{\"id\":\"63\",\"label\":\"Accessories\",\"type\":\"item\",\"image\":\"image\",\"isfolder\":true,\"service\":\"pim\"}}";
 		String expectedResult = "[PIMNode [id=91, title=Books, isfolder=true, type=item, image=image, description=24,80, white, service=pim, isLazy=false], PIMNode [id=62, title=Media Player, isfolder=true, type=item, image=image, description=89,00, Blue, service=pim, isLazy=false], PIMNode [id=63, title=Accessories, isfolder=true, type=item, image=image, description=null, service=pim, isLazy=false]]";
+		
 		StringResponse response = new StringResponse(result);
 
 		// when
@@ -81,6 +82,8 @@ public class MAMControllerUnitTests {
 		// then
 
 		verify(getMAMAssets).execute(request);
+		System.out.println(actualResult.toString());
+		System.out.println(expectedResult);
 		assertThat(actualResult.toString()).isEqualTo(expectedResult);
 
 	}

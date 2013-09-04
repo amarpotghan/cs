@@ -2,6 +2,7 @@ package app.cs.model.response;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
+
 public class PIMOrMAMNode implements ResponseModel {
 
 	@Override
@@ -13,8 +14,6 @@ public class PIMOrMAMNode implements ResponseModel {
 	}
 
 	private String id;
-
-	@JsonProperty(value = "label")
 	private String label;
 	private String title;
 	private boolean isfolder;
@@ -44,14 +43,6 @@ public class PIMOrMAMNode implements ResponseModel {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getTitle() {
-		return label;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public boolean isIsfolder() {
@@ -93,5 +84,23 @@ public class PIMOrMAMNode implements ResponseModel {
 	public void setService(String service) {
 		this.service = service;
 	}
+	
+	public String getLabel() {
+		return label;
+	}
+	
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	@JsonProperty("label")
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 
 }
