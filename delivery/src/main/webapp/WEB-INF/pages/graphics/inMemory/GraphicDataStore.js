@@ -10,6 +10,15 @@ var GraphicDataStore = function(){
     var schemaArray=[];
     var currentSchema;
     var prodcutsArr=[];
+    var currentAssortmentId;
+}
+
+GraphicDataStore.setCurrentAssortmentId = function(id){
+    this.currentAssortmentId = id;
+}
+
+GraphicDataStore.getCurrentAssortmentId = function(){
+    return this.currentAssortmentId;
 }
 
 GraphicDataStore.setProdcutsArr = function(arr){

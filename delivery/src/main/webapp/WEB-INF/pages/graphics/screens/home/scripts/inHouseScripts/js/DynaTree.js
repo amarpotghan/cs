@@ -141,10 +141,14 @@ var DynaTree = function(){
                 },
                 onActivate: function(node) {
                     var nodeType = "Dimension";
+                    var data;
                     if(node.data.type == "Assortment"){
                         nodeType = "Assortment";
+                        GraphicDataStore.setCurrentAssortmentId(node.data.id);
+                        data = HomePresenter.getProductsForSelectedNode(node);
+                    }else{
+                        data = HomePresenter.getChildrenForSelectedNode(node)
                     }
-                    var data = HomePresenter.getChildrenForSelectedNode(node)
                     $(document).trigger({
                         type: "TREE_ITEM_CLICKED",
                         uiData: data,

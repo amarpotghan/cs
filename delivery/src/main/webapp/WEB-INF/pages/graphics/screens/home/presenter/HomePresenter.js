@@ -131,6 +131,18 @@ HomePresenter.getChildrenForSelectedNode = function(node){
     return nodeDetails;
 }
 
+HomePresenter.getProductsForSelectedNode = function(node){
+    var nodeDetails = [];
+    for(var i=0; i< node.data.products.length; i++){
+        var obj = new ProductVO();
+        obj.id = node.data.products[i].id;
+        obj.title = node.data.products[i].title;
+        obj.type = node.data.products[i].type;
+        nodeDetails.push(obj);
+    }
+    return nodeDetails;
+}
+
 HomePresenter.showAssortmentPanel = function(rendererData){
     HomePresenter.unHideAssortPanel();
     GraphicDataStore.setProdcutsArr(rendererData);
