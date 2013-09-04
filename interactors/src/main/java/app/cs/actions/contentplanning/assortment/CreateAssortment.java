@@ -38,9 +38,11 @@ public class CreateAssortment implements Interactor {
 		assortmentObject.setId(UUID.randomUUID().toString());
 		assortmentObject.setPath(createAssortmentRequest.getPath());
 		assortmentObject.setName(createAssortmentRequest.getName());
+		assortmentObject.setTitle(createAssortmentRequest.getName());
 		assortmentObject.setIsFolder(false);
 		assortmentObject.setType(type);
 		assortmentObject.setProducts(assortment.getProducts());
+		
 		assortmentRepository.save(assortmentObject);
 		return new EmptyResponse();
 
