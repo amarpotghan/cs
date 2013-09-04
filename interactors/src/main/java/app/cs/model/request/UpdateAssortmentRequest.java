@@ -9,6 +9,15 @@ public class UpdateAssortmentRequest implements RequestModel {
 
 	private Assortment assortment;
 	private String path;
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public Assortment getAssortment() {
 		return assortment;
@@ -26,5 +35,4 @@ public class UpdateAssortmentRequest implements RequestModel {
 		this.path = path;
 	}
 
-	
 }

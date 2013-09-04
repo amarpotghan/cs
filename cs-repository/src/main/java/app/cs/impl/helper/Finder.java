@@ -24,7 +24,8 @@ public class Finder {
 	public MultiDimensionalObject find(MultiDimensionalObject publication,
 			String parentId) {
 		MultiDimensionalObject child = null;
-		if (publication.getId().equals(parentId)) {
+		if (publication.getId().equals(parentId)
+				|| publication.getName().equals(parentId)) {
 			return publication;
 
 		}
@@ -34,7 +35,8 @@ public class Finder {
 				if (child != null) {
 					break;
 				}
-				if (chapter.getId().equals(parentId)) {
+				if (chapter.getId().equals(parentId)
+						|| publication.getName().equals(parentId)) {
 					return chapter;
 
 				} else {
