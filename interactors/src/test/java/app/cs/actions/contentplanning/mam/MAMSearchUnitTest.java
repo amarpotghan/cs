@@ -18,7 +18,7 @@ import app.cs.model.response.StringResponse;
 @RunWith(MockitoJUnitRunner.class)
 public class MAMSearchUnitTest {
 
-	private MAMSearch mamSearch;
+	private MamSearch mamSearch;
 
 	@Mock
 	private MAMRepository mamRepository;
@@ -26,7 +26,7 @@ public class MAMSearchUnitTest {
 
 	@Before
 	public void setUp() {
-		mamSearch = new MAMSearch(mamRepository);
+		mamSearch = new MamSearch(mamRepository);
 	}
 
 	@Test

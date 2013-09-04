@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.actions.contentplanning.mam.MAMSearch;
+import app.cs.actions.contentplanning.mam.MamSearch;
 import app.cs.model.request.StringRequest;
 import app.cs.model.response.StringResponse;
 
@@ -20,7 +20,7 @@ public class MAMSearchControllerUnitTest {
 	private MAMSearchController mamSearchController;
 
 	@Mock
-	private MAMSearch mamSearch;
+	private MamSearch mamSearch;
 
 	@Mock
 	private StringRequest request;

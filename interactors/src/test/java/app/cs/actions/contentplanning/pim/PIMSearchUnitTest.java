@@ -18,7 +18,7 @@ import app.cs.model.response.StringResponse;
 @RunWith(MockitoJUnitRunner.class)
 public class PIMSearchUnitTest {
 
-	private PIMSearch pimSearch;
+	private PimSearch pimSearch;
 
 	@Mock
 	private PIMRepository pimRepository;
@@ -26,7 +26,7 @@ public class PIMSearchUnitTest {
 
 	@Before
 	public void setUp() {
-		pimSearch = new PIMSearch(pimRepository);
+		pimSearch = new PimSearch(pimRepository);
 	}
 
 	@Test

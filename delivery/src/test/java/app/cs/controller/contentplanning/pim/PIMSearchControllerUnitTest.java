@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.actions.contentplanning.pim.PIMSearch;
+import app.cs.actions.contentplanning.pim.PimSearch;
 import app.cs.model.request.StringRequest;
 import app.cs.model.response.StringResponse;
 
@@ -20,7 +20,7 @@ public class PIMSearchControllerUnitTest {
 	private PIMSearchController pimSearchController;
 
 	@Mock
-	private PIMSearch pimSearch;
+	private PimSearch pimSearch;
 
 	@Mock
 	private StringRequest request;
