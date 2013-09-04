@@ -9,6 +9,19 @@
 var GraphicDataStore = function(){
     var schemaArray=[];
     var currentSchema;
+    var prodcutsArr=[];
+}
+
+GraphicDataStore.setProdcutsArr = function(arr){
+    this.prodcutsArr = arr;
+}
+
+GraphicDataStore.addProdcut = function(item){
+    this.prodcutsArr.push(item);
+}
+
+GraphicDataStore.getProdcutsArr = function(){
+    return this.prodcutsArr;
 }
 
 GraphicDataStore.setSchemaArray = function(schemaData){

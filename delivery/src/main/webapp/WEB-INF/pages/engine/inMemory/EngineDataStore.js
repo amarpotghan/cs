@@ -12,7 +12,6 @@ EngineDataStore.getBaseURL = function(){
     return this.baseURL;
 }
 
-
 EngineDataStore.setScreenMappingObject = function(obj){
     this.screenMappingObject = obj;
 }

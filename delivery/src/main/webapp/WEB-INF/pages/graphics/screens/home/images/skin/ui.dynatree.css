@@ -10,9 +10,9 @@ ul.dynatree-container
 	margin: 0; /* issue 201 */
 	background-color: white;
 	/*border: 1px dotted gray;*/
-	overflow: auto;
-    margin-top: 40px;
-	height: 100%; /* issue 263 */
+	//overflow: auto;
+    margin-top: 5px;
+	height:90%; /* issue 263 */
 }
 
 ul.dynatree-container ul

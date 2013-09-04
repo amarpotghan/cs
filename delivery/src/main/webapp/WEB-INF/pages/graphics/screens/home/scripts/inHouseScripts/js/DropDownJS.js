@@ -11,11 +11,8 @@ var DropDownJS = function(){
         }
 
         $(dropDownObj).change(function(){
-            GetViewStructure.get($(this).val());
-            /*$('#schemaDropDown').hide();
-            $('#mainAnimationContainer').animate({height: actualHeight}, 500);*/
-            $('#selectLbl').text("Select View");
-            flag = true;
+            DropDownPresenter.getViewStructureById($(this).val());
+           /* flag = true;*/
         });
     }
 }

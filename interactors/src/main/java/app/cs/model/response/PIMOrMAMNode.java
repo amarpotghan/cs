@@ -25,7 +25,6 @@ public class PIMOrMAMNode implements ResponseModel {
 	private boolean isLazy;
 	private boolean isFolder;
 
-
 	public boolean isIsFolder() {
 		return isfolder;
 	}

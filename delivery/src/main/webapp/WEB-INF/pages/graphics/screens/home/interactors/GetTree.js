@@ -7,7 +7,6 @@ GetTree.get = function(){
 }
 
 this.onTreeSuccess = function(data){
-
     $(document).trigger({
         type: "treeDataLoaded",
         treeData: data

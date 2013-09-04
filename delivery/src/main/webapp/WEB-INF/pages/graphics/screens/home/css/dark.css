@@ -17,16 +17,22 @@
 
 }
 
+.assestsJQList{
+        position:relative;
+
+}
+
 #leftTree{
     padding-left: 15px;
+    margin-top: 30px;
 }
 
 
 .logo{
     padding: 25px 0 0 0;
     overflow: hidden;
-
-   background-image: url("/pub-controller/pages/graphics/screens/home/images/cs_logo.png");
+   /*background-image: 'url("'+EngineGraphicsData.getBaseUrl()+'+")';*/
+   background-image: url("/delivery/pages/graphics/screens/home/images/cs_logo.png");
 }
 
 .profileLogo {
@@ -300,7 +306,7 @@ Top Bar Animation Section starts
   */
 .selectLblCSS{
     text-align: center;
-    background-image: url('/pub-controller/pages/graphics/screens/home/images/grad.png');
+    background-image: url('/delivery/pages/graphics/screens/home/images/grad.png');
     background-repeat: repeat-x;
     font-family: sans-serif;
     font-family: verdana;
@@ -334,7 +340,7 @@ Top Bar Animation Section starts
     width: 100%;
     height:27px;
    /* background-color: #EEEEEE;*/
-    background-image: url('/pub-controller/pages/graphics/screens/home/images/grad.png');
+    background-image: url('/delivery/pages/graphics/screens/home/images/grad.png');
     background-repeat: repeat-x;
     text-align: center;
     font-size: 12px;
@@ -476,7 +482,7 @@ Top Bar Animation Section starts
 .footer{
     /*float: left;*/
     position: relative;
-    background-image: url('/pub-controller/pages/graphics/screens/home/images/grad.png');
+    background-image: url('/delivery/pages/graphics/screens/home/images/grad.png');
     height: 27px;
     width:100%;
     border-top: 1px solid rgb(187, 187, 187);
@@ -654,7 +660,8 @@ Top Bar Animation Section starts
 
 }
 #assetsTree{
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: scroll;
     font-weight: lighter;
     margin-top: 5px;
     background-color:white;
@@ -664,13 +671,14 @@ Top Bar Animation Section starts
     /* border-right: 1px solid #BBBBBB;*/
     top:0px;
     width:100%;
-    min-height:200px;
+    height:250px;
     text-align: left;
 
 
 }
 #assetDetails  {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: scroll;
     font-weight: lighter;
     font-style: italic;
     margin-top: 3px;
@@ -710,7 +718,7 @@ Top Bar Animation Section starts
 
 }
 #btnMIM{
-    background-image: url("/pub-controller/pages/graphics/screens/home/images/icons/MIM.png");
+    background-image: url("../images/icons/MIM.png");
 
 }
 #btnMAM{
@@ -839,7 +847,8 @@ Top Bar Animation Section starts
 
 .viewOptionCSS{
     position: relative;
-    background-image: url('/pub-controller/pages/graphics/screens/home/images/icons/grad.png');
+    /*background: 'url("'+EngineDataStore.getBaseURL()+'graphics/screens/home/images/icons/tile.png")';*/
+    background-image: url('/delivery/pages/graphics/screens/home/images/icons/grad.png');
     background-repeat: repeat-x;
 
    /* background-color:#777777;*/
@@ -853,7 +862,8 @@ Top Bar Animation Section starts
 }
 
 .tileBtnCSS{
-    background:url(/pub-controller/pages/graphics/screens/home/images/icons/tile.png);
+    /*background: 'url("'+EngineDataStore.getBaseURL()+'graphics/screens/home/images/icons/tile.png")';*/
+    background:url(/delivery/pages/graphics/screens/home/images/icons/tile.png);
     background-repeat: no-repeat;
     border:0px;
     width: 28px;
@@ -862,7 +872,8 @@ Top Bar Animation Section starts
 }
 
 .listBtnCSS{
-    background:url(/pub-controller/pages/graphics/screens/home/images/icons/list.png);
+    /*background: 'url("'+EngineDataStore.getBaseURL()+'graphics/screens/home/images/icons/list.png")';*/
+    background:url(/delivery/pages/graphics/screens/home/images/icons/list.png);
     background-repeat: no-repeat;
     border:0px;
     width: 28px;
@@ -871,7 +882,8 @@ Top Bar Animation Section starts
 }
 
 .detailBtnCSS{
-    background:url(/pub-controller/pages/graphics/screens/home/images/icons/detail.png);
+    /*background: 'url("'+EngineDataStore.getBaseURL()+'graphics/screens/home/images/icons/detail.png")';*/
+    background:url(/delivery/pages/graphics/screens/home/images/icons/detail.png);
     background-repeat: no-repeat;
     border:0px;
     width: 28px;

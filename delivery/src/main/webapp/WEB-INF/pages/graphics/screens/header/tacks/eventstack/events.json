@@ -1,1 +1,1 @@
-[{"id":"btnLogout","event":"click","func":logoutUser}]
+[{"id":"btnLogout","event":"click","func":HeaderPresenter.logoutUser}]

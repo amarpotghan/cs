@@ -10,8 +10,12 @@ import app.cs.model.request.StringRequest;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.response.StringResponse;
 
+/**
+ * @author Amar
+ *
+ */
 @Component
-public class GetMAMAssets implements Interactor{
+public class GetMAMAssets implements Interactor {
 
 	private AssetsRepository mamRepository;
 
@@ -21,8 +25,9 @@ public class GetMAMAssets implements Interactor{
 	}
 
 	public ResponseModel execute(RequestModel model) {
-		StringRequest request = (StringRequest)model;
-		return new StringResponse(mamRepository.getAssetsFor(request.getStringRequest()));
+		StringRequest request = (StringRequest) model;
+		return new StringResponse(mamRepository.getAssetsFor(request
+				.getStringRequest()));
 
 	}
 

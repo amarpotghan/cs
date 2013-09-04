@@ -3,37 +3,13 @@ function GetViewStructure(){
 }
 
 GetViewStructure.get = function(schemaId){
-    Router.loadRequest("getSchema",true,onViewStructureSuccess,schemaId);
-    /*
-     * Comment the below code to stop data mockup, and work with actual server data
-     * Section starts here
-     */
-    /*switch(schemaId)
-     {
-     case "1":
-     {
-     Router.loadRequest("getSchema1",true,onChangeSchemaSuccess);
-     break;
-     }
-     case "2":
-     {
-     Router.loadRequest("getSchema2",true,onChangeSchemaSuccess);
-     break;
-     }
-     }*/
-    /*
-     * Section Ends here
-     */
+    Router.loadRequest("getSchema",true,GetViewStructure.onViewStructureSuccess,schemaId);
 }
 
-GetViewStructure.getAll = function(){
-    Router.loadRequest("getAllSchema",true,onViewStructuresLoaded);
-}
-
-this.onViewStructureSuccess = function(data){
+GetViewStructure.onViewStructureSuccess = function(data){
     GraphicDataStore.setCurrentSchema(data);
     GraphicDataStore.setSchemaLabel();
-    clearList();
+    HomePresenter.clearList();
     $(document).trigger({
         type: "viewStructureLoaded",
         schemaData: GraphicDataStore.getSchemaArray(),
@@ -45,8 +21,11 @@ this.onViewStructureSuccess = function(data){
     });
 }
 
-this.onViewStructuresLoaded = function(data){
-    data=eval('(' + data + ')');
+GetViewStructure.getAll = function(){
+    Router.loadRequest("getAllSchema",true,GetViewStructure.onViewStructuresLoaded);
+}
+
+GetViewStructure.onViewStructuresLoaded = function(data){
     GraphicDataStore.setSchemaArray(data);
     GraphicDataStore.setDefaultSchema();
     GraphicDataStore.setSchemaLabel();

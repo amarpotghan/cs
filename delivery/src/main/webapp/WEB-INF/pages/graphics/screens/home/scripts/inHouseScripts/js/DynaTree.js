@@ -63,7 +63,7 @@ var DynaTree = function(){
                         var flag = isFolder(action);
                         var prefix=getUrlPrefix(action,"create");
                         newNode = createNode(name,action,currentPath,flag);
-                        CreateDimensions.createDim(prefix,action,name,currentPath,flag,addNode);
+                        TreePresenter.createDimension(prefix,action,name,currentPath,flag,addNode);
                     }
                 }
             });
@@ -103,19 +103,33 @@ var DynaTree = function(){
     var getUrlPrefix=function(type,action){
         switch(type){
             case "Chapter":
-                return  "/pub-controller/chapter/"+action+"/";
+                return  "/delivery/chapter/"+action+"/";
             case "Page":
-               return  "/pub-controller/page/"+action+"/";
-
+               return  "/delivery/page/"+action+"/";
+            case "Assortment":
+                return  "/delivery/assortment/"+action+"/";
         }
-        return "/pub-controller/dimension/"+action+"/";
+        return "/delivery/dimension/"+action+"/";
     }
 
-    this.createTree = function(treeObj,data){
-        $(document).bind("schemaLoaded", function onSchemaLoadedHandler(e){
-            $('#menus').empty();
-        });
+    function onDropSuccess(){
+        if(draggedNode.data.type == "Assortment"){
+            var cb = draggedNode.toDict(true, function(dict){
+                //dict.title = "Copy of " + dict.title;
+                delete dict.key; // Remove key, so a new one will be created
+            });
+            droppedSrcNode.addChild(cb);
+        }
+        else{
+            draggedNode.move(droppedSrcNode, dragHitMode);
+        }
+    }
 
+    var draggedNode;
+    var dragHitMode;
+    var droppedSrcNode;
+
+    this.createTree = function(treeObj,data){
         if(temp != null){
             temp.removeChildren();
             temp.addChild(data);
@@ -130,7 +144,7 @@ var DynaTree = function(){
                     if(node.data.type == "Assortment"){
                         nodeType = "Assortment";
                     }
-                    var data = getChildrenForSelectedNode(node)
+                    var data = HomePresenter.getChildrenForSelectedNode(node)
                     $(document).trigger({
                         type: "TREE_ITEM_CLICKED",
                         uiData: data,
@@ -162,33 +176,20 @@ var DynaTree = function(){
                         }
                     },
                     onDrop: function(sourceNode, node, hitMode, ui, draggable) {
-                        //console.log(node.data.title+"node");
-                        //console.log(sourceNode.data.title+"sourceNode");
+                        draggedNode = node;
+                        droppedSrcNode = sourceNode;
+                        dragHitMode = hitMode;
 
-                        var parentNode = sourceNode;
-                        var newChildNode = node;
-                        var oldPathForChild = node.data.path;
+                        var parentNode = droppedSrcNode;
+                        var newChildNode = draggedNode;
+                        var oldPathForChild = draggedNode.data.path;
 
                         newChildNode.data.path = parentNode.data.path +","+parentNode.data.title;
                         var newPathForChild   = newChildNode.data.path;
-                        //API call will go here
-                        //alert(JSON.stringify(newChildNode.data.children));
-                        var flag=isFolder(node.data.type);
-                        var prefix=getUrlPrefix(node.data.type,"move");
-                        Router.forward(prefix+node.data.type+"/name/"+node.data.title+"/path/"+oldPathForChild+"/folder/"+flag+"/newpath/"+newPathForChild,true,function(data){
-
-                        });
-                        if(node.data.type == "Assortment"){
-                            var cb = node.toDict(true, function(dict){
-                                //dict.title = "Copy of " + dict.title;
-                                delete dict.key; // Remove key, so a new one will be created
-                            });
-                            sourceNode.addChild(cb);
-                        }
-                        else{
-                            node.move(sourceNode, hitMode);
-                        }
-
+                        var flag=isFolder(draggedNode.data.type);
+                        var prefix=getUrlPrefix(draggedNode.data.type,"move");
+                        prefix = prefix+draggedNode.data.type
+                        TreePresenter.dragAndDropDimensions(prefix,draggedNode.data.title,oldPathForChild,flag,newPathForChild,onDropSuccess);
                     }
                 }
             });
