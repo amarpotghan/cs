@@ -19,7 +19,6 @@ public class CreateChapterController {
 
 	/** The Constant CREATE. */
 	private static final String CREATECHAPTER = "/chapter/create/{type}/name/{name}/path/{path}/folder/{folder}";
-	private static final String CREATEPAGE = "/page/create/{type}/name/{name}/path/{path}/folder/{folder}";
 
 	/** The chapter service. */
 	private Interactor createChapter;
@@ -55,7 +54,7 @@ public class CreateChapterController {
 	 *            the is folder
 	 * @return the string
 	 */
-	@RequestMapping(value = { CREATECHAPTER, CREATEPAGE })
+	@RequestMapping(value = { CREATECHAPTER})
 	public @ResponseBody
 	String execute(@PathVariable("type") String type,
 			@PathVariable("name") String name,

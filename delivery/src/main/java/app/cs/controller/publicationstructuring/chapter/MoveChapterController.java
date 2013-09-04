@@ -19,7 +19,6 @@ public class MoveChapterController {
 
 	/** The Constant MOVE. */
 	private static final String MOVECHAPTER = "/chapter/move/{type}/name/{name}/path/{path}/folder/{folder}/newpath/{newpath}";
-	private static final String MOVEPAGE = "/page/move/{type}/name/{name}/path/{path}/folder/{folder}/newpath/{newpath}";
 
 	private Interactor moveChapter;
 	private MoveChapterRequest moveChapterRequest;
@@ -54,7 +53,7 @@ public class MoveChapterController {
 	 * @param newPath
 	 *            the new path
 	 */
-	@RequestMapping(value = { MOVECHAPTER, MOVEPAGE })
+	@RequestMapping(value = { MOVECHAPTER })
 	public @ResponseBody
 	String execute(@PathVariable("type") String type,
 			@PathVariable("name") String name,
