@@ -1,13 +1,12 @@
 package app.cs.model.response;
 
-import org.codehaus.jackson.annotate.JsonProperty;
 
 
 public class PIMOrMAMNode implements ResponseModel {
 
 	@Override
 	public String toString() {
-		return "PIMNode [id=" + id + ", title=" + title + ", isfolder="
+		return "PIMNode [id=" + id + ", title=" + label + ", isfolder="
 				+ isfolder + ", type=" + type + ", image=" + image
 				+ ", description=" + description + ", service=" + service
 				+ ", isLazy=" + isLazy + "]";
@@ -94,13 +93,7 @@ public class PIMOrMAMNode implements ResponseModel {
 	}
 	
 	public String getTitle() {
-		return title;
+		return label;
 	}
-	
-	@JsonProperty("label")
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 
 }
