@@ -19,31 +19,32 @@ public class UpdateAssortmentControllerUnitTest {
 
 	@Mock
 	private UpdateAssortment interactor;
-	
+
 	@Mock
 	private Assortment assortment;
-	
+
 	@Mock
 	private UpdateAssortmentRequest updateAssortmentRequest;
 
 	@Before
 	public void setUp() {
-		updateAssortmentController = new UpdateAssortmentController(interactor, updateAssortmentRequest);
+		updateAssortmentController = new UpdateAssortmentController(interactor,
+				updateAssortmentRequest);
 	}
 
 	@Test
 	public void itShouldUpdateAnAssortment() {
-		
+
 		Assortment assortment = new Assortment();
 		String path = "CP01,MP03";
+		String name = "ass1";
 		updateAssortmentRequest.setAssortment(assortment);
-				
+
 		// when
-		updateAssortmentController.execute(assortment, path);
+		updateAssortmentController.execute(assortment, name, path);
 
 		// then
 		verify(interactor).execute(updateAssortmentRequest);
 	}
-	
-	
+
 }

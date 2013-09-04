@@ -24,11 +24,14 @@ public class UpdateAssortmentController {
 		this.request = request;
 	}
 
-	@RequestMapping(value = "/assortment/update/{path}")
-	public void execute(@RequestBody Assortment assortment, @PathVariable String path) {
+	@RequestMapping(value = "/assortment/update/{name}/{path}")
+	public void execute(@RequestBody Assortment assortment,
+			@PathVariable String name, @PathVariable String path) {
 
 		request.setAssortment(assortment);
 		request.setPath(path);
+		request.setName(name);
+
 		updateAssortment.execute(request);
 	}
 

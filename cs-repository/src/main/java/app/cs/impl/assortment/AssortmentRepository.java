@@ -108,8 +108,9 @@ public class AssortmentRepository implements IAssortmentRepository {
 	public String updateAssortment(MultiDimensionalObject assortment) {
 		MultiDimensionalObject publication = getParentPublication(assortment
 				.getPath());
+		System.out.println(publication);
 		MultiDimensionalObject oldAssortment = finder.find(publication,
-				assortment.getId());
+				assortment.getName());
 		oldAssortment.setProducts(assortment.getProducts());
 
 		return saveToRepository(publication);

@@ -13,7 +13,7 @@ import app.cs.model.response.StringResponse;
 
 @Controller
 public class PIMSearchController {
-	
+
 	private Interactor pimSearch;
 
 	private StringRequest request;

@@ -32,7 +32,9 @@ public class UpdateAssortment implements Interactor {
 		assortmentObject.setPath(updateAssortmentRequest.getPath());
 
 		assortmentObject.setId(assortment.getID());
+		System.out.println(assortment.getProducts());
 		assortmentObject.setProducts(assortment.getProducts());
+		assortmentObject.setName(updateAssortmentRequest.getName());
 
 		assortmentRepository.updateAssortment(assortmentObject);
 		return new EmptyResponse();
