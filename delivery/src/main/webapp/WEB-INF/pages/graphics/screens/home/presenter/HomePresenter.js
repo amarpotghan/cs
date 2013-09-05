@@ -77,7 +77,7 @@ HomePresenter.createTree = function(btnId){
         urls= EngineDataStore.getBaseURL()+"delivery/mam/list";
     }
     if(btnId == "btnMIM"){
-        urls= EngineDataStore.getBaseURL()+"delivery/pim/list";
+        urls= EngineDataStore.getBaseURL()+"delivery/text/list";
     }
     var treeObj = document.getElementById("assetsTree");
     var darkTree = ElementFactory.getLazyTree();
@@ -197,18 +197,18 @@ HomePresenter.addEventListeners = function(){
     $('.jqx-listitem-element').bind('dragEnd', function (event) {
         var existingItems = $("#subtab1").jqxListBox('getItems');
         var exists = HomePresenter.productAlreadyExists(existingItems,event.args.actualData.title);
-        alert(exists)
+        /*alert(exists)
         if(!exists){
-            $("#subtab1").jqxListBox('beginUpdate');
+            /*$("#subtab1").jqxListBox('beginUpdate');*/
             $("#subtab1").jqxListBox('addItem', event.args.actualData );
             var source = $('#subtab1').jqxListBox('source');
             source.push(event.args.actualData)
-            $("#subtab1").jqxListBox('endUpdate');
+            /*$("#subtab1").jqxListBox('endUpdate');
 
-            $('#subtab1').jqxListBox('refresh');
+            $('#subtab1').jqxListBox('refresh');*/
             $('#subtab1').css('border', '2px dashed #aaa');
             GraphicDataStore.addProdcut(event.args.actualData);//Yet to decide what fields exactly needs to be added to this object
-        }
+        /*}*/
     });
     //Drag Start
     $('.jqx-listitem-element').bind('dragStart', function (event) {

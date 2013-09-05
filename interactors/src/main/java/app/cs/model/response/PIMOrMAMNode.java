@@ -34,7 +34,7 @@ public class PIMOrMAMNode implements ResponseModel {
 	}
 
 	public boolean getIsLazy() {
-		return true;
+		return isfolder;
 	}
 
 	public String getId() {
