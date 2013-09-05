@@ -917,9 +917,10 @@ Top Bar Animation Section starts
 
 #listBoxContentsubtab1 > div
 {
-    min-height: 400px !important;
+    max-height: 400px !important;
     height: auto !important;
     width: 100% !important;
+    overflow-y: scroll;
 }
 
 .jqx-listitem-state-normal{
@@ -927,7 +928,9 @@ Top Bar Animation Section starts
 }
 
 .jqx-listitem-element{
+    margin-top: 4px;
     visibility: visible !important;
+    border: 1px solid #EEEEEE;
 }
 
 #listBoxContentsubtab1 span{
