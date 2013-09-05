@@ -3,6 +3,7 @@
     {"id":"listView","event":"click","func":HomePresenter.handleViewChange},
     {"id":"detailView","event":"click","func":HomePresenter.handleViewChange},
     {"id":"btnSaveAssort","event":"click","func":HomePresenter.createProductsJSON},
+    {"id":"asSearch","event":"keyup","func":HomePresenter.searchList},
     {"id":"btnPIM","event":"click","func":HomePresenter.slidePanel},
     {"id":"btnMAM","event":"click","func":HomePresenter.slidePanel},
     {"id":"btnMIM","event":"click","func":HomePresenter.slidePanel}

@@ -4,5 +4,7 @@
     "getTree":"/delivery/dimension/get/",
     "dragNDrop":"/delivery/",
     "getDefaultSchema":"/delivery/default",
-    "getAssetsTree":"/delivery/testdrive/mocks/tree/AssetTree.json"
+    "getAssetsTree":"/delivery/testdrive/mocks/tree/AssetTree.json",
+    "searchMamAssets":"/delivery/mam/search/",
+    "searchPimAssets":"/delivery/pim/search/"
 }

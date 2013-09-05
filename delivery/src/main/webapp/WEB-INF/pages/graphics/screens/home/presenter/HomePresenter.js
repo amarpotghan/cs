@@ -34,7 +34,11 @@ HomePresenter.loadViewItems = function(evt,currentTemplateView){
     });
 }
 
+var currentPanelId;
+
 HomePresenter.slidePanel = function(evt){
+    currentPanelId = evt.currentTarget.id;
+
     var btnId = evt.currentTarget.id;
     if (btnSelectionFlag==0){
         $("#typeHolder").html(evt.currentTarget.name);
@@ -218,6 +222,19 @@ HomePresenter.addEventListeners = function(){
             actualData: items[0].originalItem
         });
     });
+}
+
+HomePresenter.searchList = function(e){
+    if(e.keyCode == 13){
+        if(currentPanelId == "btnPIM"){
+            SearchPimAsset.search(e.currentTarget.value,HomePresenter.populateAssetsList);
+        }
+        if(currentPanelId == "btnMAM"){
+            SearchPimAsset.search(e.currentTarget.value,HomePresenter.populateAssetsList);
+        }
+
+    }
+
 }
 
 HomePresenter.productAlreadyExists = function(existingItems,newLabel){
