@@ -37,10 +37,10 @@ public class TextAssetControllerUnitTests {
 			URISyntaxException {
 
 		String contents = "result";
-		when(textAssetController.getTextAssets("textassets.json"))
+		when(textAssetController.getTextAssetsForFirstLevel("textassets.json"))
 				.thenReturn(contents);
 		// when
-		String actualContents = textAssetController.getTextAssets(id);
+		String actualContents = textAssetController.getTextAssetsForFirstLevel(id);
 
 		// then
 

@@ -24,13 +24,28 @@ public class TextAssetController {
 		this.fileUtils = fileUtils;
 	}
 
-	ClientResponse customResponse = new ClientResponse();
 
-	@RequestMapping(value = { "/text/list/{id}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/text/list/62" }, method = RequestMethod.GET)
 	public @ResponseBody
-	String getTextAssets(@PathVariable String id) throws IOException,
+	String getTextAssetsForFirstLevel() throws IOException,
+			URISyntaxException {
+		return fileUtils.getFileContents("62.json");
+
+	}
+	
+	@RequestMapping(value = { "/text/list" }, method = RequestMethod.GET)
+	public @ResponseBody
+	String getTextAssets() throws IOException,
 			URISyntaxException {
 		return fileUtils.getFileContents("textassets.json");
+
+	}
+	
+	@RequestMapping(value = { "/text/list/91" }, method = RequestMethod.GET)
+	public @ResponseBody
+	String getTextAssetsSecondLevel() throws IOException,
+			URISyntaxException {
+		return fileUtils.getFileContents("91.json");
 
 	}
 
