@@ -4,6 +4,7 @@ function HomePresenter(){
 
 var rendererData;
 var btnSelectionFlag = 0;
+var onTarget=false;
 
 HomePresenter.handleViewChange = function(evt){
     switch(evt.currentTarget.id)
@@ -182,10 +183,12 @@ HomePresenter.populateAssetsList = function(data){
 HomePresenter.addEventListeners = function(){
 
     $('.jqx-listitem-element').bind('dropTargetEnter', function (event) {
+        onTarget = true;
         $(event.args.target).css('border', '2px solid #000');
         $(this).jqxDragDrop('dropAction', 'none');
     });
     $('.jqx-listitem-element').bind('dropTargetLeave', function (event) {
+        onTarget = false;
         $(event.args.target).css('border', '2px solid #aaa');
         $(this).jqxDragDrop('dropAction', 'copy');
     });
@@ -193,19 +196,22 @@ HomePresenter.addEventListeners = function(){
     //Drag End
     $('.jqx-listitem-element').bind('dragEnd', function (event) {
         var existingItems = $("#subtab1").jqxListBox('getItems');
-        var exists = HomePresenter.productAlreadyExists(existingItems,event.args.actualData.title);
-        /*alert(exists)
-        if(!exists){
-            /*$("#subtab1").jqxListBox('beginUpdate');*/
+        if(onTarget){
+            var exists = HomePresenter.productAlreadyExists(existingItems,event.args.actualData.title);
+            /*alert(exists)
+             if(!exists){
+             /*$("#subtab1").jqxListBox('beginUpdate');*/
             $("#subtab1").jqxListBox('addItem', event.args.actualData );
             var source = $('#subtab1').jqxListBox('source');
             source.push(event.args.actualData)
             /*$("#subtab1").jqxListBox('endUpdate');
-
-            $('#subtab1').jqxListBox('refresh');*/
+             $('#subtab1').jqxListBox('refresh');*/
             $('#subtab1').css('border', '2px dashed #aaa');
             GraphicDataStore.addProdcut(event.args.actualData);//Yet to decide what fields exactly needs to be added to this object
-        /*}*/
+            onTarget = false;
+            /*}*/
+        }
+
     });
     //Drag Start
     $('.jqx-listitem-element').bind('dragStart', function (event) {
