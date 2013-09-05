@@ -1,5 +1,7 @@
 package app.cs.actions.publicationplanning.dimension;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +17,7 @@ import app.cs.model.response.StringResponse;
  * The Class DimensionService. TODO remove out all annotation from class
  */
 @Component
-public class CreateDimension implements Interactor{
+public class CreateDimension implements Interactor {
 
 	/** The dimension repository. */
 	private IDimensionRepository dimensionRepository;
@@ -74,6 +76,7 @@ public class CreateDimension implements Interactor{
 		dimension.setPath(path);
 		dimension.setName(name);
 		dimension.setType(type);
+		dimension.setChildren(new ArrayList<MultiDimensionalObject>());
 
 	}
 

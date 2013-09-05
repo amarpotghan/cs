@@ -1,5 +1,7 @@
 package app.cs.actions.publicationstructuring.page;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +18,7 @@ import app.cs.model.response.StringResponse;
  * The Class ChapterService.
  */
 @Component
-public class CreatePage implements Interactor{
+public class CreatePage implements Interactor {
 
 	/** The contentobject. */
 	private final String CONTENTOBJECT = "MultiDimensionalObject";
@@ -69,6 +71,7 @@ public class CreatePage implements Interactor{
 		chapter.setPath(path);
 		chapter.setName(name);
 		chapter.setType(type);
+		chapter.setChildren(new ArrayList<MultiDimensionalObject>());
 
 	}
 

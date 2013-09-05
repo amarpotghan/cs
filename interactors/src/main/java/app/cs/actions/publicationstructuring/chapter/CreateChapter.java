@@ -1,5 +1,7 @@
 package app.cs.actions.publicationstructuring.chapter;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -68,6 +70,7 @@ public class CreateChapter implements Interactor {
 		chapter.setPath(path);
 		chapter.setName(name);
 		chapter.setType(type);
+		chapter.setChildren(new ArrayList<MultiDimensionalObject>());
 
 	}
 

@@ -28,11 +28,13 @@ public class CreateAssortmentController {
 	}
 
 	@RequestMapping(value = "/assortment/create/{name}/{path}", method = RequestMethod.POST)
-	public @ResponseBody String create(@RequestBody Assortment assortment,
+	public @ResponseBody
+	String create(@RequestBody Assortment assortment,
 			@PathVariable String name, @PathVariable String path) {
 		request.setPath(path);
 		request.setAssortment(assortment);
 		request.setName(name);
+		createAssortment.execute(request);
 		return name;
 	}
 
