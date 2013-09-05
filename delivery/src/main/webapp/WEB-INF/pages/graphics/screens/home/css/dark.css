@@ -587,6 +587,7 @@ Top Bar Animation Section starts
     width: 100% !important;
     height: 500px !important;
     margin-top: 0px;
+    overflow-y: auto;
 }
 
 #subtab2{
@@ -906,6 +907,7 @@ Top Bar Animation Section starts
     margin-top: 2px;
 }
 /* Tile, List and Detail View Item Renderer CSS Section Ends */
+/*
 
 #listBoxContentsubtab1{
 
@@ -936,3 +938,7 @@ Top Bar Animation Section starts
 #listBoxContentsubtab1 span{
     visibility: visible !important;
 }
+
+.subtab2{
+    overflow-y: auto;
+}*/

@@ -146,7 +146,9 @@ HomePresenter.showAssortmentPanel = function(rendererData){
     HomePresenter.unHideAssortPanel();
     GraphicDataStore.setProdcutsArr(rendererData);
     //Converting the div into the jqwidget list
-    $("#subtab1").jqxListBox({ source: rendererData, displayMember:"title"
+   // var theme=getDemoTheme();
+    $("#subtab1").jqxListBox({ selectedIndex: 3, source: rendererData, width: 500, height: 500,scrollBarSize:10 });
+
        /* renderer: function (index, label, value) {
             var datarecord = rendererData[index];
             var imgurl = datarecord.image;
@@ -154,14 +156,14 @@ HomePresenter.showAssortmentPanel = function(rendererData){
             var table = '<table class="assestsJQList" style="min-width: 130px;"><tr><td style="width: 40px;" rowspan="1">' + img + '</td><td>' + datarecord.title +  '</td></tr></table>';
             return table;
         }*/
-    });
+
 
 }
 
 HomePresenter.populateAssetsList = function(data){
     //Converting the div into the jqwidget list with the renderer for that list
     $("#assetDetails").jqxListBox('beginUpdate');
-    $("#assetDetails").jqxListBox({ source: data, displayMember: "title", valueMember: "description", width: 200, height: 250,
+    $("#assetDetails").jqxListBox({ source: data, displayMember: "title", valueMember: "description", width: 200, height: 250,scrollBarSize:20,
         renderer: function (index, label, value) {
             var datarecord = data[index];
             var imgurl = datarecord.image;
