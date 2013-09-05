@@ -4,13 +4,11 @@
     "getTree":"/delivery/dimension/get/",
     "dragNDrop":"/delivery/",
     "getDefaultSchema":"/delivery/default",
-<<<<<<< HEAD
     "getAssetsTree":"/delivery/testdrive/mocks/tree/AssetTree.json",
     "searchMamAssets":"/delivery/mam/search/",
-    "searchPimAssets":"/delivery/pim/search/"
-=======
+    "searchPimAssets":"/delivery/pim/search/",
     "btnPIM":"delivery/pim/list",
     "btnMAM":"delivery/mam/list",
     "btnMIM":"delivery/text/list"
->>>>>>> adding css changes
+
 }
