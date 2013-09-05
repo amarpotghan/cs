@@ -555,13 +555,28 @@ Top Bar Animation Section starts
 
 
 #assortPanel{
-    border: 1px solid black;
+    margin-top: 5px;
+    margin-left: 5px;
+    border: 1px solid #BBBBBB;
     position: relative;
     float:left;
-    width: 40%;
+    width: 50%;
     height: 99%;
     display: none;
 }
+
+#assortPanelHeader{
+    position: relative;
+    width: 100%;
+    margin-top:0px;
+    height: 30px;
+    background-color: #EEEEEE;
+    text-align: center;
+    font-family: Tahoma;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
 
 #subtab1{
     border-top: 1px solid #BBBBBB;
@@ -570,8 +585,8 @@ Top Bar Animation Section starts
     float: left;
     position: relative;
     width: 100% !important;
-    height: 400px !important;
-    margin-top: 50px;
+    height: 500px !important;
+    margin-top: 0px;
 }
 
 #subtab2{
@@ -707,7 +722,7 @@ Top Bar Animation Section starts
 .rightMenu{
     border-bottom: 1px solid #BBBBBB;
     width: 30px;
-    height: 27px;
+    height: 30px;
 
 }
 
@@ -900,12 +915,21 @@ Top Bar Animation Section starts
 
 }
 
-#listBoxContentsubtab1 div
+#listBoxContentsubtab1 > div
 {
+    min-height: 400px !important;
     height: auto !important;
     width: 100% !important;
 }
 
 .jqx-listitem-state-normal{
     width:100% !important;
+}
+
+.jqx-listitem-element{
+    visibility: visible !important;
+}
+
+#listBoxContentsubtab1 span{
+    visibility: visible !important;
 }

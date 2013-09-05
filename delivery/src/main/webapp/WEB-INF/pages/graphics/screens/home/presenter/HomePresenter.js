@@ -74,15 +74,8 @@ HomePresenter.btnFocus = function(btn){
 
 HomePresenter.createTree = function(btnId){
     var urls;
-    if(btnId == "btnPIM"){
-        urls= EngineDataStore.getBaseURL()+"delivery/pim/list";
-    }
-    if(btnId == "btnMAM"){
-        urls= EngineDataStore.getBaseURL()+"delivery/mam/list";
-    }
-    if(btnId == "btnMIM"){
-        urls= EngineDataStore.getBaseURL()+"delivery/text/list";
-    }
+    urls= EngineDataStore.getBaseURL()+EngineDataStore.getApiMappingObject()[btnId];
+
     var treeObj = document.getElementById("assetsTree");
     var darkTree = ElementFactory.getLazyTree();
     darkTree.createTree(treeObj,urls);
