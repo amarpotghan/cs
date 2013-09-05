@@ -87,7 +87,7 @@ var DynaTree = function(){
     function createAssortmentNode(name,type,path,flag){
         var flag = isFolder(type);
         var newNode = {
-            "id": "P01",
+            "id": "",
             "title": name,
             "type": type,
             "path": path,
@@ -100,7 +100,7 @@ var DynaTree = function(){
     function createNode(name,type,path,flag){
         var flag = isFolder(type);
         var newNode = {
-                        "id": "P01",
+                        "id": "",
                         "title": name,
                         "type": type,
                         "path": path,

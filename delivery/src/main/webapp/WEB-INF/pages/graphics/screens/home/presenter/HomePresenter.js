@@ -186,7 +186,7 @@ HomePresenter.addEventListeners = function(){
 
     $('.jqx-listitem-element').bind('dropTargetEnter', function (event) {
         $(event.args.target).css('border', '2px solid #000');
-        $(this).jqxDragDrop('dropAction', 'copy');
+        $(this).jqxDragDrop('dropAction', 'none');
     });
     $('.jqx-listitem-element').bind('dropTargetLeave', function (event) {
         $(event.args.target).css('border', '2px solid #aaa');
@@ -197,17 +197,17 @@ HomePresenter.addEventListeners = function(){
     $('.jqx-listitem-element').bind('dragEnd', function (event) {
         var existingItems = $("#subtab1").jqxListBox('getItems');
         var exists = HomePresenter.productAlreadyExists(existingItems,event.args.actualData.title);
+        alert(exists)
         if(!exists){
             $("#subtab1").jqxListBox('beginUpdate');
-            var b=$("#subtab1").jqxListBox('addItem', event.args.actualData );
-            alert(b)
+            $("#subtab1").jqxListBox('addItem', event.args.actualData );
             var source = $('#subtab1').jqxListBox('source');
             source.push(event.args.actualData)
             $("#subtab1").jqxListBox('endUpdate');
 
             $('#subtab1').jqxListBox('refresh');
             $('#subtab1').css('border', '2px dashed #aaa');
-            //GraphicDataStore.addProdcut(event.args.actualData);//Yet to decide what fields exactly needs to be added to this object
+            GraphicDataStore.addProdcut(event.args.actualData);//Yet to decide what fields exactly needs to be added to this object
         }
     });
     //Drag Start
