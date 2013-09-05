@@ -569,8 +569,8 @@ Top Bar Animation Section starts
     text-align: center;
     float: left;
     position: relative;
-    width: 100%;
-    height: 400px;
+    width: 100% !important;
+    height: 400px !important;
     margin-top: 50px;
 }
 
@@ -891,3 +891,21 @@ Top Bar Animation Section starts
     margin-top: 2px;
 }
 /* Tile, List and Detail View Item Renderer CSS Section Ends */
+
+#listBoxContentsubtab1{
+
+    height:100% !important;
+    width: 100% !important;
+
+
+}
+
+#listBoxContentsubtab1 div
+{
+    height: auto !important;
+    width: 100% !important;
+}
+
+.jqx-listitem-state-normal{
+    width:100% !important;
+}

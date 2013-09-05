@@ -16,14 +16,12 @@ Router.forward = function(url,async,callback){
     });
 }
 
-Router.forwardWithPost = function(url,async,callback){
-
-    var data={"products":[]};
+Router.forwardWithPost = function(url,async,reqBody,callback){
     $.ajax({
         url:url,
         contentType: "application/json",
         type:"POST",
-        data:JSON.stringify(data),
+        data:JSON.stringify(reqBody),
         dataType:"json",
         async:async,
         success:function(result){

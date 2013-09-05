@@ -138,6 +138,7 @@ HomePresenter.getProductsForSelectedNode = function(node){
         obj.id = node.data.products[i].id;
         obj.title = node.data.products[i].title;
         obj.type = node.data.products[i].type;
+        obj.path = node.data.products[i].path;
         nodeDetails.push(obj);
     }
     return nodeDetails;
@@ -147,7 +148,15 @@ HomePresenter.showAssortmentPanel = function(rendererData){
     HomePresenter.unHideAssortPanel();
     GraphicDataStore.setProdcutsArr(rendererData);
     //Converting the div into the jqwidget list
-    $("#subtab1").jqxListBox({ source: rendererData, width: 200, height: 250});
+    $("#subtab1").jqxListBox({ source: rendererData, displayMember:"title"
+       /* renderer: function (index, label, value) {
+            var datarecord = rendererData[index];
+            var imgurl = datarecord.image;
+            var img = '<img height="30" width="40" src="' + imgurl + '"/>';
+            var table = '<table class="assestsJQList" style="min-width: 130px;"><tr><td style="width: 40px;" rowspan="1">' + img + '</td><td>' + datarecord.title +  '</td></tr></table>';
+            return table;
+        }*/
+    });
 
 }
 
@@ -177,11 +186,11 @@ HomePresenter.addEventListeners = function(){
 
     $('.jqx-listitem-element').bind('dropTargetEnter', function (event) {
         $(event.args.target).css('border', '2px solid #000');
-        $(this).jqxDragDrop('dropAction', 'none');
+        $(this).jqxDragDrop('dropAction', 'copy');
     });
     $('.jqx-listitem-element').bind('dropTargetLeave', function (event) {
         $(event.args.target).css('border', '2px solid #aaa');
-        $(this).jqxDragDrop('dropAction', 'default');
+        $(this).jqxDragDrop('dropAction', 'copy');
     });
 
     //Drag End
@@ -189,9 +198,16 @@ HomePresenter.addEventListeners = function(){
         var existingItems = $("#subtab1").jqxListBox('getItems');
         var exists = HomePresenter.productAlreadyExists(existingItems,event.args.actualData.title);
         if(!exists){
-            $("#subtab1").jqxListBox('addItem', { label: event.args.actualData.title} );
+            $("#subtab1").jqxListBox('beginUpdate');
+            var b=$("#subtab1").jqxListBox('addItem', event.args.actualData );
+            alert(b)
+            var source = $('#subtab1').jqxListBox('source');
+            source.push(event.args.actualData)
+            $("#subtab1").jqxListBox('endUpdate');
+
+            $('#subtab1').jqxListBox('refresh');
             $('#subtab1').css('border', '2px dashed #aaa');
-            GraphicDataStore.addProdcut(event.args.actualData);//Yet to decide what fields exactly needs to be added to this object
+            //GraphicDataStore.addProdcut(event.args.actualData);//Yet to decide what fields exactly needs to be added to this object
         }
     });
     //Drag Start
@@ -207,7 +223,7 @@ HomePresenter.addEventListeners = function(){
 HomePresenter.productAlreadyExists = function(existingItems,newLabel){
     if(existingItems){
         for(var i=0; i< existingItems.length; i++){
-            if(existingItems[i].label === newLabel){
+            if(existingItems[i].title === newLabel){
                 return true
             }
         }
@@ -224,8 +240,9 @@ HomePresenter.createProductsJSON = function(){
     var jsonData = {};
     var columnName = "products";
     jsonData[columnName] = GraphicDataStore.getProdcutsArr();
-    alert(JSON.stringify(jsonData));
-    HomePresenter.hideAssortPanel();
+    var columnName = "id";
+    jsonData[columnName] = GraphicDataStore.getCurrentAssortment().id;
+    UpdateAssortment.update(GraphicDataStore.getCurrentAssortment(),jsonData,HomePresenter.hideAssortPanel);
 }
 
 HomePresenter.unHideAssortPanel = function(){

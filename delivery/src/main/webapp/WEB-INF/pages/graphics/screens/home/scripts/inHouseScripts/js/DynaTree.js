@@ -62,8 +62,13 @@ var DynaTree = function(){
 
                         var flag = isFolder(action);
                         var prefix=getUrlPrefix(action,"create");
-                        newNode = createNode(name,action,currentPath,flag);
-                        TreePresenter.createDimension(prefix,action,name,currentPath,flag,addNode);
+                        if(action == "Assortment"){
+                            newNode = createAssortmentNode(name,action,currentPath,flag);
+                            TreePresenter.createAssortment(prefix,action,name,currentPath,flag,addNode);
+                        }else{
+                            newNode = createNode(name,action,currentPath,flag);
+                            TreePresenter.createDimension(prefix,action,name,currentPath,flag,addNode);
+                        }
                     }
                 }
             });
@@ -77,6 +82,19 @@ var DynaTree = function(){
         if(node_expand == false)
             parentNode.expand();
         parentNode.data.children.push(newNode);
+    }
+
+    function createAssortmentNode(name,type,path,flag){
+        var flag = isFolder(type);
+        var newNode = {
+            "id": "P01",
+            "title": name,
+            "type": type,
+            "path": path,
+            "isFolder": flag,
+            "products": []
+        }
+        return newNode;
     }
 
     function createNode(name,type,path,flag){
@@ -144,8 +162,8 @@ var DynaTree = function(){
                     var data;
                     if(node.data.type == "Assortment"){
                         nodeType = "Assortment";
-                        GraphicDataStore.setCurrentAssortmentId(node.data.id);
-                        data = HomePresenter.getProductsForSelectedNode(node);
+                        GraphicDataStore.setCurrentAssortment(node.data);
+                        data = node.data.products;//HomePresenter.getProductsForSelectedNode(node);
                     }else{
                         data = HomePresenter.getChildrenForSelectedNode(node)
                     }
@@ -191,9 +209,16 @@ var DynaTree = function(){
                         newChildNode.data.path = parentNode.data.path +","+parentNode.data.title;
                         var newPathForChild   = newChildNode.data.path;
                         var flag=isFolder(draggedNode.data.type);
-                        var prefix=getUrlPrefix(draggedNode.data.type,"move");
-                        prefix = prefix+draggedNode.data.type
-                        TreePresenter.dragAndDropDimensions(prefix,draggedNode.data.title,oldPathForChild,flag,newPathForChild,onDropSuccess);
+                        var prefix;
+                         if(draggedNode.data.type == "Assortment"){
+                             prefix = getUrlPrefix(draggedNode.data.type,"copy");
+                             TreePresenter.dragAndDropAssortment(prefix,draggedNode.data.title,newPathForChild,onDropSuccess);
+                         }else{
+                             prefix =getUrlPrefix(draggedNode.data.type,"move");
+                             prefix = prefix+draggedNode.data.type;
+                             TreePresenter.dragAndDropDimensions(prefix,draggedNode.data.title,oldPathForChild,flag,newPathForChild,onDropSuccess);
+                         }
+
                     }
                 }
             });

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.model.Assortment;
@@ -27,12 +28,12 @@ public class CreateAssortmentController {
 	}
 
 	@RequestMapping(value = "/assortment/create/{name}/{path}", method = RequestMethod.POST)
-	public void create(@RequestBody Assortment assortment,
+	public @ResponseBody String create(@RequestBody Assortment assortment,
 			@PathVariable String name, @PathVariable String path) {
 		request.setPath(path);
 		request.setAssortment(assortment);
 		request.setName(name);
-		createAssortment.execute(request);
+		return name;
 	}
 
 }

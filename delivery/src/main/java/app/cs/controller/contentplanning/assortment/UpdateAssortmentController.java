@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.model.Assortment;
@@ -25,7 +26,7 @@ public class UpdateAssortmentController {
 	}
 
 	@RequestMapping(value = "/assortment/update/{name}/{path}")
-	public void execute(@RequestBody Assortment assortment,
+	public @ResponseBody String execute(@RequestBody Assortment assortment,
 			@PathVariable String name, @PathVariable String path) {
 
 		request.setAssortment(assortment);
@@ -33,6 +34,7 @@ public class UpdateAssortmentController {
 		request.setName(name);
 
 		updateAssortment.execute(request);
+		return name;
 	}
 
 }

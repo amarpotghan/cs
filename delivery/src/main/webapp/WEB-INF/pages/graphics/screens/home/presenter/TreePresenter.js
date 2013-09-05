@@ -43,3 +43,14 @@ TreePresenter.createDimension = function(prefix,action,name,currentPath,flag,cal
 TreePresenter.dragAndDropDimensions = function(prefix,name,oldPath,flag,newPath,callBack){
     DragDimension.dragAndDropDimensions(prefix,name,oldPath,flag,newPath,callBack);
 }
+
+TreePresenter.createAssortment = function(prefix,action,name,currentPath,flag,callBack){
+    CreateAssortment.create(prefix,action,name,currentPath,flag,callBack);
+}
+
+TreePresenter.dragAndDropAssortment = function(prefix,name,newPath,callBack){
+    var jsonData = {};
+    var columnName = "products";
+    jsonData[columnName] = GraphicDataStore.getProdcutsArr();
+    CopyAssortment.dragAndDropAssortment(prefix,name,newPath,jsonData,callBack);
+}
