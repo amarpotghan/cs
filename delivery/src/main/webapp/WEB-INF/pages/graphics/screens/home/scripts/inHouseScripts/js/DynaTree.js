@@ -137,15 +137,25 @@ var DynaTree = function(){
                 delete dict.key; // Remove key, so a new one will be created
             });
             droppedSrcNode.addChild(cb);
+
         }
         else{
             draggedNode.move(droppedSrcNode, dragHitMode);
+            for(var i=0; i<draggedNodeParent.data.children.length; i++){
+                if(draggedNodeParent.data.children[i].title == draggedNode.data.title){
+                    draggedNodeParent.data.children.splice(i,1);
+                }
+            }
         }
+        //Add draggedNode to new parentNodes children data object
+        droppedSrcNode.data.children.push(draggedNode.data);
+        droppedSrcNode.activate();
     }
 
-    var draggedNode;
+    var draggedNode; //The dragged node
     var dragHitMode;
-    var droppedSrcNode;
+    var droppedSrcNode; //New Parent Node for the dragged node
+    var draggedNodeParent; //Old Parent Node for the dragged node
 
     this.createTree = function(treeObj,data){
         if(temp != null){
@@ -176,6 +186,7 @@ var DynaTree = function(){
                 dnd: {
                     preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
                     onDragStart: function(node) {
+                        draggedNodeParent = node.parent;
                         if(node.data.type == "Chapter"||node.data.type == "Page"||node.data.type == "Assortment" ) {
                             return true;
                         }
@@ -228,3 +239,11 @@ var DynaTree = function(){
 
 }
 
+function setParentActive(){
+     alert(1)
+    var node = $(treeObj).dynatree("getActiveNode");
+    alert(node.data.title)
+    if( node ){
+        alert("Currently active: " + node.parent.data.title);
+    }
+}
