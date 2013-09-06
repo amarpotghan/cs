@@ -197,6 +197,7 @@ HomePresenter.addEventListeners = function(){
 
     //Drag End
     $('.jqx-listitem-element').bind('dragEnd', function (event) {
+
         var existingItems = $("#subtab1").jqxListBox('getItems');
         if(onTarget){
             var exists = HomePresenter.productAlreadyExists(existingItems,event.args.actualData.title);
@@ -204,8 +205,9 @@ HomePresenter.addEventListeners = function(){
              if(!exists){
              /*$("#subtab1").jqxListBox('beginUpdate');*/
             $("#subtab1").jqxListBox('addItem', event.args.actualData );
-            var source = $('#subtab1').jqxListBox('source');
+           /* var source = $('#subtab1').jqxListBox('source');
             source.push(event.args.actualData)
+*/
             /*$("#subtab1").jqxListBox('endUpdate');
              $('#subtab1').jqxListBox('refresh');*/
             $('#subtab1').css('border', '2px dashed #aaa');
