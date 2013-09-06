@@ -111,7 +111,7 @@ h1, h2, h3 {
     padding:0;
 }*/
 img {
-    margin:10px 0 5px;
+    margin:0px 0 5px;
 }
 #ads img {
     display:block;
@@ -560,7 +560,7 @@ Top Bar Animation Section starts
     border: 1px solid #BBBBBB;
     position: relative;
     float:left;
-    width: 50%;
+    width: 80%;
     height: 99%;
     display: none;
 }
@@ -942,3 +942,19 @@ Top Bar Animation Section starts
 .subtab2{
     overflow-y: auto;
 }*/
+
+
+.jqx-listitem-state-normal   {
+    height:58px !important;
+    position: relative !important;
+    background-color:#DFDFDF !important;
+    border:1px solid #BBBBBB !important;
+    border-radius:12px !important;
+    float: left !important;
+
+
+    width : 95% !important;
+  /*  padding: 5px !important;
+    margin: 5px !important;*/
+}
+

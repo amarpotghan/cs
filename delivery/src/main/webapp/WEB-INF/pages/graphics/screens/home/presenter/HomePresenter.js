@@ -143,20 +143,42 @@ HomePresenter.getProductsForSelectedNode = function(node){
 }
 
 HomePresenter.showAssortmentPanel = function(rendererData){
+
+
+    console.log(rendererData)
     HomePresenter.unHideAssortPanel();
     GraphicDataStore.setProdcutsArr(rendererData);
     //Converting the div into the jqwidget list
    // var theme=getDemoTheme();
-    $("#subtab1").jqxListBox({ selectedIndex: 3, source: rendererData, width: 500, height: 500,scrollBarSize:10 });
+    /*$("#subtab1").jqxListBox({ selectedIndex: 3, source: rendererData, width: 500, height: 500,scrollBarSize:10
 
-       /* renderer: function (index, label, value) {
+        *//*renderer: function (index, label, value) {
             var datarecord = rendererData[index];
             var imgurl = datarecord.image;
             var img = '<img height="30" width="40" src="' + imgurl + '"/>';
             var table = '<table class="assestsJQList" style="min-width: 130px;"><tr><td style="width: 40px;" rowspan="1">' + img + '</td><td>' + datarecord.title +  '</td></tr></table>';
             return table;
-        }*/
+        }*//*
+    });*/
 
+    $('#subtab1').jqxListBox({ selectedIndex: 0, allowDrag:false, source: GraphicDataStore.getProdcutsArr(),  itemHeight: 70, height: 500, width: '100%',
+        renderer: function (index, label, value) {
+            console.log(rendererData)
+            var datarecord = rendererData[index];
+
+            if(datarecord)
+            {
+            console.log("Inside IF==>"+index);
+            var imgurl = datarecord.image;
+            var img = '<img height="50" width="40" src="' + imgurl + '"/>';
+            var table = '<table style="min-width: 130px; height: 70px"><tr><td style="width: 40px;" rowspan="1">' + img + '</td><td>' + datarecord.title + " " + '</td></tr></table>';
+            return table;
+            }
+
+        }
+
+    });
+    $('#subtab1').jqxListBox('refresh');
 
 }
 
@@ -204,6 +226,7 @@ HomePresenter.addEventListeners = function(){
             /*alert(exists)
              if(!exists){
              /*$("#subtab1").jqxListBox('beginUpdate');*/
+            GraphicDataStore.addProdcut(event.args.actualData);//Yet to decide what fields exactly needs to be added to this object
             $("#subtab1").jqxListBox('addItem', event.args.actualData );
            /* var source = $('#subtab1').jqxListBox('source');
             source.push(event.args.actualData)
@@ -211,7 +234,7 @@ HomePresenter.addEventListeners = function(){
             /*$("#subtab1").jqxListBox('endUpdate');
              $('#subtab1').jqxListBox('refresh');*/
             $('#subtab1').css('border', '2px dashed #aaa');
-            GraphicDataStore.addProdcut(event.args.actualData);//Yet to decide what fields exactly needs to be added to this object
+
             onTarget = false;
             /*}*/
         }
