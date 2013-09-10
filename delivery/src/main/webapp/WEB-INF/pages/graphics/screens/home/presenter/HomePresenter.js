@@ -286,7 +286,7 @@ HomePresenter.createProductsJSON = function(){
     var columnName = "id";
     jsonData[columnName] = GraphicDataStore.getCurrentAssortment().id;
     UpdateAssortment.update(GraphicDataStore.getCurrentAssortment(),jsonData,HomePresenter.hideAssortPanel);
-    setParentActive();
+    /*setParentActive();*/
 }
 
 HomePresenter.unHideAssortPanel = function(){

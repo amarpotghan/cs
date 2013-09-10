@@ -239,11 +239,11 @@ var DynaTree = function(){
 
 }
 
-function setParentActive(){
+/*function setParentActive(){
      alert(1)
     var node = $(treeObj).dynatree("getActiveNode");
     alert(node.data.title)
     if( node ){
         alert("Currently active: " + node.parent.data.title);
     }
-}
+}*/
