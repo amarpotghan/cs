@@ -88,7 +88,6 @@ public class AssortmentRepositoryUnitTests {
 				MultiDimensionalObject.class);
 		verify(noSqlTemplateForMongo).save(publication);
 		assertThat(actualResult).isEqualTo(result);
-		// TODO publication assortment ?
 	}
 
 	@Test
@@ -120,7 +119,6 @@ public class AssortmentRepositoryUnitTests {
 
 		// then
 		verify(noSqlTemplateForMongo).save(publication);
-		// TODO publication assortment ?
 
 	}
 

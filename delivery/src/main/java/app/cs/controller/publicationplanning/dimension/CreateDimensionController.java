@@ -3,11 +3,14 @@ package app.cs.controller.publicationplanning.dimension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.boundary.delivery.Interactor;
+import app.cs.impl.model.DimensionInfo;
 import app.cs.model.request.CreateDimensionRequest;
 
 /**
@@ -60,12 +63,14 @@ public class CreateDimensionController {
 	String create(@PathVariable("type") String type,
 			@PathVariable("name") String name,
 			@PathVariable("path") String path,
-			@PathVariable("folder") boolean isFolder) {
+			@PathVariable("folder") boolean isFolder,
+			@RequestBody DimensionInfo dimensionInfo) {
 
 		createDimensionRequest.setFolder(isFolder);
 		createDimensionRequest.setName(name);
 		createDimensionRequest.setPath(path);
 		createDimensionRequest.setType(type);
+		createDimensionRequest.setDimensionInfo(dimensionInfo);
 
 		createDimension.execute(createDimensionRequest);
 		return name;

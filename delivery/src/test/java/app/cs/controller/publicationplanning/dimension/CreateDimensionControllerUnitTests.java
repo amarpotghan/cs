@@ -10,50 +10,54 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.publicationplanning.dimension.CreateDimension;
+import app.cs.impl.model.DimensionInfo;
 import app.cs.model.request.CreateDimensionRequest;
 import app.cs.model.response.StringResponse;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CreateDimensionControllerUnitTests{
-	
+public class CreateDimensionControllerUnitTests {
+
 	private CreateDimensionController createDimensionController;
-	
+
 	@Mock
 	private CreateDimension createDimension;
-	
+
 	@Mock
 	private CreateDimensionRequest createDimensionRequest;
-	
+
+	private DimensionInfo dimensionInfo;
+
 	@Before
 	public void setUp() {
-		createDimensionController = new CreateDimensionController(createDimension,
-				createDimensionRequest);
+		createDimensionController = new CreateDimensionController(
+				createDimension, createDimensionRequest);
 
 	}
-	
+
 	@Test
-	public void itShouldCreateDimension(){
-		
-		//given
-		String type= "folder";
-		String name= "CH02";
-		String path= "MP01,P03";
-		Boolean isFolder= true;
+	public void itShouldCreateDimension() {
+
+		// given
+		String type = "folder";
+		String name = "CH02";
+		String path = "MP01,P03";
+		Boolean isFolder = true;
 		StringResponse response = new StringResponse("success");
-		
+
 		createDimensionRequest.setFolder(isFolder);
 		createDimensionRequest.setName(name);
 		createDimensionRequest.setPath(path);
 		createDimensionRequest.setType(type);
-		
-		//when
-		when(createDimension.execute(createDimensionRequest)).thenReturn(response);
-		createDimensionController.create(type, name, path, isFolder);
-		
-		//then
+
+		// when
+		when(createDimension.execute(createDimensionRequest)).thenReturn(
+				response);
+		createDimensionController.create(type, name, path, isFolder,
+				dimensionInfo);
+
+		// then
 		verify(createDimension).execute(createDimensionRequest);
-		
-		
+
 	}
-	
+
 }

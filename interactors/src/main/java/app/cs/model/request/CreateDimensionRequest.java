@@ -2,12 +2,24 @@ package app.cs.model.request;
 
 import org.springframework.stereotype.Component;
 
+import app.cs.impl.model.DimensionInfo;
+
 @Component
 public class CreateDimensionRequest implements RequestModel {
 
 	private String type;
 	private String name;
 	private String path;
+
+	private DimensionInfo dimensionInfo;
+
+	public DimensionInfo getDimensionInfo() {
+		return dimensionInfo;
+	}
+
+	public void setDimensionInfo(DimensionInfo dimensionInfo) {
+		this.dimensionInfo = dimensionInfo;
+	}
 
 	public CreateDimensionRequest() {
 

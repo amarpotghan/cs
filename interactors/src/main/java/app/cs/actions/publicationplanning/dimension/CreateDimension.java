@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.boundary.delivery.Interactor;
+import app.cs.impl.model.DimensionInfo;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.model.request.CreateDimensionRequest;
@@ -48,7 +49,8 @@ public class CreateDimension implements Interactor {
 				.getDomain(CONTENTOBJECT);
 
 		setDimensionAttributes(dimension, request.getType(), request.getName(),
-				request.getPath(), request.isFolder());
+				request.getPath(), request.isFolder(),
+				request.getDimensionInfo());
 		return new StringResponse(
 				dimensionRepository.createDimension(dimension));
 	}
@@ -66,16 +68,19 @@ public class CreateDimension implements Interactor {
 	 *            the path
 	 * @param isFolder
 	 *            the is folder
+	 * @param dimensionInfo
 	 */
 
 	protected void setDimensionAttributes(MultiDimensionalObject dimension,
-			String type, String name, String path, boolean isFolder) {
+			String type, String name, String path, boolean isFolder,
+			DimensionInfo dimensionInfo) {
 		dimension.setId(name);
 		dimension.setTitle(name);
 		dimension.setIsFolder(isFolder);
 		dimension.setPath(path);
 		dimension.setName(name);
 		dimension.setType(type);
+		dimension.setDimensionInfo(dimensionInfo);
 		dimension.setChildren(new ArrayList<MultiDimensionalObject>());
 
 	}

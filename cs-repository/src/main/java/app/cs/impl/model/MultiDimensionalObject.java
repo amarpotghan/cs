@@ -45,6 +45,16 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 
 	private List<Product> products;
 
+	private DimensionInfo dimensionInfo;
+
+	public DimensionInfo getDimensionInfo() {
+		return dimensionInfo;
+	}
+
+	public void setDimensionInfo(DimensionInfo dimensionInfo) {
+		this.dimensionInfo = dimensionInfo;
+	}
+
 	/**
 	 * Instantiates a new content object.
 	 */
