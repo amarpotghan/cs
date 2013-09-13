@@ -3,6 +3,7 @@ package com.cs.data.api.core.nosql.mongodb;
 import java.util.Collection;
 import java.util.List;
 
+import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.nosql.NoSqlOperations;
 
 public interface NoSqlRepository extends NoSqlOperations {
@@ -92,5 +93,9 @@ public interface NoSqlRepository extends NoSqlOperations {
 	 * @return the object by key
 	 */
 	public abstract <T> T getObjectByKey(String id, Class<T> type);
+
+	public abstract <P, T> void delete(String firstField, String secondField,
+			List<P> groupId, List<T> possibleDeleteTypes,
+			Class<? extends GenericDomain> class1);
 
 }

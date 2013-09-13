@@ -16,43 +16,7 @@ import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
  */
 public interface NoSqlOperations extends IRepository {
 
-	/**
-	 * Method that saves a domain object to Nosql database.
-	 * 
-	 * @param : Domain Object
-	 * 
-	 */
-	String save(GenericDomain objectToInsert);
 
-	/**
-	 * Method that deletes given object from Nosql Database
-	 * 
-	 * @param Domain
-	 *            Object
-	 * 
-	 */
-	<T> T delete(T objectToDelete);
-
-	/**
-	 * Method that fires given query to update nosql Database
-	 * 
-	 * @param Query
-	 *            object
-	 * 
-	 */
-
-	<T> T update(T query);
-
-	/**
-	 * Method that fires given query to get an specific entiry from nosql
-	 * Database by its key.
-	 * 
-	 * @param Query
-	 *            object
-	 * 
-	 */
-
-	<P> P getObjectByKey(GenericDomain key, Class<P> type);
 
 	/**
 	 * Gets the object by key.

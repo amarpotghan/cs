@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.impl.dimension.InMemoryDimensionGroup;
+import app.cs.impl.inmemory.InMemoryViewStructure;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.impl.slicingdicing.TreeBuilder;
 import app.cs.interfaces.dimension.IDimensionRepository;
@@ -35,6 +36,8 @@ public class TreeBuilderIntegrationTests {
 
 	private MongoRepository noSqlRepository;
 
+	@Autowired
+	private InMemoryViewStructure viewStructure;
 	DomainFactory factory = new DomainFactory();
 
 	@Autowired
@@ -53,7 +56,7 @@ public class TreeBuilderIntegrationTests {
 		fileUtils = new FileUtils();
 		cache = new InMemoryDimensionGroup(inMemoryNoSqlRepository);
 		repository = new DimensionRepository(fileUtils, cache, noSqlRepository,
-				factory);
+				factory, viewStructure);
 
 		builder = new TreeBuilder(repository);
 

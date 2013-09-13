@@ -36,7 +36,7 @@ public interface IRepository {
 	 * @param objectToDelete the object to delete
 	 * @return the t
 	 */
-	<T> T delete(T objectToDelete);
+	<T> void delete(T objectToDelete);
 	
 	/**
 	 * Gets the object by key.

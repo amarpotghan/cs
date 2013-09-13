@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.impl.delegate.factory.DomainFactory;
+import app.cs.impl.inmemory.InMemoryViewStructure;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
@@ -23,10 +24,10 @@ import com.cs.data.core.nosql.mongodb.MongoRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DimensionRepositoryUnitTests {
-	private IDimensionRepository dimensionRepository;
+	private DimensionRepository dimensionRepository;
 
 	@Mock
-	private IMultiDimensionalObject dimensionModel;
+	private MultiDimensionalObject dimensionModel;
 
 	@Mock
 	private FileUtils fileUtils;
@@ -40,11 +41,14 @@ public class DimensionRepositoryUnitTests {
 	@Mock
 	private DomainFactory factory;
 
+	@Mock
+	private InMemoryViewStructure viewStructure;
+
 	@Before
 	public void setUp() {
 
 		dimensionRepository = new DimensionRepository(fileUtils, cache,
-				repository, factory);
+				repository, factory, viewStructure);
 
 	}
 
@@ -114,4 +118,48 @@ public class DimensionRepositoryUnitTests {
 				groupIds, MultiDimensionalObject.class);
 	}
 
+	@Test
+	public void itShouldDeleteAllNodesUnderGivenNode() {
+
+		when(viewStructure.getCurrentViewStructure()).thenReturn(
+				"Marketing Initiative-Campaign-SubCampaign");
+
+		// when
+
+		MultiDimensionalObject dimension = new MultiDimensionalObject(
+				"Marketing Initiative 01", "Campaign", "test", true);
+		List<String> allPossibleDelatableTypes = dimensionRepository
+				.getPossibleTypesWhichAreGoingToAffected("Campaign");
+		dimensionRepository.delete(dimension);
+
+		// then
+
+		verify(repository).delete("groupIds", "type", dimension.getGroupId(),
+				allPossibleDelatableTypes, MultiDimensionalObject.class);
+	}
+
+	@Test
+	public void itShouldGetPossibleDeletableTypes() {
+
+		when(viewStructure.getCurrentViewStructure()).thenReturn(
+				"Marketing Initiative-Campaign-SubCampaign");
+		List<String> allPossibleDelatableTypes = dimensionRepository
+				.getPossibleTypesWhichAreGoingToAffected("Campaign");
+		assertThat(allPossibleDelatableTypes).hasSize(2);
+	}
+
+	@Test
+	public void itShouldMoveDimensionAndItsChildren() {
+		// given
+
+		String newPath = "Marketing Initiative 2";
+
+		String oldPath = "Marketing Initiative 1";
+		// when
+		dimensionRepository.move(oldPath, newPath, dimensionModel);
+
+		// then
+		verify(repository).save(dimensionModel);
+
+	}
 }

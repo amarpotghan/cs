@@ -11,21 +11,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.model.DimensionInfo;
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.model.request.CreateDimensionRequest;
+import app.cs.model.request.DeleteDimensionRequest;
 
 /**
  * The Class NodeController.
  */
 @Controller
-public class CreateDimensionController {
+public class DeleteDimensionController {
 
 	/** The Constant CREATE. */
-	private static final String CREATE = "/dimension/create/{type}/name/{name}/path/{path}/folder/{folder}";
+	private static final String CREATE = "/dimension/delete/{type}/{name}";
 
 	/** The dimension service. */
-	private Interactor createDimension;
+	private Interactor deleteDimension;
 
-	private CreateDimensionRequest createDimensionRequest;
+	private DeleteDimensionRequest deleteDimensionRequest;
 
 	/**
 	 * Instantiates a new node controller.
@@ -38,10 +40,10 @@ public class CreateDimensionController {
 	 *            the cache
 	 */
 	@Autowired
-	public CreateDimensionController(Interactor createDimension,
-			CreateDimensionRequest createDimensionRequest) {
-		this.createDimension = createDimension;
-		this.createDimensionRequest = createDimensionRequest;
+	public DeleteDimensionController(Interactor deleteDimension,
+			DeleteDimensionRequest deleteDimensionRequest) {
+		this.deleteDimension = deleteDimension;
+		this.deleteDimensionRequest = deleteDimensionRequest;
 
 	}
 
@@ -60,20 +62,12 @@ public class CreateDimensionController {
 	 */
 	@RequestMapping(value = { CREATE })
 	public @ResponseBody
-	String create(@PathVariable("type") String type,
-			@PathVariable("name") String name,
-			@PathVariable("path") String path,
-			@PathVariable("folder") boolean isFolder,
-			@RequestBody DimensionInfo dimensionInfo) {
+	String create(@RequestBody MultiDimensionalObject dimensionTobeDeleted) {
 
-		createDimensionRequest.setFolder(isFolder);
-		createDimensionRequest.setName(name);
-		createDimensionRequest.setPath(path);
-		createDimensionRequest.setType(type);
-		createDimensionRequest.setDimensionInfo(dimensionInfo);
+		deleteDimensionRequest.setDimension(dimensionTobeDeleted);
 
-		createDimension.execute(createDimensionRequest);
-		return name;
+		deleteDimension.execute(deleteDimensionRequest);
+		return dimensionTobeDeleted.getId();
 
 	}
 }

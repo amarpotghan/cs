@@ -93,7 +93,6 @@ public class InMemoryDimensionGroup implements IInMemoryDimensionGroup {
 	 */
 	@Override
 	public List<String> getAllGroups() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

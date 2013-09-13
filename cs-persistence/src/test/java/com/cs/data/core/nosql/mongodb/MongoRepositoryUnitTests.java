@@ -107,7 +107,33 @@ public class MongoRepositoryUnitTests {
 		Student student = mongoRepository.getObjectByKey(id, Student.class);
 
 		// then
-		verify(mongoTemplate).findById(id,  Student.class);
+		verify(mongoTemplate).findById(id, Student.class);
 
+	}
+
+	@Test
+	public void itShouldDeleteAllNodesThatSatisfiesGivenCondition() {
+
+		// given
+
+		String id = "teacher01";
+		List<Student> students = new ArrayList<Student>();
+		students.add(new Student("0099", "esha", "First"));
+
+		List<String> phoneNumbers = new ArrayList<String>();
+
+		phoneNumbers.add("86005293479");
+		phoneNumbers.add("9822566485");
+
+		Teacher teacher = new Teacher(id, students, phoneNumbers);
+
+		// when
+		mongoRepository.delete("phoneNumbers", "students", phoneNumbers,
+				students, teacher.getClass());
+
+		// then
+		verify(mongoTemplate).remove(
+				Query.query(Criteria.where("phoneNumbers").in(phoneNumbers)
+						.and("students").in(students)), teacher.getClass());
 	}
 }

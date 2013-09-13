@@ -83,9 +83,7 @@ public class RedisRepository implements InMemoryNoSqlRepository {
 	 * @see com.cs.data.core.nosql.redis.InMemoryNoSqlRepository#delete(T)
 	 */
 	@Override
-	public <T> T delete(T objectToDelete) {
-		// TODO Auto-generated method stub
-		return null;
+	public <T> void delete(T objectToDelete) {
 	}
 
 	/*

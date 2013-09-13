@@ -57,6 +57,11 @@ public interface IDimensionRepository {
 	public abstract List<MultiDimensionalObject> getDimensionsBy(String type2,
 			List<String> groupIds);
 
-	MultiDimensionalObject getDomain(String type);
+	public MultiDimensionalObject getDomain(String type);
+
+	public abstract void delete(MultiDimensionalObject dimension);
+
+	public abstract void move(String oldPath, String newPath,
+			MultiDimensionalObject objectInMove);
 
 }

@@ -23,9 +23,7 @@ public class FileTemplate implements FileOperations {
 	 * @see com.cs.data.core.IRepository#delete(java.lang.Object)
 	 */
 	@Override
-	public <T> T delete(T objectToDelete) {
-		// TODO Auto-generated method stub
-		return null;
+	public <T> void delete(T objectToDelete) {
 	}
 
 	/* (non-Javadoc)

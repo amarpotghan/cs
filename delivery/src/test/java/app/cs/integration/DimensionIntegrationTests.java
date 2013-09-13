@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import app.cs.impl.delegate.factory.DomainFactory;
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.impl.dimension.InMemoryDimensionGroup;
+import app.cs.impl.inmemory.InMemoryViewStructure;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
@@ -34,8 +35,10 @@ public class DimensionIntegrationTests {
 	private IInMemoryDimensionGroup cache;
 	private IDimensionRepository dimensionRepository;
 
-
 	DomainFactory factory = new DomainFactory();
+
+	@Autowired
+	private InMemoryViewStructure viewStructure;
 
 	@Autowired
 	private InMemoryNoSqlRepository inMemoryNosqlRepository;
@@ -93,13 +96,13 @@ public class DimensionIntegrationTests {
 	public void itShouldCreateMultipleDimensionGroupsForGivenModels() {
 
 		cache = new InMemoryDimensionGroup(inMemoryNosqlRepository);
-		
+
 		for (MultiDimensionalObject dimension : models) {
 
 			dimensionRepository = new DimensionRepository(null, cache,
-					noSqlRepository, factory);
+					noSqlRepository, factory, viewStructure);
 			String test = dimensionRepository.createDimension(dimension);
-			
+
 			assertThat(test).isNotNull();
 			assertThat(test).isEqualTo(dimension.getId());
 

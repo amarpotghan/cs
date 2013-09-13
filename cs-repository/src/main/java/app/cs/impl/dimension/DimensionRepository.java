@@ -2,6 +2,7 @@ package app.cs.impl.dimension;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.impl.delegate.factory.DomainFactory;
+import app.cs.impl.inmemory.InMemoryViewStructure;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
@@ -22,11 +24,15 @@ import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 @Component
 public class DimensionRepository implements IDimensionRepository {
 
+	private static final String HIPHEN = "-";
+
 	/** The file utils. */
 	private FileUtils fileUtils;
 
 	/** The group cache. */
 	private IInMemoryDimensionGroup groupCache;
+
+	private InMemoryViewStructure viewStructure;
 
 	/** The no sql templatefor mongo. */
 	private NoSqlRepository noSqlRepository;
@@ -55,12 +61,14 @@ public class DimensionRepository implements IDimensionRepository {
 	@Autowired
 	public DimensionRepository(FileUtils fileUtils,
 			IInMemoryDimensionGroup groupCache,
-			NoSqlRepository noSqlRepository, DomainFactory factory) {
+			NoSqlRepository noSqlRepository, DomainFactory factory,
+			InMemoryViewStructure viewStructure) {
 
 		this.fileUtils = fileUtils;
 		this.groupCache = groupCache;
 		this.noSqlRepository = noSqlRepository;
 		this.factory = factory;
+		this.viewStructure = viewStructure;
 	}
 
 	@Override
@@ -144,4 +152,26 @@ public class DimensionRepository implements IDimensionRepository {
 
 	}
 
+	@Override
+	public void delete(MultiDimensionalObject dimension) {
+		List<String> possibleDeleteTypes = getPossibleTypesWhichAreGoingToAffected(dimension
+				.getType());
+		noSqlRepository.delete("groupIds", "type", dimension.getGroupId(),
+				possibleDeleteTypes, dimension.getClass());
+	}
+
+	public List<String> getPossibleTypesWhichAreGoingToAffected(
+			String currentNodeType) {
+		String[] alltypes = viewStructure.getCurrentViewStructure().split(
+				HIPHEN);
+		List<String> types = Arrays.asList(alltypes);
+		return types.subList(types.indexOf(currentNodeType), types.size());
+
+	}
+
+	@Override
+	public void move(String oldPath, String newPath,
+			MultiDimensionalObject objectInMove) {
+
+	}
 }

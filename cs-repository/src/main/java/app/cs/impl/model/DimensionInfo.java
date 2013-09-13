@@ -10,6 +10,15 @@ public class DimensionInfo {
 	private Date endDate;
 	private String budgetOwner;
 	private String currency;
+	private String budget;
+
+	public String getBudget() {
+		return budget;
+	}
+
+	public void setBudget(String budget) {
+		this.budget = budget;
+	}
 
 	public String getName() {
 		return name;

@@ -83,8 +83,8 @@ public class MongoRepository implements NoSqlRepository {
 	 * @see com.cs.data.core.nosql.mongodb.NoSqlRepository#delete(T)
 	 */
 	@Override
-	public <T> T delete(T objectToDelete) {
-		return null;
+	public <T> void delete(T objectToDelete) {
+		mongoTemplate.remove(objectToDelete);
 	}
 
 	/*
@@ -187,14 +187,6 @@ public class MongoRepository implements NoSqlRepository {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.core.nosql.mongodb.NoSqlRepository#getObjectForAndCriteria
-	 * (java.lang.String, P, java.lang.String, java.util.Collection,
-	 * java.lang.Class)
-	 */
 	@Override
 	public <T, P, Q> List<Q> getObjectForAndCriteria(String secondField,
 			P secondFieldValue, String firstField,
@@ -215,8 +207,19 @@ public class MongoRepository implements NoSqlRepository {
 	 */
 	@Override
 	public <T> T getObjectByKey(String id, Class<T> type) {
-		// TODO Auto-generated method stub
 		return mongoTemplate.findById(id, type);
 
 	}
+
+	@Override
+	public <P, T> void delete(String firstField, String secondField,
+			List<P> groupId, List<T> possibleDeleteTypes,
+			Class<? extends GenericDomain> type) {
+
+		mongoTemplate.remove(
+				Query.query(Criteria.where(firstField).in(groupId)
+						.and(secondField).in(possibleDeleteTypes)), type);
+
+	}
+
 }
