@@ -77,12 +77,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.products = products;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cs.data.business.model.IMultiDimensionalObject#getIsFolder()
-	 */
-
 	@Override
 	public boolean getIsFolder() {
 		return isFolder;

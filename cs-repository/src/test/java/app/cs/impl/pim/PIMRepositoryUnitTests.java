@@ -19,7 +19,7 @@ import com.cs.data.webservices.rest.RestClient;
 public class PIMRepositoryUnitTests {
 
 	private static final String SEARCH_URL = "http://192.168.135.108/CS13.0/admin/rest/pim/search/";
-	private PIMRepository pimRepository;
+	private PimRepository pimRepository;
 	@Mock
 	private RestClient restClient;
 
@@ -27,7 +27,7 @@ public class PIMRepositoryUnitTests {
 
 	@Before
 	public void setup() {
-		pimRepository = new PIMRepository(restClient);
+		pimRepository = new PimRepository(restClient);
 
 	}
 

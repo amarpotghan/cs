@@ -11,14 +11,14 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.contentplanning.assortment.PIMInteractions;
-import app.cs.impl.pim.PIMRepository;
+import app.cs.impl.pim.PimRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PIMInteractionsUnitsTests {
 
 	private PIMInteractions pimInteractions;
 	@Mock
-	private PIMRepository pimRepository;
+	private PimRepository pimRepository;
 
 	private String id = "62";
 

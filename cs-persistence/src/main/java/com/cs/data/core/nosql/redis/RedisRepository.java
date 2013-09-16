@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisOperations;
+import org.springframework.stereotype.Component;
 
 import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.nosql.redis.InMemoryNoSqlRepository;
@@ -14,6 +15,8 @@ import com.cs.data.api.core.nosql.redis.InMemoryNoSqlRepository;
  * 
  * @author Amar
  */
+
+@Component
 public class RedisRepository implements InMemoryNoSqlRepository {
 
 	/** The redis template. */

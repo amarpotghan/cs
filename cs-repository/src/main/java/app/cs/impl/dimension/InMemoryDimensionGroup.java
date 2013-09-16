@@ -18,7 +18,7 @@ import com.cs.data.api.core.nosql.redis.InMemoryNoSqlRepository;
 public class InMemoryDimensionGroup implements IInMemoryDimensionGroup {
 
 	/** The no sql template for redis. */
-	private InMemoryNoSqlRepository inMemoryNosqlRepository;
+	private InMemoryNoSqlRepository redisRepository;
 
 	/**
 	 * Instantiates a new dimension group cache.
@@ -27,7 +27,7 @@ public class InMemoryDimensionGroup implements IInMemoryDimensionGroup {
 	 */
 	@Autowired
 	public InMemoryDimensionGroup(InMemoryNoSqlRepository noSqlTemplateForRedis) {
-		this.inMemoryNosqlRepository = noSqlTemplateForRedis;
+		this.redisRepository = noSqlTemplateForRedis;
 
 	}
 
@@ -37,7 +37,7 @@ public class InMemoryDimensionGroup implements IInMemoryDimensionGroup {
 	@Override
 	public String getDimensionGroupIdFor(String path) {
 		// TODO Auto-generated method stub
-		return inMemoryNosqlRepository.get(path);
+		return redisRepository.get(path);
 	}
 
 	/* (non-Javadoc)
@@ -47,7 +47,7 @@ public class InMemoryDimensionGroup implements IInMemoryDimensionGroup {
 	public void updateCache(IMultiDimensionalObject dimension, String groupId) {
 
 		delete(dimension);
-		inMemoryNosqlRepository.set(
+		redisRepository.set(
 				dimension.getPath().concat("," + dimension.getName()), groupId);
 	}
 
@@ -59,7 +59,7 @@ public class InMemoryDimensionGroup implements IInMemoryDimensionGroup {
 	private void delete(IMultiDimensionalObject dimension) {
 		// TODO Auto-generated method stub
 
-		inMemoryNosqlRepository.delete(dimension.getPath());
+		redisRepository.delete(dimension.getPath());
 
 	}
 
@@ -70,9 +70,9 @@ public class InMemoryDimensionGroup implements IInMemoryDimensionGroup {
 	public void addNewGroup(IMultiDimensionalObject dimension, String groupId) {
 		// TODO Auto-generated method stub
 		if (dimension.isRoot()) {
-			inMemoryNosqlRepository.set(dimension.getName(), groupId);
+			redisRepository.set(dimension.getName(), groupId);
 		} else {
-			inMemoryNosqlRepository.set(
+			redisRepository.set(
 					dimension.getPath().concat("," + dimension.getName()),
 					groupId);
 		}

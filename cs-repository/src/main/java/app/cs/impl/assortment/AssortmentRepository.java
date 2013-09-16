@@ -17,7 +17,7 @@ import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 public class AssortmentRepository implements IAssortmentRepository {
 
 	/** The nosql template for mongo. */
-	private NoSqlRepository noSqlRepository;
+	private NoSqlRepository mongoRepository;
 
 	/** The finder. */
 	private Finder finder;
@@ -35,7 +35,7 @@ public class AssortmentRepository implements IAssortmentRepository {
 	@Autowired
 	public AssortmentRepository(NoSqlRepository noSqlRepository,
 			DomainFactory factory, Finder finder) {
-		this.noSqlRepository = noSqlRepository;
+		this.mongoRepository = noSqlRepository;
 		this.factory = factory;
 		this.finder = finder;
 
@@ -78,7 +78,7 @@ public class AssortmentRepository implements IAssortmentRepository {
 	 *            the publication
 	 */
 	private String saveToRepository(MultiDimensionalObject publication) {
-		return noSqlRepository.save(publication);
+		return mongoRepository.save(publication);
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class AssortmentRepository implements IAssortmentRepository {
 	}
 
 	public MultiDimensionalObject getParentPublication(String path) {
-		return noSqlRepository.getObjectByKey(finder.getPublicationId(path),
+		return mongoRepository.getObjectByKey(finder.getPublicationId(path),
 				MultiDimensionalObject.class);
 	}
 

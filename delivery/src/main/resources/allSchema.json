@@ -1,33 +1,23 @@
 [
-    {
+       {
         "id": "1",
         "default": "true",
-        "name": "Campaign-MasterPublication-Publication",
+        "name": "MarketingInitiative-Campaign-SubCampaign-Publication",
         "structure": [
+            {
+                "name": "MarketingInitiative",
+                "icon": "something",
+                "possibleChild": ["Campaign"]
+            },
             {
                 "name": "Campaign",
                 "icon": "something",
-                "possibleChild": ["MasterPublication"]
-            },
-            {
-                "name": "MasterPublication",
-                "icon": "something",
-                "possibleChild": ["Publication"]
+                "possibleChild": ["SubCampaign"]
             },
              {
-                "name": "Publication",
+                "name": "SubCampaign",
                 "icon": "something",
-                "possibleChild": ["Chapter","Page","Assortment"]
-            },
-            {
-                "name": "Chapter",
-                "icon": "something",
-                "possibleChild": ["Chapter","Page","Assortment"]
-            },
-            {
-                "name": "Page",
-                "icon": "something",
-                "possibleChild": ["Assortment"]
+                "possibleChild": ["Publication"]
             }
         ]
     },

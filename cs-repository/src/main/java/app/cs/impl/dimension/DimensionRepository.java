@@ -2,10 +2,12 @@ package app.cs.impl.dimension;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import org.h2.constant.SysProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +37,7 @@ public class DimensionRepository implements IDimensionRepository {
 	private InMemoryViewStructure viewStructure;
 
 	/** The no sql templatefor mongo. */
-	private NoSqlRepository noSqlRepository;
+	private NoSqlRepository mongoRepository;
 
 	private DomainFactory factory;
 
@@ -66,7 +68,7 @@ public class DimensionRepository implements IDimensionRepository {
 
 		this.fileUtils = fileUtils;
 		this.groupCache = groupCache;
-		this.noSqlRepository = noSqlRepository;
+		this.mongoRepository = noSqlRepository;
 		this.factory = factory;
 		this.viewStructure = viewStructure;
 	}
@@ -75,21 +77,29 @@ public class DimensionRepository implements IDimensionRepository {
 	public String createDimension(MultiDimensionalObject dimension) {
 		String groupId = getDimensionGroupId(dimension.getPath());
 		if (groupCache.ifGroupIdExistsFor(dimension.getPath())) {
-			dimension.addToGroupId(groupId);
-			dimension.setChildren(null);
-			noSqlRepository.save(dimension);
-			groupCache.updateCache(dimension, groupId);
+			createDimensionWithExistingGroupId(dimension, groupId);
 		} else {
-			groupId = UUID.randomUUID().toString();
-			groupCache.addNewGroup(dimension, groupId);
-
-			updateGroupIdForAllAncestor(dimension.getPath(), groupId);
-			dimension.addToGroupId(groupId);
-			dimension.setChildren(null);
-			noSqlRepository.save(dimension);
+			createDimensionWithNewGroupId(dimension);
 		}
 
 		return dimension.getId();
+	}
+
+	private void createDimensionWithNewGroupId(MultiDimensionalObject dimension) {
+		String groupId;
+		groupId = UUID.randomUUID().toString();
+		groupCache.addNewGroup(dimension, groupId);
+
+		updateGroupIdForAllAncestor(dimension.getPath(), groupId);
+		dimension.addToGroupId(groupId);
+		mongoRepository.save(dimension);
+	}
+
+	private void createDimensionWithExistingGroupId(
+			MultiDimensionalObject dimension, String groupId) {
+		dimension.addToGroupId(groupId);
+		mongoRepository.save(dimension);
+		groupCache.updateCache(dimension, groupId);
 	}
 
 	/**
@@ -103,7 +113,7 @@ public class DimensionRepository implements IDimensionRepository {
 	private void updateGroupIdForAllAncestor(String path, String groupId) {
 		String[] paths = path.split(",");
 		for (String singlePath : paths) {
-			noSqlRepository.updateById(singlePath, FIELDTOUPDATE, groupId,
+			mongoRepository.updateById(singlePath, FIELDTOUPDATE, groupId,
 					MultiDimensionalObject.class);
 		}
 
@@ -135,19 +145,19 @@ public class DimensionRepository implements IDimensionRepository {
 	@Override
 	public List<MultiDimensionalObject> getDimensions() {
 
-		return noSqlRepository.findAll(MultiDimensionalObject.class);
+		return mongoRepository.findAll(MultiDimensionalObject.class);
 	}
 
 	@Override
 	public List<MultiDimensionalObject> getDimensionsOfType(String type) {
-		return noSqlRepository.getObjectsBy(TYPE, type,
+		return mongoRepository.getObjectsBy(TYPE, type,
 				MultiDimensionalObject.class);
 	}
 
 	@Override
 	public List<MultiDimensionalObject> getDimensionsBy(String type2,
 			List<String> groupIds) {
-		return noSqlRepository.getObjectForAndCriteria(TYPE, type2, GROUPIDS,
+		return mongoRepository.getObjectForAndCriteria(TYPE, type2, GROUPIDS,
 				groupIds, MultiDimensionalObject.class);
 
 	}
@@ -156,22 +166,68 @@ public class DimensionRepository implements IDimensionRepository {
 	public void delete(MultiDimensionalObject dimension) {
 		List<String> possibleDeleteTypes = getPossibleTypesWhichAreGoingToAffected(dimension
 				.getType());
-		noSqlRepository.delete("groupIds", "type", dimension.getGroupId(),
+		mongoRepository.delete("groupIds", "type", dimension.getGroupId(),
 				possibleDeleteTypes, dimension.getClass());
 	}
 
 	public List<String> getPossibleTypesWhichAreGoingToAffected(
 			String currentNodeType) {
-		String[] alltypes = viewStructure.getCurrentViewStructure().split(
-				HIPHEN);
-		List<String> types = Arrays.asList(alltypes);
+		List<String> types = splitViewStructure();
 		return types.subList(types.indexOf(currentNodeType), types.size());
-
 	}
 
 	@Override
 	public void move(String oldPath, String newPath,
 			MultiDimensionalObject objectInMove) {
+		moveDimensionWithAllItsChildren(newPath, objectInMove);
+		System.out.println("After move");
 
 	}
+
+	private void moveDimensionWithAllItsChildren(String newPath,
+			MultiDimensionalObject objectInMove) {
+		String localNewPath = newPath;
+		List<String> groupIds = objectInMove.getGroupId();
+		objectInMove.setGroupId(new ArrayList<String>());
+		objectInMove.setPath(localNewPath);
+		System.out.println(objectInMove);
+		createDimension(objectInMove);
+		if (objectInMove.getType().equals(
+				getLastDimensionInCurrentViewStructure()))
+			return;
+		List<MultiDimensionalObject> children = getDimensionsBy(
+				getNextType(objectInMove), groupIds);
+		newPath = objectInMove.getPath() + "," + objectInMove.getName();
+
+		System.out.println(newPath);
+		for (MultiDimensionalObject multiDimensionalObject : children) {
+			moveDimensionWithAllItsChildren(newPath, multiDimensionalObject);
+		}
+
+	}
+
+	private String getLastDimensionInCurrentViewStructure() {
+		List<String> types = splitViewStructure();
+		return types.get(types.size() - 1);
+
+	}
+
+	private String getNextType(MultiDimensionalObject objectInMove) {
+		List<String> types = splitViewStructure();
+		System.out.println("==>>>>" + objectInMove.getType());
+		return types.get(types.indexOf(objectInMove.getType()) + 1);
+
+	}
+
+	private List<String> splitViewStructure() {
+		System.out.println(viewStructure.getCurrentViewStructure());
+		String[] alltypes = viewStructure.getCurrentViewStructure().split(
+				HIPHEN);
+		List<String> types = Arrays.asList(alltypes);
+		for (String string : types) {
+			System.out.println(string);
+		}
+		return types;
+	}
+
 }

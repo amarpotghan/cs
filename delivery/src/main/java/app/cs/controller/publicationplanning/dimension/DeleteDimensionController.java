@@ -1,5 +1,5 @@
-package app.cs.controller.publicationplanning.dimension;
 
+package app.cs.controller.publicationplanning.dimension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,8 +64,8 @@ public class DeleteDimensionController {
 	public @ResponseBody
 	String create(@RequestBody MultiDimensionalObject dimensionTobeDeleted) {
 
-		deleteDimensionRequest.setDimension(dimensionTobeDeleted);
 
+		deleteDimensionRequest.setDimension(dimensionTobeDeleted);
 		deleteDimension.execute(deleteDimensionRequest);
 		return dimensionTobeDeleted.getId();
 

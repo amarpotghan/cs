@@ -20,15 +20,15 @@ subprojects {
 	dependencies {
 
 		def springVersion = "3.1.1.RELEASE"
-		def tomcat7Version = "7.0.6"
+		def tomcat7Version = "7.0.39"
 
 		compile "org.springframework:spring-core:${springVersion}"
 		compile "org.springframework:spring-web:${springVersion}"
 		compile "org.springframework:spring-webmvc:${springVersion}"
 		compile "org.springframework:spring-beans:${springVersion}"
 		compile "org.springframework:spring-context:${springVersion}"
-		compile "org.springframework:spring-tx:${springVersion}"
 		compile "org.apache.tomcat:tomcat-servlet-api:${tomcat7Version}"
+		compile "org.springframework:spring-tx:${springVersion}"
 		compile 'org.codehaus.jackson:jackson-core-asl:1.9.9'
 		compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.9'
 		compile 'org.springframework.data:spring-data-mongodb:1.2.1.RELEASE'

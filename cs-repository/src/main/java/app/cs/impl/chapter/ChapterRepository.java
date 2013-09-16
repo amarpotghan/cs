@@ -17,7 +17,7 @@ import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 @Component
 public class ChapterRepository implements IChapterRepository {
 	/** The nosql template for mongo. */
-	private NoSqlRepository noSqlRepository;
+	private NoSqlRepository mongoRepository;
 
 	/** The finder. */
 	private Finder finder;
@@ -35,7 +35,7 @@ public class ChapterRepository implements IChapterRepository {
 	@Autowired
 	public ChapterRepository(NoSqlRepository noSqlRepository,
 			DomainFactory factory, Finder finder) {
-		this.noSqlRepository = noSqlRepository;
+		this.mongoRepository = noSqlRepository;
 		this.factory = factory;
 		this.finder = finder;
 
@@ -75,7 +75,7 @@ public class ChapterRepository implements IChapterRepository {
 	 *            the publication
 	 */
 	private String saveToRepository(MultiDimensionalObject publication) {
-		return noSqlRepository.save(publication);
+		return mongoRepository.save(publication);
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class ChapterRepository implements IChapterRepository {
 	}
 
 	public MultiDimensionalObject getParentPublication(String path) {
-		return noSqlRepository.getObjectByKey(finder.getPublicationId(path),
+		return mongoRepository.getObjectByKey(finder.getPublicationId(path),
 				MultiDimensionalObject.class);
 	}
 

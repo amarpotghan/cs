@@ -1,7 +1,10 @@
 package app.cs.model.request;
 
+import org.springframework.stereotype.Component;
+
 import app.cs.impl.model.MultiDimensionalObject;
 
+@Component
 public class MoveDimensionRequest implements RequestModel {
 
 	private MultiDimensionalObject objectInMove;

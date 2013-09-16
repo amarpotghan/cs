@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import app.cs.impl.mam.MAMRepository;
+import app.cs.impl.mam.MamRepository;
 import app.cs.model.request.StringRequest;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.response.StringResponse;
@@ -21,7 +21,7 @@ public class GetMAMAssetsUnitTests {
 	private GetMAMAssets getMAMAssets;
 
 	@Mock
-	private MAMRepository mamRepository;
+	private MamRepository mamRepository;
 	
 	private String id = "62";
 

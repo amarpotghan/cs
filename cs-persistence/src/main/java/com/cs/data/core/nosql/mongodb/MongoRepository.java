@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Component;
 
 import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
@@ -15,6 +16,7 @@ import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 /**
  * The Class MongoRepository.
  */
+@Component
 public class MongoRepository implements NoSqlRepository {
 
 	/** The mongo template. */

@@ -63,14 +63,14 @@ public class CreateDimensionController {
 	String create(@PathVariable("type") String type,
 			@PathVariable("name") String name,
 			@PathVariable("path") String path,
-			@PathVariable("folder") boolean isFolder,
-			@RequestBody DimensionInfo dimensionInfo) {
+			@PathVariable("folder") boolean isFolder
+			/*@RequestBody DimensionInfo dimensionInfo*/) {
 
 		createDimensionRequest.setFolder(isFolder);
 		createDimensionRequest.setName(name);
 		createDimensionRequest.setPath(path);
 		createDimensionRequest.setType(type);
-		createDimensionRequest.setDimensionInfo(dimensionInfo);
+//		createDimensionRequest.setDimensionInfo(dimensionInfo);
 
 		createDimension.execute(createDimensionRequest);
 		return name;

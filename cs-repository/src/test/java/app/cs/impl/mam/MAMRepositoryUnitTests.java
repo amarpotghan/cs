@@ -30,7 +30,7 @@ public class MAMRepositoryUnitTests {
 
 	@Before
 	public void setup() {
-		mamRepository = new MAMRepository(restClient);
+		mamRepository = new MamRepository(restClient);
 	}
 
 	@Test
