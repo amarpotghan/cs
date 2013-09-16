@@ -180,7 +180,6 @@ public class DimensionRepository implements IDimensionRepository {
 	public void move(String oldPath, String newPath,
 			MultiDimensionalObject objectInMove) {
 		moveDimensionWithAllItsChildren(newPath, objectInMove);
-		System.out.println("After move");
 
 	}
 
@@ -190,7 +189,6 @@ public class DimensionRepository implements IDimensionRepository {
 		List<String> groupIds = objectInMove.getGroupId();
 		objectInMove.setGroupId(new ArrayList<String>());
 		objectInMove.setPath(localNewPath);
-		System.out.println(objectInMove);
 		createDimension(objectInMove);
 		if (objectInMove.getType().equals(
 				getLastDimensionInCurrentViewStructure()))
@@ -199,7 +197,6 @@ public class DimensionRepository implements IDimensionRepository {
 				getNextType(objectInMove), groupIds);
 		newPath = objectInMove.getPath() + "," + objectInMove.getName();
 
-		System.out.println(newPath);
 		for (MultiDimensionalObject multiDimensionalObject : children) {
 			moveDimensionWithAllItsChildren(newPath, multiDimensionalObject);
 		}
@@ -214,7 +211,6 @@ public class DimensionRepository implements IDimensionRepository {
 
 	private String getNextType(MultiDimensionalObject objectInMove) {
 		List<String> types = splitViewStructure();
-		System.out.println("==>>>>" + objectInMove.getType());
 		return types.get(types.indexOf(objectInMove.getType()) + 1);
 
 	}
@@ -224,9 +220,6 @@ public class DimensionRepository implements IDimensionRepository {
 		String[] alltypes = viewStructure.getCurrentViewStructure().split(
 				HIPHEN);
 		List<String> types = Arrays.asList(alltypes);
-		for (String string : types) {
-			System.out.println(string);
-		}
 		return types;
 	}
 
