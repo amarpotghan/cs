@@ -40,6 +40,11 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	private boolean isFolder;
 
 	private List<Assortment> assortments;
+	private List<MultiDimensionalObject> items;
+
+	public List<MultiDimensionalObject> getItems() {
+		return children;
+	}
 
 	private List<MultiDimensionalObject> children;
 
