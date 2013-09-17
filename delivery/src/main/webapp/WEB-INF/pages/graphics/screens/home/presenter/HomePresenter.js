@@ -43,6 +43,8 @@ HomePresenter.viewTree = function(){
         ganttElements[i].style.visibility = "hidden";
         console.log(ganttElements[i]);
     }
+    $("#treeGantt").removeClass("calendarButtonPressed") ;
+
 
 }
 
@@ -54,6 +56,7 @@ HomePresenter.viewTreeAndFields = function(){
     for(var i = 0; i < ganttElements.length; i++) {
         ganttElements[i].style.visibility = "hidden";
     }
+    $("#treeGantt").removeClass("calendarButtonPressed") ;
 }
 
 HomePresenter.viewTreeAndGantt = function(){
@@ -65,6 +68,7 @@ HomePresenter.viewTreeAndGantt = function(){
         ganttElements[i].style.visibility = "visible";
     }
     HomePresenter.date = new Date(Grids[0].GetGanttDate(0));
+    $("#treeGantt").addClass("calendarButtonPressed");
 }
 
 HomePresenter.scrollNext = function(){

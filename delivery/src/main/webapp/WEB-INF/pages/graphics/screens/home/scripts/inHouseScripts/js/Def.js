@@ -7,15 +7,17 @@ TreeGridLoaded ( // JSONP header, to be possible to load from xxx_Jsonp data sou
             MinHeight:"10",
             ShowDeleted: "0",
             Style:"ExtJS"
-        } ,
+
+         } ,
 
         LeftCols: [
-             { Name:"name",Type:"Text", CanEdit:0, Width:"500",WidthPad:"17"}
+             { Name:"name",Type:"Text", CanEdit:0, Width:"500",WidthPad:"17"},
 
         ],
 
         Cols : [
-            { Name:"Panel", Visible:0, Type:"Panel",WidthPad:"17", Delete:0}
+            { Name:"Panel", Visible:0, Type:"Panel",WidthPad:"17", Delete:0,Buttons:"Select"}     ,
+            { Name:"currency",Type:"Text", CanEdit:0, Visible:0}
         ],
 
         RightCols: [
@@ -32,7 +34,7 @@ TreeGridLoaded ( // JSONP header, to be possible to load from xxx_Jsonp data sou
                              "<div style='padding-bottom:5px;font-weight:bold;'>*startDate* - *endDate*</div>" +
                              "<div style='padding-bottom:5px;'>Manager : *manager*</div>" +
                              /*"<div style='padding-bottom:5px;'>Budget Owner : *budgetOwner*</div>*/
-                            "<div>Budget : *budget*</div>",
+                            "<div>Budget : *budget**currency*</div>",
                 GanttZoom:"months",
                 GanttClass:"GanttOrange",
                 GanttZoomList:[
@@ -40,21 +42,21 @@ TreeGridLoaded ( // JSONP header, to be possible to load from xxx_Jsonp data sou
 
             { Name:'years', GanttUnits:'M', GanttChartRound:'y', GanttWidth:65,
                 GanttHeader1:'y#yyyy', GanttHeader2:'M#MMM',
-                GanttBackground:'M#1/1/2008#5',GanttRight:"0", GanttLeft:"0"
+                GanttBackground:'M#1/1/2008#3',GanttRight:"0", GanttLeft:"0"
             },
 
             { Name:'months', GanttUnits:'w', GanttChartRound:'M', GanttWidth:170,
                 GanttHeader1:'M#MMMM yyyy', GanttHeader2:'w#Week ddddddd', GanttHeader3:'d#dd',
-                GanttBackground:'w#1/6/2008#5',GanttRight:"0", GanttLeft:"0"
+                GanttBackground:'w#1/6/2008#3',GanttRight:"0", GanttLeft:"0"
             },
 
             { Name:'weeks', GanttUnits:'d', GanttChartRound:'w', GanttWidth:100,
                 GanttHeader1:'w#MMMM yyyy Week ddddddd', GanttHeader2:'d#dddd',
-                GanttBackground:'d#1/1/2008#5'
+                GanttBackground:'d#1/1/2008#3'
             },
 
             { Name:'days', GanttUnits:'h', GanttChartRound:'d', GanttWidth:30,
-                GanttBackground:'h#',
+                GanttBackground:'h#01#3',
                 GanttHeader1:'d#dddd d MMMM yyyy', GanttHeader2:'h#HH'
             }
 
@@ -74,7 +76,7 @@ TreeGridLoaded ( // JSONP header, to be possible to load from xxx_Jsonp data sou
                         Format:"MMM",Width:"50",ZoomToPage:"10",GanttZoom:"months"},
                     {Name:"Pager", Visible:0,Caption:"Pager",Type:"Gantt",PageSize:"w",ChartSize:"y",Left:"0",
                         Format:"weekddddddd",Width:"60",ZoomToPage:"10",GanttZoom:"weeks"}
-        ],
+        ]
 
 /*        Solid:[
             {
@@ -89,7 +91,7 @@ TreeGridLoaded ( // JSONP header, to be possible to load from xxx_Jsonp data sou
 
         ]*/
 
-        Toolbar: {Cells:""/*id:"Group", Space:"0", Panel:"0", Cells:"Zoom", CanPrint:"0", ListLeft:"0",
-            ZoomType:"SelectGanttZoom", ZoomLeft:'2', ZoomWidth:'170', ZoomPrintHPage:'1'*/}
+       /* Toolbar: {Cells:""*//*id:"Group", Space:"0", Panel:"0", Cells:"Zoom", CanPrint:"0", ListLeft:"0",
+            ZoomType:"SelectGanttZoom", ZoomLeft:'2', ZoomWidth:'170', ZoomPrintHPage:'1'*//*}*/
     }
 )

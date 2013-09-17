@@ -5,6 +5,7 @@ var DropDownSelector = function(){
         $(document).bind("viewStructureLoaded", function onSchemaLoadedHandler(e){
             if(!e.schemaChanged){
                 var data = e.schemaData;
+                alert(id)
                 var dropdownObj = document.getElementById(id);
                 var dropdown = ElementFactory.getDropDown();
                 dropdown.createDropDown(dropdownObj,data);

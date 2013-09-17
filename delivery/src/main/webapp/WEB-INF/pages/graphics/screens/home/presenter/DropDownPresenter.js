@@ -6,8 +6,10 @@ var DropDownPresenter = function(){
             if(!e.schemaChanged){
                 var data = e.schemaData;
                 var dropdownObj = document.getElementById(id);
-                var dropdown = ElementFactory.getDropDown();
-                dropdown.createDropDown(dropdownObj,data);
+                if(dropdownObj){
+                    var dropdown = ElementFactory.getDropDown();
+                    dropdown.createDropDown(dropdownObj,data);
+                }
             }
         });
         DropDownPresenter.getAllViewStructure();

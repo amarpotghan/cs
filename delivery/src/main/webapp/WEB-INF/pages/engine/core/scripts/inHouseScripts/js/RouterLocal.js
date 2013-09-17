@@ -2,6 +2,23 @@ var Router = function(){
 
 }
 
+Router.forwardWithPost = function(url,async,reqBody,callback){
+    $.ajax({
+        url:url,
+        contentType: "application/json",
+        type:"POST",
+        data:JSON.stringify(reqBody),
+        dataType:"json",
+        async:async,
+        success:function(result){
+            callback(result);
+        },
+        error: function (error) {
+            callback("error");
+        }
+    });
+}
+
 Router.forward = function(url,async,callback){
     jQuery.getJSON(url).done(callback)
         .fail(function(data){

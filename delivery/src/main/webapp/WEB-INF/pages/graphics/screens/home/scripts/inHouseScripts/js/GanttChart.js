@@ -47,7 +47,7 @@ var GanttChart = function(){
 
 
     Grids.OnRowDelete = function(grid,row,type){
-        if(type == 1){
+        /*if(type == 1){
             var input=new Object();
             input.id=row.id;
             input.name=row.name;
@@ -55,18 +55,27 @@ var GanttChart = function(){
             input.groupId=row.groupId;
             var prefix=getUrlPrefix(row.type,"delete");
             GanttChartPresenter.deleteDimension(prefix,row.type,input,GanttChart.onDeleteSuccess);
-        }
+        }*/
     }
 
     GanttChart.onDeleteSuccess=function(){
+        Grids[0].DeleteRow(currentRow,2);
     }
 
     Grids.OnContextMenu = function(G,row,col,name){
         currentRow = row;
         if(name == "Delete"){
 
-            G.DeleteRow(row);
-
+            var r=confirm("Are you sure you want to delete "+ row.name+" ?");
+            if (r==true)            {
+                var input=new Object();
+                input.id=row.id;
+                input.name=row.name;
+                input.type=row.type;
+                input.groupId=row.groupId;
+                var prefix=getUrlPrefix(row.type,"delete");
+                GanttChartPresenter.deleteDimension(prefix,row.type,input,GanttChart.onDeleteSuccess);
+            }
 
         }else{
              showPopUp(G,row,col,name);
@@ -99,6 +108,10 @@ var GanttChart = function(){
            var parentNode = torow;
            newChildNode.path = parentNode.path +","+parentNode.title;
            var newPathForChild = newChildNode.path;
+
+           if(newPathForChild.indexOf("-1")==0)
+               newPathForChild = newPathForChild.match(/([^,]*),(.*)/)[2];   //To remove -1 root folder
+
            var flag=isFolder(newChildNode.type);
            var prefix;
            prefix =getUrlPrefix(row.type,"move");
@@ -123,12 +136,18 @@ var GanttChart = function(){
 
     function addNode(data){
         Grids[0].AddRow(currentRow,null,1);
-        Grids[0].SetValue(currentRow.lastChild,"name",newNode.title,1);
-        Grids[0].SetValue(currentRow.lastChild,"title",newNode.title,1);
-        Grids[0].SetValue(currentRow.lastChild,"path",newNode.path,1);
-        Grids[0].SetValue(currentRow.lastChild,"id",newNode.title,1);
-        Grids[0].SetValue(currentRow.lastChild,"type",newNode.type,1);
-        Grids[0].SetValue(currentRow.lastChild,"Items",newNode.Items,1);
+        Grids[0].SetValue(currentRow.lastChild,"name",input.name,1);
+        Grids[0].SetValue(currentRow.lastChild,"title",input.name,1);
+        Grids[0].SetValue(currentRow.lastChild,"path",input.path,1);
+        Grids[0].SetValue(currentRow.lastChild,"id",input.name,1);
+        Grids[0].SetValue(currentRow.lastChild,"type",input.type,1);
+        Grids[0].SetValue(currentRow.lastChild,"budgetOwner",input.budgetOwner,1);
+        Grids[0].SetValue(currentRow.lastChild,"budget",input.budget,1);
+        Grids[0].SetValue(currentRow.lastChild,"startDate",input.startDate,1);
+        Grids[0].SetValue(currentRow.lastChild,"endDate",input.endDate,1);
+        Grids[0].SetValue(currentRow.lastChild,"manager",input.managerName,1);
+        Grids[0].SetValue(currentRow.lastChild,"Items",input.Items,1);
+        //Grids[0].Recalculate(currentRow,"startDate",1);
     }
 
     function showPopUp(G,row,col,name){
@@ -138,12 +157,13 @@ var GanttChart = function(){
             modal: true,
             buttons: {
             "Create ": function() {
+
                 var bValid = true;
                 var dimensionName = $( "#name" ),
                     manager = $( "#manager" ),
                     startdate = $( "#startdate" ),
                     enddate = $( "#enddate" ),
-                    budgetowner = $( "#budgetowner" ),
+                    budgetowner = $( "#budgetOwner" ),
                     budgetamount = $( "#budget"),
                     currency = $( "#currency" );
 
@@ -153,8 +173,10 @@ var GanttChart = function(){
                 input.startDate=startdate.val();
                 input.endDate=enddate.val();
                 input.budgetOwner = budgetowner.val();
-                input.currency = currency.val();
-                input.budget = budgetamount.val();
+                /*input.currency = currency.val();                 */
+                input.budget = budgetamount.val() + " " + currency.val();
+                input.type = name;
+                input.Items = [];
                 console.log(input);
                 if(input.name != null && input.name !=""){
                     parentNode = row;
@@ -167,6 +189,8 @@ var GanttChart = function(){
                             currentPath = currentPath.match(/([^,]*),(.*)/)[2];   //To remove -1 root folder
                     }
 
+                    input.path=currentPath;
+
                     var flag = isFolder(name);
                     var prefix=getUrlPrefix(name,"create");
                     newNode = createNewRow(input.name,name,currentPath);
@@ -177,7 +201,6 @@ var GanttChart = function(){
                     }
                 }
 
-
                 $( this ).dialog( "close" );
 
             },
@@ -187,6 +210,7 @@ var GanttChart = function(){
         },
         close: function() {
             //allFields.val( "" ).removeClass( "ui-state-error" );
+            clearForm();
         },
         autoOpen :true,
         changeTitle: document.getElementById("ui-id-1").innerHTML="Create New " + name,
@@ -238,3 +262,17 @@ var GanttChart = function(){
 
 
 }
+
+
+function clearForm(form)
+{
+    $(":input", form).each(function()
+    {
+        var type = this.type;
+        var tag = this.tagName.toLowerCase();
+        if (type == 'text')
+        {
+            this.value = "";
+        }
+    });
+};
