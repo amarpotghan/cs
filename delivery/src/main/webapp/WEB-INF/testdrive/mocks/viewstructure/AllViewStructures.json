@@ -2,86 +2,37 @@
     {
         "id": "1",
         "default": "true",
-        "name": "Campaign-MasterPublication-Publication",
+        "name": "Marketing Initiative-Campaign-SubCampaign-Communication Plan",
         "structure": [
             {
-                "name": "Campaign",
+                "name": "Marketing Initiative",
                 "icon": "something",
-                "possibleChild": ["MasterPublication"]
-            },
-            {
-                "name": "MasterPublication",
-                "icon": "something",
-                "possibleChild": ["Publication"]
-            },
-             {
-                "name": "Publication",
-                "icon": "something",
-                "possibleChild": ["Chapter","Page","Assortment"]
-            },
-            {
-                "name": "Chapter",
-                "icon": "something",
-                "possibleChild": ["Chapter","Page","Assortment"]
-            },
-            {
-                "name": "Page",
-                "icon": "something",
-                "possibleChild": ["Assortment"]
-            }
-        ]
-    },
-    {
-        "id": "2",
-        "default": "false",
-        "name": "MasterPublication-Campaign-Publication",
-        "structure": [
-            {
-                "name": "MasterPublication",
-                "icon": "something",
-                "possibleChild": ["Campaign"]
+                "possibleChild": ["Campaign"],
+                "possibleDropParent":[]
             },
             {
                 "name": "Campaign",
                 "icon": "something",
-                "possibleChild": ["Publication"]
+                "possibleChild": ["SubCampaign"],
+                "possibleDropParent":["Marketing Initiative"]
             },
             {
-                "name": "Publication",
+                "name": "SubCampaign",
                 "icon": "something",
-                "possibleChild": ["Chapter","Page","Assortment"]
+                "possibleChild": ["Communication Plan"],
+                "possibleDropParent":["Campaign"]
             },
             {
-                "name": "Chapter",
+                "name": "Communication Plan",
                 "icon": "something",
-                "possibleChild": ["Chapter","Page","Assortment"]
+                "possibleChild": ["Communication Channel"],
+                "possibleDropParent":["SubCampaign"]
             },
             {
-                "name": "Page",
+                "name": "Communication Channel",
                 "icon": "something",
-                "possibleChild": ["Assortment"]
-            }
-        ]
-    },
-    {
-        "id": "3",
-        "default": "false",
-        "name": "Campaign-Publication-MasterPublication",
-        "structure": [
-            {
-                "name": "Campaign",
-                "icon": "something",
-                "possibleChild": ["Publication"]
-            },
-            {
-                "name": "Publication",
-                "icon": "something",
-                "possibleChild": ["MasterPublication","Assortment"]
-            },
-            {
-                "name": "MasterPublication",
-                "icon": "something",
-                "possibleChild": []
+                "possibleChild": [],
+                "possibleDropParent":["Communication Plan"]
             }
         ]
     }

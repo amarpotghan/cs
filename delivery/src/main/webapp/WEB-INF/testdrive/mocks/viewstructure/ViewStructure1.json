@@ -1,32 +1,42 @@
 {
         "id": "1",
         "default": "true",
-        "name": "Campaign-MasterPublication-Publication",
+        "name": "Marketing Initiative-Campaign-SubCampaign-Communication Plan",
         "structure": [
+            {
+                "name": "Marketing Initiative",
+                "icon": "something",
+                "possibleChild": ["Campaign"],
+                "possibleDropParent":[],
+                "color":"GanttAqua"
+            },
             {
                 "name": "Campaign",
                 "icon": "something",
-                "possibleChild": ["MasterPublication"]
-            },
-            {
-                "name": "MasterPublication",
-                "icon": "something",
-                "possibleChild": ["Publication"]
+                "possibleChild": ["SubCampaign"],
+                "possibleDropParent":["Marketing Initiative"],
+                "color":"GanttRed"
             },
              {
-                "name": "Publication",
+                "name": "SubCampaign",
                 "icon": "something",
-                "possibleChild": ["Chapter","Page","Assortment"]
+                "possibleChild": ["Communication Plan"],
+                "possibleDropParent":["Campaign"],
+                 "color":"GanttOrange"
             },
             {
-                "name": "Chapter",
+                "name": "Communication Plan",
                 "icon": "something",
-                "possibleChild": ["Chapter","Page","Assortment"]
+                "possibleChild": ["Communication Channel"],
+                "possibleDropParent":["SubCampaign"],
+                "color":"GanttMaroon"
             },
             {
-                "name": "Page",
+                "name": "Communication Channel",
                 "icon": "something",
-                "possibleChild": ["Assortment"]
+                "possibleChild": [],
+                "possibleDropParent":["Communication Plan"],
+                "color":"GanttGreen"
             }
         ]
-    }
+}
