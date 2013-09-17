@@ -2,8 +2,8 @@ function CreateDimensions(){
 
 }
 
-CreateDimensions.createDim = function(prefix,action,name,currentPath,flag,callBack){
-    Router.forward(prefix+action+"/name/"+name+"/path/"+currentPath+"/folder/"+flag,true,function(data){
+CreateDimensions.createDim = function(prefix,action,input,currentPath,flag,callBack){
+    Router.forwardWithPost(prefix+action+"/name/"+input.name+"/path/"+currentPath+"/folder/"+flag,true,input,function(data){
         callBack(data);
     });
 }

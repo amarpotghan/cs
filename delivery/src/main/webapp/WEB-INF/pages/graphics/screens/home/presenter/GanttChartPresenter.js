@@ -51,18 +51,14 @@ GanttChartPresenter.getTree = function(){
     GetTree.get();
 }
 
-GanttChartPresenter.createDimension = function(prefix,action,name,currentPath,flag,callBack){
-    CreateDimensions.createDim(prefix,action,name,currentPath,flag,callBack);
+GanttChartPresenter.createDimension = function(prefix,type,input,currentPath,flag,callBack){
+    CreateDimensions.createDim(prefix,type,input,currentPath,flag,callBack);
 }
 
-GanttChartPresenter.createAssortment = function(prefix,action,name,currentPath,flag,callBack){
-    CreateAssortment.create(prefix,action,name,currentPath,flag,callBack);
+GanttChartPresenter.deleteDimension = function(prefix,type,input,callback){
+    DeleteDimension.deleteDim(prefix,type,input,callback);
 }
 
-GanttChartPresenter.deleteDimension = function(prefix,action,name,currentPath,flag,callBack){
-    DeleteDimension.deleteDim(prefix,action,name,currentPath,flag,callBack);
-}
-
-GanttChartPresenter.dragAndDropDimensions = function(prefix,name,oldPath,flag,newPath,callBack){
-    DragDimension.dragAndDropDimensions(prefix,name,oldPath,flag,newPath,callBack);
+GanttChartPresenter.dragAndDropDimensions = function(prefix,row,oldPath,flag,newPath,callBack){
+    DragDimension.dragAndDropDimensions(prefix,row,oldPath,flag,newPath,callBack);
 }

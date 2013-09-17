@@ -47,20 +47,32 @@ var GanttChart = function(){
 
 
     Grids.OnRowDelete = function(grid,row,type){
-        DeleteDimension.deleteDim(function(){
-            alert("Deleted successfully")
-        });
+        if(type == 1){
+            var input=new Object();
+            input.id=row.id;
+            input.name=row.name;
+            input.type=row.type;
+            input.groupId=row.groupId;
+            var prefix=getUrlPrefix(row.type,"delete");
+            GanttChartPresenter.deleteDimension(prefix,row.type,input,GanttChart.onDeleteSuccess);
+        }
+    }
+
+    GanttChart.onDeleteSuccess=function(){
     }
 
     Grids.OnContextMenu = function(G,row,col,name){
         currentRow = row;
         if(name == "Delete"){
+
             G.DeleteRow(row);
+
+
         }else{
              showPopUp(G,row,col,name);
-
         }
     }
+
 
     Grids.OnStartDrag = function(grid,row,col){
         //To suppress the dragging as per the dimension type
@@ -91,7 +103,7 @@ var GanttChart = function(){
            var prefix;
            prefix =getUrlPrefix(row.type,"move");
            prefix = prefix+row.type;
-           GanttChartPresenter.dragAndDropDimensions(prefix,row.title,oldPathForChild,flag,newPathForChild,onDropSuccess);
+           GanttChartPresenter.dragAndDropDimensions(prefix,row,oldPathForChild,flag,newPathForChild,onDropSuccess);
 
        }
     }
@@ -136,15 +148,15 @@ var GanttChart = function(){
                     currency = $( "#currency" );
 
                 input = new Object();
-                input.dimensionName=dimensionName.val();
+                input.name=dimensionName.val();
                 input.managerName=manager.val();
                 input.startDate=startdate.val();
                 input.endDate=enddate.val();
                 input.budgetOwner = budgetowner.val();
-                input.budget = budgetamount.val();
                 input.currency = currency.val();
+                input.budget = budgetamount.val();
                 console.log(input);
-                if(input.dimensionName != null && input.dimensionName !=""){
+                if(input.name != null && input.name !=""){
                     parentNode = row;
                     if(parentNode.type == "root"){
                         currentPath = "-1";
@@ -157,11 +169,11 @@ var GanttChart = function(){
 
                     var flag = isFolder(name);
                     var prefix=getUrlPrefix(name,"create");
-                    newNode = createNewRow(input.dimensionName,name,currentPath);
+                    newNode = createNewRow(input.name,name,currentPath);
                     if(name == "Assortment"){
-                        GanttChartPresenter.createAssortment(prefix,name,input.dimensionName,currentPath,flag,addNode);
+                        GanttChartPresenter.createAssortment(prefix,name,input.name,currentPath,flag,addNode);
                     }else{
-                        GanttChartPresenter.createDimension(prefix,name,input.dimensionName,currentPath,flag,addNode);
+                        GanttChartPresenter.createDimension(prefix,name,input,currentPath,flag,addNode);
                     }
                 }
 

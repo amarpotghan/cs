@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.stereotype.Component;
 
 import app.cs.interfaces.dimension.IMultiDimensionalObject;
@@ -22,14 +23,14 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	private String name;
 	private String title;
 	private boolean isFolder;
-	private String managerName;
+	private String manager;
 	private String startDate;
 	private String endDate;
 	private String budgetOwner;
 	private String currency;
 	private String budget;
 
-	public String getManagerName() {
+	public String getManager() {
 		return dimensionInfo.getManagerName();
 	}
 
@@ -60,6 +61,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 	private List<Assortment> assortments;
 	private List<MultiDimensionalObject> items;
 
+	@JsonProperty("Items")
 	public List<MultiDimensionalObject> getItems() {
 		return children;
 	}

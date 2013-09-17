@@ -63,7 +63,8 @@ public class CreateDimensionController {
 			@PathVariable("path") String path,
 			@PathVariable("folder") boolean isFolder,
 			@RequestBody DimensionInfo dimensionInfo) {
-		System.out.println("In Create");
+		System.out.println("In Create==>" + "type=" + type + "name=" + name
+				+ "path" + path);
 		createDimensionRequest.setFolder(isFolder);
 		createDimensionRequest.setName(name);
 		createDimensionRequest.setPath(path);
