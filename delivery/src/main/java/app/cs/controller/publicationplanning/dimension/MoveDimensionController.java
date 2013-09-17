@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import app.cs.boundary.delivery.Interactor;
-import app.cs.impl.model.DimensionInfo;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.model.request.MoveDimensionRequest;
 

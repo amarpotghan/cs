@@ -1,24 +1,14 @@
 package app.cs.impl.model;
 
-import java.util.Date;
-
 public class DimensionInfo {
 
 	private String name;
 	private String managerName;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
 	private String budgetOwner;
 	private String currency;
-	private String budget;
-
-	public String getBudget() {
-		return budget;
-	}
-
-	public void setBudget(String budget) {
-		this.budget = budget;
-	}
+	private String amount;
 
 	public String getName() {
 		return name;
@@ -36,19 +26,19 @@ public class DimensionInfo {
 		this.managerName = managerName;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
@@ -66,5 +56,13 @@ public class DimensionInfo {
 
 	public void setCurrency(String currency) {
 		this.currency = currency;
+	}
+
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
 	}
 }
