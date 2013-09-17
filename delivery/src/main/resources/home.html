@@ -2,14 +2,15 @@
     <div class="row-fluid" style="height: auto">
         <div class="span12" >
 
-            <div id="selector">
-            <div id="selectLabel">
+            <!--UNCOMMENT THIS IF WE WANT DROPDOWN AND REMOVE NULL CHECK FROM DROPDOWN PRESENTER-->
+       <!--   <div id="selector" style="visibility: hidden">
+            <div id="selectLabel" style="visibility: hidden">
                 <p id="selectLbl" class="selectLblCSS">Select View<select id="schemaDropDown" class="customSelectCSS"></select></p>
-
             </div>
                 <p id="txt" class="formatTxt"></p>
-            </div>
-            <div id="ganttBtnHolder">
+          </div>-->
+
+          <div id="ganttBtnHolder">
 
           <!--  <div id="ScrollPrev" class="GanttProperties"  style="position: relative"></div>-->
 
@@ -43,6 +44,12 @@
 
             <div id="mrmGanttChart">
             </div>
+
+            <!--<div id="container"></div>
+            <div style="width:480px;">
+                <div style="float:right;">Focused: <b id="focusindex">0</b> | Clicked: <b id="clickindex">0</b></div>
+
+            </div>-->
             <!--<div id="mediaView">
             </div>-->
         </div>
@@ -79,7 +86,7 @@
             <input type="text" name="budget" id="budget" class="text ui-widget-content ui-corner-all" />  </div>
 
             <div id = "currencyAligner"><select id="currency" >
-                <option value="€">EUR(€)</option>
+                <option value="&euro;">EUR(&euro;)</option>
                 <option value="$">USD($)</option>
             </select></div>
             </div>
