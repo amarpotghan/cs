@@ -9,7 +9,6 @@ public class DimensionInfo {
 	private String budgetOwner;
 	private String currency;
 	private String budget;
-	
 
 	public String getName() {
 		return name;
