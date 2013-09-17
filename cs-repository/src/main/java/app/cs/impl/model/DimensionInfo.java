@@ -8,7 +8,8 @@ public class DimensionInfo {
 	private String endDate;
 	private String budgetOwner;
 	private String currency;
-	private String amount;
+	private String budget;
+	
 
 	public String getName() {
 		return name;
@@ -58,11 +59,11 @@ public class DimensionInfo {
 		this.currency = currency;
 	}
 
-	public String getAmount() {
-		return amount;
+	public String getBudget() {
+		return budget;
 	}
 
-	public void setAmount(String amount) {
-		this.amount = amount;
+	public void setBudget(String amount) {
+		this.budget = amount;
 	}
 }
