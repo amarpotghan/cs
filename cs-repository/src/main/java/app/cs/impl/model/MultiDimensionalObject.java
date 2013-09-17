@@ -10,34 +10,52 @@ import app.cs.interfaces.dimension.IMultiDimensionalObject;
 
 import com.cs.data.api.core.GenericDomain;
 
-/**
- * The Class ContentObject. TODO implement interface TODO remove all the
- * annotation from class file TODO rename to dimensionObject
- */
 @Component
 public class MultiDimensionalObject implements Serializable, GenericDomain,
 		IMultiDimensionalObject {
 
-	/** The page. */
+	private static final long serialVersionUID = 1L;
 	private final String PAGE = "page";
-
-	/** The id. */
 	private String id;
-
-	/** The type. */
 	private String type;
-
-	/** The path. TODO */
 	private String path;
-
-	/** The name. */
 	private String name;
-
-	/** The title. */
 	private String title;
-
-	/** The is folder.TODO */
 	private boolean isFolder;
+	private String managerName;
+	private String startDate;
+	private String endDate;
+	private String budgetOwner;
+	private String currency;
+	private String budget;
+
+	public String getManagerName() {
+		return dimensionInfo.getManagerName();
+	}
+
+	public String getStartDate() {
+		return dimensionInfo.getStartDate();
+	}
+
+	public String getEndDate() {
+		return dimensionInfo.getEndDate();
+	}
+
+	public String getBudgetOwner() {
+		return dimensionInfo.getBudgetOwner();
+	}
+
+	public String getCurrency() {
+		return dimensionInfo.getCurrency();
+	}
+
+	public String getBudget() {
+		return dimensionInfo.getBudget();
+	}
+
+	public void setBudget(String budget) {
+		this.budget = budget;
+	}
 
 	private List<Assortment> assortments;
 	private List<MultiDimensionalObject> items;
@@ -60,9 +78,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.dimensionInfo = dimensionInfo;
 	}
 
-	/**
-	 * Instantiates a new content object.
-	 */
 	public MultiDimensionalObject() {
 	}
 
@@ -113,26 +128,11 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.assortments = assortment;
 	}
 
-	/** The children. */
 	@Override
 	public List<String> getGroupId() {
 		return groupIds;
 	}
 
-	/**
-	 * Instantiates a new content object.
-	 * 
-	 * @param id
-	 *            the id
-	 * @param type
-	 *            the type
-	 * @param title
-	 *            the title
-	 * @param name
-	 *            the name
-	 * @param path
-	 *            the path
-	 */
 	public MultiDimensionalObject(String id, String type, String title,
 			String name, String path) {
 		this.id = id;
@@ -142,22 +142,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.path = path;
 	}
 
-	/**
-	 * Instantiates a new content object.
-	 * 
-	 * @param id
-	 *            the id
-	 * @param type
-	 *            the type
-	 * @param path
-	 *            the path
-	 * @param name
-	 *            the name
-	 * @param groupId
-	 *            the group id
-	 * @param children
-	 *            the children
-	 */
 	public MultiDimensionalObject(String id, String type, String path,
 			String name, List<String> groupId,
 			List<MultiDimensionalObject> children) {
@@ -185,18 +169,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.children = children;
 	}
 
-	/**
-	 * Instantiates a new content object.
-	 * 
-	 * @param name
-	 *            the name
-	 * @param type
-	 *            the type
-	 * @param path
-	 *            the path
-	 * @param isFolder
-	 *            the is folder
-	 */
 	public MultiDimensionalObject(String name, String type, String path,
 			boolean isFolder) {
 		this.id = name;
@@ -205,7 +177,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.type = type;
 		this.path = path;
 		this.isFolder = isFolder;
-
 	}
 
 	@Override
@@ -318,13 +289,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.model.IMultiDimensionalObject#removeChild(com.cs
-	 * .data.business.model.IMultiDimensionalObject)
-	 */
 	@Override
 	public void removeChild(IMultiDimensionalObject contentObject) {
 		if (children != null) {
@@ -333,11 +297,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
