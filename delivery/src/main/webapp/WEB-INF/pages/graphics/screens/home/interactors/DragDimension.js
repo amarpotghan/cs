@@ -10,7 +10,6 @@ DragDimension.dragAndDropDimensions = function(prefix,row,oldPath,flag,newPath,c
     input.groupId=row.groupId;
     input.path=row.path;
     input.title=row.title;
-    alert(newPath)
     input.dimensionInfo={"managerName":row.manager, "name":row.name, "startDate":row.startDate,"endDate":row.endDate,
                             "budget":row.budget,"budgetOwner":row.budgetOwner,"currency":row.currency};
     Router.forwardWithPost(prefix+oldPath+"/"+newPath,true,input,callBack);

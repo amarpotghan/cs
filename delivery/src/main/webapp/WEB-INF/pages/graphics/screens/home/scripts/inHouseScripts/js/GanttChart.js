@@ -121,7 +121,7 @@ var GanttChart = function(){
        }
     }
 
-    function onDropSuccess(){
+    function onDropSuccess(data){
        /* if(draggedNode.data.type == "Assortment"){
             var cb = draggedNode.toDict(true, function(dict){
                 //dict.title = "Copy of " + dict.title;
@@ -136,17 +136,18 @@ var GanttChart = function(){
 
     function addNode(data){
         Grids[0].AddRow(currentRow,null,1);
-        Grids[0].SetValue(currentRow.lastChild,"name",input.name,1);
-        Grids[0].SetValue(currentRow.lastChild,"title",input.name,1);
-        Grids[0].SetValue(currentRow.lastChild,"path",input.path,1);
-        Grids[0].SetValue(currentRow.lastChild,"id",input.name,1);
-        Grids[0].SetValue(currentRow.lastChild,"type",input.type,1);
-        Grids[0].SetValue(currentRow.lastChild,"budgetOwner",input.budgetOwner,1);
-        Grids[0].SetValue(currentRow.lastChild,"budget",input.budget,1);
-        Grids[0].SetValue(currentRow.lastChild,"startDate",input.startDate,1);
-        Grids[0].SetValue(currentRow.lastChild,"endDate",input.endDate,1);
-        Grids[0].SetValue(currentRow.lastChild,"manager",input.managerName,1);
-        Grids[0].SetValue(currentRow.lastChild,"Items",input.Items,1);
+        Grids[0].SetValue(currentRow.lastChild,"name",data.name,1);
+        Grids[0].SetValue(currentRow.lastChild,"title",data.title,1);
+        Grids[0].SetValue(currentRow.lastChild,"path",data.path,1);
+        Grids[0].SetValue(currentRow.lastChild,"id",data.id,1);
+        Grids[0].SetValue(currentRow.lastChild,"groupId",data.groupId,1);
+        Grids[0].SetValue(currentRow.lastChild,"type",data.type,1);
+        Grids[0].SetValue(currentRow.lastChild,"budgetOwner",data.budgetOwner,1);
+        Grids[0].SetValue(currentRow.lastChild,"budget",data.budget,1);
+        Grids[0].SetValue(currentRow.lastChild,"startDate",data.startDate,1);
+        Grids[0].SetValue(currentRow.lastChild,"endDate",data.endDate,1);
+        Grids[0].SetValue(currentRow.lastChild,"manager",data.manager,1);
+        Grids[0].SetValue(currentRow.lastChild,"Items",data.Items,1);
         //Grids[0].Recalculate(currentRow,"startDate",1);
     }
 
