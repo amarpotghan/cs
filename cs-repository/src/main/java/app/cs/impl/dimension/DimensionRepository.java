@@ -92,13 +92,17 @@ public class DimensionRepository implements IDimensionRepository {
 
 		updateGroupIdForAllAncestor(dimension.getPath(), groupId);
 		dimension.addToGroupId(groupId);
+		save(dimension);
+	}
+
+	public void save(MultiDimensionalObject dimension) {
 		mongoRepository.save(dimension);
 	}
 
 	private void createDimensionWithExistingGroupId(
 			MultiDimensionalObject dimension, String groupId) {
 		dimension.addToGroupId(groupId);
-		mongoRepository.save(dimension);
+		save(dimension);
 		groupCache.updateCache(dimension, groupId);
 	}
 
