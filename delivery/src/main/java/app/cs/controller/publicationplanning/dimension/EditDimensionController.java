@@ -2,7 +2,6 @@ package app.cs.controller.publicationplanning.dimension;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +22,7 @@ public class EditDimensionController {
 		this.request = request;
 	}
 
-	@RequestMapping(value = "/dimension/edit", method = RequestMethod.PUT)
+	@RequestMapping(value = "/dimension/update/{dimensionId}", method = RequestMethod.PUT)
 	public void execute(@RequestBody MultiDimensionalObject dimensionalObject) {
 		request.setDimensionalObject(dimensionalObject);
 		editDimension.execute(request);
