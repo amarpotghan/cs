@@ -1,11 +1,12 @@
 package app.cs.controller.publicationplanning.dimension;
 
+import static org.mockito.Mockito.verify;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.verify;
 import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.model.request.EditDimensionRequest;

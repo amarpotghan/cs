@@ -11,8 +11,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.publicationplanning.dimension.CreateDimension;
 import app.cs.impl.model.DimensionInfo;
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.model.request.CreateDimensionRequest;
-import app.cs.model.response.StringResponse;
+import app.cs.model.response.MultiDimensionalObjectResponse;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CreateDimensionControllerUnitTests {
@@ -42,7 +43,8 @@ public class CreateDimensionControllerUnitTests {
 		String name = "CH02";
 		String path = "MP01,P03";
 		Boolean isFolder = true;
-		StringResponse response = new StringResponse("success");
+		MultiDimensionalObjectResponse response = new MultiDimensionalObjectResponse(
+				new MultiDimensionalObject());
 
 		createDimensionRequest.setFolder(isFolder);
 		createDimensionRequest.setName(name);

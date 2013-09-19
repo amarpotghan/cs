@@ -1,5 +1,7 @@
 package app.cs.controller.publicationplanning.dimension;
 
+import static org.mockito.Mockito.verify;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,9 +11,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import app.cs.actions.publicationplanning.dimension.DeleteDimension;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.model.request.DeleteDimensionRequest;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DeleteDimensionControllerUnitTests {
