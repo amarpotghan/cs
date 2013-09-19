@@ -23,9 +23,8 @@ public class EditDimensionController {
 		this.request = request;
 	}
 
-	@RequestMapping(value = "/dimension/edit/{dimensionId}", method = RequestMethod.PUT)
-	public void execute(@PathVariable String dimensionId,
-			@RequestBody MultiDimensionalObject dimensionalObject) {
+	@RequestMapping(value = "/dimension/edit", method = RequestMethod.PUT)
+	public void execute(@RequestBody MultiDimensionalObject dimensionalObject) {
 		request.setDimensionalObject(dimensionalObject);
 		editDimension.execute(request);
 
