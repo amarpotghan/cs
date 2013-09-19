@@ -1,7 +1,7 @@
 package app.cs.actions.publicationplanning.dimension;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.dimension.DimensionRepository;
@@ -15,6 +15,7 @@ public class EditDimension implements Interactor {
 
 	private DimensionRepository dimensionRepository;
 
+	@Autowired
 	public EditDimension(DimensionRepository dimensionRepository) {
 		this.dimensionRepository = dimensionRepository;
 	}

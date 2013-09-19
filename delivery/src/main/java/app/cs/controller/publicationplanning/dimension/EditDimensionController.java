@@ -1,6 +1,9 @@
 package app.cs.controller.publicationplanning.dimension;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -13,6 +16,7 @@ public class EditDimensionController {
 	private Interactor editDimension;
 	private EditDimensionRequest request;
 
+	@Autowired
 	public EditDimensionController(Interactor editDimension,
 			EditDimensionRequest request) {
 		this.editDimension = editDimension;
@@ -20,7 +24,8 @@ public class EditDimensionController {
 	}
 
 	@RequestMapping(value = "/dimension/edit/{dimensionId}", method = RequestMethod.PUT)
-	public void execute(MultiDimensionalObject dimensionalObject) {
+	public void execute(@PathVariable String dimensionId,
+			@RequestBody MultiDimensionalObject dimensionalObject) {
 		request.setDimensionalObject(dimensionalObject);
 		editDimension.execute(request);
 

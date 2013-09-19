@@ -8,6 +8,10 @@ import app.cs.impl.model.MultiDimensionalObject;
 public class EditDimensionRequest implements RequestModel {
 	private MultiDimensionalObject dimensionalObject;
 
+	public EditDimensionRequest() {
+
+	}
+
 	public MultiDimensionalObject getDimensionalObject() {
 		return dimensionalObject;
 	}
