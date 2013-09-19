@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.impl.model.MultiDimensionalObject;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.inmemory.IInMemoryViewStructure;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -44,7 +43,7 @@ public class FinderUnitTests {
 		String id = "test01";
 
 		// when
-		IMultiDimensionalObject object = finder.find(publication, id);
+		MultiDimensionalObject object = finder.find(publication, id);
 
 		// then
 		assertThat(object.getId()).isEqualTo(id);

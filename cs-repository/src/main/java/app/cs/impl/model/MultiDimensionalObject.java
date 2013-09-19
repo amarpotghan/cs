@@ -7,13 +7,10 @@ import java.util.List;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.stereotype.Component;
 
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
-
 import com.cs.data.api.core.GenericDomain;
 
 @Component
-public class MultiDimensionalObject implements Serializable, GenericDomain,
-		IMultiDimensionalObject {
+public class MultiDimensionalObject implements Serializable, GenericDomain {
 
 	private static final long serialVersionUID = 1L;
 	private final String PAGE = "page";
@@ -99,22 +96,18 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.products = products;
 	}
 
-	@Override
 	public boolean getIsFolder() {
 		return isFolder;
 	}
 
-	@Override
 	public void setIsFolder(boolean isFolder) {
 		this.isFolder = isFolder;
 	}
 
-	@Override
 	public String getTitle() {
 		return title;
 	}
 
-	@Override
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -130,7 +123,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.assortments = assortment;
 	}
 
-	@Override
 	public List<String> getGroupId() {
 		return groupIds;
 	}
@@ -156,17 +148,14 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.children = children;
 	}
 
-	@Override
 	public void setGroupId(List<String> groupId) {
 		this.groupIds = groupId;
 	}
 
-	@Override
 	public List<MultiDimensionalObject> getChildren() {
 		return children;
 	}
 
-	@Override
 	public void setChildren(List<MultiDimensionalObject> children) {
 		this.children = children;
 	}
@@ -181,42 +170,34 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		this.isFolder = isFolder;
 	}
 
-	@Override
 	public String getPath() {
 		return path;
 	}
 
-	@Override
 	public void setPath(String path) {
 		this.path = path;
 	}
 
-	@Override
 	public String getType() {
 		return type;
 	}
 
-	@Override
 	public void setType(String type) {
 		this.type = type;
 	}
 
-	@Override
 	public String getId() {
 		return id;
 	}
 
-	@Override
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	@Override
 	public String getName() {
 		return name;
 	}
 
-	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -238,12 +219,10 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 				+ groupIds + ", children=" + children + "]";
 	}
 
-	@Override
 	public boolean isRoot() {
 		return path == "-1" ? true : false;
 	}
 
-	@Override
 	public void addToGroupId(String groupId) {
 		if (groupIds == null) {
 			groupIds = new ArrayList<String>();
@@ -255,17 +234,14 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 
 	}
 
-	@Override
 	public boolean hasChildren() {
 		return this.children == null ? false : true;
 	}
 
-	@Override
 	public boolean isPage() {
 		return type == PAGE ? true : false;
 	}
 
-	@Override
 	public void addchild(MultiDimensionalObject contentObject) {
 		List<MultiDimensionalObject> newChildren;
 		if (this.children == null) {
@@ -278,7 +254,6 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		}
 	}
 
-	@Override
 	public void addAssortment(Assortment assortment) {
 		List<Assortment> newChildren;
 		if (this.assortments == null) {
@@ -291,8 +266,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain,
 		}
 	}
 
-	@Override
-	public void removeChild(IMultiDimensionalObject contentObject) {
+	public void removeChild(MultiDimensionalObject contentObject) {
 		if (children != null) {
 			this.children.remove(contentObject);
 		}

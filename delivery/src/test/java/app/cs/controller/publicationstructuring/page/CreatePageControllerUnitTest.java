@@ -12,7 +12,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.publicationstructuring.page.CreatePage;
 import app.cs.impl.model.MultiDimensionalObject;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.model.request.CreatePageRequest;
 import app.cs.model.response.ResponseModel;
 import app.cs.model.response.StringResponse;
@@ -52,7 +51,7 @@ public class CreatePageControllerUnitTest {
 		
 		ResponseModel responseModel = (ResponseModel)response;
 
-		IMultiDimensionalObject page = new MultiDimensionalObject(name, type, path, isFolder);
+		MultiDimensionalObject page = new MultiDimensionalObject(name, type, path, isFolder);
 
 		// when
 		when(createPage.execute(createPageRequest))

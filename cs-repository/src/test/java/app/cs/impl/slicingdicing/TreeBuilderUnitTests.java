@@ -17,7 +17,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import app.cs.impl.dimension.DimensionRepository;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TreeBuilderUnitTests {
@@ -66,7 +65,7 @@ public class TreeBuilderUnitTests {
 	@Test
 	public void itShouldBuildTreeForGivenRoot() {
 		// given
-		IMultiDimensionalObject dimensionModel = new MultiDimensionalObject(
+		MultiDimensionalObject dimensionModel = new MultiDimensionalObject(
 				"cp01", "Campaign", "cp01", "cp01", "-1");
 		ArrayList<String> groupIds = new ArrayList<String>();
 		dimensionModel.setGroupId(groupIds);

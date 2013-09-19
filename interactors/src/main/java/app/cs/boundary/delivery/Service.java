@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import app.cs.impl.model.MultiDimensionalObject;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
 
 /**
  * Interface that specifies basic set of service operations. Ideally all the
@@ -63,6 +62,6 @@ public interface Service {
 	 * @param path
 	 *            the path
 	 */
-	void delete(IMultiDimensionalObject chapter, String path);
+	void delete(MultiDimensionalObject chapter, String path);
 
 }

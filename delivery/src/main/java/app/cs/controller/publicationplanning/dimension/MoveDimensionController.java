@@ -5,10 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.model.request.MoveDimensionRequest;
+import app.cs.model.response.MultiDimensionalObjectResponse;
 
 @Controller
 public class MoveDimensionController {
@@ -25,13 +27,18 @@ public class MoveDimensionController {
 	}
 
 	@RequestMapping(value = "/dimension/move/{oldPath}/{newPath}")
-	public void move(@PathVariable String oldPath,
+	public @ResponseBody
+	MultiDimensionalObject move(@PathVariable String oldPath,
 			@PathVariable String newPath,
 			@RequestBody MultiDimensionalObject objectInMove) {
 		request.setNewPath(newPath);
 		request.setOldPath(oldPath);
 		request.setObjectInMove(objectInMove);
-		moveDimension.execute(request);
+
+		System.out.println("newPath==>" + newPath);
+		System.out.println("groupIds==>" + objectInMove.getGroupId());
+		return ((MultiDimensionalObjectResponse) moveDimension.execute(request))
+				.getResponse();
 
 	}
 

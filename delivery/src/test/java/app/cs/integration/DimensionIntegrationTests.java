@@ -101,10 +101,11 @@ public class DimensionIntegrationTests {
 
 			dimensionRepository = new DimensionRepository(null, cache,
 					noSqlRepository, factory, viewStructure);
-			String test = dimensionRepository.createDimension(dimension);
+			MultiDimensionalObject test = dimensionRepository
+					.createDimension(dimension);
 
 			assertThat(test).isNotNull();
-			assertThat(test).isEqualTo(dimension.getId());
+			assertThat(test.getId()).isEqualTo(dimension.getId());
 
 		}
 

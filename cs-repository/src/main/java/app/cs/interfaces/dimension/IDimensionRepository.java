@@ -15,7 +15,8 @@ public interface IDimensionRepository {
 	 *            the dimension
 	 * @return the string
 	 */
-	public abstract String createDimension(MultiDimensionalObject dimension);
+	public abstract MultiDimensionalObject createDimension(
+			MultiDimensionalObject dimension);
 
 	/**
 	 * Gets the all dimensions.
@@ -61,7 +62,7 @@ public interface IDimensionRepository {
 
 	public abstract void delete(MultiDimensionalObject dimension);
 
-	public abstract void move(String oldPath, String newPath,
+	public abstract MultiDimensionalObject move(String oldPath, String newPath,
 			MultiDimensionalObject objectInMove);
 
 }

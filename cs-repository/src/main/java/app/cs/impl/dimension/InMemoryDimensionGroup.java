@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IInMemoryDimensionGroup;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
 
 import com.cs.data.api.core.nosql.redis.InMemoryNoSqlRepository;
 
@@ -44,7 +44,7 @@ public class InMemoryDimensionGroup implements IInMemoryDimensionGroup {
 	 * @see com.cs.data.business.inmemory.IInMemoryDimensionGroup#updateCache(com.cs.data.business.api.model.IMultiDimensionalObject, java.lang.String)
 	 */
 	@Override
-	public void updateCache(IMultiDimensionalObject dimension, String groupId) {
+	public void updateCache(MultiDimensionalObject dimension, String groupId) {
 
 		delete(dimension);
 		redisRepository.set(
@@ -56,7 +56,7 @@ public class InMemoryDimensionGroup implements IInMemoryDimensionGroup {
 	 *
 	 * @param dimension the dimension
 	 */
-	private void delete(IMultiDimensionalObject dimension) {
+	private void delete(MultiDimensionalObject dimension) {
 		// TODO Auto-generated method stub
 
 		redisRepository.delete(dimension.getPath());
@@ -67,7 +67,7 @@ public class InMemoryDimensionGroup implements IInMemoryDimensionGroup {
 	 * @see com.cs.data.business.inmemory.IInMemoryDimensionGroup#addNewGroup(com.cs.data.business.api.model.IMultiDimensionalObject, java.lang.String)
 	 */
 	@Override
-	public void addNewGroup(IMultiDimensionalObject dimension, String groupId) {
+	public void addNewGroup(MultiDimensionalObject dimension, String groupId) {
 		// TODO Auto-generated method stub
 		if (dimension.isRoot()) {
 			redisRepository.set(dimension.getName(), groupId);

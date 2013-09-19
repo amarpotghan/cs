@@ -11,8 +11,8 @@ import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IDimensionRepository;
 import app.cs.model.request.CreateDimensionRequest;
 import app.cs.model.request.RequestModel;
+import app.cs.model.response.MultiDimensionalObjectResponse;
 import app.cs.model.response.ResponseModel;
-import app.cs.model.response.StringResponse;
 
 /**
  * The Class DimensionService. TODO remove out all annotation from class
@@ -51,7 +51,7 @@ public class CreateDimension implements Interactor {
 		setDimensionAttributes(dimension, request.getType(), request.getName(),
 				request.getPath(), request.isFolder(),
 				request.getDimensionInfo());
-		return new StringResponse(
+		return new MultiDimensionalObjectResponse(
 				dimensionRepository.createDimension(dimension));
 	}
 

@@ -8,8 +8,6 @@ import java.util.List;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import app.cs.impl.model.Assortment;
 import app.cs.impl.model.Product;

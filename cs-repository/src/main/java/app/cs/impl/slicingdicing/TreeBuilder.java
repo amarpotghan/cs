@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.dimension.IDimensionRepository;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.interfaces.slicingdicing.ITreeBuilder;
 import app.cs.utils.ArrayUtils;
 
@@ -41,20 +40,15 @@ public class TreeBuilder implements ITreeBuilder {
 		this.repository = repository;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cs.data.business.builder.ITreeBuilder#buildTree(java.lang.String)
-	 */
 	@Override
 	public List<MultiDimensionalObject> buildTree(String structure) {
 		String[] orderedTypes = getTypes(structure);
 		List<MultiDimensionalObject> rootNodes = getAllSeparatedTrees(orderedTypes[0]);
-		for (IMultiDimensionalObject dimension : rootNodes) {
+		for (MultiDimensionalObject dimension : rootNodes) {
 
 			dimension.setPath("-1");
-			buildTreeForRootNode(dimension, orderedTypes, null);
+			buildTreeForRootNode(dimension, orderedTypes,
+					dimension.getGroupId());
 		}
 
 		return rootNodes;
@@ -68,7 +62,6 @@ public class TreeBuilder implements ITreeBuilder {
 	 * @return the types
 	 */
 	public String[] getTypes(String structure) {
-		// TODO Auto-generated method stub
 		return structure.split(DELIMETER);
 	}
 
@@ -94,18 +87,15 @@ public class TreeBuilder implements ITreeBuilder {
 	 * @param groupIdsRequiredForCurrentIteration
 	 *            the group ids required for current iteration
 	 */
-	public void buildTreeForRootNode(IMultiDimensionalObject root,
+	@Override
+	public void buildTreeForRootNode(MultiDimensionalObject root,
 			String[] orderTypes,
 			List<String> groupIdsRequiredForCurrentIteration) {
 		List<String> groupIds = null;
-		IMultiDimensionalObject currentRoot = root;
-		if (groupIdsRequiredForCurrentIteration == null) {
-			groupIds = currentRoot.getGroupId();
-		} else {
-			groupIds = intersectGroupIds(currentRoot.getGroupId(),
-					groupIdsRequiredForCurrentIteration);
+		MultiDimensionalObject currentRoot = root;
+		groupIds = intersectGroupIds(currentRoot.getGroupId(),
+				groupIdsRequiredForCurrentIteration);
 
-		}
 		String[] typesOfDimensions = skipFirstOrderType(orderTypes);
 		if (typesOfDimensions.length <= 0)
 			return;
@@ -114,7 +104,7 @@ public class TreeBuilder implements ITreeBuilder {
 
 		currentRoot.setChildren(childrenOfCurrentLevel);
 
-		for (IMultiDimensionalObject child : childrenOfCurrentLevel) {
+		for (MultiDimensionalObject child : childrenOfCurrentLevel) {
 
 			child.setPath(removeMinusOne(currentRoot.getPath()) + ","
 					+ currentRoot.getName());

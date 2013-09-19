@@ -10,7 +10,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.actions.publicationstructuring.page.MovePage;
 import app.cs.impl.model.MultiDimensionalObject;
-import app.cs.interfaces.dimension.IMultiDimensionalObject;
 import app.cs.model.request.MovePageRequest;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -42,7 +41,7 @@ public class MovePageControllerUnitTest {
 		String type = "spread";
 		boolean isFolder = true;
 
-		IMultiDimensionalObject page = new MultiDimensionalObject();
+		MultiDimensionalObject page = new MultiDimensionalObject();
 
 		// when
 		movePageController.execute(type, name, path, isFolder, newPath);

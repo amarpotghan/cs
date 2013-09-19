@@ -1,8 +1,6 @@
 package app.cs.controller.contentplanning.textassets;
 
-import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -15,8 +13,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import app.cs.utils.FileUtils;
 
-//import app.cs.text.TextAssetInteractions;
-
 @RunWith(MockitoJUnitRunner.class)
 public class TextAssetControllerUnitTests {
 
@@ -24,8 +20,6 @@ public class TextAssetControllerUnitTests {
 	private FileUtils fileUtils;
 
 	private TextAssetController textAssetController;
-
-	private String id;
 
 	@Before
 	public void setUp() {

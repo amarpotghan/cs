@@ -2,6 +2,8 @@ package app.cs.interfaces.dimension;
 
 import java.util.List;
 
+import app.cs.impl.model.MultiDimensionalObject;
+
 
 public interface IInMemoryDimensionGroup {
 
@@ -19,7 +21,7 @@ public interface IInMemoryDimensionGroup {
 	 * @param dimension the dimension
 	 * @param groupId the group id
 	 */
-	public abstract void updateCache(IMultiDimensionalObject dimension,
+	public abstract void updateCache(MultiDimensionalObject dimension,
 			String groupId);
 
 	/**
@@ -28,7 +30,7 @@ public interface IInMemoryDimensionGroup {
 	 * @param dimension the dimension
 	 * @param groupId the group id
 	 */
-	public abstract void addNewGroup(IMultiDimensionalObject dimension,
+	public abstract void addNewGroup(MultiDimensionalObject dimension,
 			String groupId);
 
 	/**

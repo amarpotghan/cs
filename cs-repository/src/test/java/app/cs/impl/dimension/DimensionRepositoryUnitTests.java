@@ -61,12 +61,13 @@ public class DimensionRepositoryUnitTests {
 		when(cache.ifGroupIdExistsFor(dimension.getPath())).thenReturn(true);
 		when(cache.getDimensionGroupIdFor(dimension.getPath())).thenReturn(
 				groupId);
-		String actualId = dimensionRepository.createDimension(dimension);
+		MultiDimensionalObject createdObject = dimensionRepository
+				.createDimension(dimension);
 
 		// then
 		verify(cache).ifGroupIdExistsFor(dimension.getPath());
 		verify(cache).updateCache(dimension, groupId);
-		assertThat(actualId).isEqualTo(dimension.getId());
+		assertThat(createdObject.getId()).isEqualTo(dimension.getId());
 
 	}
 
@@ -152,10 +153,10 @@ public class DimensionRepositoryUnitTests {
 
 		String oldPath = "Marketing Initiative 1";
 		// when
-	//	dimensionRepository.move(oldPath, newPath, dimensionModel);
+		// dimensionRepository.move(oldPath, newPath, dimensionModel);
 
 		// then
-	//	verify(repository).save(dimensionModel);
+		// verify(repository).save(dimensionModel);
 
 	}
 }

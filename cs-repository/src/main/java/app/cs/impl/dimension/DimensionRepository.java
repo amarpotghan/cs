@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import org.h2.constant.SysProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -74,7 +73,8 @@ public class DimensionRepository implements IDimensionRepository {
 	}
 
 	@Override
-	public String createDimension(MultiDimensionalObject dimension) {
+	public MultiDimensionalObject createDimension(
+			MultiDimensionalObject dimension) {
 		String groupId = getDimensionGroupId(dimension.getPath());
 		if (groupCache.ifGroupIdExistsFor(dimension.getPath())) {
 			createDimensionWithExistingGroupId(dimension, groupId);
@@ -82,7 +82,7 @@ public class DimensionRepository implements IDimensionRepository {
 			createDimensionWithNewGroupId(dimension);
 		}
 
-		return dimension.getId();
+		return dimension;
 	}
 
 	private void createDimensionWithNewGroupId(MultiDimensionalObject dimension) {
@@ -177,10 +177,11 @@ public class DimensionRepository implements IDimensionRepository {
 	}
 
 	@Override
-	public void move(String oldPath, String newPath,
+	public MultiDimensionalObject move(String oldPath, String newPath,
 			MultiDimensionalObject objectInMove) {
 		moveDimensionWithAllItsChildren(newPath, objectInMove);
-
+		return mongoRepository.getObjectByKey(objectInMove,
+				MultiDimensionalObject.class);
 	}
 
 	private void moveDimensionWithAllItsChildren(String newPath,
@@ -190,8 +191,7 @@ public class DimensionRepository implements IDimensionRepository {
 		objectInMove.setGroupId(new ArrayList<String>());
 		objectInMove.setPath(localNewPath);
 		createDimension(objectInMove);
-		if (objectInMove.getType().equals(
-				getLastDimensionInCurrentViewStructure()))
+		if (objectInMove.getType().equals(getLastTypeInCurrentViewStructure()))
 			return;
 		List<MultiDimensionalObject> children = getDimensionsBy(
 				getNextType(objectInMove), groupIds);
@@ -203,7 +203,7 @@ public class DimensionRepository implements IDimensionRepository {
 
 	}
 
-	private String getLastDimensionInCurrentViewStructure() {
+	private String getLastTypeInCurrentViewStructure() {
 		List<String> types = splitViewStructure();
 		return types.get(types.size() - 1);
 
@@ -216,7 +216,6 @@ public class DimensionRepository implements IDimensionRepository {
 	}
 
 	private List<String> splitViewStructure() {
-		System.out.println(viewStructure.getCurrentViewStructure());
 		String[] alltypes = viewStructure.getCurrentViewStructure().split(
 				HIPHEN);
 		List<String> types = Arrays.asList(alltypes);
