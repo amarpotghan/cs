@@ -34,7 +34,7 @@ var GanttChartPresenter = function(){
             GanttChartPresenter.getTree();
         });
 
-
+        tips = $( ".validateTips" );
         $( "#dialog-form" ).dialog({
             autoOpen: false
 
@@ -61,4 +61,8 @@ GanttChartPresenter.deleteDimension = function(prefix,type,input,callback){
 
 GanttChartPresenter.dragAndDropDimensions = function(prefix,row,oldPath,flag,newPath,callBack){
     DragDimension.dragAndDropDimensions(prefix,row,oldPath,flag,newPath,callBack);
+}
+
+GanttChartPresenter.updateDimension = function(prefix,row,callback){
+    UpdateDimension.updateDim(prefix,row,callback);
 }

@@ -3,80 +3,73 @@ TreeGridLoaded ( // JSONP header, to be possible to load from xxx_Jsonp data sou
     {
         Cfg : {
             MainCol : "name",
-            MaxHeight : "10",
-            MinHeight:"10",
             ShowDeleted: "0",
-            Style:"ExtJS"
-
-         } ,
+            Style:"ExtJS",
+            MinRowHeight:"25",
+            NoVScroll:1
+        } ,
 
         LeftCols: [
-             { Name:"name",Type:"Text", CanEdit:0, Width:"500",WidthPad:"17"},
+            { Name:"Panel", Type:"Panel",WidthPad:"17",Buttons:"Select,Delete"}     ,
+            { Name:"name",Type:"Text",  Width:"500",WidthPad:"17"}
 
         ],
 
         Cols : [
-            { Name:"Panel", Visible:0, Type:"Panel",WidthPad:"17", Delete:0,Buttons:"Select"}     ,
-            { Name:"currency",Type:"Text", CanEdit:0, Visible:0}
-        ],
 
-        RightCols: [
-            { Name:"manager", Visible:0, Width:"75", Type:"Text", CanEdit:0,WidthPad:"17"},
-            { Name:"budgetOwner", Visible:0, Width:"75", Type:"Text", CanEdit:0,WidthPad:"17"},
-            { Name:"budget", Visible:0, Width:"75", Type:"Text", CanEdit:0,WidthPad:"17"},
-            { Name:"startDate", Visible:0, Width:"75", Type:"Date", Format:"dd/MMM/yyyy", CanEdit:0,WidthPad:"17"},
-            { Name:"endDate", Visible:0, Width:"75", Type:"Date", Format:"dd/MMM/yyyy", CanEdit:0,WidthPad:"17"},
+            { Name:"currency",Type:"Text",Visible:0}   ,
+            { Name:"manager", Visible:0, Width:"75", Type:"Text", WidthPad:"17"},
+            { Name:"budgetOwner", Visible:0, Width:"75", Type:"Text", WidthPad:"17",MinWidth:105},
+            { Name:"budget", Visible:0, Width:"75", Type:"Text",WidthPad:"17"},
+            { Name:"startDate", Visible:0, Width:"75", Type:"Date", Format:"dd/MMM/yyyy",WidthPad:"17",MinWidth:105},
+            { Name:"endDate", Visible:0, Width:"75", Type:"Date", Format:"dd/MMM/yyyy",WidthPad:"17",MinWidth:105},
             {   Name:"ganttChart", Visible:0, Type:"Gantt",GanttStart:"startDate",GanttEnd:"endDate",
-                    GanttSlack:"Slack",GanttEdit:0,
+                GanttSlack:"Slack",
                 GanttFormatObject:"MainLeft",
                 GanttFormat:"*name*",
                 GanttMainTip:"<div style='padding-bottom:5px;'>Name : *name*</div>" +
-                             "<div style='padding-bottom:5px;font-weight:bold;'>*startDate* - *endDate*</div>" +
-                             "<div style='padding-bottom:5px;'>Manager : *manager*</div>" +
-                             /*"<div style='padding-bottom:5px;'>Budget Owner : *budgetOwner*</div>*/
-                            "<div>Budget : *budget**currency*</div>",
+                    "<div style='padding-bottom:5px;font-weight:bold;'>*startDate* - *endDate*</div>" +
+                    "<div style='padding-bottom:5px;'>Manager : *manager*</div>" +
+                    /*"<div style='padding-bottom:5px;'>Budget Owner : *budgetOwner*</div>*/
+                    "<div>Budget : *budget**currency*</div>",
                 GanttZoom:"months",
                 GanttClass:"GanttOrange",
                 GanttZoomList:[
 
 
-            { Name:'years', GanttUnits:'M', GanttChartRound:'y', GanttWidth:65,
-                GanttHeader1:'y#yyyy', GanttHeader2:'M#MMM',
-                GanttBackground:'M#1/1/2008#3',GanttRight:"0", GanttLeft:"0"
-            },
+                    { Name:'years', GanttUnits:'M', GanttChartRound:'y', GanttWidth:65,
+                        GanttHeader1:'y#yyyy', GanttHeader2:'M#MMM',
+                        GanttBackground:'M#1/1/2008#3',GanttRight:"0", GanttLeft:"0"
+                    },
 
-            { Name:'months', GanttUnits:'w', GanttChartRound:'M', GanttWidth:170,
-                GanttHeader1:'M#MMMM yyyy', GanttHeader2:'w#Week ddddddd', GanttHeader3:'d#dd',
-                GanttBackground:'w#1/6/2008#3',GanttRight:"0", GanttLeft:"0"
-            },
+                    { Name:'months', GanttUnits:'w', GanttChartRound:'M', GanttWidth:170,
+                        GanttHeader1:'M#MMMM yyyy', GanttHeader2:'w#Week ddddddd', GanttHeader3:'d#dd',
+                        GanttBackground:'w#1/6/2008#3',GanttRight:"0", GanttLeft:"0"
+                    },
 
-            { Name:'weeks', GanttUnits:'d', GanttChartRound:'w', GanttWidth:100,
-                GanttHeader1:'w#MMMM yyyy Week ddddddd', GanttHeader2:'d#dddd',
-                GanttBackground:'d#1/1/2008#3'
-            },
+                    { Name:'weeks', GanttUnits:'d', GanttChartRound:'w', GanttWidth:100,
+                        GanttHeader1:'w#MMMM yyyy Week ddddddd', GanttHeader2:'d#dddd',
+                        GanttBackground:'d#1/1/2008#3'
+                    },
 
-            { Name:'days', GanttUnits:'h', GanttChartRound:'d', GanttWidth:30,
-                GanttBackground:'h#01#3',
-                GanttHeader1:'d#dddd d MMMM yyyy', GanttHeader2:'h#HH'
-            }
+                    { Name:'days', GanttUnits:'h', GanttChartRound:'d', GanttWidth:30,
+                        GanttBackground:'h#01#3',
+                        GanttHeader1:'d#dddd d MMMM yyyy', GanttHeader2:'h#HH'
+                    }
 
                 ]
 
             }
+        ],
+
+        RightCols: [
+
 
         ],
 
         Header:{name:"Dimensions",startDate:"StartDate",endDate:"EndDate" ,manager:"Manager",budgetOwner:"Budget Owner",
-                budget:"Budget"},
+                budget:"Budget"}
 
-        Pagers: [
-                    {Name:"Year", Visible:0,Caption:"Year",Type:"Gantt",PageSize:"y",ChartSize:"0",Left:"0",
-                        Format:"yyyy",Width:"35",ZoomToPage:"2",GanttZoom:"years"},
-                    {Name:"Month", Visible:0,Caption:"Month",Type:"Gantt",PageSize:"M",ChartSize:"y",Left:"0",
-                        Format:"MMM",Width:"50",ZoomToPage:"10",GanttZoom:"months"},
-                    {Name:"Pager", Visible:0,Caption:"Pager",Type:"Gantt",PageSize:"w",ChartSize:"y",Left:"0",
-                        Format:"weekddddddd",Width:"60",ZoomToPage:"10",GanttZoom:"weeks"}
-        ]
 
 /*        Solid:[
             {

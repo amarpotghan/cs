@@ -7,14 +7,15 @@ var GanttChart = function(){
     var dropTargetType
 
     var input;
+    var cellOldValue;
 
     this.createGanttChart = function(id){
-        TreeGrid({Layout:{Url:"../../../graphics/screens/home/scripts/inHouseScripts/js/Def.js"},
+        TreeGrid({Layout:{Url:EngineDataStore.getBaseURL()+"graphics/screens/home/scripts/inHouseScripts/js/Def.js"},
                   Data:{Script:"myData"}},id);
+
     }
 
     Grids.OnGetMenu = function(G,row,col){
-        console.log(row)
         var possibleDim=[];
         possibleDim  = GraphicDataStore.getPossibleChild(row.type);
         var menuItems = [];
@@ -43,19 +44,6 @@ var GanttChart = function(){
             menuItems.push(deleteItem);
         }
         return menu;
-    }
-
-
-    Grids.OnRowDelete = function(grid,row,type){
-        /*if(type == 1){
-            var input=new Object();
-            input.id=row.id;
-            input.name=row.name;
-            input.type=row.type;
-            input.groupId=row.groupId;
-            var prefix=getUrlPrefix(row.type,"delete");
-            GanttChartPresenter.deleteDimension(prefix,row.type,input,GanttChart.onDeleteSuccess);
-        }*/
     }
 
     GanttChart.onDeleteSuccess=function(){
@@ -101,6 +89,19 @@ var GanttChart = function(){
 
     }
 
+    Grids.OnAfterValueChanged = function(grid,row,col,val){
+        //cellOldValue = row[col];
+        var prefix;
+        prefix =getUrlPrefix(row.type,"update");
+        prefix = prefix;
+        GanttChartPresenter.updateDimension(prefix,row,GanttChartPresenter.onUpdate)
+        //Make an api call with val
+    }
+
+    GanttChartPresenter.onUpdate = function(data){
+        //alert(JSON.stringify(data))
+    }
+
     Grids.OnEndDrag = function(grid,row,togrid,torow,type,X,Y,copy){
        if(type === 2){
            var oldPathForChild = row.path;
@@ -121,7 +122,16 @@ var GanttChart = function(){
        }
     }
 
-    function onDropSuccess(data){
+    //SetEvent("OnClick","g1",function(){ alert("G1 clicked");} );
+
+    Grids.OnClick = function(grid,row,col,x,y){
+        if(col!="ganttChart"){
+        Grids[0].ScrollToDate(row.startDate,"Left");
+    }
+    }
+
+
+    function onDropSuccess(){
        /* if(draggedNode.data.type == "Assortment"){
             var cb = draggedNode.toDict(true, function(dict){
                 //dict.title = "Copy of " + dict.title;
@@ -148,17 +158,59 @@ var GanttChart = function(){
         Grids[0].SetValue(currentRow.lastChild,"endDate",data.endDate,1);
         Grids[0].SetValue(currentRow.lastChild,"manager",data.manager,1);
         Grids[0].SetValue(currentRow.lastChild,"Items",data.Items,1);
+        Grids[0].ScrollToDate(data.startDate,"Left");
         //Grids[0].Recalculate(currentRow,"startDate",1);
     }
+
+    function checkRegexp( o, regexp, n ) {
+        if ( !( regexp.test( o.val() ) ) ) {
+            o.addClass( "ui-state-error" );
+            updateTips( n );
+            return false;
+        } else {
+            return true;
+        }
+    }
+    function updateTips( t ) {
+        tips
+            .text( t )
+            .addClass( "ui-state-highlight" );
+        setTimeout(function() {
+            tips.removeClass( "ui-state-highlight", 1500 );
+        }, 500 );
+    }
+
+    function checkNull(obj){
+        if(obj.val()==""){
+            obj.addClass( "ui-state-error") ;
+            return false;
+        }
+        else{
+            obj.removeClass("ui-state-error")   ;
+            return true;
+        }
+    }
+
+
 
     function showPopUp(G,row,col,name){
         $( "#dialog-form" ).dialog({
             height: 490,
             width: 500,
             modal: true,
+            show: {
+                effect: "clip",
+                duration: 500
+            },
+            hide: {
+                effect: "clip",
+                duration: 500
+            },
             buttons: {
             "Create ": function() {
 
+                var errorMsg = "";
+                var popupValid = true;
                 var bValid = true;
                 var dimensionName = $( "#name" ),
                     manager = $( "#manager" ),
@@ -168,17 +220,51 @@ var GanttChart = function(){
                     budgetamount = $( "#budget"),
                     currency = $( "#currency" );
 
+
+
+              /*  if((dimensionName.val()=="") || (manager.val()=="") || (startdate.val()=="") || (enddate.val()=="") || (budgetowner.val()=="") || (budgetamount.val()=="")) {
+                    errorMsg += "Fields should not be EMPTY!";
+                    popupValid =  false;
+                }*/
+
+                popupValid = checkNull(dimensionName);
+                popupValid = popupValid && checkNull(manager);
+                popupValid = popupValid && checkNull(startdate);
+                popupValid = popupValid && checkNull(enddate);
+                popupValid = popupValid && checkNull(budgetowner);
+                popupValid = popupValid && checkNull(budgetamount);
+
+
+                if(!popupValid){
+                    errorMsg += "Fields should not be EMPTY!";
+                }
+
+                if(startdate.val()>enddate.val()){
+                    errorMsg += "Please verify start and end dates!";
+                    popupValid =  false;
+                    startdate.addClass( "ui-state-error") ;
+                    enddate.addClass( "ui-state-error") ;
+                }
+                if(!$.isNumeric( budgetamount.val() )){
+                    errorMsg += "Please verify budget!";
+                    popupValid =  false;
+                    budgetamount.addClass( "ui-state-error") ;
+                }
+                updateTips(errorMsg);
+
+                if(popupValid == true){
+
+
                 input = new Object();
                 input.name=dimensionName.val();
                 input.managerName=manager.val();
                 input.startDate=startdate.val();
                 input.endDate=enddate.val();
                 input.budgetOwner = budgetowner.val();
-                /*input.currency = currency.val();                 */
+                if(budgetamount.val() != "")
                 input.budget = budgetamount.val() + " " + currency.val();
                 input.type = name;
                 input.Items = [];
-                console.log(input);
                 if(input.name != null && input.name !=""){
                     parentNode = row;
                     if(parentNode.type == "root"){
@@ -203,7 +289,7 @@ var GanttChart = function(){
                 }
 
                 $( this ).dialog( "close" );
-
+                }
             },
             Cancel: function() {
                 $( this ).dialog( "close" );
@@ -263,6 +349,8 @@ var GanttChart = function(){
 
 
 }
+
+
 
 
 function clearForm(form)

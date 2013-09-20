@@ -36,12 +36,11 @@ HomePresenter.yearView = function (){
 
 HomePresenter.viewTree = function(){
     var show = new Array("name");
-    var hide = new Array("startDate","endDate","ganttChart","manager","budgetOwner","budget","Panel");
+    var hide = new Array("startDate","endDate","ganttChart","manager","budgetOwner","budget");
     Grids[0].ChangeColsVisibility(show,hide,0);
     var ganttElements = document.getElementsByClassName("GanttProperties");
     for(var i = 0; i < ganttElements.length; i++) {
         ganttElements[i].style.visibility = "hidden";
-        console.log(ganttElements[i]);
     }
     $("#treeGantt").removeClass("calendarButtonPressed") ;
 
@@ -50,7 +49,7 @@ HomePresenter.viewTree = function(){
 
 HomePresenter.viewTreeAndFields = function(){
     var show = new Array("name","startDate","endDate","manager","budgetOwner","budget");
-    var hide = new Array("ganttChart","Panel");
+    var hide = new Array("ganttChart");
     Grids[0].ChangeColsVisibility(show,hide,0);
     var ganttElements = document.getElementsByClassName("GanttProperties");
     for(var i = 0; i < ganttElements.length; i++) {
@@ -60,8 +59,8 @@ HomePresenter.viewTreeAndFields = function(){
 }
 
 HomePresenter.viewTreeAndGantt = function(){
-    var show = new Array("name","ganttChart","Panel");
-    var hide = new Array("startDate","endDate","manager","budgetOwner","budget","Panel");
+    var show = new Array("name","ganttChart");
+    var hide = new Array("startDate","endDate","manager","budgetOwner","budget");
     Grids[0].ChangeColsVisibility(show,hide,0);
     var ganttElements = document.getElementsByClassName("GanttProperties");
     for(var i = 0; i < ganttElements.length; i++) {
