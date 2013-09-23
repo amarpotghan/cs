@@ -73,6 +73,8 @@ public class ClientController {
 		customResponse.setEvents(fileUtils.getFileContents("home/events.json"));
 		customResponse.setElements(fileUtils
 				.getFileContents("home/elements.json"));
+		customResponse.setElements(fileUtils
+				.getFileContents("home/images.json"));
 		return customResponse;
 
 	}

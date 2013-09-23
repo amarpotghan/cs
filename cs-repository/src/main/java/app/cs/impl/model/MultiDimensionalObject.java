@@ -1,6 +1,7 @@
 package app.cs.impl.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,6 +115,7 @@ public class MultiDimensionalObject implements Serializable, GenericDomain {
 
 	/** The group ids. */
 	private List<String> groupIds;
+	private String image;
 
 	public List<Assortment> getAssortment() {
 		return assortments;
@@ -303,6 +305,15 @@ public class MultiDimensionalObject implements Serializable, GenericDomain {
 			return true;
 		else
 			return false;
+
+	}
+
+	public String getImageUrl() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 
 	}
 }

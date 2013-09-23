@@ -2,7 +2,6 @@ package com.cs.data.api.core.nosql;
 
 import java.util.List;
 
-import com.cs.data.api.core.GenericDomain;
 import com.cs.data.api.core.IRepository;
 import com.cs.data.api.core.nosql.mongodb.NoSqlRepository;
 

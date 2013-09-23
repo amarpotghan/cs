@@ -42,11 +42,14 @@ public class DimensionRepositoryUnitTests {
 	@Mock
 	private InMemoryViewStructure viewStructure;
 
+	@Mock
+	private ImageLookup imageLookup;
+
 	@Before
 	public void setUp() {
 
 		dimensionRepository = new DimensionRepository(fileUtils, cache,
-				repository, factory, viewStructure);
+				repository, factory, viewStructure, imageLookup);
 
 	}
 
@@ -148,15 +151,43 @@ public class DimensionRepositoryUnitTests {
 	@Test
 	public void itShouldMoveDimensionAndItsChildren() {
 		// given
-
-		String newPath = "Marketing Initiative 2";
-
-		String oldPath = "Marketing Initiative 1";
+		String groupId = "group";
+		MultiDimensionalObject dimension = new MultiDimensionalObject("c01",
+				"Publication", "co01", "CP01", "CP01,MP01,PG01,P01");
 		// when
-		// dimensionRepository.move(oldPath, newPath, dimensionModel);
+		when(cache.ifGroupIdExistsFor(dimension.getPath())).thenReturn(true);
+		when(cache.getDimensionGroupIdFor(dimension.getPath())).thenReturn(
+				groupId);
+		when(viewStructure.getCurrentViewStructure()).thenReturn(
+				"Marketing Initiative-Campaign-SubCampaign");
+		// when
+		dimensionRepository.move(dimension.getPath(), dimension.getPath(),
+				dimension);
 
 		// then
-		// verify(repository).save(dimensionModel);
+		verify(repository).save(dimension);
 
 	}
+
+	@Test
+	public void itShouldAddImageUrlIfDimensionIsAPublication() {
+		// given
+		String groupId = "group";
+		MultiDimensionalObject dimension = new MultiDimensionalObject("pub01",
+				"Publication", "pub01", "pub01", "CP01,MP01,PG01,P01");
+		// when
+		when(cache.ifGroupIdExistsFor(dimension.getPath())).thenReturn(true);
+		when(cache.getDimensionGroupIdFor(dimension.getPath())).thenReturn(
+				groupId);
+		when(imageLookup.get("pub01")).thenCallRealMethod();
+		MultiDimensionalObject createdObject = dimensionRepository
+				.createDimension(dimension);
+
+		// then
+		verify(cache).ifGroupIdExistsFor(dimension.getPath());
+		verify(cache).updateCache(dimension, groupId);
+		assertThat(createdObject.getImageUrl()).isNotNull();
+
+	}
+
 }

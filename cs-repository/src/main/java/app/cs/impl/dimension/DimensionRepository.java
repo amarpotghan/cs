@@ -27,27 +27,23 @@ public class DimensionRepository implements IDimensionRepository {
 
 	private static final String HIPHEN = "-";
 
-	/** The file utils. */
 	private FileUtils fileUtils;
 
-	/** The group cache. */
 	private IInMemoryDimensionGroup groupCache;
 
 	private InMemoryViewStructure viewStructure;
 
-	/** The no sql templatefor mongo. */
 	private NoSqlRepository mongoRepository;
 
 	private DomainFactory factory;
 
-	/** The fieldtoupdate. */
 	private final String FIELDTOUPDATE = "groupIds";
 
-	/** The type. */
 	private final String TYPE = "type";
 
-	/** The groupids. */
 	private final String GROUPIDS = "groupIds";
+
+	private ImageLookup imageLookup;
 
 	/**
 	 * Instantiates a new dimension repository.
@@ -63,19 +59,20 @@ public class DimensionRepository implements IDimensionRepository {
 	public DimensionRepository(FileUtils fileUtils,
 			IInMemoryDimensionGroup groupCache,
 			NoSqlRepository noSqlRepository, DomainFactory factory,
-			InMemoryViewStructure viewStructure) {
-
+			InMemoryViewStructure viewStructure, ImageLookup imageLookup) {
 		this.fileUtils = fileUtils;
 		this.groupCache = groupCache;
 		this.mongoRepository = noSqlRepository;
 		this.factory = factory;
 		this.viewStructure = viewStructure;
+		this.imageLookup = imageLookup;
 	}
 
 	@Override
 	public MultiDimensionalObject createDimension(
 			MultiDimensionalObject dimension) {
 		String groupId = getDimensionGroupId(dimension.getPath());
+		assignImageIfExists(dimension);
 		if (groupCache.ifGroupIdExistsFor(dimension.getPath())) {
 			createDimensionWithExistingGroupId(dimension, groupId);
 		} else {
@@ -85,11 +82,15 @@ public class DimensionRepository implements IDimensionRepository {
 		return dimension;
 	}
 
+	private void assignImageIfExists(MultiDimensionalObject dimension) {
+		dimension.setImage(imageLookup.get(dimension.getName()));
+
+	}
+
 	private void createDimensionWithNewGroupId(MultiDimensionalObject dimension) {
 		String groupId;
 		groupId = UUID.randomUUID().toString();
 		groupCache.addNewGroup(dimension, groupId);
-
 		updateGroupIdForAllAncestor(dimension.getPath(), groupId);
 		dimension.addToGroupId(groupId);
 		save(dimension);
@@ -106,14 +107,6 @@ public class DimensionRepository implements IDimensionRepository {
 		groupCache.updateCache(dimension, groupId);
 	}
 
-	/**
-	 * Update group id for all ancestor.
-	 * 
-	 * @param path
-	 *            the path
-	 * @param groupId
-	 *            the group id
-	 */
 	private void updateGroupIdForAllAncestor(String path, String groupId) {
 		String[] paths = path.split(",");
 		for (String singlePath : paths) {
@@ -123,13 +116,6 @@ public class DimensionRepository implements IDimensionRepository {
 
 	}
 
-	/**
-	 * Gets the dimension group id.
-	 * 
-	 * @param path
-	 *            the path
-	 * @return the dimension group id
-	 */
 	private String getDimensionGroupId(String path) {
 
 		return groupCache.getDimensionGroupIdFor(path);
