@@ -1,8 +1,20 @@
 $(document).ready(function() {
-    EngineDataStore.setBaseURL("../../../");
-    getScreenMappingObject();
-
+	loadInitialConfigurations();
 });
+
+function loadInitialConfigurations(){
+    Router.forward("../../../graphics/tacks/InitialConfiguration.json",true,function(json){
+        parseInitialConfiguration(json);
+        getScreenMappingObject()
+    });
+}
+
+function parseInitialConfiguration(data){
+    EngineDataStore.setBaseURL(data.baseUrl);
+    EngineDataStore.setMrmUrl(data.MRMUrl);
+    EngineDataStore.setPubUrl(data.PubUrl);
+}
+
 
 function getScreenMappingObject(){
     Router.forward(EngineDataStore.getBaseURL()+"graphics/tacks/screenMapping.json",true,function(json){

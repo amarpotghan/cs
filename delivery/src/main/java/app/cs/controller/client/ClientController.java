@@ -21,7 +21,6 @@ import app.cs.utils.FileUtils;
 @Controller
 public class ClientController {
 
-	private String SUBCONTEXT;
 	private final String MRMINDEX = "redirect:/pages/mrm/engine/core/html/start.html";
 	private final String PUBINDEX = "redirect:/pages/pub/engine/core/html/start.html";
 
@@ -37,63 +36,113 @@ public class ClientController {
 	@RequestMapping(value = { "/mrm" }, method = RequestMethod.GET)
 	public String getMrmIndexPage() throws ParseException, IOException,
 			URISyntaxException {
-		SUBCONTEXT = "mrm";
 		return MRMINDEX;
 	}
 
 	@RequestMapping(value = { "/pub" }, method = RequestMethod.GET)
 	public String getPubIndexPage() throws ParseException, IOException,
 			URISyntaxException {
-		SUBCONTEXT = "pub";
 		return PUBINDEX;
 	}
 
-	@RequestMapping(value = { "/home" }, method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = { "/mrm/home" }, method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody
 	ClientResponse getMrmHome() throws IOException, URISyntaxException {
 		ClientResponse customResponse = new ClientResponse();
-		customResponse.setHtml(fileUtils.getFileContents(SUBCONTEXT
+		customResponse.setHtml(fileUtils.getFileContents("mrm"
 				+ "/home/home.html"));
-		customResponse.setEvents(fileUtils.getFileContents(SUBCONTEXT
+		customResponse.setEvents(fileUtils.getFileContents("mrm"
 				+ "/home/events.json"));
-		customResponse.setElements(fileUtils.getFileContents(SUBCONTEXT
+		customResponse.setElements(fileUtils.getFileContents("mrm"
 				+ "/home/elements.json"));
 		return customResponse;
 
 	}
 
-	@RequestMapping(value = { "/login" })
+	@RequestMapping(value = { "/mrm/login" })
 	public @ResponseBody
 	ClientResponse getLogin() throws IOException, URISyntaxException {
 
 		ClientResponse customResponse = new ClientResponse();
-		customResponse.setHtml(fileUtils.getFileContents(SUBCONTEXT
+		customResponse.setHtml(fileUtils.getFileContents("mrm"
 				+ "/login/login.html"));
-		customResponse.setEvents(fileUtils.getFileContents(SUBCONTEXT
+		customResponse.setEvents(fileUtils.getFileContents("mrm"
 				+ "/login/events.json"));
 		return customResponse;
 
 	}
 
-	@RequestMapping(value = { "/header" })
+	@RequestMapping(value = { "/mrm/header" })
 	public @ResponseBody
 	ClientResponse getHeader() throws IOException, URISyntaxException {
 
 		ClientResponse customResponse = new ClientResponse();
-		customResponse.setHtml(fileUtils.getFileContents(SUBCONTEXT
+		customResponse.setHtml(fileUtils.getFileContents("mrm"
 				+ "/header/header.html"));
-		customResponse.setEvents(fileUtils.getFileContents(SUBCONTEXT
+		customResponse.setEvents(fileUtils.getFileContents("mrm"
 				+ "/header/events.json"));
 		return customResponse;
 
 	}
 
-	@RequestMapping(value = { "/footer" })
+	@RequestMapping(value = { "/mrm/footer" })
 	public @ResponseBody
 	ClientResponse getFooter() throws IOException, URISyntaxException {
 
 		ClientResponse customResponse = new ClientResponse();
-		customResponse.setHtml(fileUtils.getFileContents(SUBCONTEXT
+		customResponse.setHtml(fileUtils.getFileContents("mrm"
+				+ "/footer/footer.html"));
+		return customResponse;
+
+	}
+
+	// TODO: Please remove duplication
+	@RequestMapping(value = { "/pub/home" }, method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody
+	ClientResponse getMrmHomeForPub() throws IOException, URISyntaxException {
+		ClientResponse customResponse = new ClientResponse();
+		customResponse.setHtml(fileUtils.getFileContents("pub"
+				+ "/home/home.html"));
+		customResponse.setEvents(fileUtils.getFileContents("pub"
+				+ "/home/events.json"));
+		customResponse.setElements(fileUtils.getFileContents("pub"
+				+ "/home/elements.json"));
+		return customResponse;
+
+	}
+
+	@RequestMapping(value = { "/pub/login" })
+	public @ResponseBody
+	ClientResponse getLoginForPub() throws IOException, URISyntaxException {
+
+		ClientResponse customResponse = new ClientResponse();
+		customResponse.setHtml(fileUtils.getFileContents("pub"
+				+ "/login/login.html"));
+		customResponse.setEvents(fileUtils.getFileContents("pub"
+				+ "/login/events.json"));
+		return customResponse;
+
+	}
+
+	@RequestMapping(value = { "/pub/header" })
+	public @ResponseBody
+	ClientResponse getHeaderForPub() throws IOException, URISyntaxException {
+
+		ClientResponse customResponse = new ClientResponse();
+		customResponse.setHtml(fileUtils.getFileContents("pub"
+				+ "/header/header.html"));
+		customResponse.setEvents(fileUtils.getFileContents("pub"
+				+ "/header/events.json"));
+		return customResponse;
+
+	}
+
+	@RequestMapping(value = { "/pub/footer" })
+	public @ResponseBody
+	ClientResponse getFooterForPub() throws IOException, URISyntaxException {
+
+		ClientResponse customResponse = new ClientResponse();
+		customResponse.setHtml(fileUtils.getFileContents("pub"
 				+ "/footer/footer.html"));
 		return customResponse;
 

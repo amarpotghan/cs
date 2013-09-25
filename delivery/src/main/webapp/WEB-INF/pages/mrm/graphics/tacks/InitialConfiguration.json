@@ -1,5 +1,5 @@
 {
     "baseUrl":"../../../",
-    "MRMUrl":"file:///D:/MRM%20SVN/src/main/webapp/WEB-INF/pages/engine/core/html/start.html",
-    "PubUrl":"file:///D:/SVN/delivery/src/main/webapp/WEB-INF/pages/engine/core/html/start.html"
+    "MRMUrl":"/delivery/mrm",
+    "PubUrl":"/delivery/pages/pub/engine/core/html/start.html"
 }
