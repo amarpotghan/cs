@@ -13,53 +13,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.cs.utils.FileUtils;
 
-
 /**
  * The Class TreeViewStructureController.
  */
 @Controller
 public class TreeViewStructureController {
 
-	/** The utils. */
 	private FileUtils utils;
 
-	/**
-	 * Instantiates a new tree view structure controller.
-	 *
-	 * @param utils the utils
-	 */
 	@Autowired
 	public TreeViewStructureController(FileUtils utils) {
 		this.utils = utils;
 	}
 
-	/**
-	 * Gets the requested view structure.
-	 *
-	 * @param structureId the structure id
-	 * @return the object
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws URISyntaxException the uRI syntax exception
-	 * @throws ParseException the parse exception
-	 */
 	@RequestMapping("/treeviewstructure/{structureId}")
 	public @ResponseBody
 	Object get(@PathVariable String structureId) throws IOException,
 			URISyntaxException, ParseException {
 
-		JSONParser parser=new JSONParser();
-		
-		return parser.parse(utils.getFileContents("schema" + structureId + ".json")); //$NON-NLS-1$ //$NON-NLS-2$
+		JSONParser parser = new JSONParser();
+
+		return parser.parse(utils
+				.getFileContents("pub/schema/schema" + structureId + ".json")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	}
 
-	/**
-	 * Gets the default view structure.
-	 *
-	 * @return the default
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws URISyntaxException the uRI syntax exception
-	 */
 	@RequestMapping("/treeviewstructure/default")
 	public @ResponseBody
 	String getDefault() throws IOException, URISyntaxException {
@@ -68,17 +46,16 @@ public class TreeViewStructureController {
 
 	}
 
-	/**
-	 * Gets all the tree structure.
-	 *
-	 * @return the all
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws URISyntaxException the uRI syntax exception
-	 */
-	@RequestMapping("/all")
+	@RequestMapping("/mrm/all")
 	public @ResponseBody
-	String getAll() throws IOException, URISyntaxException {
-		return utils.getFileContents("allSchema.json");
+	String getAllForMrm() throws IOException, URISyntaxException {
+		return utils.getFileContents("mrm/schema/allSchema.json");
+	}
+
+	@RequestMapping("/pub/all")
+	public @ResponseBody
+	String getAllPub() throws IOException, URISyntaxException {
+		return utils.getFileContents("pub/schema/allSchema.json");
 	}
 
 }

@@ -21,79 +21,56 @@ import app.cs.utils.FileUtils;
 @Controller
 public class ClientController {
 
-	/** The index. */
-	private final String INDEX = "redirect:/pages/engine/core/html/start.html";
+	private String SUBCONTEXT;
+	private final String MRMINDEX = "redirect:/pages/mrm/engine/core/html/start.html";
+	private final String PUBINDEX = "redirect:/pages/pub/engine/core/html/start.html";
 
 	@Autowired
 	private ServletContext context;
-
-	/** The file utils. */
 	private FileUtils fileUtils;
 
-	/**
-	 * Instantiates a new client controller.
-	 * 
-	 * @param fileUtils
-	 *            the file utils
-	 */
 	@Autowired
 	public ClientController(FileUtils fileUtils) {
-		// TODO Auto-generated constructor stub
 		this.fileUtils = fileUtils;
 	}
 
-	/**
-	 * Redirects to the the index page.
-	 * 
-	 * @return the index page
-	 * @throws URISyntaxException
-	 * @throws IOException
-	 * @throws ParseException
-	 */
-	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
-	public String getIndexPage() throws ParseException, IOException,
+	@RequestMapping(value = { "/mrm" }, method = RequestMethod.GET)
+	public String getMrmIndexPage() throws ParseException, IOException,
 			URISyntaxException {
-		return INDEX;
+		SUBCONTEXT = "mrm";
+		return MRMINDEX;
 	}
 
-	/**
-	 * Redirects to the Home page.
-	 * 
-	 * @return the home
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws URISyntaxException
-	 *             the uRI syntax exception
-	 */
+	@RequestMapping(value = { "/pub" }, method = RequestMethod.GET)
+	public String getPubIndexPage() throws ParseException, IOException,
+			URISyntaxException {
+		SUBCONTEXT = "pub";
+		return PUBINDEX;
+	}
+
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody
-	ClientResponse getHome() throws IOException, URISyntaxException {
+	ClientResponse getMrmHome() throws IOException, URISyntaxException {
 		ClientResponse customResponse = new ClientResponse();
-		customResponse.setHtml(fileUtils.getFileContents("home.html"));
-		customResponse.setEvents(fileUtils.getFileContents("home/events.json"));
-		customResponse.setElements(fileUtils
-				.getFileContents("home/elements.json"));
+		customResponse.setHtml(fileUtils.getFileContents(SUBCONTEXT
+				+ "/home/home.html"));
+		customResponse.setEvents(fileUtils.getFileContents(SUBCONTEXT
+				+ "/home/events.json"));
+		customResponse.setElements(fileUtils.getFileContents(SUBCONTEXT
+				+ "/home/elements.json"));
 		return customResponse;
 
 	}
 
-	/**
-	 * Redirects to the login page.
-	 * 
-	 * @return the login
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws URISyntaxException
-	 *             the uRI syntax exception
-	 */
 	@RequestMapping(value = { "/login" })
 	public @ResponseBody
 	ClientResponse getLogin() throws IOException, URISyntaxException {
 
 		ClientResponse customResponse = new ClientResponse();
-		customResponse.setHtml(fileUtils.getFileContents("login.html"));
-		customResponse
-				.setEvents(fileUtils.getFileContents("login/events.json"));
+		customResponse.setHtml(fileUtils.getFileContents(SUBCONTEXT
+				+ "/login/login.html"));
+		customResponse.setEvents(fileUtils.getFileContents(SUBCONTEXT
+				+ "/login/events.json"));
 		return customResponse;
 
 	}
@@ -103,9 +80,10 @@ public class ClientController {
 	ClientResponse getHeader() throws IOException, URISyntaxException {
 
 		ClientResponse customResponse = new ClientResponse();
-		customResponse.setHtml(fileUtils.getFileContents("header.html"));
-		customResponse.setEvents(fileUtils
-				.getFileContents("header/events.json"));
+		customResponse.setHtml(fileUtils.getFileContents(SUBCONTEXT
+				+ "/header/header.html"));
+		customResponse.setEvents(fileUtils.getFileContents(SUBCONTEXT
+				+ "/header/events.json"));
 		return customResponse;
 
 	}
@@ -115,7 +93,8 @@ public class ClientController {
 	ClientResponse getFooter() throws IOException, URISyntaxException {
 
 		ClientResponse customResponse = new ClientResponse();
-		customResponse.setHtml(fileUtils.getFileContents("footer.html"));
+		customResponse.setHtml(fileUtils.getFileContents(SUBCONTEXT
+				+ "/footer/footer.html"));
 		return customResponse;
 
 	}

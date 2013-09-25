@@ -41,7 +41,7 @@ public class ClientControllerUnitTests {
 		contentObject.put("html", "test");
 		when(fileUtils.getFileContents("home.html")).thenReturn(contents);
 		// when
-		ClientResponse actualContents = client.getHome();
+		ClientResponse actualContents = client.getMrmHome();
 
 		// then
 
