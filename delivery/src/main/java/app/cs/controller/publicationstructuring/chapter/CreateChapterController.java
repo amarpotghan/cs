@@ -61,6 +61,7 @@ public class CreateChapterController {
 			@PathVariable("path") String path,
 			@PathVariable("folder") boolean isFolder) {
 
+
 		createChapterRequestModel.setFolder(isFolder);
 		createChapterRequestModel.setName(name);
 		createChapterRequestModel.setPath(path);

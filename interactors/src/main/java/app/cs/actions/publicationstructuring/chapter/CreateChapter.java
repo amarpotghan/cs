@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.cs.boundary.delivery.Interactor;
+import app.cs.impl.model.DimensionInfo;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.chapter.IChapterRepository;
 import app.cs.model.request.CreateChapterRequest;
@@ -70,6 +71,7 @@ public class CreateChapter implements Interactor {
 		chapter.setPath(path);
 		chapter.setName(name);
 		chapter.setType(type);
+		chapter.setDimensionInfo(new DimensionInfo());
 		chapter.setChildren(new ArrayList<MultiDimensionalObject>());
 
 	}

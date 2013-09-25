@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import app.cs.boundary.delivery.Interactor;
 import app.cs.impl.model.Assortment;
+import app.cs.impl.model.DimensionInfo;
 import app.cs.impl.model.MultiDimensionalObject;
 import app.cs.interfaces.assortment.IAssortmentRepository;
 import app.cs.model.request.CreateAssortmentRequest;
@@ -41,6 +42,7 @@ public class CreateAssortment implements Interactor {
 		assortmentObject.setTitle(createAssortmentRequest.getName());
 		assortmentObject.setIsFolder(false);
 		assortmentObject.setType(type);
+		assortmentObject.setDimensionInfo(new DimensionInfo());
 		assortmentObject.setProducts(assortment.getProducts());
 		assortmentRepository.save(assortmentObject);
 		return new EmptyResponse();

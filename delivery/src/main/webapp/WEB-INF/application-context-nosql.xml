@@ -47,7 +47,7 @@
 	<!-- Pub Abstract Data Layer Configuration -->
 
 
-	<bean id="update" class="org.springframework.data.mongodb.core.query.Update"></bean>
+<bean id="update" class="org.springframework.data.mongodb.core.query.Update"></bean>
 
 
 

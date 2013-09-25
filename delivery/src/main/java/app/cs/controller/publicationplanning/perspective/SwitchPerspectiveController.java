@@ -47,7 +47,7 @@ public class SwitchPerspectiveController {
 	List<MultiDimensionalObject> getDimensionsBy(@PathVariable String structure) {
 
 		request.setStringRequest(structure);
-		return ((TreeResponse) switchPerspective.execute(request)).getTree();
+		TreeResponse output =  ((TreeResponse) switchPerspective.execute(request)); 
+		return output.getTree();
 	}
-
 }
